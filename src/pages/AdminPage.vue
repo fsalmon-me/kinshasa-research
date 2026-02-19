@@ -1,84 +1,223 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import type { DataRecord } from '@/types/data'
+import { ref, computed, onMounted } from 'vue'
+import type { LayerConfig } from '@/types/layer'
+import type { FeatureOverride } from '@/types/layer'
+import {
+  layers,
+  fetchLayerRegistry,
+  fetchData,
+  fetchGeoJSON,
+  metadataOverrides,
+  fetchMetadataOverrides,
+  setFeatureOverride,
+  exportMetadataOverrides,
+  importMetadataOverrides,
+} from '@/composables/useDataStore'
 
-interface DatasetMeta {
-  file: string
-  label: string
+// ---- State ----
+const activeLayerId = ref<string | null>(null)
+const searchQuery = ref('')
+const statusMsg = ref('')
+const errorMsg = ref('')
+
+// ---- Feature rows ----
+interface FeatureRow {
+  key: string           // unique identifier (osm_type/osm_id or index)
+  props: Record<string, unknown>
+  override: FeatureOverride
 }
 
-const datasets = ref<DatasetMeta[]>([
-  { file: 'population.json', label: 'Population' },
-])
+const featureRows = ref<FeatureRow[]>([])
+const sourceColumns = ref<string[]>([])   // columns from source data (read-only)
+const customColumns = ref<string[]>(['notes', 'verified'])  // user-added columns (editable)
 
-const activeFile = ref('population.json')
-const rows = ref<DataRecord[]>([])
-const columns = ref<string[]>([])
-const importError = ref('')
-const saveStatus = ref('')
+// ---- Computed ----
+const categoryLabels: Record<string, string> = {
+  statistics: '📊 Statistiques',
+  infrastructure: '🛣️ Infrastructure',
+  poi: '📍 Points d\'intérêt',
+  transport: '🚗 Transport',
+}
+const categoryOrder = ['statistics', 'infrastructure', 'poi', 'transport', 'other']
 
-onMounted(() => {
-  loadDataset(activeFile.value)
+interface GroupedLayers { key: string; label: string; items: LayerConfig[] }
+const groups = computed<GroupedLayers[]>(() => {
+  const map = new Map<string, LayerConfig[]>()
+  for (const l of layers.value) {
+    const cat = l.category ?? 'other'
+    if (!map.has(cat)) map.set(cat, [])
+    map.get(cat)!.push(l)
+  }
+  return categoryOrder
+    .filter(k => map.has(k))
+    .map(k => ({ key: k, label: categoryLabels[k] ?? '📦 Autre', items: map.get(k)! }))
 })
 
-async function loadDataset(file: string) {
-  activeFile.value = file
-  importError.value = ''
-  saveStatus.value = ''
+const activeLayer = computed(() => layers.value.find(l => l.id === activeLayerId.value))
+
+const filteredRows = computed(() => {
+  if (!searchQuery.value) return featureRows.value
+  const q = searchQuery.value.toLowerCase()
+  return featureRows.value.filter(r => {
+    return Object.values(r.props).some(v =>
+      v != null && String(v).toLowerCase().includes(q)
+    ) || Object.values(r.override).some(v =>
+      v != null && String(v).toLowerCase().includes(q)
+    )
+  })
+})
+
+const stats = computed(() => {
+  const total = featureRows.value.length
+  const named = featureRows.value.filter(r => {
+    const name = r.props.name ?? r.props.Name ?? r.props.commune
+    return name != null && name !== '' && name !== 'null'
+  }).length
+  const verified = featureRows.value.filter(r => r.override.verified).length
+  return { total, named, verified }
+})
+
+// ---- Lifecycle ----
+onMounted(async () => {
+  await Promise.all([fetchLayerRegistry(), fetchMetadataOverrides()])
+  // Auto-select first layer
+  if (layers.value.length && !activeLayerId.value) {
+    selectLayer(layers.value[0].id)
+  }
+})
+
+// ---- Functions ----
+function getFeatureKey(props: Record<string, unknown>, index: number): string {
+  if (props.osm_type && props.osm_id) return `${props.osm_type}/${props.osm_id}`
+  if (props.id) return String(props.id)
+  return `idx:${index}`
+}
+
+async function selectLayer(layerId: string) {
+  activeLayerId.value = layerId
+  searchQuery.value = ''
+  errorMsg.value = ''
+  featureRows.value = []
+  sourceColumns.value = []
+
+  const config = layers.value.find(l => l.id === layerId)
+  if (!config) return
+
   try {
     const base = import.meta.env.BASE_URL.replace(/\/$/, '')
-    const res = await fetch(`${base}/data/${file}`)
-    const data: DataRecord[] = await res.json()
-    rows.value = data
-    columns.value = data.length > 0 ? Object.keys(data[0]) : []
+    let rawRows: Record<string, unknown>[] = []
+
+    // Load data based on layer type
+    if (config.type === 'markers' || config.type === 'geojson') {
+      const file = config.type === 'markers'
+        ? ((config as any).geojsonFile ?? (config as any).dataFile)
+        : (config as any).geojsonFile
+      if (file?.endsWith('.geojson') || file?.endsWith('.json') && config.type === 'geojson') {
+        const geojson = await fetchGeoJSON(file)
+        rawRows = geojson.features.map((f: any) => ({
+          ...f.properties,
+          _geometry_type: f.geometry?.type,
+        }))
+      } else if (file) {
+        rawRows = await fetchData(file) as Record<string, unknown>[]
+      }
+    } else if (config.type === 'choropleth') {
+      const data = await fetchData((config as any).dataFile)
+      rawRows = data as Record<string, unknown>[]
+    } else if (config.type === 'matrix') {
+      // Matrix layer — show communes list from travel data
+      const res = await fetch(`${base}/data/${(config as any).dataFile}`)
+      const data = await res.json()
+      rawRows = (data.communes ?? []).map((name: string, i: number) => ({
+        commune: name,
+        index: i,
+      }))
+    }
+
+    // Extract source columns (excl internal fields)
+    const skipFields = new Set(['_geometry_type'])
+    if (rawRows.length > 0) {
+      sourceColumns.value = Object.keys(rawRows[0]).filter(k => !skipFields.has(k))
+    }
+
+    // Discover any custom columns from existing overrides
+    const layerOverrides = metadataOverrides.value[layerId] ?? {}
+    const discoveredCustom = new Set<string>(customColumns.value)
+    for (const ovr of Object.values(layerOverrides)) {
+      for (const k of Object.keys(ovr)) {
+        if (!sourceColumns.value.includes(k)) discoveredCustom.add(k)
+      }
+    }
+    customColumns.value = [...discoveredCustom]
+
+    // Build feature rows
+    featureRows.value = rawRows.map((props, i) => {
+      const key = getFeatureKey(props, i)
+      const override = layerOverrides[key] ?? {}
+      return { key, props, override: { ...override } }
+    })
   } catch (e: any) {
-    importError.value = `Impossible de charger ${file}: ${e.message}`
+    errorMsg.value = `Erreur de chargement: ${e.message}`
   }
 }
 
-function updateCell(rowIdx: number, col: string, value: string) {
-  const parsed = Number(value)
-  ;(rows.value[rowIdx] as any)[col] = isNaN(parsed) ? value : parsed
+function updateOverride(row: FeatureRow, field: string, value: string) {
+  if (field === 'verified') {
+    row.override.verified = value === 'true' || value === '1'
+  } else {
+    (row.override as any)[field] = value || undefined
+  }
+  setFeatureOverride(activeLayerId.value!, row.key, row.override)
+  statusMsg.value = 'Modification enregistrée en mémoire'
 }
 
-function addRow() {
-  const empty: Record<string, any> = {}
-  columns.value.forEach((c) => (empty[c] = ''))
-  rows.value.push(empty)
+function toggleVerified(row: FeatureRow) {
+  row.override.verified = !row.override.verified
+  setFeatureOverride(activeLayerId.value!, row.key, row.override)
+  statusMsg.value = 'Statut vérifié mis à jour'
 }
 
-function deleteRow(idx: number) {
-  rows.value.splice(idx, 1)
+function addCustomColumn() {
+  const name = prompt('Nom du nouveau champ personnalisé :')
+  if (!name || customColumns.value.includes(name) || sourceColumns.value.includes(name)) return
+  customColumns.value.push(name)
 }
 
-function exportJson() {
-  const blob = new Blob([JSON.stringify(rows.value, null, 2)], { type: 'application/json' })
+function doExportOverrides() {
+  exportMetadataOverrides()
+  statusMsg.value = 'Fichier metadata-overrides.json exporté'
+}
+
+async function doImportOverrides(event: Event) {
+  const input = event.target as HTMLInputElement
+  if (!input.files?.length) return
+  try {
+    await importMetadataOverrides(input.files[0])
+    statusMsg.value = 'Overrides importées avec succès'
+    // Reload current layer to reflect changes
+    if (activeLayerId.value) await selectLayer(activeLayerId.value)
+  } catch (e: any) {
+    errorMsg.value = `Erreur d'import: ${e.message}`
+  }
+  input.value = '' // reset file input
+}
+
+function exportEnrichedData() {
+  if (!activeLayerId.value || !featureRows.value.length) return
+  const enriched = featureRows.value.map(r => ({
+    ...r.props,
+    ...r.override,
+  }))
+  const blob = new Blob([JSON.stringify(enriched, null, 2)], { type: 'application/json' })
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.href = url
-  a.download = activeFile.value
+  a.download = `${activeLayerId.value}-enriched.json`
   a.click()
   URL.revokeObjectURL(url)
 }
 
-function importFile(event: Event) {
-  const input = event.target as HTMLInputElement
-  if (!input.files?.length) return
-  const reader = new FileReader()
-  reader.onload = () => {
-    try {
-      const data = JSON.parse(reader.result as string)
-      if (!Array.isArray(data)) throw new Error('Le fichier doit contenir un tableau JSON')
-      rows.value = data
-      columns.value = data.length > 0 ? Object.keys(data[0]) : []
-      importError.value = ''
-      saveStatus.value = 'Import réussi — pensez à exporter pour sauvegarder.'
-    } catch (e: any) {
-      importError.value = `Erreur d'import: ${e.message}`
-    }
-  }
-  reader.readAsText(input.files[0])
-}
+
 </script>
 
 <template>
@@ -86,59 +225,128 @@ function importFile(event: Event) {
     <header class="admin-header">
       <router-link to="/" class="back-link">← Carte</router-link>
       <h1>Administration des données</h1>
+      <div class="header-actions">
+        <button class="btn" @click="doExportOverrides" title="Exporter les annotations">⬇ Annotations</button>
+        <label class="btn" title="Importer les annotations">
+          ⬆ Annotations
+          <input type="file" accept=".json" hidden @change="doImportOverrides" />
+        </label>
+      </div>
     </header>
 
     <div class="admin-body">
+      <!-- Sidebar: layer list -->
       <aside class="sidebar">
-        <h3>Jeux de données</h3>
-        <button
-          v-for="ds in datasets"
-          :key="ds.file"
-          :class="['ds-btn', { active: ds.file === activeFile }]"
-          @click="loadDataset(ds.file)"
-        >
-          {{ ds.label }}
-        </button>
+        <div v-for="group in groups" :key="group.key" class="sidebar-group">
+          <div class="group-label">{{ group.label }}</div>
+          <button
+            v-for="layer in group.items"
+            :key="layer.id"
+            :class="['ds-btn', { active: layer.id === activeLayerId }]"
+            @click="selectLayer(layer.id)"
+          >
+            {{ layer.name }}
+          </button>
+        </div>
       </aside>
 
+      <!-- Main editor -->
       <main class="editor">
-        <div class="toolbar">
-          <button class="btn" @click="addRow">+ Ligne</button>
-          <button class="btn primary" @click="exportJson">⬇ Exporter JSON</button>
-          <label class="btn">
-            ⬆ Importer JSON
-            <input type="file" accept=".json" hidden @change="importFile" />
-          </label>
+        <!-- Layer header -->
+        <div v-if="activeLayer" class="layer-header">
+          <div class="layer-info">
+            <h2>{{ activeLayer.name }}</h2>
+            <p class="layer-desc">{{ activeLayer.description }}</p>
+            <div v-if="activeLayer.metadata" class="layer-meta">
+              <span class="meta-badge">📦 {{ activeLayer.metadata.source }}</span>
+              <span v-if="activeLayer.metadata.license" class="meta-badge">📜 {{ activeLayer.metadata.license }}</span>
+              <span v-if="activeLayer.metadata.accessDate" class="meta-badge">📅 {{ activeLayer.metadata.accessDate }}</span>
+            </div>
+          </div>
+          <div class="stat-cards">
+            <div class="stat-card">
+              <div class="stat-value">{{ stats.total }}</div>
+              <div class="stat-label">Entrées</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">{{ stats.named }}</div>
+              <div class="stat-label">Nommés</div>
+            </div>
+            <div class="stat-card accent">
+              <div class="stat-value">{{ stats.verified }}</div>
+              <div class="stat-label">Vérifiés</div>
+            </div>
+          </div>
         </div>
 
-        <div v-if="importError" class="msg error">{{ importError }}</div>
-        <div v-if="saveStatus" class="msg success">{{ saveStatus }}</div>
+        <!-- Toolbar -->
+        <div class="toolbar">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input
+              v-model="searchQuery"
+              type="text"
+              placeholder="Rechercher dans les données…"
+              class="search-input"
+            />
+          </div>
+          <button class="btn" @click="addCustomColumn">+ Champ</button>
+          <button class="btn primary" @click="exportEnrichedData">⬇ Export enrichi</button>
+        </div>
 
+        <div v-if="errorMsg" class="msg error">{{ errorMsg }}</div>
+        <div v-if="statusMsg" class="msg success" @click="statusMsg = ''">{{ statusMsg }} ✕</div>
+
+        <!-- Data table -->
         <div class="table-wrapper">
-          <table v-if="rows.length">
+          <table v-if="filteredRows.length">
             <thead>
               <tr>
-                <th>#</th>
-                <th v-for="col in columns" :key="col">{{ col }}</th>
-                <th></th>
+                <th class="col-num">#</th>
+                <th
+                  v-for="col in sourceColumns"
+                  :key="col"
+                  class="col-source"
+                  :title="`Source: ${col}`"
+                >{{ (activeLayer as any)?.fieldLabels?.[col] ?? col }}</th>
+                <th
+                  v-for="col in customColumns"
+                  :key="'c_' + col"
+                  class="col-custom"
+                >{{ col === 'verified' ? '✓' : col }}</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(row, ri) in rows" :key="ri">
+              <tr v-for="(row, ri) in filteredRows" :key="row.key" :class="{ verified: row.override.verified }">
                 <td class="row-num">{{ ri + 1 }}</td>
-                <td v-for="col in columns" :key="col">
-                  <input
-                    :value="(row as any)[col]"
-                    @input="updateCell(ri, col, ($event.target as HTMLInputElement).value)"
-                  />
+                <!-- Source columns (read-only) -->
+                <td v-for="col in sourceColumns" :key="col" class="cell-source">
+                  <span :title="String(row.props[col] ?? '')">{{ row.props[col] ?? '' }}</span>
                 </td>
-                <td>
-                  <button class="del-btn" @click="deleteRow(ri)">✕</button>
+                <!-- Custom/override columns (editable) -->
+                <td v-for="col in customColumns" :key="'c_' + col" class="cell-custom">
+                  <template v-if="col === 'verified'">
+                    <button
+                      :class="['verify-btn', { active: row.override.verified }]"
+                      @click="toggleVerified(row)"
+                      :title="row.override.verified ? 'Vérifié' : 'Non vérifié'"
+                    >{{ row.override.verified ? '✅' : '⬜' }}</button>
+                  </template>
+                  <template v-else>
+                    <input
+                      :value="(row.override as any)[col] ?? ''"
+                      @change="updateOverride(row, col, ($event.target as HTMLInputElement).value)"
+                      :placeholder="col"
+                    />
+                  </template>
                 </td>
               </tr>
             </tbody>
           </table>
-          <p v-else class="empty">Aucune donnée.</p>
+          <p v-else-if="activeLayerId" class="empty">
+            {{ searchQuery ? 'Aucun résultat pour cette recherche.' : 'Aucune donnée.' }}
+          </p>
+          <p v-else class="empty">Sélectionnez une couche dans le menu de gauche.</p>
         </div>
       </main>
     </div>
@@ -167,6 +375,24 @@ function importFile(event: Event) {
   font-size: 18px;
   margin: 0;
   font-weight: 600;
+  flex: 1;
+}
+
+.header-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.header-actions .btn {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.25);
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 10px;
+}
+
+.header-actions .btn:hover {
+  background: rgba(255,255,255,0.25);
 }
 
 .back-link {
@@ -188,19 +414,26 @@ function importFile(event: Event) {
   overflow: hidden;
 }
 
+/* Sidebar */
 .sidebar {
-  width: 180px;
+  width: 200px;
   background: #fff;
   border-right: 1px solid #e0e0e0;
-  padding: 12px;
+  padding: 8px;
+  overflow-y: auto;
 }
 
-.sidebar h3 {
-  font-size: 13px;
-  margin: 0 0 8px 0;
-  color: #666;
+.sidebar-group {
+  margin-bottom: 4px;
+}
+
+.group-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #888;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
+  padding: 8px 8px 4px;
 }
 
 .ds-btn {
@@ -209,35 +442,132 @@ function importFile(event: Event) {
   text-align: left;
   background: none;
   border: none;
-  padding: 8px;
+  padding: 6px 8px;
   border-radius: 4px;
   cursor: pointer;
   font-size: 13px;
   color: #444;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.ds-btn:hover {
-  background: #f0f0f0;
-}
+.ds-btn:hover { background: #f0f0f0; }
+.ds-btn.active { background: #e3f2fd; color: #2c7fb8; font-weight: 600; }
 
-.ds-btn.active {
-  background: #e3f2fd;
-  color: #2c7fb8;
-  font-weight: 600;
-}
-
+/* Editor */
 .editor {
   flex: 1;
   display: flex;
   flex-direction: column;
   padding: 12px 16px;
-  overflow: auto;
+  overflow: hidden;
 }
 
+.layer-header {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.layer-info {
+  flex: 1;
+}
+
+.layer-info h2 {
+  margin: 0 0 4px;
+  font-size: 18px;
+  color: #333;
+}
+
+.layer-desc {
+  margin: 0 0 6px;
+  font-size: 13px;
+  color: #666;
+}
+
+.layer-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.meta-badge {
+  font-size: 11px;
+  background: #f0f0f0;
+  border-radius: 10px;
+  padding: 2px 8px;
+  color: #555;
+}
+
+.stat-cards {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.stat-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 8px 14px;
+  text-align: center;
+  min-width: 70px;
+}
+
+.stat-card.accent {
+  border-color: #2c7fb8;
+  background: #e3f2fd;
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+}
+
+.stat-card.accent .stat-value {
+  color: #2c7fb8;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: #888;
+  text-transform: uppercase;
+}
+
+/* Toolbar */
 .toolbar {
   display: flex;
   gap: 8px;
   margin-bottom: 10px;
+  align-items: center;
+}
+
+.search-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0 8px;
+}
+
+.search-icon {
+  font-size: 14px;
+  margin-right: 6px;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  font-size: 13px;
+  padding: 6px 0;
+  outline: none;
 }
 
 .btn {
@@ -250,39 +580,25 @@ function importFile(event: Event) {
   background: #fff;
   font-size: 13px;
   cursor: pointer;
+  white-space: nowrap;
 }
 
-.btn:hover {
-  background: #f5f5f5;
-}
-
-.btn.primary {
-  background: #2c7fb8;
-  color: #fff;
-  border-color: #2c7fb8;
-}
-
-.btn.primary:hover {
-  background: #256a9e;
-}
+.btn:hover { background: #f5f5f5; }
+.btn.primary { background: #2c7fb8; color: #fff; border-color: #2c7fb8; }
+.btn.primary:hover { background: #256a9e; }
 
 .msg {
   padding: 6px 10px;
   border-radius: 4px;
   font-size: 13px;
   margin-bottom: 8px;
+  cursor: pointer;
 }
 
-.msg.error {
-  background: #fce4ec;
-  color: #c62828;
-}
+.msg.error { background: #fce4ec; color: #c62828; }
+.msg.success { background: #e8f5e9; color: #2e7d32; }
 
-.msg.success {
-  background: #e8f5e9;
-  color: #2e7d32;
-}
-
+/* Table */
 .table-wrapper {
   flex: 1;
   overflow: auto;
@@ -290,15 +606,19 @@ function importFile(event: Event) {
 
 table {
   border-collapse: collapse;
-  width: 100%;
-  font-size: 13px;
+  width: max-content;
+  min-width: 100%;
+  font-size: 12px;
 }
 
-th,
-td {
+th, td {
   border: 1px solid #e0e0e0;
   padding: 4px 8px;
   text-align: left;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 th {
@@ -306,38 +626,64 @@ th {
   font-weight: 600;
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 2;
+  font-size: 11px;
+}
+
+.col-num { width: 35px; text-align: center; }
+.col-source { }
+.col-custom {
+  background: #fffde7;
+  border-color: #fff9c4;
+}
+
+th.col-custom {
+  background: #fff9c4;
+  color: #f57f17;
 }
 
 .row-num {
   color: #999;
-  width: 30px;
   text-align: center;
+  font-size: 11px;
 }
 
-td input {
+.cell-source {
+  color: #555;
+  background: #fafafa;
+}
+
+.cell-custom {
+  background: #fffef5;
+}
+
+.cell-custom input {
   width: 100%;
   border: none;
   background: transparent;
-  font-size: 13px;
+  font-size: 12px;
   padding: 2px 0;
 }
 
-td input:focus {
-  outline: 2px solid #2c7fb8;
+.cell-custom input:focus {
+  outline: 2px solid #f57f17;
   border-radius: 2px;
 }
 
-.del-btn {
-  border: none;
-  background: none;
-  color: #999;
-  cursor: pointer;
-  font-size: 14px;
+tr.verified {
+  background: #e8f5e9 !important;
 }
 
-.del-btn:hover {
-  color: #c62828;
+tr.verified .cell-source {
+  background: #e8f5e9;
+}
+
+.verify-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0 2px;
 }
 
 .empty {

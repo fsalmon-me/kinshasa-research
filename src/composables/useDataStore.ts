@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import type { LayerConfig } from '@/types/layer'
+import type { FeatureOverride, MetadataOverrides } from '@/types/layer'
 import type { DataRecord } from '@/types/data'
 
 // =====================================
@@ -22,6 +23,67 @@ export const selectedYear = ref<string>('2017')
 
 /** Loading state */
 export const loading = ref(false)
+
+/** Metadata overrides: layerId → featureKey → override fields */
+export const metadataOverrides = ref<MetadataOverrides>({})
+
+/** Search index for communes + POIs */
+export interface SearchEntry {
+  label: string
+  type: 'commune' | 'poi'
+  layerId: string
+  lat: number
+  lng: number
+}
+
+export const searchIndex = ref<SearchEntry[]>([])
+
+/** Build search index from loaded GeoJSON data */
+export async function buildSearchIndex() {
+  const entries: SearchEntry[] = []
+
+  // Communes from communes.geojson
+  try {
+    const communes = await fetchGeoJSON('communes.geojson')
+    const centroid = (await import('@turf/centroid')).default
+    for (const f of communes.features) {
+      const name = f.properties?.name ?? f.properties?.NAME ?? ''
+      if (!name) continue
+      const center = centroid(f as any)
+      entries.push({
+        label: name,
+        type: 'commune',
+        layerId: 'communes',
+        lat: center.geometry.coordinates[1],
+        lng: center.geometry.coordinates[0],
+      })
+    }
+  } catch { /* communes not available */ }
+
+  // POIs from marker layers
+  for (const layer of layers.value) {
+    if (layer.type !== 'markers') continue
+    const file = (layer as any).geojsonFile
+    if (!file) continue
+    try {
+      const geojson = await fetchGeoJSON(file)
+      for (const f of geojson.features) {
+        const name = f.properties?.name ?? f.properties?.Name ?? ''
+        if (!name || f.geometry.type !== 'Point') continue
+        const coords = (f.geometry as GeoJSON.Point).coordinates
+        entries.push({
+          label: `${name} (${layer.name})`,
+          type: 'poi',
+          layerId: layer.id,
+          lat: coords[1],
+          lng: coords[0],
+        })
+      }
+    } catch { /* skip */ }
+  }
+
+  searchIndex.value = entries
+}
 
 // =====================================
 // Fetch helpers
@@ -83,4 +145,66 @@ export function availableYears(): string[] {
 export function clearCaches() {
   dataCache.clear()
   geojsonCache.clear()
+}
+
+// =====================================
+// Metadata overrides management
+// =====================================
+
+/** Load overrides from a local JSON file (or initialize empty) */
+export async function fetchMetadataOverrides(): Promise<MetadataOverrides> {
+  try {
+    const res = await fetch(`${base}/data/metadata-overrides.json`)
+    if (res.ok) {
+      const data = await res.json()
+      metadataOverrides.value = data
+      return data
+    }
+  } catch { /* file doesn't exist yet — fine */ }
+  metadataOverrides.value = {}
+  return {}
+}
+
+/** Get override for a specific feature */
+export function getFeatureOverride(layerId: string, featureKey: string): FeatureOverride | undefined {
+  return metadataOverrides.value[layerId]?.[featureKey]
+}
+
+/** Set override for a specific feature (updates reactive state) */
+export function setFeatureOverride(layerId: string, featureKey: string, override: FeatureOverride) {
+  if (!metadataOverrides.value[layerId]) {
+    metadataOverrides.value[layerId] = {}
+  }
+  metadataOverrides.value[layerId][featureKey] = {
+    ...metadataOverrides.value[layerId][featureKey],
+    ...override,
+  }
+}
+
+/** Export all overrides as a downloadable JSON file */
+export function exportMetadataOverrides() {
+  const blob = new Blob([JSON.stringify(metadataOverrides.value, null, 2)], { type: 'application/json' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = 'metadata-overrides.json'
+  a.click()
+  URL.revokeObjectURL(url)
+}
+
+/** Import overrides from a JSON file */
+export function importMetadataOverrides(file: File): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload = () => {
+      try {
+        const data = JSON.parse(reader.result as string)
+        metadataOverrides.value = data
+        resolve()
+      } catch (e) {
+        reject(e)
+      }
+    }
+    reader.readAsText(file)
+  })
 }

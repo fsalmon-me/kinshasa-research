@@ -15,6 +15,7 @@ export function useGeoJsonOverlay() {
     const geojson = await fetchGeoJSON(config.geojsonFile)
 
     leafletLayer = L.geoJSON(geojson, {
+      pane: 'lines',
       style: (feature) => {
         if (!config.styleProperty || !config.styleMap) {
           return config.defaultStyle ?? { color: '#3388ff', weight: 2 }

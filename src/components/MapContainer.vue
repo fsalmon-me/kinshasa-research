@@ -13,21 +13,48 @@ import { useChoropleth } from '@/composables/useChoropleth'
 import { useGeoJsonOverlay } from '@/composables/useGeoJsonOverlay'
 import { useMarkerLayer } from '@/composables/useMarkerLayer'
 import { useMatrixLayer } from '@/composables/useMatrixLayer'
-import type { LayerConfig, ChoroplethLayer, GeoJsonLayer, MarkerLayer, MatrixLayer } from '@/types/layer'
+import { useHeatmapLayer } from '@/composables/useHeatmapLayer'
+import type { LayerConfig, ChoroplethLayer, GeoJsonLayer, MarkerLayer, MatrixLayer, HeatmapLayer } from '@/types/layer'
 import LayerPanel from './LayerPanel.vue'
 import YearSlider from './YearSlider.vue'
 import MapLegend from './MapLegend.vue'
 import SourcesPanel from './SourcesPanel.vue'
+import CommuneSidebar from './CommuneSidebar.vue'
+import SearchBar from './SearchBar.vue'
+import type { SearchEntry } from '@/composables/useDataStore'
 
 // ---- Map setup ----
 const mapEl = ref<HTMLElement | null>(null)
 let map: L.Map | null = null
+
+// ---- Commune sidebar state ----
+const sidebarCommuneName = ref<string | null>(null)
+const sidebarCommuneFeature = ref<GeoJSON.Feature | null>(null)
+const sidebarPopulationData = ref<Map<string, Record<string, unknown>> | null>(null)
+
+function onCommuneClick(name: string, feature: GeoJSON.Feature, popData: Map<string, Record<string, unknown>> | null) {
+  sidebarCommuneName.value = name
+  sidebarCommuneFeature.value = feature
+  sidebarPopulationData.value = popData
+}
+
+function closeSidebar() {
+  sidebarCommuneName.value = null
+  sidebarCommuneFeature.value = null
+}
+
+function onSearchSelect(entry: SearchEntry) {
+  if (!map) return
+  const zoom = entry.type === 'commune' ? 13 : 16
+  map.flyTo([entry.lat, entry.lng], zoom, { duration: 1 })
+}
 
 // ---- Layer instances (keyed by layer id) ----
 const choroInstances = new Map<string, ReturnType<typeof useChoropleth>>()
 const geojsonInstances = new Map<string, ReturnType<typeof useGeoJsonOverlay>>()
 const markerInstances = new Map<string, ReturnType<typeof useMarkerLayer>>()
 const matrixInstances = new Map<string, ReturnType<typeof useMatrixLayer>>()
+const heatmapInstances = new Map<string, ReturnType<typeof useHeatmapLayer>>()
 
 // ---- Computed ----
 const years = computed(() => availableYears())
@@ -44,6 +71,14 @@ onMounted(async () => {
     zoom: 11,
     zoomControl: true,
   })
+
+  // Custom panes for proper z-ordering: zones < lines < markers
+  const zonesPane = map.createPane('zones')
+  zonesPane.style.zIndex = '400'
+  const linesPane = map.createPane('lines')
+  linesPane.style.zIndex = '450'
+  const markersPane = map.createPane('markers')
+  markersPane.style.zIndex = '500'
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -74,7 +109,7 @@ async function showLayer(config: LayerConfig) {
   if (config.type === 'choropleth') {
     const inst = useChoropleth()
     choroInstances.set(config.id, inst)
-    await inst.show(map, config as ChoroplethLayer)
+    await inst.show(map, config as ChoroplethLayer, onCommuneClick)
   } else if (config.type === 'geojson') {
     const inst = useGeoJsonOverlay()
     geojsonInstances.set(config.id, inst)
@@ -87,6 +122,10 @@ async function showLayer(config: LayerConfig) {
     const inst = useMatrixLayer()
     matrixInstances.set(config.id, inst)
     await inst.show(map, config as MatrixLayer)
+  } else if (config.type === 'heatmap') {
+    const inst = useHeatmapLayer()
+    heatmapInstances.set(config.id, inst)
+    await inst.show(map, config as HeatmapLayer)
   }
 }
 
@@ -105,6 +144,9 @@ function hideLayer(config: LayerConfig) {
   } else if (config.type === 'matrix') {
     matrixInstances.get(config.id)?.remove(map)
     matrixInstances.delete(config.id)
+  } else if (config.type === 'heatmap') {
+    heatmapInstances.get(config.id)?.remove(map)
+    heatmapInstances.delete(config.id)
   }
 }
 
@@ -147,6 +189,7 @@ watch(selectedYear, (year) => {
     </Transition>
 
     <!-- Controls -->
+    <SearchBar @select="onSearchSelect" />
     <LayerPanel :layers="layers" @toggle="onToggle" />
 
     <YearSlider
@@ -164,6 +207,13 @@ watch(selectedYear, (year) => {
     />
 
     <SourcesPanel :layers="layers" />
+
+    <CommuneSidebar
+      :commune-name="sidebarCommuneName"
+      :commune-feature="sidebarCommuneFeature"
+      :population-data="sidebarPopulationData"
+      @close="closeSidebar"
+    />
   </div>
 </template>
 

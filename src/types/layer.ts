@@ -89,7 +89,31 @@ export interface MatrixLayer extends LayerBase {
   legendTitle: string
 }
 
-export type LayerConfig = ChoroplethLayer | MarkerLayer | GeoJsonLayer | MatrixLayer
+/** Heatmap layer: density visualization */
+export interface HeatmapLayer extends LayerBase {
+  type: 'heatmap'
+  geojsonFile: string        // polygon GeoJSON (communes)
+  dataFile: string           // data JSON with values to visualize
+  joinField: string          // field in dataFile to match
+  geojsonJoinField: string   // field in geojson properties to match
+  valueField: string         // field in dataFile used as heat intensity
+  radius?: number            // heat point radius (default 25)
+  blur?: number              // blur (default 15)
+  maxZoom?: number           // max zoom for heat (default 14)
+  legendTitle: string
+}
+
+export type LayerConfig = ChoroplethLayer | MarkerLayer | GeoJsonLayer | MatrixLayer | HeatmapLayer
+
+/** Per-feature metadata override (user annotations stored separately from OSM data) */
+export interface FeatureOverride {
+  notes?: string
+  verified?: boolean
+  [key: string]: unknown
+}
+
+/** All overrides: layerId → featureKey → override fields */
+export type MetadataOverrides = Record<string, Record<string, FeatureOverride>>
 
 // Type guards
 export function isChoropleth(l: LayerConfig): l is ChoroplethLayer {
@@ -103,4 +127,7 @@ export function isGeoJson(l: LayerConfig): l is GeoJsonLayer {
 }
 export function isMatrix(l: LayerConfig): l is MatrixLayer {
   return l.type === 'matrix'
+}
+export function isHeatmap(l: LayerConfig): l is HeatmapLayer {
+  return l.type === 'heatmap'
 }

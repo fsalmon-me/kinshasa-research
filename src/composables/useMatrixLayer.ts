@@ -37,6 +37,7 @@ export function useMatrixLayer() {
     })
 
     geojsonLayer = L.geoJSON(geojson, {
+      pane: 'zones',
       style: () => ({
         fillColor: '#e0e0e0',
         weight: 2,

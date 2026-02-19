@@ -287,5 +287,31 @@
       "methodology": "Centroïde de chaque commune (24) calculé avec @turf/centroid, accroché à la route la plus proche via OSRM /nearest. Matrice 24×24 calculée via OSRM /table, mode driving, sans trafic temps réel. Point de référence choisi = route la plus proche du centroïde géographique (pas le milieu d'une forêt).",
       "notes": "Les temps sont estimés sans embouteillages. La couverture routière OSM peut être incomplète dans les communes périphériques (Maluku, Nsele). Un script Google Distance Matrix est disponible pour comparaison avec données de trafic."
     }
+  },
+  {
+    "id": "heatmap-pop",
+    "name": "Densité de population",
+    "type": "heatmap",
+    "category": "statistics",
+    "geojsonFile": "communes.geojson",
+    "dataFile": "population.json",
+    "joinField": "commune",
+    "geojsonJoinField": "name",
+    "valueField": "pop_2017",
+    "radius": 30,
+    "blur": 20,
+    "maxZoom": 14,
+    "description": "Carte de chaleur de la densité de population par commune",
+    "legendTitle": "Densité de population",
+    "visible": false,
+    "metadata": {
+      "source": "JICA (Japan International Cooperation Agency)",
+      "title": "Densité de population — Kinshasa (heatmap)",
+      "url": "https://www.jica.go.jp/",
+      "license": "Données publiques JICA",
+      "accessDate": "2026-02-19",
+      "methodology": "Heatmap générée à partir des centroïdes communaux pondérés par la population (échelle logarithmique).",
+      "notes": "Visualisation complémentaire au choroplèthe."
+    }
   }
 ]

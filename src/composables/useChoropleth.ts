@@ -12,8 +12,10 @@ export function useChoropleth() {
   let leafletLayer: L.GeoJSON | null = null
   let joinedData: Map<string, DataRecord> | null = null
 
+  type CommuneClickFn = (name: string, feature: GeoJSON.Feature, popData: Map<string, DataRecord> | null) => void
+
   /** Add / replace the choropleth on the map */
-  async function show(map: L.Map, config: ChoroplethLayer) {
+  async function show(map: L.Map, config: ChoroplethLayer, onCommuneClick?: CommuneClickFn) {
     remove(map)
 
     // Load both in parallel
@@ -33,6 +35,7 @@ export function useChoropleth() {
     const prop = config.yearMap[year] ?? Object.values(config.yearMap)[0]
 
     leafletLayer = L.geoJSON(geojson, {
+      pane: 'zones',
       style: (feature) => {
         const name = normalize(feature?.properties?.[config.geojsonJoinField] ?? '')
         const record = joinedData?.get(name)
@@ -51,6 +54,12 @@ export function useChoropleth() {
           className: 'kinshasa-popup',
         })
         layer.on({
+          click: () => {
+            const geoName = feature.properties?.[config.geojsonJoinField] ?? ''
+            if (onCommuneClick && geoName) {
+              onCommuneClick(geoName, feature, joinedData)
+            }
+          },
           mouseover: (e) => {
             const t = e.target as L.Path
             t.setStyle({ weight: 4, color: '#333', fillOpacity: 0.9 })
