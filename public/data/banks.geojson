@@ -1,0 +1,2599 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "source": "OpenStreetMap via Overpass API",
+    "date": "2026-02-19T15:39:12.350Z",
+    "description": "Banques in Kinshasa, DRC",
+    "license": "ODbL - https://opendatacommons.org/licenses/odbl/",
+    "featureCount": 148
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank",
+        "amenity": "bank",
+        "osm_id": 439734832,
+        "osm_type": "node",
+        "brand": "Rawbank",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2507073,
+          -4.3491293
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BIAC",
+        "amenity": "bank",
+        "osm_id": 439734834,
+        "osm_type": "node",
+        "brand": "BIAC",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2576304,
+          -4.3348602
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank",
+        "amenity": "bank",
+        "osm_id": 439734846,
+        "osm_type": "node",
+        "brand": "Rawbank",
+        "atm": "yes",
+        "website": "https://www.rawbank.cd/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2699581,
+          -4.3236254
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank",
+        "amenity": "bank",
+        "osm_id": 440012917,
+        "osm_type": "node",
+        "brand": "Rawbank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.332867,
+          -4.349874
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank 30 Juin",
+        "amenity": "bank",
+        "osm_id": 440111044,
+        "osm_type": "node",
+        "brand": "Rawbank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3123621,
+          -4.3030614
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ecobank",
+        "amenity": "bank",
+        "osm_id": 440111696,
+        "osm_type": "node",
+        "brand": "Ecobank",
+        "phone": "+243 996016000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3139715,
+          -4.305509
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BIAC",
+        "amenity": "bank",
+        "osm_id": 440115093,
+        "osm_type": "node",
+        "brand": "BIAC"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3043636,
+          -4.3046708
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank HDV",
+        "amenity": "bank",
+        "osm_id": 440142393,
+        "osm_type": "node",
+        "brand": "Rawbank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3087048,
+          -4.3053331
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BIAC",
+        "amenity": "bank",
+        "osm_id": 440144472,
+        "osm_type": "node",
+        "brand": "BIAC"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3037787,
+          -4.3159251
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Equity Bank",
+        "amenity": "bank",
+        "osm_id": 440690400,
+        "osm_type": "node",
+        "brand": "Equity Bank",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2573387,
+          -4.3543171
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BIAC",
+        "amenity": "bank",
+        "osm_id": 440690405,
+        "osm_type": "node",
+        "brand": "BIAC",
+        "atm": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2977294,
+          -4.3069579
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "bank",
+        "osm_id": 620763941,
+        "osm_type": "node",
+        "brand": "Ecobank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3394548,
+          -4.3605774
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TMB Limete",
+        "amenity": "bank",
+        "osm_id": 756018329,
+        "osm_type": "node",
+        "brand": "TMB"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3330465,
+          -4.351712
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank",
+        "amenity": "bank",
+        "osm_id": 789397242,
+        "osm_type": "node",
+        "brand": "Rawbank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.333114,
+          -4.3503991
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Equity Bank",
+        "amenity": "bank",
+        "osm_id": 789397245,
+        "osm_type": "node",
+        "brand": "Equity Bank",
+        "website": "http://procreditbank.cd"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3328616,
+          -4.3506236
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Equity Bank",
+        "amenity": "bank",
+        "osm_id": 795827594,
+        "osm_type": "node",
+        "brand": "Equity Bank",
+        "website": "http://procreditbank.cd"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3704578,
+          -4.3889766
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Equity Bank",
+        "amenity": "bank",
+        "osm_id": 795833538,
+        "osm_type": "node",
+        "brand": "Equity Bank",
+        "website": "http://procreditbank.cd"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3144319,
+          -4.3409061
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cadeco Caisse d'Epargne",
+        "amenity": "bank",
+        "osm_id": 798642920,
+        "osm_type": "node",
+        "brand": "CADECO"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.5154968,
+          -4.3241969
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TMB",
+        "amenity": "bank",
+        "osm_id": 1333456041,
+        "osm_type": "node",
+        "brand": "TMB",
+        "operator": "Trust Marchand Bank",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3096612,
+          -4.3068573
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TMB Hasson & Frères",
+        "amenity": "bank",
+        "osm_id": 1333463662,
+        "osm_type": "node",
+        "brand": "TMB"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3147488,
+          -4.3013771
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TMB Memling",
+        "amenity": "bank",
+        "osm_id": 1333466074,
+        "osm_type": "node",
+        "brand": "TMB"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3117495,
+          -4.3039274
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TMB Grand Hôtel",
+        "amenity": "bank",
+        "osm_id": 1365457472,
+        "osm_type": "node",
+        "brand": "TMB"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2729114,
+          -4.3124436
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TMB Hasson & Frères Limete",
+        "amenity": "bank",
+        "osm_id": 1366471055,
+        "osm_type": "node",
+        "brand": "TMB"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3475687,
+          -4.3692169
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TMB",
+        "amenity": "bank",
+        "osm_id": 1366486980,
+        "osm_type": "node",
+        "brand": "TMB"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3110516,
+          -4.2988989
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TMB Victoire",
+        "amenity": "bank",
+        "osm_id": 1367680634,
+        "osm_type": "node",
+        "brand": "TMB"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3149017,
+          -4.3410283
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TMB Shoprite",
+        "amenity": "bank",
+        "osm_id": 2144897838,
+        "osm_type": "node",
+        "brand": "TMB",
+        "opening_hours": "Mo-Fr 08:00-16:00;Sa 8:00-12:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2753652,
+          -4.3290694
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Equity Bank",
+        "amenity": "bank",
+        "osm_id": 2157587961,
+        "osm_type": "node",
+        "brand": "Equity Bank",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3147498,
+          -4.3013085
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BIAC ATM",
+        "amenity": "bank",
+        "osm_id": 2158171740,
+        "osm_type": "node",
+        "brand": "BIAC",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3095505,
+          -4.3000955
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BIAC",
+        "amenity": "bank",
+        "osm_id": 2533328476,
+        "osm_type": "node",
+        "brand": "BIAC",
+        "operator": "BIAC/Western Union",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2559448,
+          -4.4050511
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "FiBank",
+        "amenity": "bank",
+        "osm_id": 2534819997,
+        "osm_type": "node",
+        "brand": "FIBANK",
+        "atm": "no",
+        "opening_hours": "08:30-12:30,15:30-20:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2860488,
+          -4.3119514
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BIC",
+        "amenity": "bank",
+        "osm_id": 3287579575,
+        "osm_type": "node",
+        "brand": "BIC"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2806294,
+          -4.31554
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Advans Banque",
+        "amenity": "bank",
+        "osm_id": 4110510289,
+        "osm_type": "node",
+        "brand": "Advans Banque",
+        "operator": "Advans Banque Congo"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3119637,
+          -4.3036455
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ecobank",
+        "amenity": "bank",
+        "osm_id": 4243079844,
+        "osm_type": "node",
+        "brand": "Ecobank",
+        "atm": "yes",
+        "opening_hours": "24/7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2569158,
+          -4.4087192
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Equity Bank",
+        "amenity": "bank",
+        "osm_id": 4394609844,
+        "osm_type": "node",
+        "brand": "Equity Bank",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3081805,
+          -4.3440788
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "bank",
+        "osm_id": 4394621570,
+        "osm_type": "node",
+        "brand": "I-Finance"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3083978,
+          -4.343358
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "FBNBank",
+        "amenity": "bank",
+        "osm_id": 4394627298,
+        "osm_type": "node",
+        "brand": "FBNBank",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3095055,
+          -4.3386188
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Afriland First Bank",
+        "amenity": "bank",
+        "osm_id": 4394638647,
+        "osm_type": "node",
+        "brand": "Afriland First Bank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3118497,
+          -4.3403645
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "bank",
+        "osm_id": 4395815184,
+        "osm_type": "node",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2900968,
+          -4.3081816
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "VFDRC HO",
+        "amenity": "bank",
+        "osm_id": 4546163020,
+        "osm_type": "node",
+        "operator": "VFDRC",
+        "atm": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2659953,
+          -4.3299632
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "afrikabooking",
+        "amenity": "bank",
+        "osm_id": 4567467089,
+        "osm_type": "node",
+        "phone": "+243815016175",
+        "website": "http://www.e-ticket.afrikabooking.net"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.25698,
+          -4.4361941
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BIAC",
+        "amenity": "bank",
+        "osm_id": 4701607507,
+        "osm_type": "node",
+        "brand": "BIAC"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.297033,
+          -4.3070759
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TMB",
+        "amenity": "bank",
+        "osm_id": 4769616797,
+        "osm_type": "node",
+        "brand": "TMB"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3696507,
+          -4.3886882
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank",
+        "amenity": "bank",
+        "osm_id": 4796871792,
+        "osm_type": "node",
+        "brand": "Rawbank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.379216,
+          -4.39234
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Afriland First Bank",
+        "amenity": "bank",
+        "osm_id": 4930807726,
+        "osm_type": "node",
+        "brand": "Afriland First Bank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2875382,
+          -4.3119219
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "OXUS Micro Finance",
+        "amenity": "bank",
+        "osm_id": 5182837550,
+        "osm_type": "node",
+        "brand": "OXUS RDC",
+        "operator": "Micro Finance",
+        "atm": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2731759,
+          -4.3445584
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank",
+        "amenity": "bank",
+        "osm_id": 5182837551,
+        "osm_type": "node",
+        "brand": "Rawbank",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2810236,
+          -4.341374
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "EquityBCDC",
+        "amenity": "bank",
+        "osm_id": 5183675822,
+        "osm_type": "node",
+        "brand": "EquityBCDC",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3106815,
+          -4.3037502
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Equity Bank",
+        "amenity": "bank",
+        "osm_id": 5183938406,
+        "osm_type": "node",
+        "brand": "Equity Bank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3097432,
+          -4.3002536
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ecobank",
+        "amenity": "bank",
+        "osm_id": 5185047921,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2885391,
+          -4.3103396
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank",
+        "amenity": "bank",
+        "osm_id": 5185079210,
+        "osm_type": "node",
+        "brand": "Rawbank",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2616769,
+          -4.342108
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank",
+        "amenity": "bank",
+        "osm_id": 5194480054,
+        "osm_type": "node",
+        "brand": "Rawbank",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3004934,
+          -4.3506237
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Advans Banque",
+        "amenity": "bank",
+        "osm_id": 5259672837,
+        "osm_type": "node",
+        "brand": "Advans Banque",
+        "operator": "Advans Banque Congo"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2930458,
+          -4.348296
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Equity Bank",
+        "amenity": "bank",
+        "osm_id": 5259672838,
+        "osm_type": "node",
+        "brand": "Equity Bank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2971066,
+          -4.3487186
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Advans Banque",
+        "amenity": "bank",
+        "osm_id": 5273455493,
+        "osm_type": "node",
+        "brand": "Advans Banque",
+        "operator": "Advans Banque Congo",
+        "atm": "no",
+        "opening_hours": "08:00-16:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2568895,
+          -4.4390994
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BANK OF AFRICA",
+        "amenity": "bank",
+        "osm_id": 5273455500,
+        "osm_type": "node",
+        "brand": "Bank of Africa",
+        "atm": "yes",
+        "opening_hours": "8:00-16:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2569581,
+          -4.4388576
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Advans Banque",
+        "amenity": "bank",
+        "osm_id": 5295927113,
+        "osm_type": "node",
+        "brand": "Advans Banque",
+        "operator": "Advans Banque Congo",
+        "atm": "yes",
+        "opening_hours": "Mo-Fr 08:30-16:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2830017,
+          -4.4236093
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Advans Banque",
+        "amenity": "bank",
+        "osm_id": 5296008824,
+        "osm_type": "node",
+        "brand": "Advans Banque",
+        "operator": "Advans Banque Congo",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2565712,
+          -4.3753835
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Equity Bank",
+        "amenity": "bank",
+        "osm_id": 5387974301,
+        "osm_type": "node",
+        "brand": "Equity Bank",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.257915,
+          -4.3780218
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "bank",
+        "osm_id": 5406978992,
+        "osm_type": "node",
+        "brand": "BCDC"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2845136,
+          -4.3508694
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "bank",
+        "osm_id": 5407290554,
+        "osm_type": "node",
+        "brand": "Access Bank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3359281,
+          -4.3525146
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "UBA",
+        "amenity": "bank",
+        "osm_id": 5410208655,
+        "osm_type": "node",
+        "brand": "UBA",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2894631,
+          -4.3127333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Agence Bank Of Africa",
+        "amenity": "bank",
+        "osm_id": 5496855503,
+        "osm_type": "node",
+        "brand": "Bank of Africa",
+        "operator": "Bank Of Africa",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2586311,
+          -4.3789217
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BCDC",
+        "amenity": "bank",
+        "osm_id": 5499269090,
+        "osm_type": "node",
+        "brand": "BCDC",
+        "atm": "yes",
+        "opening_hours": "Mo-Fr 08:00-16:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3317052,
+          -4.3512467
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank",
+        "amenity": "bank",
+        "osm_id": 5499321334,
+        "osm_type": "node",
+        "brand": "Rawbank",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2977055,
+          -4.3455233
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "FINCA DR Congo",
+        "amenity": "bank",
+        "osm_id": 5546744197,
+        "osm_type": "node",
+        "brand": "FINCA",
+        "atm": "no",
+        "opening_hours": "Mo-Fr 08:30-16:00, Sa 08:30-12:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3066402,
+          -4.306662
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank",
+        "amenity": "bank",
+        "osm_id": 5552327379,
+        "osm_type": "node",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3050686,
+          -4.3190983
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Equity Bank Masina",
+        "amenity": "bank",
+        "osm_id": 5635662912,
+        "osm_type": "node",
+        "brand": "Equity Bank",
+        "atm": "yes",
+        "opening_hours": "Mo-Fr 08:30-20:00, Tu-Su 08:00-15:00; Sa 08:00-12:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3703215,
+          -4.3883916
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Equity Bank",
+        "amenity": "bank",
+        "osm_id": 5765927467,
+        "osm_type": "node",
+        "brand": "Equity Bank",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3421819,
+          -4.4058349
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Guichet Ecobank",
+        "amenity": "bank",
+        "osm_id": 5836117190,
+        "osm_type": "node",
+        "brand": "Ecobank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3232607,
+          -4.3579865
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "bank",
+        "osm_id": 6039002706,
+        "osm_type": "node",
+        "brand": "Solidaire",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3397659,
+          -4.332477
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank",
+        "amenity": "bank",
+        "osm_id": 6142826536,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2188056,
+          -4.3444025
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "FBNBank",
+        "amenity": "bank",
+        "osm_id": 6427979328,
+        "osm_type": "node",
+        "brand": "FBNBank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2956587,
+          -4.3235609
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank",
+        "amenity": "bank",
+        "osm_id": 6560546255,
+        "osm_type": "node",
+        "brand": "Rawbank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3584116,
+          -4.3844816
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Advans Banque",
+        "amenity": "bank",
+        "osm_id": 6560546268,
+        "osm_type": "node",
+        "brand": "Advans Banque",
+        "operator": "Advans Banque Congo"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3583526,
+          -4.3844789
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "30 Juin",
+        "amenity": "bank",
+        "osm_id": 6681656288,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3117752,
+          -4.3274816
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank Bayaka",
+        "amenity": "bank",
+        "osm_id": 6853506333,
+        "osm_type": "node",
+        "brand": "Rawbank",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2988321,
+          -4.3501181
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bank of Africa",
+        "amenity": "bank",
+        "osm_id": 7044986702,
+        "osm_type": "node",
+        "brand": "Bank of Africa",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.274377,
+          -4.318489
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Equity Bank",
+        "amenity": "bank",
+        "osm_id": 7094915685,
+        "osm_type": "node",
+        "brand": "Equity Bank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2729238,
+          -4.3226799
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank Atrium",
+        "amenity": "bank",
+        "osm_id": 7200714602,
+        "osm_type": "node",
+        "brand": "Rawbank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2949098,
+          -4.3046224
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "bank",
+        "osm_id": 7418130388,
+        "osm_type": "node",
+        "brand": "Ecobank",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2742365,
+          -4.3203589
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Equity Bank",
+        "amenity": "bank",
+        "osm_id": 7431368376,
+        "osm_type": "node",
+        "brand": "Equity Bank",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3338914,
+          -4.3517815
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank Ngaba",
+        "amenity": "bank",
+        "osm_id": 7431474238,
+        "osm_type": "node",
+        "brand": "Rawbank",
+        "atm": "yes",
+        "opening_hours": "Mo-Fr 08:30-14:00; Sa 09:00-12:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3157117,
+          -4.390479
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Equity Bank",
+        "amenity": "bank",
+        "osm_id": 7431474240,
+        "osm_type": "node",
+        "brand": "Equity Bank",
+        "atm": "yes",
+        "opening_hours": "Mo-Sa 07:00-05:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3169155,
+          -4.3901273
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank",
+        "amenity": "bank",
+        "osm_id": 7432646058,
+        "osm_type": "node",
+        "brand": "Rawbank",
+        "atm": "yes",
+        "opening_hours": "Mo-Sa 07:30-05:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2572226,
+          -4.4023716
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank La Couronne",
+        "amenity": "bank",
+        "osm_id": 7432750601,
+        "osm_type": "node",
+        "brand": "Rawbank",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3052989,
+          -4.303455
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank Utexafrica",
+        "amenity": "bank",
+        "osm_id": 7433835632,
+        "osm_type": "node",
+        "brand": "Rawbank",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2687231,
+          -4.3205031
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ecobank",
+        "amenity": "bank",
+        "osm_id": 7443209241,
+        "osm_type": "node",
+        "brand": "Ecobank",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3068385,
+          -4.3045329
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank",
+        "amenity": "bank",
+        "osm_id": 7444274985,
+        "osm_type": "node",
+        "opening_hours": "Mo-Sa 09:00-14:00; Su 09:00-12:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3085332,
+          -4.4202187
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BCDC",
+        "amenity": "bank",
+        "osm_id": 7444275085,
+        "osm_type": "node",
+        "brand": "BCDC",
+        "opening_hours": "Mo-Fr 08:30-14:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3095396,
+          -4.4196561
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TMB Unikin",
+        "amenity": "bank",
+        "osm_id": 7444350110,
+        "osm_type": "node",
+        "brand": "TMB",
+        "opening_hours": "Mo-Fr 08:00-16:00; Sa 08:00-12:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.314634,
+          -4.415394
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Finca",
+        "amenity": "bank",
+        "osm_id": 7444552388,
+        "osm_type": "node",
+        "brand": "FINCA",
+        "opening_hours": "Mo-Sa 09:00-14:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3164628,
+          -4.3907811
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bank of Africa",
+        "amenity": "bank",
+        "osm_id": 7447105477,
+        "osm_type": "node",
+        "brand": "Bank of Africa",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3065407,
+          -4.3041103
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TMB Fleuve Congo Hôtel",
+        "amenity": "bank",
+        "osm_id": 7447286813,
+        "osm_type": "node",
+        "brand": "TMB",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2704918,
+          -4.3126637
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TMB Hôtel du Gouvernement",
+        "amenity": "bank",
+        "osm_id": 7447286814,
+        "osm_type": "node",
+        "brand": "TMB",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2826852,
+          -4.3141134
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Equity Bank",
+        "amenity": "bank",
+        "osm_id": 7447356791,
+        "osm_type": "node",
+        "brand": "Equity Bank",
+        "opening_hours": "Mo-Fr 08:00-14:00; Sa 08:00-12:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2664412,
+          -4.346167
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BGFI Bank",
+        "amenity": "bank",
+        "osm_id": 7447356792,
+        "osm_type": "node",
+        "brand": "BGFI Bank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2665512,
+          -4.3461421
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TMB Monishop Center",
+        "amenity": "bank",
+        "osm_id": 7447356793,
+        "osm_type": "node",
+        "brand": "TMB"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2670472,
+          -4.3460186
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank CTC",
+        "amenity": "bank",
+        "osm_id": 7447392126,
+        "osm_type": "node",
+        "brand": "Rawbank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3116624,
+          -4.2981605
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank",
+        "amenity": "bank",
+        "osm_id": 7449948044,
+        "osm_type": "node",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3135667,
+          -4.3409643
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank",
+        "amenity": "bank",
+        "osm_id": 7449948047,
+        "osm_type": "node",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2967409,
+          -4.3350866
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank",
+        "amenity": "bank",
+        "osm_id": 7449964457,
+        "osm_type": "node",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3292161,
+          -4.3214739
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank",
+        "amenity": "bank",
+        "osm_id": 7449964458,
+        "osm_type": "node",
+        "atm": "yes",
+        "opening_hours": "Mo-Sa 08:00-17:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2597174,
+          -4.441874
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank",
+        "amenity": "bank",
+        "osm_id": 7487210728,
+        "osm_type": "node",
+        "brand": "Rawbank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2671072,
+          -4.3461134
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BGFIBank",
+        "amenity": "bank",
+        "osm_id": 7774375760,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2844259,
+          -4.3130462
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BCDC",
+        "amenity": "bank",
+        "osm_id": 7970993060,
+        "osm_type": "node",
+        "brand": "BCDC",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2772564,
+          -4.342691
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "EquityBCDC",
+        "amenity": "bank",
+        "osm_id": 8264682010,
+        "osm_type": "node",
+        "brand": "EquityBCDC",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2742811,
+          -4.3188414
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "RawBank",
+        "amenity": "bank",
+        "osm_id": 8332266661,
+        "osm_type": "node",
+        "brand": "RawBank",
+        "atm": "yes",
+        "opening_hours": "Tu-Su 11:00-19:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2742013,
+          -4.3188314
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "CTC",
+        "amenity": "bank",
+        "osm_id": 8442590618,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2194012,
+          -4.3442837
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Distributeur Ecobank",
+        "amenity": "bank",
+        "osm_id": 8560446117,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3459088,
+          -4.391589
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Agence BOA",
+        "amenity": "bank",
+        "osm_id": 8901780117,
+        "osm_type": "node",
+        "opening_hours": "Mo-Sa 00:00-24:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3140031,
+          -4.339567
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "bank",
+        "osm_id": 9581627657,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2910391,
+          -4.3500158
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "bank",
+        "osm_id": 9581627659,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2908812,
+          -4.3504478
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "SM GUILGAL SA",
+        "amenity": "bank",
+        "osm_id": 9825093608,
+        "osm_type": "node",
+        "atm": "yes",
+        "opening_hours": "Mo-Sa 09:00-16:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2575788,
+          -4.3794461
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "SM GUILGAL SA",
+        "amenity": "bank",
+        "osm_id": 9827587181,
+        "osm_type": "node",
+        "atm": "no",
+        "opening_hours": "Mo-Sa 09:00-16:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3156021,
+          -4.3902743
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "SM GUILGAL SA",
+        "amenity": "bank",
+        "osm_id": 9827853218,
+        "osm_type": "node",
+        "opening_hours": "Mo-Sa 09:00-16:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3116319,
+          -4.3395561
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "SM GUILGAL SA  -  Guichet UPN",
+        "amenity": "bank",
+        "osm_id": 9827862051,
+        "osm_type": "node",
+        "opening_hours": "Mo-Sa 09:00-16:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2557965,
+          -4.4057211
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "RAWBANK",
+        "amenity": "bank",
+        "osm_id": 9977044013,
+        "osm_type": "node",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3134018,
+          -4.3411371
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TMB",
+        "amenity": "bank",
+        "osm_id": 10983912525,
+        "osm_type": "node",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2863061,
+          -4.317692
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "bank",
+        "osm_id": 11397755173,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3016658,
+          -4.3060711
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "FirstBank",
+        "amenity": "bank",
+        "osm_id": 12981460657,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2190426,
+          -4.3440751
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Equity Bank",
+        "amenity": "bank",
+        "osm_id": 12985698366,
+        "osm_type": "node",
+        "brand": "Equity Bank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2607037,
+          -4.3903044
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Equity BCDC",
+        "amenity": "bank",
+        "osm_id": 13266388103,
+        "osm_type": "node",
+        "opening_hours": "Mo-Sa 08:30-16:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3095454,
+          -4.4196457
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "bank",
+        "osm_id": 13509418610,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2387013,
+          -4.3679257
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TMB Boulevard",
+        "amenity": "bank",
+        "osm_id": 203908662,
+        "osm_type": "way",
+        "brand": "TMB",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3023756,
+          -4.3051727
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Banque africaine de développement",
+        "amenity": "bank",
+        "osm_id": 204490016,
+        "osm_type": "way",
+        "atm": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2903516,
+          -4.3044383
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Citibank",
+        "amenity": "bank",
+        "osm_id": 204547782,
+        "osm_type": "way",
+        "brand": "Citibank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3026146,
+          -4.3033154
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "bank",
+        "osm_id": 204547797,
+        "osm_type": "way",
+        "brand": "Ecobank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.30296,
+          -4.3039508
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Access Bank",
+        "amenity": "bank",
+        "osm_id": 205778185,
+        "osm_type": "way",
+        "brand": "Access Bank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.301467,
+          -4.3072762
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "FBNBank",
+        "amenity": "bank",
+        "osm_id": 206145992,
+        "osm_type": "way",
+        "brand": "FBNBank",
+        "opening_hours": "Mo-Fr 08:00-15:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2786944,
+          -4.322791
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Equity Bank 30 Juin - Huilerie",
+        "amenity": "bank",
+        "osm_id": 207020424,
+        "osm_type": "way",
+        "brand": "Equity Bank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3017062,
+          -4.306165
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "FBN Bank",
+        "amenity": "bank",
+        "osm_id": 334803912,
+        "osm_type": "way",
+        "atm": "yes",
+        "website": "https://www.fbnbankrdc.com/trouver-une-agence/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3341284,
+          -4.35255
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Equity BCDC",
+        "amenity": "bank",
+        "osm_id": 440477939,
+        "osm_type": "way",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2818515,
+          -4.3147099
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "FBNBank",
+        "amenity": "bank",
+        "osm_id": 547207547,
+        "osm_type": "way",
+        "brand": "FBNBank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3157287,
+          -4.3211436
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Equity Bank",
+        "amenity": "bank",
+        "osm_id": 580446531,
+        "osm_type": "way",
+        "brand": "Equity Bank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3094987,
+          -4.3012594
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "bank",
+        "osm_id": 580446784,
+        "osm_type": "way",
+        "brand": "Ecobank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3049641,
+          -4.3028809
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "FBNBank",
+        "amenity": "bank",
+        "osm_id": 580448109,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2909554,
+          -4.3087817
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "bank",
+        "osm_id": 596849568,
+        "osm_type": "way",
+        "brand": "Ecobank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.358312,
+          -4.3844291
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BIAC",
+        "amenity": "bank",
+        "osm_id": 598082245,
+        "osm_type": "way",
+        "brand": "BIAC"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3431779,
+          -4.3840461
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank",
+        "amenity": "bank",
+        "osm_id": 598156591,
+        "osm_type": "way",
+        "brand": "Rawbank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3455094,
+          -4.3911846
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bank of Africa",
+        "amenity": "bank",
+        "osm_id": 676994615,
+        "osm_type": "way",
+        "brand": "Bank of Africa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3706793,
+          -4.3885461
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TMB Ndjili",
+        "amenity": "bank",
+        "osm_id": 676994669,
+        "osm_type": "way",
+        "brand": "TMB"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3702734,
+          -4.3891824
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ProCredit Bank",
+        "amenity": "bank",
+        "osm_id": 682076501,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2558125,
+          -4.3321125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rawbank",
+        "amenity": "bank",
+        "osm_id": 701274546,
+        "osm_type": "way",
+        "brand": "Rawbank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3818782,
+          -4.4186051
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Weston",
+        "amenity": "bank",
+        "osm_id": 702390934,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3543839,
+          -4.4027778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Groupe Service",
+        "amenity": "bank",
+        "osm_id": 709218957,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3474858,
+          -4.3699435
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Equity Bank",
+        "amenity": "bank",
+        "osm_id": 738530991,
+        "osm_type": "way",
+        "brand": "Equity Bank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3485474,
+          -4.3933593
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Accès Bank",
+        "amenity": "bank",
+        "osm_id": 739832780,
+        "osm_type": "way",
+        "atm": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3360525,
+          -4.3527919
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Afriland First Bank",
+        "amenity": "bank",
+        "osm_id": 747516802,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3355016,
+          -4.3516551
+        ]
+      }
+    }
+  ]
+}

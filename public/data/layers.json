@@ -1,0 +1,251 @@
+[
+  {
+    "id": "population",
+    "name": "Population",
+    "type": "choropleth",
+    "category": "statistics",
+    "dataFile": "population.json",
+    "geojsonFile": "communes.geojson",
+    "description": "Population estimée (2017) et projetée (2030, 2040) par commune",
+    "joinField": "commune",
+    "geojsonJoinField": "name",
+    "yearMap": {
+      "2017": "pop_2017",
+      "2030": "pop_2030",
+      "2040": "pop_2040"
+    },
+    "defaultYear": "2017",
+    "thresholds": [100000, 300000, 500000, 1000000, 2000000, 4000000],
+    "colors": ["#ffffcc", "#c7e9b4", "#7fcdbb", "#41b6c4", "#2c7fb8", "#253494", "#081d58"],
+    "unit": "habitants",
+    "legendTitle": "Population",
+    "visible": true,
+    "metadata": {
+      "source": "JICA",
+      "title": "Projet d'Élaboration du Plan Directeur des Transports Urbains de la Ville de Kinshasa — Rapport Final",
+      "authors": ["JICA", "Ministère des Transports et Voies de Communication, RDC"],
+      "year": 2019,
+      "url": "https://openjicareport.jica.go.jp/pdf/12340337.pdf",
+      "license": "JICA Open Access",
+      "methodology": "Estimations de population 2017 basées sur les projections du Plan Directeur des Transports Urbains. Les projections 2030 et 2040 sont des extrapolations de tendances démographiques par commune.",
+      "notes": "Les données brutes proviennent du recensement de 1984, ajustées par des enquêtes ménages et des images satellitaires."
+    }
+  },
+  {
+    "id": "roads-major",
+    "name": "Routes principales",
+    "type": "geojson",
+    "category": "infrastructure",
+    "geojsonFile": "roads-major.geojson",
+    "description": "Autoroutes, troncs principaux, routes primaires et secondaires",
+    "styleProperty": "highway",
+    "styleMap": {
+      "motorway": { "color": "#c0392b", "weight": 4, "label": "Autoroute" },
+      "trunk": { "color": "#e74c3c", "weight": 3, "label": "Tronc principal" },
+      "primary": { "color": "#e67e22", "weight": 2.5, "label": "Route primaire" },
+      "secondary": { "color": "#f1c40f", "weight": 2, "label": "Route secondaire" }
+    },
+    "defaultStyle": { "color": "#95a5a6", "weight": 1.5 },
+    "popupFields": ["name", "highway", "ref", "surface", "lanes"],
+    "legendTitle": "Routes principales",
+    "visible": true,
+    "metadata": {
+      "source": "OpenStreetMap",
+      "title": "OpenStreetMap — Réseau routier de Kinshasa",
+      "url": "https://www.openstreetmap.org/",
+      "license": "ODbL — https://opendatacommons.org/licenses/odbl/",
+      "accessDate": "2026-02-19",
+      "methodology": "Extraction via Overpass API des ways avec highway∈{motorway, trunk, primary, secondary} dans la zone administrative de Kinshasa (admin_level=4). Conversion en GeoJSON LineString."
+    }
+  },
+  {
+    "id": "roads-minor",
+    "name": "Routes secondaires & résidentielles",
+    "type": "geojson",
+    "category": "infrastructure",
+    "geojsonFile": "roads-minor.geojson",
+    "description": "Routes tertiaires, résidentielles et non classifiées",
+    "styleProperty": "highway",
+    "styleMap": {
+      "tertiary": { "color": "#d4a017", "weight": 1.5, "label": "Route tertiaire" },
+      "residential": { "color": "#bdc3c7", "weight": 0.8, "label": "Route résidentielle" },
+      "unclassified": { "color": "#95a5a6", "weight": 0.6, "label": "Non classifiée" }
+    },
+    "defaultStyle": { "color": "#d5d8dc", "weight": 0.5 },
+    "popupFields": ["name", "highway", "surface"],
+    "legendTitle": "Routes mineures",
+    "visible": false,
+    "metadata": {
+      "source": "OpenStreetMap",
+      "title": "OpenStreetMap — Réseau routier secondaire de Kinshasa",
+      "url": "https://www.openstreetmap.org/",
+      "license": "ODbL — https://opendatacommons.org/licenses/odbl/",
+      "accessDate": "2026-02-19",
+      "methodology": "Extraction via Overpass API des ways avec highway∈{tertiary, residential, unclassified}. 34 543 segments. Coordonnées arrondies à 5 décimales (~1.1m) pour optimiser la taille.",
+      "notes": "⚠ Fichier volumineux (~11 MB). Le rendu peut être lent sur des machines moins puissantes. La couverture OSM des routes résidentielles à Kinshasa est inégale — plus complète dans les communes centrales."
+    }
+  },
+  {
+    "id": "hospitals",
+    "name": "Hôpitaux & Cliniques",
+    "type": "markers",
+    "category": "poi",
+    "geojsonFile": "hospitals.geojson",
+    "labelField": "name",
+    "color": "#e74c3c",
+    "radius": 6,
+    "popupFields": ["amenity", "healthcare", "operator", "beds", "phone", "website"],
+    "description": "Hôpitaux et cliniques référencés sur OpenStreetMap",
+    "legendTitle": "Santé",
+    "visible": false,
+    "metadata": {
+      "source": "OpenStreetMap",
+      "title": "Points d'intérêt santé — Kinshasa",
+      "url": "https://www.openstreetmap.org/",
+      "license": "ODbL",
+      "accessDate": "2026-02-19",
+      "methodology": "Requête Overpass : amenity∈{hospital, clinic}. Points extraits avec out body center. 410 établissements.",
+      "notes": "La couverture OSM est partielle — de nombreux centres de santé informels ne sont pas cartographiés. Les données ne reflètent pas la capacité réelle du système de santé."
+    }
+  },
+  {
+    "id": "schools",
+    "name": "Écoles",
+    "type": "markers",
+    "category": "poi",
+    "geojsonFile": "schools.geojson",
+    "labelField": "name",
+    "color": "#3498db",
+    "radius": 5,
+    "popupFields": ["amenity", "operator", "isced:level", "religion"],
+    "description": "Établissements scolaires référencés sur OpenStreetMap",
+    "legendTitle": "Éducation",
+    "visible": false,
+    "metadata": {
+      "source": "OpenStreetMap",
+      "title": "Établissements scolaires — Kinshasa",
+      "url": "https://www.openstreetmap.org/",
+      "license": "ODbL",
+      "accessDate": "2026-02-19",
+      "methodology": "Requête Overpass : amenity=school. 1 161 établissements. Bonne couverture grâce aux campagnes HOT/Missing Maps.",
+      "notes": "Inclut écoles primaires, secondaires et quelques universités. Le niveau ISCED n'est pas systématiquement renseigné."
+    }
+  },
+  {
+    "id": "fuel",
+    "name": "Stations-service",
+    "type": "markers",
+    "category": "poi",
+    "geojsonFile": "fuel.geojson",
+    "labelField": "name",
+    "color": "#f39c12",
+    "radius": 6,
+    "popupFields": ["brand", "operator", "fuel:diesel", "fuel:octane_95", "opening_hours"],
+    "description": "Stations-service référencées sur OpenStreetMap",
+    "legendTitle": "Carburant",
+    "visible": false,
+    "metadata": {
+      "source": "OpenStreetMap",
+      "title": "Stations-service — Kinshasa",
+      "url": "https://www.openstreetmap.org/",
+      "license": "ODbL",
+      "accessDate": "2026-02-19",
+      "methodology": "Requête Overpass : amenity=fuel. 142 stations.",
+      "notes": "Principales marques : Total, Engen, Cobil. Les stations informelles ne sont pas représentées."
+    }
+  },
+  {
+    "id": "markets",
+    "name": "Marchés",
+    "type": "markers",
+    "category": "poi",
+    "geojsonFile": "markets.geojson",
+    "labelField": "name",
+    "color": "#27ae60",
+    "radius": 7,
+    "popupFields": ["opening_hours", "operator", "shop"],
+    "description": "Marchés référencés sur OpenStreetMap",
+    "legendTitle": "Commerce",
+    "visible": false,
+    "metadata": {
+      "source": "OpenStreetMap",
+      "title": "Marchés — Kinshasa",
+      "url": "https://www.openstreetmap.org/",
+      "license": "ODbL",
+      "accessDate": "2026-02-19",
+      "methodology": "Requête Overpass : amenity=marketplace. 71 marchés.",
+      "notes": "Seuls les marchés formellement cartographiés sont inclus. De nombreux marchés informels et de rue ne figurent pas dans OSM."
+    }
+  },
+  {
+    "id": "banks",
+    "name": "Banques",
+    "type": "markers",
+    "category": "poi",
+    "geojsonFile": "banks.geojson",
+    "labelField": "name",
+    "color": "#8e44ad",
+    "radius": 5,
+    "popupFields": ["brand", "operator", "atm", "phone", "opening_hours"],
+    "description": "Banques et agences bancaires référencées sur OpenStreetMap",
+    "legendTitle": "Finance",
+    "visible": false,
+    "metadata": {
+      "source": "OpenStreetMap",
+      "title": "Banques — Kinshasa",
+      "url": "https://www.openstreetmap.org/",
+      "license": "ODbL",
+      "accessDate": "2026-02-19",
+      "methodology": "Requête Overpass : amenity=bank. 148 agences.",
+      "notes": "Principales banques : Rawbank, TMB, Equity BCDC. Concentrées dans Gombe et le long des axes principaux."
+    }
+  },
+  {
+    "id": "embassies",
+    "name": "Ambassades & Consulats",
+    "type": "markers",
+    "category": "poi",
+    "geojsonFile": "embassies.geojson",
+    "labelField": "name",
+    "color": "#2c3e50",
+    "radius": 6,
+    "popupFields": ["country", "target", "diplomatic", "phone", "website"],
+    "description": "Représentations diplomatiques référencées sur OpenStreetMap",
+    "legendTitle": "Diplomatie",
+    "visible": false,
+    "metadata": {
+      "source": "OpenStreetMap",
+      "title": "Ambassades et consulats — Kinshasa",
+      "url": "https://www.openstreetmap.org/",
+      "license": "ODbL",
+      "accessDate": "2026-02-19",
+      "methodology": "Requête Overpass : office=diplomatic + amenity=embassy. 67 représentations.",
+      "notes": "Principalement concentrées dans la commune de la Gombe."
+    }
+  },
+  {
+    "id": "travel-time",
+    "name": "Temps de trajet",
+    "type": "matrix",
+    "category": "transport",
+    "dataFile": "travel-osrm.json",
+    "geojsonFile": "communes.geojson",
+    "geojsonJoinField": "name",
+    "pointLabelField": "commune",
+    "unit": "minutes",
+    "description": "Temps de trajet moyen en voiture entre chaque paire de communes (OSRM, sans trafic)",
+    "thresholds": [10, 20, 30, 45, 60, 90, 120],
+    "colors": ["#1a9850", "#91cf60", "#d9ef8b", "#fee08b", "#fc8d59", "#d73027", "#a50026", "#67001f"],
+    "legendTitle": "Temps de trajet (min)",
+    "visible": false,
+    "metadata": {
+      "source": "OSRM (Open Source Routing Machine)",
+      "title": "Matrice de temps de trajet inter-communal — Kinshasa",
+      "url": "https://project-osrm.org/",
+      "license": "ODbL (données OSM sous-jacentes)",
+      "accessDate": "2026-02-19",
+      "methodology": "Centroïde de chaque commune (24) calculé avec @turf/centroid, accroché à la route la plus proche via OSRM /nearest. Matrice 24×24 calculée via OSRM /table, mode driving, sans trafic temps réel. Point de référence choisi = route la plus proche du centroïde géographique (pas le milieu d'une forêt).",
+      "notes": "Les temps sont estimés sans embouteillages. La couverture routière OSM peut être incomplète dans les communes périphériques (Maluku, Nsele). Un script Google Distance Matrix est disponible pour comparaison avec données de trafic."
+    }
+  }
+]

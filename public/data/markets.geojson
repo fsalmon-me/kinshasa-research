@@ -1,0 +1,1151 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "source": "OpenStreetMap via Overpass API",
+    "date": "2026-02-19T15:39:08.997Z",
+    "description": "Marchés in Kinshasa, DRC",
+    "license": "ODbL - https://opendatacommons.org/licenses/odbl/",
+    "featureCount": 71
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Wenze",
+        "amenity": "marketplace",
+        "osm_id": 1640305526,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2630405,
+          -4.3412468
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Kalé Banzazi",
+        "amenity": "marketplace",
+        "osm_id": 2273728696,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3092766,
+          -4.3562963
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Q7",
+        "amenity": "marketplace",
+        "osm_id": 2273811597,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3720464,
+          -4.3980814
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "marketplace",
+        "osm_id": 2299738184,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2770662,
+          -4.3413325
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché UPN",
+        "amenity": "marketplace",
+        "osm_id": 2533328477,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2558521,
+          -4.406861
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "marketplace",
+        "osm_id": 4323596709,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4115746,
+          -4.4048511
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Mitraille",
+        "amenity": "marketplace",
+        "osm_id": 4792082849,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.373081,
+          -4.391716
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marche Wenzeyambila",
+        "amenity": "marketplace",
+        "osm_id": 4792117214,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4125896,
+          -4.4090046
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Cecomaf",
+        "amenity": "marketplace",
+        "osm_id": 4795592153,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.36333,
+          -4.426706
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marche 6",
+        "amenity": "marketplace",
+        "osm_id": 4795614939,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3697028,
+          -4.4152232
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "marketplace",
+        "osm_id": 4795641367,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.419858,
+          -4.4531691
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marche de Mfu Nketo",
+        "amenity": "marketplace",
+        "osm_id": 4795654576,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.41444,
+          -4.422926
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Kabila",
+        "amenity": "marketplace",
+        "osm_id": 4796305062,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.413857,
+          -4.405462
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marche de la Police",
+        "amenity": "marketplace",
+        "osm_id": 4796450816,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4319142,
+          -4.4263781
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "marketplace",
+        "osm_id": 4796488615,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4134541,
+          -4.4397828
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marche Bayaka",
+        "amenity": "marketplace",
+        "osm_id": 4796506307,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.397953,
+          -4.43567
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Mangobo",
+        "amenity": "marketplace",
+        "osm_id": 4796871668,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.376849,
+          -4.397755
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Milagi",
+        "amenity": "marketplace",
+        "osm_id": 4798231838,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4066155,
+          -4.4285163
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché",
+        "amenity": "marketplace",
+        "osm_id": 4798247360,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.409835,
+          -4.413751
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Ferbois",
+        "amenity": "marketplace",
+        "osm_id": 4798338369,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3989469,
+          -4.4179948
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "marketplace",
+        "osm_id": 4801954226,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.39578,
+          -4.401312
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Lumumba",
+        "amenity": "marketplace",
+        "osm_id": 5188729760,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2882037,
+          -4.3492009
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Alimentation de Kivu",
+        "amenity": "marketplace",
+        "osm_id": 5287475047,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3149575,
+          -4.3921491
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Selembao",
+        "amenity": "marketplace",
+        "osm_id": 5416336439,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2835385,
+          -4.3742588
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kale",
+        "amenity": "marketplace",
+        "osm_id": 5764276340,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3321907,
+          -4.4051182
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "marketplace",
+        "osm_id": 5766078499,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.355142,
+          -4.4125088
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "marketplace",
+        "osm_id": 5767848253,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3551217,
+          -4.4124818
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Songi Songi",
+        "amenity": "marketplace",
+        "osm_id": 6105857128,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3532809,
+          -4.3448306
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Angenga",
+        "amenity": "marketplace",
+        "osm_id": 6106043654,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3523957,
+          -4.3414755
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Mariano",
+        "amenity": "marketplace",
+        "osm_id": 6470575851,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3100312,
+          -4.3531186
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Songisongi",
+        "amenity": "marketplace",
+        "osm_id": 6572706486,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3679525,
+          -4.3892216
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Le Marché de Bois",
+        "amenity": "marketplace",
+        "osm_id": 6582001731,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3818604,
+          -4.3944528
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché de Mitendi",
+        "amenity": "marketplace",
+        "osm_id": 6743676049,
+        "osm_type": "node",
+        "opening_hours": "Mo-Su,PH 05:30-23:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2081399,
+          -4.5012337
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Alivia",
+        "amenity": "marketplace",
+        "osm_id": 6937620710,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3717828,
+          -4.3710697
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Yolo",
+        "amenity": "marketplace",
+        "osm_id": 7489667583,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3332636,
+          -4.3507907
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché de Buma",
+        "amenity": "marketplace",
+        "osm_id": 7802162236,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4601146,
+          -4.4654249
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "petit marché",
+        "amenity": "marketplace",
+        "osm_id": 9977000448,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2900988,
+          -4.4136157
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Épicerie Chez Olivier",
+        "amenity": "marketplace",
+        "osm_id": 11933756869,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2304894,
+          -4.3470553
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Camp Munganga",
+        "amenity": "marketplace",
+        "osm_id": 11939978572,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2253161,
+          -4.3533084
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Pompage",
+        "amenity": "marketplace",
+        "osm_id": 11939978772,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2120575,
+          -4.3508786
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Gambela",
+        "amenity": "marketplace",
+        "osm_id": 4638227,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.309318,
+          -4.3441686
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché de la Liberté",
+        "amenity": "marketplace",
+        "osm_id": 4693467,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3842478,
+          -4.3919729
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché des Anciens Combattants",
+        "amenity": "marketplace",
+        "osm_id": 48570162,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2399401,
+          -4.3547111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché de Kinkole",
+        "amenity": "marketplace",
+        "osm_id": 63949566,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.5129676,
+          -4.3225543
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché",
+        "amenity": "marketplace",
+        "osm_id": 63956603,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2778336,
+          -4.4751245
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Mayangi",
+        "amenity": "marketplace",
+        "osm_id": 63965020,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2579418,
+          -4.442806
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Somba Zigida",
+        "amenity": "marketplace",
+        "osm_id": 129297270,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3171027,
+          -4.3277031
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "marketplace",
+        "osm_id": 387404599,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4235926,
+          -4.4307447
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché de Lemba",
+        "amenity": "marketplace",
+        "osm_id": 413797372,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3295693,
+          -4.3873198
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Wenze ya 6",
+        "amenity": "marketplace",
+        "osm_id": 441720415,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3709529,
+          -4.4142085
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Lemba",
+        "amenity": "marketplace",
+        "osm_id": 466709518,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3325967,
+          -4.3946596
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché de Matete",
+        "amenity": "marketplace",
+        "osm_id": 466709519,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.34729,
+          -4.392234
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Grand Marché de Kinshasa",
+        "amenity": "marketplace",
+        "osm_id": 467008508,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3125287,
+          -4.3102922
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Matadi Kibala",
+        "amenity": "marketplace",
+        "osm_id": 467165897,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2481012,
+          -4.4482172
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "marketplace",
+        "osm_id": 467167188,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2834025,
+          -4.3852383
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Masanga-Mbila",
+        "amenity": "marketplace",
+        "osm_id": 521108216,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.278764,
+          -4.4327745
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché de Kisenso",
+        "amenity": "marketplace",
+        "osm_id": 533566917,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3376389,
+          -4.4103514
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Tomba",
+        "amenity": "marketplace",
+        "osm_id": 599239647,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3452891,
+          -4.389659
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kadi",
+        "amenity": "marketplace",
+        "osm_id": 608959876,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3396701,
+          -4.4230588
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Kauka",
+        "amenity": "marketplace",
+        "osm_id": 614535197,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3205374,
+          -4.3463025
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "marketplace",
+        "osm_id": 642558698,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3344458,
+          -4.4193047
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Place du marché Dingi Dingi",
+        "amenity": "marketplace",
+        "osm_id": 835895776,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.406064,
+          -4.5516591
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "cantines scolaires diabena",
+        "amenity": "marketplace",
+        "osm_id": 1025082612,
+        "osm_type": "way",
+        "opening_hours": "Mo-Fr 09:00-17:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2646064,
+          -4.4532581
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché municipal de Kalembelembe",
+        "amenity": "marketplace",
+        "osm_id": 1338495836,
+        "osm_type": "way",
+        "operator": "Ville de Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3050469,
+          -4.3240364
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "marketplace",
+        "osm_id": 1357772498,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.5477009,
+          -4.062998
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché des Valeurs",
+        "amenity": "marketplace",
+        "osm_id": 1359725455,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2834435,
+          -4.3153299
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Bambole",
+        "amenity": "marketplace",
+        "osm_id": 1360667854,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2887967,
+          -4.3562122
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Wenze ya Kanza",
+        "amenity": "marketplace",
+        "osm_id": 1364376249,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2202978,
+          -4.366937
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Zigida",
+        "amenity": "marketplace",
+        "osm_id": 1369606385,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.318437,
+          -4.3296091
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "marketplace",
+        "osm_id": 1390446068,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3161926,
+          -4.4180762
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Marché Babou",
+        "amenity": "marketplace",
+        "osm_id": 1392741057,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3283917,
+          -4.4230291
+        ]
+      }
+    }
+  ]
+}

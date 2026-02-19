@@ -1,0 +1,2407 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "source": "OpenStreetMap via Overpass API",
+    "date": "2026-02-19T15:38:15.828Z",
+    "description": "Stations-service in Kinshasa, DRC",
+    "license": "ODbL - https://opendatacommons.org/licenses/odbl/",
+    "featureCount": 142
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Engen",
+        "amenity": "fuel",
+        "osm_id": 435556791,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2211194,
+          -4.4811716
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Engen",
+        "amenity": "fuel",
+        "osm_id": 435862076,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2503001,
+          -4.3527826
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Total",
+        "amenity": "fuel",
+        "osm_id": 439734821,
+        "osm_type": "node",
+        "operator": "Elf",
+        "fuel:diesel": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2592019,
+          -4.3798588
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Meteo",
+        "amenity": "fuel",
+        "osm_id": 439734825,
+        "osm_type": "node",
+        "operator": "Engen"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2543698,
+          -4.3724732
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TotalEnergies",
+        "amenity": "fuel",
+        "osm_id": 439734837,
+        "osm_type": "node",
+        "brand": "TotalEnergies",
+        "operator": "Total"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2583728,
+          -4.3336368
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 439734844,
+        "osm_type": "node",
+        "operator": "Engen"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2688264,
+          -4.3253886
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 439734847,
+        "osm_type": "node",
+        "operator": "Engen"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2742731,
+          -4.3205026
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 439734851,
+        "osm_type": "node",
+        "brand": "Fina"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2943381,
+          -4.3058019
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 439734854,
+        "osm_type": "node",
+        "operator": "Engen"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3050927,
+          -4.3028318
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Engen",
+        "amenity": "fuel",
+        "osm_id": 440012260,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4037512,
+          -4.4011974
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sonap",
+        "amenity": "fuel",
+        "osm_id": 440012914,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3397031,
+          -4.3607487
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Elf",
+        "amenity": "fuel",
+        "osm_id": 440013892,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2966081,
+          -4.3282418
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Sonahydroc",
+        "amenity": "fuel",
+        "osm_id": 440013896,
+        "osm_type": "node",
+        "brand": "Sonahydroc",
+        "operator": "Sonahydroc"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3263163,
+          -4.3361998
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Fina",
+        "amenity": "fuel",
+        "osm_id": 440014359,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3287755,
+          -4.3101537
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cobil",
+        "amenity": "fuel",
+        "osm_id": 440014364,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3238074,
+          -4.3066935
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 440111699,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3141113,
+          -4.305509
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 440115092,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3112714,
+          -4.3048146
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Total",
+        "amenity": "fuel",
+        "osm_id": 440134933,
+        "osm_type": "node",
+        "brand": "Total"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2889228,
+          -4.3117981
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cobil",
+        "amenity": "fuel",
+        "osm_id": 440136381,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2584583,
+          -4.3332615
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cobil",
+        "amenity": "fuel",
+        "osm_id": 440142391,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3077156,
+          -4.3079121
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Engen",
+        "amenity": "fuel",
+        "osm_id": 440142392,
+        "osm_type": "node",
+        "brand": "Engen"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3088238,
+          -4.305712
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Engen",
+        "amenity": "fuel",
+        "osm_id": 440144475,
+        "osm_type": "node",
+        "brand": "Engen",
+        "operator": "ENGEN RDC",
+        "fuel:diesel": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2931304,
+          -4.3186365
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cobil",
+        "amenity": "fuel",
+        "osm_id": 440145105,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2923206,
+          -4.3478415
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Total",
+        "amenity": "fuel",
+        "osm_id": 440145106,
+        "osm_type": "node",
+        "brand": "Total",
+        "operator": "Total"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2913448,
+          -4.3481144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Cobil",
+        "amenity": "fuel",
+        "osm_id": 440145107,
+        "osm_type": "node",
+        "brand": "Mobil",
+        "operator": "Cobil"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2918938,
+          -4.3484166
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Total",
+        "amenity": "fuel",
+        "osm_id": 440146449,
+        "osm_type": "node",
+        "brand": "Total"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2641036,
+          -4.3463409
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ML-Station",
+        "amenity": "fuel",
+        "osm_id": 440146450,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2636124,
+          -4.3461997
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cobil",
+        "amenity": "fuel",
+        "osm_id": 440171118,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2391768,
+          -4.3489752
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 440690401,
+        "osm_type": "node",
+        "operator": "Engen"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2631483,
+          -4.3469151
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cobil",
+        "amenity": "fuel",
+        "osm_id": 479996444,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3049901,
+          -4.3200248
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station UPN",
+        "amenity": "fuel",
+        "osm_id": 616509873,
+        "osm_type": "node",
+        "brand": "Cobil",
+        "operator": "Cobil"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2564211,
+          -4.4057325
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 617530315,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4120532,
+          -4.4044609
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 790726761,
+        "osm_type": "node",
+        "operator": "Total"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3356712,
+          -4.3794128
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Engen",
+        "amenity": "fuel",
+        "osm_id": 1013079468,
+        "osm_type": "node",
+        "brand": "Engen",
+        "opening_hours": "Mo-Sa 08:00-18:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2567537,
+          -4.4403367
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 2144257231,
+        "osm_type": "node",
+        "brand": "CoHydro",
+        "fuel:diesel": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3009528,
+          -4.3512395
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Engen",
+        "amenity": "fuel",
+        "osm_id": 2235123719,
+        "osm_type": "node",
+        "brand": "Mobil",
+        "operator": "Engen",
+        "fuel:diesel": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3251363,
+          -4.3493133
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cobil F/S Cardinal",
+        "amenity": "fuel",
+        "osm_id": 2235126179,
+        "osm_type": "node",
+        "brand": "Cobil",
+        "operator": "Cobil"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3252325,
+          -4.344517
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Engen",
+        "amenity": "fuel",
+        "osm_id": 2533328480,
+        "osm_type": "node",
+        "brand": "Engen",
+        "operator": "Engen",
+        "fuel:diesel": "yes",
+        "opening_hours": "Mo-Su,PH 06:00-21:00+"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2565832,
+          -4.4084837
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Total",
+        "amenity": "fuel",
+        "osm_id": 3681573737,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3418358,
+          -4.3669443
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Engen",
+        "amenity": "fuel",
+        "osm_id": 3883110453,
+        "osm_type": "node",
+        "brand": "Engen"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3296427,
+          -4.3399278
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "MJ OIL",
+        "amenity": "fuel",
+        "osm_id": 4092470138,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3078223,
+          -4.359663
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Engen Bongolo",
+        "amenity": "fuel",
+        "osm_id": 4096429658,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3118832,
+          -4.3472856
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "KM Oil",
+        "amenity": "fuel",
+        "osm_id": 4096434799,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3150012,
+          -4.3323356
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Service Mazarine",
+        "amenity": "fuel",
+        "osm_id": 4378071291,
+        "osm_type": "node",
+        "brand": "E.Leclerc"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2358865,
+          -4.4666751
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 4650135991,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3704891,
+          -4.3764183
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 4703377998,
+        "osm_type": "node",
+        "brand": "Formula"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3030747,
+          -4.313996
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station ML",
+        "amenity": "fuel",
+        "osm_id": 4793446056,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.370312,
+          -4.390332
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Moisson Congo",
+        "amenity": "fuel",
+        "osm_id": 4795680545,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.36382,
+          -4.426921
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Engen",
+        "amenity": "fuel",
+        "osm_id": 4801959261,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4032938,
+          -4.4016696
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Engen",
+        "amenity": "fuel",
+        "osm_id": 4909413227,
+        "osm_type": "node",
+        "brand": "Engen",
+        "operator": "Engen",
+        "fuel:diesel": "no",
+        "opening_hours": "Mo-Su 06:30-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2890795,
+          -4.4103129
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "KM Oil",
+        "amenity": "fuel",
+        "osm_id": 5077848345,
+        "osm_type": "node",
+        "operator": "KM Oil"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2797251,
+          -4.4307905
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cobil Bloc/Bisengo",
+        "amenity": "fuel",
+        "osm_id": 5109221814,
+        "osm_type": "node",
+        "brand": "Cobil"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2778346,
+          -4.3429878
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Total",
+        "amenity": "fuel",
+        "osm_id": 5109221815,
+        "osm_type": "node",
+        "brand": "TotalEnergies",
+        "operator": "Total",
+        "fuel:diesel": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2817313,
+          -4.3417071
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 5109221816,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2862058,
+          -4.3452643
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "MinJun",
+        "amenity": "fuel",
+        "osm_id": 5179956536,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2756,
+          -4.3433532
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Cobil",
+        "amenity": "fuel",
+        "osm_id": 5241592816,
+        "osm_type": "node",
+        "brand": "Cobil",
+        "operator": "Cobil",
+        "fuel:diesel": "yes",
+        "opening_hours": "Mo-Su 08:00-21:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3140925,
+          -4.4160021
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station COBIL",
+        "amenity": "fuel",
+        "osm_id": 5241628103,
+        "osm_type": "node",
+        "brand": "Cobil",
+        "operator": "Cobil",
+        "fuel:diesel": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3147677,
+          -4.3898545
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station La Gradi",
+        "amenity": "fuel",
+        "osm_id": 5266024622,
+        "osm_type": "node",
+        "operator": "La Gradi"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3246349,
+          -4.3445873
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Cobil",
+        "amenity": "fuel",
+        "osm_id": 5266024627,
+        "osm_type": "node",
+        "brand": "Mobil",
+        "operator": "Cobil"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3141313,
+          -4.3405827
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "STATION SERVICE TOTAL",
+        "amenity": "fuel",
+        "osm_id": 5273550366,
+        "osm_type": "node",
+        "brand": "Total",
+        "operator": "TOTAL",
+        "fuel:diesel": "yes",
+        "opening_hours": "Mo-Su 06:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2624957,
+          -4.4417553
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Cobil",
+        "amenity": "fuel",
+        "osm_id": 5499269093,
+        "osm_type": "node",
+        "brand": "COBIL",
+        "operator": "Cobil",
+        "fuel:diesel": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3246725,
+          -4.3505139
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Mjop Saio",
+        "amenity": "fuel",
+        "osm_id": 5499321328,
+        "osm_type": "node",
+        "operator": "Mjop",
+        "fuel:diesel": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2992639,
+          -4.3410088
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Engen",
+        "amenity": "fuel",
+        "osm_id": 5713316223,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3242546,
+          -4.3362415
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TotalEnergie",
+        "amenity": "fuel",
+        "osm_id": 5713371821,
+        "osm_type": "node",
+        "brand": "TotalEnergies"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3751726,
+          -4.3908544
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Intendance Universitaire",
+        "amenity": "fuel",
+        "osm_id": 6018279286,
+        "osm_type": "node",
+        "opening_hours": "Mo-Sa 08:20-17:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3140302,
+          -4.4154453
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ariana Service",
+        "amenity": "fuel",
+        "osm_id": 6030026398,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3059837,
+          -4.3218886
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cobil/Pompage",
+        "amenity": "fuel",
+        "osm_id": 6142811537,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2117047,
+          -4.3502026
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Engen",
+        "amenity": "fuel",
+        "osm_id": 6142816867,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2193555,
+          -4.3440032
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ENGEN",
+        "amenity": "fuel",
+        "osm_id": 6341175863,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2830532,
+          -4.375186
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "KM Oil",
+        "amenity": "fuel",
+        "osm_id": 6341177941,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2849158,
+          -4.3689184
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "KML oil",
+        "amenity": "fuel",
+        "osm_id": 6341177980,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2854272,
+          -4.3682362
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cobil",
+        "amenity": "fuel",
+        "osm_id": 6480090585,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2399136,
+          -4.3569903
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Kimbanseke",
+        "amenity": "fuel",
+        "osm_id": 6574947758,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3759711,
+          -4.4410511
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Africain Oil",
+        "amenity": "fuel",
+        "osm_id": 6581917730,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3164155,
+          -4.4101812
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ENGEN",
+        "amenity": "fuel",
+        "osm_id": 6886864288,
+        "osm_type": "node",
+        "brand": "ENGEN"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2700171,
+          -4.3325492
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sonahydroc",
+        "amenity": "fuel",
+        "osm_id": 7432750603,
+        "osm_type": "node",
+        "brand": "Sonahydroc",
+        "fuel:diesel": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2923518,
+          -4.3052818
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Victoire Business",
+        "amenity": "fuel",
+        "osm_id": 7914415020,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2576186,
+          -4.3377011
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mimosas",
+        "amenity": "fuel",
+        "osm_id": 8045217930,
+        "osm_type": "node",
+        "brand": "TotalEnergies"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2189474,
+          -4.3414462
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 8267986280,
+        "osm_type": "node",
+        "brand": "KMOil"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3136063,
+          -4.3332613
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Okapi",
+        "amenity": "fuel",
+        "osm_id": 8442577720,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2170998,
+          -4.3449157
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ML Station service",
+        "amenity": "fuel",
+        "osm_id": 8820537828,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3810683,
+          -4.4137189
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Totales Energies",
+        "amenity": "fuel",
+        "osm_id": 9976991396,
+        "osm_type": "node",
+        "brand": "Total",
+        "operator": "Station Service",
+        "fuel:diesel": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2888972,
+          -4.3117704
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Triangle",
+        "amenity": "fuel",
+        "osm_id": 9977000444,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.307619,
+          -4.3955401
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "total energie",
+        "amenity": "fuel",
+        "osm_id": 9977000457,
+        "osm_type": "node",
+        "brand": "Total",
+        "opening_hours": "Mo-Su,PH 07:30-20:45"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2890688,
+          -4.4103103
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "SOGECS KAPELA",
+        "amenity": "fuel",
+        "osm_id": 9977033868,
+        "osm_type": "node",
+        "brand": "SOGECS"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3234373,
+          -4.3575438
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ENGEN",
+        "amenity": "fuel",
+        "osm_id": 9977033870,
+        "osm_type": "node",
+        "brand": "ENGEN"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3231825,
+          -4.35806
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 9977033873,
+        "osm_type": "node",
+        "brand": "TOUT EST VANITE"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3208852,
+          -4.3655631
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 9977033874,
+        "osm_type": "node",
+        "brand": "LOG"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3204305,
+          -4.3667626
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ENGEN KOMORIKO",
+        "amenity": "fuel",
+        "osm_id": 9977038990,
+        "osm_type": "node",
+        "brand": "Independent",
+        "operator": "ENGEN",
+        "fuel:diesel": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2641243,
+          -4.3315409
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 9977044007,
+        "osm_type": "node",
+        "brand": "STATION-SERVICE"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3024316,
+          -4.3465289
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Service E.Leclerc",
+        "amenity": "fuel",
+        "osm_id": 9977044012,
+        "osm_type": "node",
+        "brand": "E.Leclerc"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3136498,
+          -4.3414819
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 9977044015,
+        "osm_type": "node",
+        "brand": "STATION-SERVICE"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3137773,
+          -4.3399711
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 9977048917,
+        "osm_type": "node",
+        "brand": "Cobil"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3147014,
+          -4.3337762
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Sendwe KMOil",
+        "amenity": "fuel",
+        "osm_id": 9977060283,
+        "osm_type": "node",
+        "brand": "KMOil",
+        "operator": "KMOil"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3149307,
+          -4.332255
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Totalenergies Ozone",
+        "amenity": "fuel",
+        "osm_id": 10969838397,
+        "osm_type": "node",
+        "brand": "TotalEnergies"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2403671,
+          -4.3440621
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 10983971263,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3289132,
+          -4.3224082
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "KM oil",
+        "amenity": "fuel",
+        "osm_id": 12384311128,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3183223,
+          -4.374394
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mwikas oil",
+        "amenity": "fuel",
+        "osm_id": 12384311129,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3201422,
+          -4.3695988
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ML Station service",
+        "amenity": "fuel",
+        "osm_id": 13173332134,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4950818,
+          -4.3652054
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Assossa",
+        "amenity": "fuel",
+        "osm_id": 341037532,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3024334,
+          -4.3465333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station ENGEN",
+        "amenity": "fuel",
+        "osm_id": 388138960,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3741798,
+          -4.4067256
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Fina",
+        "amenity": "fuel",
+        "osm_id": 421156980,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3858551,
+          -4.3942493
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Salongo",
+        "amenity": "fuel",
+        "osm_id": 439912813,
+        "osm_type": "way",
+        "opening_hours": "Mo-Su,PH 06:30-10:30"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3325154,
+          -4.3941069
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Cobil",
+        "amenity": "fuel",
+        "osm_id": 484222574,
+        "osm_type": "way",
+        "brand": "Cobil",
+        "operator": "Cobil",
+        "fuel:diesel": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3715228,
+          -4.3979998
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station KM Oil",
+        "amenity": "fuel",
+        "osm_id": 487176585,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3758146,
+          -4.3980053
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cobil",
+        "amenity": "fuel",
+        "osm_id": 536112190,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2923557,
+          -4.347914
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 536112191,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2925015,
+          -4.347858
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 536112192,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2919539,
+          -4.3484871
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 536112193,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2912923,
+          -4.3482004
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Cobil",
+        "amenity": "fuel",
+        "osm_id": 536136560,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.304667,
+          -4.3376835
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 547208299,
+        "osm_type": "way",
+        "brand": "kabambare total"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3172943,
+          -4.3204094
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 596520888,
+        "osm_type": "way",
+        "brand": "Cobil",
+        "operator": "Cobil"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3630677,
+          -4.3855948
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dépôt carburant",
+        "amenity": "fuel",
+        "osm_id": 596530410,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3585372,
+          -4.3850879
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ENGEN",
+        "amenity": "fuel",
+        "osm_id": 596849567,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3580085,
+          -4.3843435
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Cobil",
+        "amenity": "fuel",
+        "osm_id": 598016755,
+        "osm_type": "way",
+        "operator": "Cobil"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3409554,
+          -4.3798763
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 598156641,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3456998,
+          -4.3916666
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station d'Essence Totale",
+        "amenity": "fuel",
+        "osm_id": 599225136,
+        "osm_type": "way",
+        "brand": "TotalEnergies"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3453158,
+          -4.3900269
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Service Palais du Peuple",
+        "amenity": "fuel",
+        "osm_id": 617424179,
+        "osm_type": "way",
+        "brand": "TotalEnergies",
+        "opening_hours": "Mo-Su,PH 07:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.306046,
+          -4.3323071
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "X-Congo",
+        "amenity": "fuel",
+        "osm_id": 676271965,
+        "osm_type": "way",
+        "opening_hours": "Mo-Su 07:00-22:00"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3072329,
+          -4.3265855
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ML Station Services",
+        "amenity": "fuel",
+        "osm_id": 676994609,
+        "osm_type": "way",
+        "fuel:diesel": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3705544,
+          -4.38997
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Total",
+        "amenity": "fuel",
+        "osm_id": 678203054,
+        "osm_type": "way",
+        "brand": "TotalEnergies"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2829021,
+          -4.3812144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Total",
+        "amenity": "fuel",
+        "osm_id": 678213041,
+        "osm_type": "way",
+        "brand": "Total",
+        "opening_hours": "Mo-Su,PH 06:00-22:00+"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2581137,
+          -4.431107
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Total OUA",
+        "amenity": "fuel",
+        "osm_id": 682077183,
+        "osm_type": "way",
+        "brand": "Total",
+        "fuel:diesel": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2701363,
+          -4.3343821
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Salongo",
+        "amenity": "fuel",
+        "osm_id": 700825427,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3312291,
+          -4.3919269
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Engen",
+        "amenity": "fuel",
+        "osm_id": 700884852,
+        "osm_type": "way",
+        "brand": "Engen",
+        "operator": "Engen",
+        "fuel:diesel": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.369223,
+          -4.3967187
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Matota",
+        "amenity": "fuel",
+        "osm_id": 711726844,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3778201,
+          -4.4413163
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "PetroCam",
+        "amenity": "fuel",
+        "osm_id": 791937841,
+        "osm_type": "way",
+        "opening_hours": "24/7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2782188,
+          -4.3227638
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 922771225,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.5529301,
+          -4.0593553
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TotalEnergies",
+        "amenity": "fuel",
+        "osm_id": 1040323074,
+        "osm_type": "way",
+        "brand": "TotalEnergies"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3440165,
+          -4.3752899
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 1192811719,
+        "osm_type": "way",
+        "brand": "Ariana"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2934878,
+          -4.3192126
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 1192811750,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2947488,
+          -4.3210164
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Total Stade",
+        "amenity": "fuel",
+        "osm_id": 1201064413,
+        "osm_type": "way",
+        "brand": "Total"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3221393,
+          -4.3351972
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Engen Kauka",
+        "amenity": "fuel",
+        "osm_id": 1206385428,
+        "osm_type": "way",
+        "brand": "Engen",
+        "operator": "Engen"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3245461,
+          -4.3438519
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 1206385429,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3245357,
+          -4.3438434
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 1229068778,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3574122,
+          -4.3835136
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 1365080022,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.3116688,
+          -4.5402191
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 1365080023,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.3117169,
+          -4.5401163
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 1365080024,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.3117534,
+          -4.5402875
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "KM Oil",
+        "amenity": "fuel",
+        "osm_id": 1371842311,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3209262,
+          -4.3307568
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Station Total Service",
+        "amenity": "fuel",
+        "osm_id": 1376467075,
+        "osm_type": "way",
+        "brand": "TotalEnergies"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3131278,
+          -4.325431
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "fuel",
+        "osm_id": 1427305131,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3567589,
+          -4.3838397
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Total Énergie",
+        "amenity": "fuel",
+        "osm_id": 1433628602,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4954746,
+          -4.3642452
+        ]
+      }
+    }
+  ]
+}

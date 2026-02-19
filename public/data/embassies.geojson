@@ -1,0 +1,1304 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "source": "OpenStreetMap via Overpass API",
+    "date": "2026-02-19T15:39:46.717Z",
+    "description": "Ambassades & Consulats in Kinshasa, DRC",
+    "license": "ODbL - https://opendatacommons.org/licenses/odbl/",
+    "featureCount": 67
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade des États-Unis",
+        "amenity": "diplomatic",
+        "osm_id": 439734857,
+        "osm_type": "node",
+        "country": "US",
+        "target": "CD",
+        "diplomatic": "embassy",
+        "website": "https://cd.usembassy.gov/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3136237,
+          -4.3006233
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Zambie",
+        "amenity": "diplomatic",
+        "osm_id": 440111753,
+        "osm_type": "node",
+        "country": "ZM",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3121426,
+          -4.3053296
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade d'Afrique du Sud",
+        "amenity": "diplomatic",
+        "osm_id": 440115095,
+        "osm_type": "node",
+        "country": "ZA",
+        "target": "CD",
+        "diplomatic": "embassy",
+        "phone": "+243 81 4928856"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3028885,
+          -4.3045393
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade du Tchad",
+        "amenity": "diplomatic",
+        "osm_id": 440690393,
+        "osm_type": "node",
+        "country": "TD",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2622781,
+          -4.3933765
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade du Nigéria",
+        "amenity": "diplomatic",
+        "osm_id": 440690404,
+        "osm_type": "node",
+        "country": "NG",
+        "target": "CG",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2879496,
+          -4.3117536
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade d’Angola",
+        "amenity": "diplomatic",
+        "osm_id": 3287578943,
+        "osm_type": "node",
+        "country": "AO",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2798947,
+          -4.3168816
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de la République du Congo",
+        "amenity": "diplomatic",
+        "osm_id": 3287578944,
+        "osm_type": "node",
+        "country": "CG",
+        "target": "CG",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2800765,
+          -4.316769
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade du Cameroun",
+        "amenity": "diplomatic",
+        "osm_id": 3287578945,
+        "osm_type": "node",
+        "country": "CM",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2816989,
+          -4.3156949
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade d'Allemagne",
+        "amenity": "diplomatic",
+        "osm_id": 3684702453,
+        "osm_type": "node",
+        "country": "DE",
+        "target": "CD",
+        "diplomatic": "embassy",
+        "phone": "+243 81 5561380",
+        "website": "https://kinshasa.diplo.de/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2752129,
+          -4.3057862
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade du Liban",
+        "amenity": "diplomatic",
+        "osm_id": 4232187191,
+        "osm_type": "node",
+        "country": "LB",
+        "target": "CD",
+        "diplomatic": "embassy",
+        "phone": "+243817069560"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2547888,
+          -4.3570736
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Russie",
+        "amenity": "diplomatic",
+        "osm_id": 5234805723,
+        "osm_type": "node",
+        "country": "RU",
+        "target": "CD",
+        "diplomatic": "embassy",
+        "phone": "+243 819 500 510",
+        "website": "https://drc.mid.ru"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2755402,
+          -4.317348
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade du Ghana",
+        "amenity": "diplomatic",
+        "osm_id": 5410208654,
+        "osm_type": "node",
+        "country": "GH",
+        "target": "CD",
+        "diplomatic": "embassy",
+        "phone": "(+243) 999 994 109",
+        "website": "http://ghanaembkin.org/mrkp/index.php"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2893612,
+          -4.3125033
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade d'Inde",
+        "amenity": "diplomatic",
+        "osm_id": 5717264781,
+        "osm_type": "node",
+        "country": "IN",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2777218,
+          -4.3159608
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Suède",
+        "amenity": "diplomatic",
+        "osm_id": 6109818675,
+        "osm_type": "node",
+        "country": "SE",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2747914,
+          -4.3075993
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Belgique",
+        "amenity": "diplomatic",
+        "osm_id": 6345298170,
+        "osm_type": "node",
+        "country": "BE",
+        "target": "CD",
+        "diplomatic": "embassy",
+        "phone": "+243 996 022 100",
+        "website": "https://rdcongo.diplomatie.belgium.be/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2900019,
+          -4.3108976
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade des Pays-Bas",
+        "amenity": "diplomatic",
+        "osm_id": 6345298171,
+        "osm_type": "node",
+        "country": "NL",
+        "target": "CD;CG",
+        "diplomatic": "embassy",
+        "website": "https://www.nederlandwereldwijd.nl/landen/congo-democratische-republiek"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2900942,
+          -4.3107353
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Délégation de l'Union européenne",
+        "amenity": "diplomatic",
+        "osm_id": 7022092318,
+        "osm_type": "node",
+        "country": "EU",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3102521,
+          -4.3037257
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade du Japon",
+        "amenity": "diplomatic",
+        "osm_id": 8976531833,
+        "osm_type": "node",
+        "country": "JP",
+        "target": "CD",
+        "diplomatic": "embassy",
+        "phone": "+243 (0)81 555 4731",
+        "website": "https://www.rdc.emb-japan.go.jp"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2694619,
+          -4.3209844
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Grèce",
+        "amenity": "diplomatic",
+        "osm_id": 8976531834,
+        "osm_type": "node",
+        "country": "GR",
+        "target": "CD",
+        "diplomatic": "embassy",
+        "phone": "+243 815554941",
+        "website": "https://www.mfa.gr/missionsabroad/congo.html"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2935615,
+          -4.3072503
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade du Canada",
+        "amenity": "diplomatic",
+        "osm_id": 8976581082,
+        "osm_type": "node",
+        "country": "CA",
+        "target": "CD",
+        "diplomatic": "embassy",
+        "phone": "+243 99 60 21 500",
+        "website": "https://www.canadainternational.gc.ca/congo"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2763739,
+          -4.3159375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade du Burundi",
+        "amenity": "diplomatic",
+        "osm_id": 8976581083,
+        "osm_type": "node",
+        "country": "BI",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2816847,
+          -4.3158118
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade du Brésil",
+        "amenity": "diplomatic",
+        "osm_id": 8976581084,
+        "osm_type": "node",
+        "country": "BR",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2786699,
+          -4.3165794
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade d'Algérie",
+        "amenity": "diplomatic",
+        "osm_id": 8976581085,
+        "osm_type": "node",
+        "country": "DZ",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3080937,
+          -4.3058702
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade d'Égypte",
+        "amenity": "diplomatic",
+        "osm_id": 8976668053,
+        "osm_type": "node",
+        "country": "EG",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2725518,
+          -4.3177027
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Cuba",
+        "amenity": "diplomatic",
+        "osm_id": 8976672453,
+        "osm_type": "node",
+        "country": "CU",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2751911,
+          -4.310187
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Côte d'Ivoire",
+        "amenity": "diplomatic",
+        "osm_id": 8976672454,
+        "osm_type": "node",
+        "country": "CI",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2773365,
+          -4.316144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Corée du Nord",
+        "amenity": "diplomatic",
+        "osm_id": 8976672455,
+        "osm_type": "node",
+        "country": "KP",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2695017,
+          -4.3163609
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Corée du Sud",
+        "amenity": "diplomatic",
+        "osm_id": 8976672456,
+        "osm_type": "node",
+        "country": "KR",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2847692,
+          -4.3114361
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Chine",
+        "amenity": "diplomatic",
+        "osm_id": 8976672457,
+        "osm_type": "node",
+        "country": "CN",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3123206,
+          -4.3007543
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Centrafrique",
+        "amenity": "diplomatic",
+        "osm_id": 8976672458,
+        "osm_type": "node",
+        "country": "CF",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2589074,
+          -4.3563042
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade du Maroc",
+        "amenity": "diplomatic",
+        "osm_id": 8976806522,
+        "osm_type": "node",
+        "country": "MA",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2738634,
+          -4.3184623
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Libye",
+        "amenity": "diplomatic",
+        "osm_id": 8976806523,
+        "osm_type": "node",
+        "country": "LY",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2861935,
+          -4.3157235
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade du Libéria",
+        "amenity": "diplomatic",
+        "osm_id": 8976806524,
+        "osm_type": "node",
+        "country": "LR",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2786471,
+          -4.3162732
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade du Liban",
+        "amenity": "diplomatic",
+        "osm_id": 8976806525,
+        "osm_type": "node",
+        "country": "LB",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2846485,
+          -4.3127654
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade du Kenya",
+        "amenity": "diplomatic",
+        "osm_id": 8976806526,
+        "osm_type": "node",
+        "country": "KE",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2709854,
+          -4.3174165
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade d'Iran",
+        "amenity": "diplomatic",
+        "osm_id": 8976806528,
+        "osm_type": "node",
+        "country": "IR",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2944976,
+          -4.3066726
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Guinée",
+        "amenity": "diplomatic",
+        "osm_id": 8976806529,
+        "osm_type": "node",
+        "country": "GN",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2816364,
+          -4.3164563
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade du Gabon",
+        "amenity": "diplomatic",
+        "osm_id": 8976806530,
+        "osm_type": "node",
+        "country": "GA",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2600205,
+          -4.333488
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de France",
+        "amenity": "diplomatic",
+        "osm_id": 8976806531,
+        "osm_type": "node",
+        "country": "FR",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2732277,
+          -4.3210673
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade d'Espagne",
+        "amenity": "diplomatic",
+        "osm_id": 8976806532,
+        "osm_type": "node",
+        "country": "ES",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2782783,
+          -4.3048351
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Namibie",
+        "amenity": "diplomatic",
+        "osm_id": 8976834048,
+        "osm_type": "node",
+        "country": "NA",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.281644,
+          -4.3144174
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Malte",
+        "amenity": "diplomatic",
+        "osm_id": 8977216509,
+        "osm_type": "node",
+        "country": "MT",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3052157,
+          -4.3031728
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Norvège",
+        "amenity": "diplomatic",
+        "osm_id": 8977216510,
+        "osm_type": "node",
+        "country": "NO",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2736797,
+          -4.3116656
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade du Togo",
+        "amenity": "diplomatic",
+        "osm_id": 8977294656,
+        "osm_type": "node",
+        "country": "TG",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2703524,
+          -4.3175529
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade du Tchad",
+        "amenity": "diplomatic",
+        "osm_id": 8977294657,
+        "osm_type": "node",
+        "country": "TD",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2617317,
+          -4.392823
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Tanzanie",
+        "amenity": "diplomatic",
+        "osm_id": 8977294658,
+        "osm_type": "node",
+        "country": "TZ",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2808345,
+          -4.315286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade du Sud Soudan",
+        "amenity": "diplomatic",
+        "osm_id": 8977294660,
+        "osm_type": "node",
+        "country": "SS",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2805059,
+          -4.3122104
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade du Soudan",
+        "amenity": "diplomatic",
+        "osm_id": 8977294661,
+        "osm_type": "node",
+        "country": "SD",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3019246,
+          -4.3026981
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade du Sénégal",
+        "amenity": "diplomatic",
+        "osm_id": 8977294662,
+        "osm_type": "node",
+        "country": "SN",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2980918,
+          -4.3045248
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade du Rwanda",
+        "amenity": "diplomatic",
+        "osm_id": 8977294663,
+        "osm_type": "node",
+        "country": "RW",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2984673,
+          -4.3043002
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Tchéquie",
+        "amenity": "diplomatic",
+        "osm_id": 8977294664,
+        "osm_type": "node",
+        "country": "CZ",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2744508,
+          -4.3080741
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade du Zimbabwe",
+        "amenity": "diplomatic",
+        "osm_id": 8977367553,
+        "osm_type": "node",
+        "country": "ZW",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2928709,
+          -4.3054787
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de l'Union Africaine",
+        "amenity": "diplomatic",
+        "osm_id": 8977367554,
+        "osm_type": "node",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2919779,
+          -4.3078421
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Turquie",
+        "amenity": "diplomatic",
+        "osm_id": 8977367555,
+        "osm_type": "node",
+        "country": "TR",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2759689,
+          -4.3155416
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Tunisie",
+        "amenity": "diplomatic",
+        "osm_id": 8977367556,
+        "osm_type": "node",
+        "country": "TN",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2911596,
+          -4.3096334
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade d'Ouganda",
+        "amenity": "diplomatic",
+        "osm_id": 8980004160,
+        "osm_type": "node",
+        "country": "UG",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2845244,
+          -4.3143642
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Grande-Bretagne",
+        "amenity": "diplomatic",
+        "osm_id": 9934761888,
+        "osm_type": "node",
+        "country": "GB",
+        "target": "CD;CF;CG",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2743184,
+          -4.3071442
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Maison Shengen",
+        "amenity": "diplomatic",
+        "osm_id": 9976991399,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2928293,
+          -4.3185372
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Suisse",
+        "amenity": "diplomatic",
+        "osm_id": 60519953,
+        "osm_type": "way",
+        "country": "CH",
+        "target": "CD",
+        "diplomatic": "embassy",
+        "website": "https://www.eda.admin.ch/kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2690669,
+          -4.3135322
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Residence of the Ambassador of the United States of America",
+        "amenity": "diplomatic",
+        "osm_id": 292955869,
+        "osm_type": "way",
+        "country": "US",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2745527,
+          -4.3065761
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Résidence de l'ambassadeur.rice de la Belgique",
+        "amenity": "diplomatic",
+        "osm_id": 300919807,
+        "osm_type": "way",
+        "country": "BE",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2723226,
+          -4.3095275
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade d'Espagne",
+        "amenity": "diplomatic",
+        "osm_id": 300935645,
+        "osm_type": "way",
+        "country": "ES",
+        "target": "CD",
+        "diplomatic": "embassy",
+        "phone": "+243 813 300 061",
+        "website": "http://www.exteriores.gob.es/Embajadas/KINSHASA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2771024,
+          -4.3067819
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de la République du Congo",
+        "amenity": "diplomatic",
+        "osm_id": 321991654,
+        "osm_type": "way",
+        "country": "CG",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2800749,
+          -4.3167653
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade d'Angola",
+        "amenity": "diplomatic",
+        "osm_id": 372331158,
+        "osm_type": "way",
+        "country": "AO",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2798839,
+          -4.3168943
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade de Serbie",
+        "amenity": "diplomatic",
+        "osm_id": 490635007,
+        "osm_type": "way",
+        "country": "RS",
+        "target": "CD",
+        "diplomatic": "embassy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.290451,
+          -4.3057291
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade du Portugal",
+        "amenity": "diplomatic",
+        "osm_id": 580446291,
+        "osm_type": "way",
+        "country": "PT",
+        "target": "CD",
+        "diplomatic": "embassy",
+        "phone": "+243 811 904 641",
+        "website": "https://kinshasa.embaixadaportugal.mne.gov.pt"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.313992,
+          -4.3007011
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ambassade d'Italie",
+        "amenity": "diplomatic",
+        "osm_id": 580446616,
+        "osm_type": "way",
+        "country": "IT",
+        "target": "CD",
+        "diplomatic": "embassy",
+        "website": "https://ambkinshasa.esteri.it"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3073468,
+          -4.3026984
+        ]
+      }
+    }
+  ]
+}

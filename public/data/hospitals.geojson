@@ -1,0 +1,6935 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "source": "OpenStreetMap via Overpass API",
+    "date": "2026-02-19T15:38:08.847Z",
+    "description": "Hôpitaux & Cliniques in Kinshasa, DRC",
+    "license": "ODbL - https://opendatacommons.org/licenses/odbl/",
+    "featureCount": 410
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Polycliniue et maternité Coopérative Maraichère de Kimbanseke",
+        "amenity": "hospital",
+        "osm_id": 803246032,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3646452,
+          -4.4294206
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Médecins Sans Frontières Belgique",
+        "amenity": "clinic",
+        "osm_id": 2158831406,
+        "osm_type": "node",
+        "healthcare": "clinic",
+        "operator": "Médecins sans frontières",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2695097,
+          -4.3274542
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre de Transfusion Sanguine",
+        "amenity": "clinic",
+        "osm_id": 2299738115,
+        "osm_type": "node",
+        "healthcare": "blood_donation",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2841189,
+          -4.3503511
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clinique Bucco Dentaire",
+        "amenity": "clinic",
+        "osm_id": 4701607506,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3016136,
+          -4.309333
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier Biopharma",
+        "amenity": "clinic",
+        "osm_id": 4703377997,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3038372,
+          -4.3146976
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "clinic",
+        "osm_id": 4866013702,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3176631,
+          -4.3097206
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "clinic",
+        "osm_id": 5179741370,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3445446,
+          -4.3826858
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Psychiatrique Telema",
+        "amenity": "clinic",
+        "osm_id": 5185079020,
+        "osm_type": "node",
+        "healthcare": "clinic",
+        "operator": "Eglise Catholique"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.267761,
+          -4.3471134
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier Intendance générale",
+        "amenity": "clinic",
+        "osm_id": 5241592815,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3147858,
+          -4.4149982
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre de Rééducation pour Handicapés Physiques",
+        "amenity": "clinic",
+        "osm_id": 5263415621,
+        "osm_type": "node",
+        "healthcare": "clinic",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3016645,
+          -4.3104385
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clinique Promedis de Limete",
+        "amenity": "clinic",
+        "osm_id": 5287265076,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3421305,
+          -4.3534446
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical et Maternité Shalom",
+        "amenity": "clinic",
+        "osm_id": 5329686115,
+        "osm_type": "node",
+        "healthcare": "clinic",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2698132,
+          -4.357275
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clinique Ruth Maternité",
+        "amenity": "clinic",
+        "osm_id": 5496855501,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2563673,
+          -4.3750519
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre medical Office des Routes",
+        "amenity": "clinic",
+        "osm_id": 5499411214,
+        "osm_type": "node",
+        "healthcare": "clinic",
+        "operator": "Office des Routes",
+        "addr:city": "Gombe"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2899289,
+          -4.3214607
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Medical d'Urgence",
+        "amenity": "clinic",
+        "osm_id": 5499411218,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2951708,
+          -4.3222762
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Exaucée",
+        "amenity": "clinic",
+        "osm_id": 5768091572,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3573149,
+          -4.3911803
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Laboratoire d'Analyse Médical",
+        "amenity": "clinic",
+        "osm_id": 6293491289,
+        "osm_type": "node",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.338974,
+          -4.4082217
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Univers Médical",
+        "amenity": "clinic",
+        "osm_id": 6293493500,
+        "osm_type": "node",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3486943,
+          -4.4281394
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Yangov",
+        "amenity": "clinic",
+        "osm_id": 6293493538,
+        "osm_type": "node",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3546381,
+          -4.4297225
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Aiglon",
+        "amenity": "clinic",
+        "osm_id": 6572437479,
+        "osm_type": "node",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3697027,
+          -4.3904225
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Complexe Scolaire La Paix",
+        "amenity": "clinic",
+        "osm_id": 6574944470,
+        "osm_type": "node",
+        "addr:city": "kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3784306,
+          -4.413977
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Peniel",
+        "amenity": "clinic",
+        "osm_id": 6581489638,
+        "osm_type": "node",
+        "healthcare": "clinic",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.319083,
+          -4.4124699
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 6581917716,
+        "osm_type": "node",
+        "healthcare": "clinic",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3194088,
+          -4.4121186
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Nzambe apesi ngai",
+        "amenity": "clinic",
+        "osm_id": 6582113978,
+        "osm_type": "node",
+        "healthcare": "clinic",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3502443,
+          -4.3946565
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clinique Mambote",
+        "amenity": "hospital",
+        "osm_id": 6582144017,
+        "osm_type": "node",
+        "healthcare": "hospital",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2924724,
+          -4.4043374
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clinique Médicale Life",
+        "amenity": "clinic",
+        "osm_id": 6583749501,
+        "osm_type": "node",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3223954,
+          -4.4063331
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre El Rois",
+        "amenity": "clinic",
+        "osm_id": 6583749522,
+        "osm_type": "node",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3164488,
+          -4.4015305
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical et Maternité de Honoré",
+        "amenity": "hospital",
+        "osm_id": 6583788796,
+        "osm_type": "node",
+        "addr:city": "kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3590813,
+          -4.3824369
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mariel",
+        "amenity": "clinic",
+        "osm_id": 6583935754,
+        "osm_type": "node",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3835327,
+          -4.3806079
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Imbali médical",
+        "amenity": "hospital",
+        "osm_id": 6583935767,
+        "osm_type": "node",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3832479,
+          -4.3747854
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Magelian",
+        "amenity": "clinic",
+        "osm_id": 6583935769,
+        "osm_type": "node",
+        "addr:city": "kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3790843,
+          -4.3808907
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "La Main de Dieu",
+        "amenity": "clinic",
+        "osm_id": 6583940292,
+        "osm_type": "node",
+        "addr:city": "kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.379079,
+          -4.380834
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre médical la main de Dieu",
+        "amenity": "hospital",
+        "osm_id": 6583975592,
+        "osm_type": "node",
+        "addr:city": "kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3803338,
+          -4.3732562
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "La Main de Dieu",
+        "amenity": "clinic",
+        "osm_id": 6583975598,
+        "osm_type": "node",
+        "addr:city": "kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3790857,
+          -4.3808667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clinique de Limete",
+        "amenity": "clinic",
+        "osm_id": 6584026398,
+        "osm_type": "node",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3625989,
+          -4.3827184
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clinique",
+        "amenity": "clinic",
+        "osm_id": 6584155347,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.387598,
+          -4.3931866
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bienheureux",
+        "amenity": "hospital",
+        "osm_id": 6584295171,
+        "osm_type": "node",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3817249,
+          -4.3808551
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Poste de secours",
+        "amenity": "clinic",
+        "osm_id": 6584446565,
+        "osm_type": "node",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3702285,
+          -4.3731745
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier Zulu",
+        "amenity": "hospital",
+        "osm_id": 6584448832,
+        "osm_type": "node",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3740404,
+          -4.3749887
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Labo Dit Amen",
+        "amenity": "clinic",
+        "osm_id": 6584448935,
+        "osm_type": "node",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3745857,
+          -4.3703617
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Diamant",
+        "amenity": "clinic",
+        "osm_id": 6853565956,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2746841,
+          -4.343599
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "clinic",
+        "osm_id": 6916181938,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3816533,
+          -4.4133188
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Poste de santé Sagesse de l'homme",
+        "amenity": "clinic",
+        "osm_id": 7239584292,
+        "osm_type": "node",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2705804,
+          -4.3625289
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Yadah Clinic Center",
+        "amenity": "clinic",
+        "osm_id": 7774326633,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.283644,
+          -4.3222983
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre d'hémodialyse",
+        "amenity": "hospital",
+        "osm_id": 7801604031,
+        "osm_type": "node",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3193043,
+          -4.415483
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre d'hémodialyse",
+        "amenity": "hospital",
+        "osm_id": 7806768803,
+        "osm_type": "node",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2691363,
+          -4.3306154
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre d'hémodialyse",
+        "amenity": "hospital",
+        "osm_id": 7806773638,
+        "osm_type": "node",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2710389,
+          -4.3176205
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "centre d'hémodialyse",
+        "amenity": "hospital",
+        "osm_id": 7806774336,
+        "osm_type": "node",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3168009,
+          -4.3082772
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre d'hémodialyse",
+        "amenity": "hospital",
+        "osm_id": 7806777387,
+        "osm_type": "node",
+        "healthcare": "hospital",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3001069,
+          -4.3236687
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre d'hémodialyse",
+        "amenity": "hospital",
+        "osm_id": 7806778973,
+        "osm_type": "node",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3207551,
+          -4.3191541
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre de dépistage COVID19",
+        "amenity": "clinic",
+        "osm_id": 8268334007,
+        "osm_type": "node",
+        "operator": "Centre Médical Diamant"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2730057,
+          -4.3225604
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clinique la fraternité",
+        "amenity": "clinic",
+        "osm_id": 8373478096,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3061223,
+          -4.320079
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "El Rapha clinique",
+        "amenity": "clinic",
+        "osm_id": 8373478098,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3225619,
+          -4.3510534
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier Alliance",
+        "amenity": "hospital",
+        "osm_id": 8474773717,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3332512,
+          -4.3219917
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clinique Panzi",
+        "amenity": "clinic",
+        "osm_id": 8905238715,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2534017,
+          -4.3675806
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clinic Promedis",
+        "amenity": "clinic",
+        "osm_id": 8905654431,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.5092333,
+          -4.3447683
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cliniques du Saint Sauveur",
+        "amenity": "clinic",
+        "osm_id": 8905660549,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2741902,
+          -4.3372814
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clinique Maman Marie Madeleine",
+        "amenity": "clinic",
+        "osm_id": 8905672678,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2811613,
+          -4.3419691
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier St Hilaire",
+        "amenity": "clinic",
+        "osm_id": 8905682171,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4164417,
+          -4.3993067
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalière Athu",
+        "amenity": "clinic",
+        "osm_id": 8905698593,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4094,
+          -4.4173533
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital Marie Biamba Mutombo",
+        "amenity": "hospital",
+        "osm_id": 8905706537,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3809586,
+          -4.3929595
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hopital Général de Reference CHE Maluku",
+        "amenity": "hospital",
+        "osm_id": 8914109391,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.315,
+          -4.53955
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital Général de Référence de Mbankana",
+        "amenity": "hospital",
+        "osm_id": 8914145225,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2001249,
+          -4.4467746
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Vitorial médical centre",
+        "amenity": "hospital",
+        "osm_id": 8914260449,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3129031,
+          -4.3368685
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital HMG Badiadingi",
+        "amenity": "hospital",
+        "osm_id": 8914272648,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2560372,
+          -4.4290077
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "centre médical sonal",
+        "amenity": "hospital",
+        "osm_id": 8914274021,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3068144,
+          -4.3523034
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital Général de Réference Boyambi",
+        "amenity": "hospital",
+        "osm_id": 8914365000,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3179366,
+          -4.3091974
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Polyclinique Obed",
+        "amenity": "clinic",
+        "osm_id": 8914848210,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3087641,
+          -4.3232436
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier Akram",
+        "amenity": "clinic",
+        "osm_id": 8932410285,
+        "osm_type": "node",
+        "healthcare": "clinic",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2574894,
+          -4.3361493
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre de santé et Maternité M.e.a.c",
+        "amenity": "clinic",
+        "osm_id": 8932429378,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4212469,
+          -4.4024054
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Medical de la Mongala",
+        "amenity": "clinic",
+        "osm_id": 8932433106,
+        "osm_type": "node",
+        "healthcare": "clinic",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3079555,
+          -4.3016864
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre hospitalier Universitaire",
+        "amenity": "clinic",
+        "osm_id": 8932453156,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2592858,
+          -4.4031671
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier Mandos",
+        "amenity": "clinic",
+        "osm_id": 9060381211,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.280387,
+          -4.4282782
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "centre de sante siloe",
+        "amenity": "clinic",
+        "osm_id": 9060452089,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2456075,
+          -4.3649383
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre de Santé Mere et Enfant Barumbu",
+        "amenity": "clinic",
+        "osm_id": 9065877888,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.314277,
+          -4.318948
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Osd Clinc",
+        "amenity": "clinic",
+        "osm_id": 9065877889,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.317038,
+          -4.3191693
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier Henry Clinic",
+        "amenity": "clinic",
+        "osm_id": 9065877893,
+        "osm_type": "node",
+        "healthcare": "clinic",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.314365,
+          -4.3263749
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Polyclinique DIAP",
+        "amenity": "clinic",
+        "osm_id": 9065877896,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3158428,
+          -4.3225339
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Zainabia Centre Hospitalier",
+        "amenity": "clinic",
+        "osm_id": 9065877900,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4211,
+          -4.4273
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn St luc Centre Hospitalier",
+        "amenity": "clinic",
+        "osm_id": 9065877902,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4156,
+          -4.4251
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier Kikimi",
+        "amenity": "clinic",
+        "osm_id": 9065877905,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4306,
+          -4.4199
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre de Santé et Maternité l'Assurance Sociale",
+        "amenity": "clinic",
+        "osm_id": 9065877914,
+        "osm_type": "node",
+        "healthcare": "clinic",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.312544,
+          -4.3246063
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "centre de sante Mk Hôpital",
+        "amenity": "hospital",
+        "osm_id": 9065927328,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2818154,
+          -4.3824914
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Le Rocher",
+        "amenity": "clinic",
+        "osm_id": 9065941017,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.330457,
+          -4.377845
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Bethesda",
+        "amenity": "clinic",
+        "osm_id": 9065941019,
+        "osm_type": "node",
+        "healthcare": "clinic",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3192,
+          -4.3151
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre de saante Clinique",
+        "amenity": "clinic",
+        "osm_id": 9065941020,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3167684,
+          -4.3835692
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Merveilles de Ngaba",
+        "amenity": "clinic",
+        "osm_id": 9065941026,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3245,
+          -4.3765
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hopital CME Ngaba",
+        "amenity": "hospital",
+        "osm_id": 9065941027,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3246571,
+          -4.3765593
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médica la Grâce",
+        "amenity": "clinic",
+        "osm_id": 9065941038,
+        "osm_type": "node",
+        "healthcare": "clinic",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3231567,
+          -4.318326
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Medical Kalamu",
+        "amenity": "clinic",
+        "osm_id": 9065941040,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.355879,
+          -4.3849835
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Morija",
+        "amenity": "clinic",
+        "osm_id": 9065941043,
+        "osm_type": "node",
+        "healthcare": "clinic",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3205066,
+          -4.3095888
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Rock Médical Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941045,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.335481,
+          -4.354936
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Scibe Congo",
+        "amenity": "clinic",
+        "osm_id": 9065941047,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3258833,
+          -4.3171617
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clinique Centre Zanabia",
+        "amenity": "clinic",
+        "osm_id": 9065941048,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3307691,
+          -4.3216618
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clinique dentaire boyambi",
+        "amenity": "hospital",
+        "osm_id": 9065941049,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3179366,
+          -4.3091974
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Bionique",
+        "amenity": "clinic",
+        "osm_id": 9065941053,
+        "osm_type": "node",
+        "healthcare": "clinic",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3227803,
+          -4.3217082
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Etat Matadi Mayo Centre Hospitalier",
+        "amenity": "clinic",
+        "osm_id": 9065941060,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2535628,
+          -4.4678932
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Cscom Polyclinique",
+        "amenity": "clinic",
+        "osm_id": 9065941076,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2184645,
+          -4.4976378
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Kimbangu Polyclinique",
+        "amenity": "clinic",
+        "osm_id": 9065941079,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2903252,
+          -4.4125668
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre hospitalier Sephora",
+        "amenity": "clinic",
+        "osm_id": 9065941096,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.56135,
+          -4.0522133
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Maternite Maluku",
+        "amenity": "clinic",
+        "osm_id": 9065941097,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.556723,
+          -4.0563254
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn CHE Maluku Hopital Général de Reference",
+        "amenity": "hospital",
+        "osm_id": 9065941098,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.315,
+          -4.53955
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "CliniqueElikya",
+        "amenity": "clinic",
+        "osm_id": 9065941112,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3374094,
+          -4.3794421
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Bon Berger Centre Hospitalier",
+        "amenity": "clinic",
+        "osm_id": 9065941121,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3155698,
+          -4.4135494
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Alice Mulanga Polyclinique",
+        "amenity": "clinic",
+        "osm_id": 9065941122,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.331283,
+          -4.3937144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn St Gabriel Centre Hospitalier",
+        "amenity": "clinic",
+        "osm_id": 9065941131,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3316719,
+          -4.38754
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre de santé La Grace",
+        "amenity": "clinic",
+        "osm_id": 9065941189,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.377392,
+          -4.396806
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clinique Mambote",
+        "amenity": "clinic",
+        "osm_id": 9065941197,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3731302,
+          -4.4173728
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical CANESCO",
+        "amenity": "clinic",
+        "osm_id": 9065941206,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.245019,
+          -4.4440712
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Shaloom Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941209,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2824,
+          -4.3742
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Bon Berger Clinique",
+        "amenity": "clinic",
+        "osm_id": 9065941217,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2768559,
+          -4.3536652
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "centre hospitalier Kinzono",
+        "amenity": "clinic",
+        "osm_id": 9065941229,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2593,
+          -4.3699
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Nganda Centre Hospitalier",
+        "amenity": "clinic",
+        "osm_id": 9065941237,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.267858,
+          -4.357307
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Mbakana Hôpital Général de Référence",
+        "amenity": "hospital",
+        "osm_id": 9065941245,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.2001249,
+          -4.4467746
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Bobokisi Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941259,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2893308,
+          -4.3964981
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Selembao Polyclinique",
+        "amenity": "clinic",
+        "osm_id": 9065941260,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2847543,
+          -4.3692813
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Mika Centre Hospitalier",
+        "amenity": "clinic",
+        "osm_id": 9065941262,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2776,
+          -4.3977
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Bobota",
+        "amenity": "clinic",
+        "osm_id": 9065941268,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2852073,
+          -4.3638132
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn La Misericorde Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941270,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2612248,
+          -4.4370629
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Medical Nouvelle Alliance",
+        "amenity": "clinic",
+        "osm_id": 9065941278,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3084344,
+          -4.3386548
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clinique siloe",
+        "amenity": "clinic",
+        "osm_id": 9065941279,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2456075,
+          -4.3649383
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Celpa/Ngaliema",
+        "amenity": "clinic",
+        "osm_id": 9065941290,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2243881,
+          -4.3516429
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Grâce à Dieu",
+        "amenity": "clinic",
+        "osm_id": 9065941291,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2252871,
+          -4.3566285
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Luyindu",
+        "amenity": "clinic",
+        "osm_id": 9065941292,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.224372,
+          -4.3554171
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Medical Ngaliema",
+        "amenity": "clinic",
+        "osm_id": 9065941295,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2385437,
+          -4.3501465
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Promestra",
+        "amenity": "clinic",
+        "osm_id": 9065941296,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2319535,
+          -4.3529372
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Monyo Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941299,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2327,
+          -4.4626
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier Iga",
+        "amenity": "clinic",
+        "osm_id": 9065941345,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3083776,
+          -4.3465513
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Bethlehem",
+        "amenity": "clinic",
+        "osm_id": 9065941359,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.407081,
+          -4.3908495
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn St Toussaint Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941372,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.412752,
+          -4.3952013
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Kimbanguiste Hôpital",
+        "amenity": "hospital",
+        "osm_id": 9065941434,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.380556,
+          -4.4194828
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital Général de Référence Kingasani",
+        "amenity": "clinic",
+        "osm_id": 9065941448,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4086819,
+          -4.4072493
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier le bon berger",
+        "amenity": "clinic",
+        "osm_id": 9065941466,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3161836,
+          -4.3486174
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier Saint Ambroise",
+        "amenity": "clinic",
+        "osm_id": 9065941496,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.354035,
+          -4.432535
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Kisenso Etat Centre Hôspitalier",
+        "amenity": "clinic",
+        "osm_id": 9065941498,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3378789,
+          -4.4111456
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Meravie",
+        "amenity": "clinic",
+        "osm_id": 9065941519,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3480218,
+          -4.3953435
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Medical Emilia",
+        "amenity": "clinic",
+        "osm_id": 9065941522,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3423436,
+          -4.3886314
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital Papa Nzuzi",
+        "amenity": "clinic",
+        "osm_id": 9065941527,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3485219,
+          -4.3974658
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Bolia",
+        "amenity": "clinic",
+        "osm_id": 9065941530,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.346648,
+          -4.3891432
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hopital Victoria",
+        "amenity": "hospital",
+        "osm_id": 9065941535,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3129031,
+          -4.3368685
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hopitale trinité",
+        "amenity": "hospital",
+        "osm_id": 9065941536,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3109289,
+          -4.3382489
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kimbanguiste Centre Hospitalier",
+        "amenity": "clinic",
+        "osm_id": 9065941539,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3061,
+          -4.3353
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "clinique des lilas",
+        "amenity": "clinic",
+        "osm_id": 9065941543,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3273,
+          -4.3852
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Sonal Hôpital",
+        "amenity": "hospital",
+        "osm_id": 9065941546,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3068144,
+          -4.3523034
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Anges Clinique",
+        "amenity": "clinic",
+        "osm_id": 9065941589,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2531207,
+          -4.3668649
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Mamvululu Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941599,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4033624,
+          -4.4241211
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Père Damien Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941608,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4170889,
+          -4.4439165
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Ma Vie Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941609,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3139,
+          -4.3711
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Fombao Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941610,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4127,
+          -4.43386
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Vixam Centre Hospitalier",
+        "amenity": "clinic",
+        "osm_id": 9065941630,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.341042,
+          -4.330673
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "centre hospitalier Akram",
+        "amenity": "clinic",
+        "osm_id": 9065941631,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3544792,
+          -4.3819411
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Limete Clinique",
+        "amenity": "clinic",
+        "osm_id": 9065941633,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.36238,
+          -4.38295
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Kinois Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941672,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3025,
+          -4.355
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Polyclinique SNEL",
+        "amenity": "clinic",
+        "osm_id": 9065941688,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2868362,
+          -4.311224
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital CM Mongala",
+        "amenity": "hospital",
+        "osm_id": 9065941695,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3080786,
+          -4.3024704
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier EPAMED",
+        "amenity": "clinic",
+        "osm_id": 9065941699,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2996,
+          -4.3101
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Rapha Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941713,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3352,
+          -4.3614
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Mak'S Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941716,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3206598,
+          -4.3691762
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Koyangel Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941717,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3312222,
+          -4.3598738
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Santé d'Abord Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941720,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3305,
+          -4.3631
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Urgence Medicale Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941730,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3261,
+          -4.3655
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Moderne Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941732,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.337476,
+          -4.3533621
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Hosanna Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941733,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3325,
+          -4.3676
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Malkia Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941737,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3376248,
+          -4.3454726
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Sonas Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941738,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.333967,
+          -4.34889
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Moyi Mwa Ntongo Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941739,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3362123,
+          -4.3454686
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Mangembo Centre Hospitalier",
+        "amenity": "clinic",
+        "osm_id": 9065941809,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2851785,
+          -4.3459055
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn HMG Badiadingi Hôpital",
+        "amenity": "hospital",
+        "osm_id": 9065941812,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2560372,
+          -4.4290077
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier Mbaki",
+        "amenity": "clinic",
+        "osm_id": 9065941818,
+        "osm_type": "node",
+        "healthcare": "clinic",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3209985,
+          -4.3262799
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital CMOA Force Navale",
+        "amenity": "hospital",
+        "osm_id": 9065941827,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3364428,
+          -4.3241514
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn CSMR Meteo Hôpital",
+        "amenity": "hospital",
+        "osm_id": 9065941829,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2583166,
+          -4.3684723
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn Promedis Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941832,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3418611,
+          -4.3529663
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn DGI/Limete Centre Médical",
+        "amenity": "clinic",
+        "osm_id": 9065941833,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3308,
+          -4.3429
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Golikia",
+        "amenity": "clinic",
+        "osm_id": 9066274497,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2798744,
+          -4.3768729
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Polyclinic Charis",
+        "amenity": "clinic",
+        "osm_id": 9084713409,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2534057,
+          -4.3710231
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital général de référence de Kinseso, zone de santé de Kinseso",
+        "amenity": "hospital",
+        "osm_id": 9132114772,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3381556,
+          -4.4113253
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre de santé Omeco",
+        "amenity": "hospital",
+        "osm_id": 9229624350,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3240333,
+          -4.35912
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital Général de Référence Bondeko",
+        "amenity": "hospital",
+        "osm_id": 9229926620,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3245,
+          -4.3634
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier Bolingani",
+        "amenity": "clinic",
+        "osm_id": 9337503830,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2319371,
+          -4.3433942
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Médecin de nuit",
+        "amenity": "hospital",
+        "osm_id": 9537429917,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2778952,
+          -4.3217838
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "kn CM la seve/opsar Centre de Santé",
+        "amenity": "clinic",
+        "osm_id": 9555373143,
+        "osm_type": "node",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.340995,
+          -4.379204
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical DGDA",
+        "amenity": "hospital",
+        "osm_id": 11572264269,
+        "osm_type": "node",
+        "website": "https://douane.gouv.cd/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3243381,
+          -4.3102647
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical DGDA",
+        "amenity": "hospital",
+        "osm_id": 11572266569,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3255024,
+          -4.3073957
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "MSF Pool D'Urgence Congo",
+        "amenity": "clinic",
+        "osm_id": 11960942536,
+        "osm_type": "node",
+        "healthcare": "clinic",
+        "operator": "Médecins sans frontières",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2712571,
+          -4.3284977
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier Dominique",
+        "amenity": "hospital",
+        "osm_id": 12856938013,
+        "osm_type": "node"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2630212,
+          -4.3483414
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre de Santé la Délivrance",
+        "amenity": "hospital",
+        "osm_id": 13121048034,
+        "osm_type": "node",
+        "healthcare": "hospital",
+        "operator": "Petronnelle",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3170502,
+          -4.3250675
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital SS Mabanga",
+        "amenity": "hospital",
+        "osm_id": 57889654,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3207625,
+          -4.359902
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Nganda",
+        "amenity": "hospital",
+        "osm_id": 57898054,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2658057,
+          -4.3540801
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital du Cinquantenaire",
+        "amenity": "hospital",
+        "osm_id": 102422512,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "website": "http://padiyathmedicitykinshasa.com/",
+        "addr:city": "Kasa-Vubu"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2963058,
+          -4.3419047
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Medical International",
+        "amenity": "clinic",
+        "osm_id": 128437796,
+        "osm_type": "way",
+        "healthcare": "clinic",
+        "addr:city": "Gombe"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2963919,
+          -4.3045014
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital catholique Tonga",
+        "amenity": "hospital",
+        "osm_id": 202995614,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.5178839,
+          -4.321765
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital Monkole 3",
+        "amenity": "hospital",
+        "osm_id": 211015410,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2854336,
+          -4.4240578
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Monkole 2",
+        "amenity": "hospital",
+        "osm_id": 211015682,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2864369,
+          -4.4252384
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Maternité APN",
+        "amenity": "clinic",
+        "osm_id": 301966330,
+        "osm_type": "way",
+        "healthcare": "clinic",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3142533,
+          -4.3057728
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical et Maternité",
+        "amenity": "hospital",
+        "osm_id": 334693013,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3308689,
+          -4.3549563
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical la Main de Dieu",
+        "amenity": "hospital",
+        "osm_id": 335709426,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3313566,
+          -4.355278
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "BF SUMA",
+        "amenity": "hospital",
+        "osm_id": 338457389,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3351465,
+          -4.3599321
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Pédiatrie des Sœurs",
+        "amenity": "hospital",
+        "osm_id": 362880802,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2611866,
+          -4.3830235
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre d'excellence Damien CEDA",
+        "amenity": "hospital",
+        "osm_id": 363410096,
+        "osm_type": "way",
+        "healthcare": "yes",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2431356,
+          -4.3251549
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital Général de Référence de Kintambo",
+        "amenity": "hospital",
+        "osm_id": 404843994,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2710466,
+          -4.3347444
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital centrale de référence de la police",
+        "amenity": "hospital",
+        "osm_id": 405241795,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3025291,
+          -4.3147251
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Tradi Moderne Rapha",
+        "amenity": "hospital",
+        "osm_id": 418273727,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3815881,
+          -4.4182693
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clinique Albert Kipata",
+        "amenity": "clinic",
+        "osm_id": 428641772,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.349108,
+          -4.3923717
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Loba Na Nzambe",
+        "amenity": "hospital",
+        "osm_id": 428744196,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3445782,
+          -4.385723
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Kimbanguiste Tosalisa",
+        "amenity": "hospital",
+        "osm_id": 434582516,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3893231,
+          -4.4149322
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Sion",
+        "amenity": "hospital",
+        "osm_id": 434886947,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3538835,
+          -4.3950616
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Polyclinique Kitoko",
+        "amenity": "hospital",
+        "osm_id": 434887027,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3592797,
+          -4.3883451
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier Divic",
+        "amenity": "hospital",
+        "osm_id": 435321557,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3575946,
+          -4.3940702
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Assurance Médical Center",
+        "amenity": "hospital",
+        "osm_id": 435486342,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3551828,
+          -4.3961771
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Maternité de Malandi",
+        "amenity": "clinic",
+        "osm_id": 439323978,
+        "osm_type": "way",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3528848,
+          -4.3932856
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier Bolingo",
+        "amenity": "hospital",
+        "osm_id": 451549764,
+        "osm_type": "way",
+        "operator": "lier"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2997094,
+          -4.3613788
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hopitalier Le Destin",
+        "amenity": "hospital",
+        "osm_id": 511263494,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3507528,
+          -4.3458177
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "hospital",
+        "osm_id": 536112200,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2932943,
+          -4.3459154
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Maternité de Kintambo",
+        "amenity": "hospital",
+        "osm_id": 539014983,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.270099,
+          -4.3361717
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital de référence de Makala",
+        "amenity": "hospital",
+        "osm_id": 539014985,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.283878,
+          -4.3817483
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "El Rapha Clinic",
+        "amenity": "clinic",
+        "osm_id": 547232379,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3132852,
+          -4.3935227
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "El Rapha Clinic",
+        "amenity": "clinic",
+        "osm_id": 547232380,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3131744,
+          -4.3934721
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "El Rapha Clinic",
+        "amenity": "clinic",
+        "osm_id": 547232381,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3134231,
+          -4.393625
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "hospital",
+        "osm_id": 572713334,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3089368,
+          -4.3364263
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Medical Santa Maria",
+        "amenity": "hospital",
+        "osm_id": 595934113,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3517391,
+          -4.4062441
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Baume de Galaad",
+        "amenity": "hospital",
+        "osm_id": 596023954,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3567669,
+          -4.3960686
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier La guérison",
+        "amenity": "clinic",
+        "osm_id": 596023976,
+        "osm_type": "way",
+        "healthcare": "clinic",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3570881,
+          -4.3980336
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre de Recherche en Médecine Traditionnelle",
+        "amenity": "clinic",
+        "osm_id": 596520909,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.363835,
+          -4.3852172
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Paul;Centre Medical Maman Mayika",
+        "amenity": "hospital",
+        "osm_id": 596525813,
+        "osm_type": "way",
+        "healthcare": "yes",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3549684,
+          -4.403735
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cité de David",
+        "amenity": "clinic",
+        "osm_id": 596527831,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3602022,
+          -4.408741
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hopital d'Etat",
+        "amenity": "hospital",
+        "osm_id": 596546962,
+        "osm_type": "way",
+        "addr:city": "kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.354079,
+          -4.4103698
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Mon Berger",
+        "amenity": "clinic",
+        "osm_id": 596558736,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3520918,
+          -4.3986273
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Saint Prospère",
+        "amenity": "hospital",
+        "osm_id": 596636983,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3537554,
+          -4.4064314
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cliniques KMC",
+        "amenity": "hospital",
+        "osm_id": 597013446,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3557394,
+          -4.3849185
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Eleazar",
+        "amenity": "hospital",
+        "osm_id": 597312804,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3540135,
+          -4.3998549
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Polyclinique Communautaire de l'Espoir",
+        "amenity": "clinic",
+        "osm_id": 597323475,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3604679,
+          -4.3885468
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cliniques Promedis",
+        "amenity": "hospital",
+        "osm_id": 597410246,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3582123,
+          -4.3864926
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Polyclinique Wendy",
+        "amenity": "clinic",
+        "osm_id": 597457589,
+        "osm_type": "way",
+        "addr:city": "kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3618932,
+          -4.3828595
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Soleil du Monde",
+        "amenity": "hospital",
+        "osm_id": 597999856,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3465111,
+          -4.3789726
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Medico Étoile",
+        "amenity": "clinic",
+        "osm_id": 598039369,
+        "osm_type": "way",
+        "healthcare": "clinic",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3424316,
+          -4.397021
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre APSAM",
+        "amenity": "hospital",
+        "osm_id": 598058353,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3294878,
+          -4.4079259
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical La Gloire",
+        "amenity": "hospital",
+        "osm_id": 598068727,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3447555,
+          -4.3845847
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clinique de Pointe à Titre",
+        "amenity": "clinic",
+        "osm_id": 598080862,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3492367,
+          -4.3884226
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital La Colombe",
+        "amenity": "hospital",
+        "osm_id": 598082408,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3448127,
+          -4.3822391
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Poste de santé Billy",
+        "amenity": "clinic",
+        "osm_id": 598406497,
+        "osm_type": "way",
+        "healthcare": "clinic",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3539824,
+          -4.3984978
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Phadispen",
+        "amenity": "hospital",
+        "osm_id": 598866164,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3482303,
+          -4.3831291
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Mabanga",
+        "amenity": "hospital",
+        "osm_id": 598871670,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3472469,
+          -4.3836968
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Mboloko",
+        "amenity": "hospital",
+        "osm_id": 598871720,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3472643,
+          -4.3842375
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Nouvelle Alliance",
+        "amenity": "clinic",
+        "osm_id": 598946704,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3497961,
+          -4.387457
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Echangeur",
+        "amenity": "hospital",
+        "osm_id": 599384104,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3434827,
+          -4.3785513
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Maternité Esengo",
+        "amenity": "hospital",
+        "osm_id": 599825710,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.341259,
+          -4.4179772
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre médical la puissance de la foi",
+        "amenity": "hospital",
+        "osm_id": 599826758,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3410469,
+          -4.416482
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Son Guanella",
+        "amenity": "hospital",
+        "osm_id": 601136435,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3553624,
+          -4.3843945
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital la Grâce",
+        "amenity": "clinic",
+        "osm_id": 601348478,
+        "osm_type": "way",
+        "addr:city": "kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3655925,
+          -4.3829442
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Stella",
+        "amenity": "hospital",
+        "osm_id": 608959866,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3417182,
+          -4.4283985
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Florence",
+        "amenity": "hospital",
+        "osm_id": 608959886,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3389008,
+          -4.4246717
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clinique Ngaliema",
+        "amenity": "hospital",
+        "osm_id": 611782852,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "phone": "+243 810 044 920",
+        "website": "https://www.cliniquengaliema.org/",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2711378,
+          -4.3143676
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "polyclinic Dr diwulu",
+        "amenity": "hospital",
+        "osm_id": 620972195,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3595604,
+          -4.4018635
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital Cadeco",
+        "amenity": "clinic",
+        "osm_id": 634256144,
+        "osm_type": "way",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3157482,
+          -4.4248448
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ronald Médical Center",
+        "amenity": "hospital",
+        "osm_id": 635634867,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3408426,
+          -4.404927
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital Général de Référence de Kisenso/Zone de santé",
+        "amenity": "hospital",
+        "osm_id": 635638914,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3380216,
+          -4.4113708
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre médical Fortune",
+        "amenity": "clinic",
+        "osm_id": 635688365,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3427963,
+          -4.4155343
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre médical Glaurianne",
+        "amenity": "hospital",
+        "osm_id": 635697200,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3412663,
+          -4.4138272
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hopital Rapha",
+        "amenity": "hospital",
+        "osm_id": 635707048,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.345129,
+          -4.4125576
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Medical Bon Acceuil",
+        "amenity": "hospital",
+        "osm_id": 635707934,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3484758,
+          -4.4067575
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Kiminalengi",
+        "amenity": "hospital",
+        "osm_id": 635959674,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3415159,
+          -4.4040828
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clinique Bomoyi",
+        "amenity": "clinic",
+        "osm_id": 635960499,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3416475,
+          -4.4076217
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical et Maternité Shaloom",
+        "amenity": "hospital",
+        "osm_id": 636022688,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3473161,
+          -4.3994015
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "CPN Canadien",
+        "amenity": "hospital",
+        "osm_id": 638501035,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3455798,
+          -4.3349669
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "AMOS",
+        "amenity": "clinic",
+        "osm_id": 642216710,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3339102,
+          -4.4294806
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical et Maternité Les Anges",
+        "amenity": "hospital",
+        "osm_id": 642556088,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3532567,
+          -4.4327751
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical El Rapha",
+        "amenity": "hospital",
+        "osm_id": 642573317,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3332417,
+          -4.4201152
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Elikia",
+        "amenity": "hospital",
+        "osm_id": 642575083,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.340067,
+          -4.4249187
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cliniques de santé Vision Médical",
+        "amenity": "hospital",
+        "osm_id": 642584882,
+        "osm_type": "way",
+        "addr:city": "kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3410042,
+          -4.4217038
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bolingo",
+        "amenity": "hospital",
+        "osm_id": 642593686,
+        "osm_type": "way",
+        "addr:city": "kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3254791,
+          -4.4323282
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Polyclinique Les Merveilles de Dieu de Kinsenso",
+        "amenity": "hospital",
+        "osm_id": 642601670,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3207844,
+          -4.4225704
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Univers Médical",
+        "amenity": "hospital",
+        "osm_id": 643700114,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3493723,
+          -4.4280797
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Boyokani",
+        "amenity": "hospital",
+        "osm_id": 644329745,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3327749,
+          -4.4218697
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bribano Medical",
+        "amenity": "hospital",
+        "osm_id": 653927923,
+        "osm_type": "way",
+        "healthcare": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3375551,
+          -4.326415
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Armée du salut",
+        "amenity": "hospital",
+        "osm_id": 676264183,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3721446,
+          -4.4130335
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Bel Air",
+        "amenity": "clinic",
+        "osm_id": 676484726,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.355359,
+          -4.4570599
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mariel",
+        "amenity": "clinic",
+        "osm_id": 676531736,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3834316,
+          -4.3805905
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Monde",
+        "amenity": "hospital",
+        "osm_id": 676536206,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3882819,
+          -4.4092421
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Grâce 2",
+        "amenity": "hospital",
+        "osm_id": 676536250,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3885278,
+          -4.4079248
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Tumba",
+        "amenity": "hospital",
+        "osm_id": 676539259,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3674691,
+          -4.4009494
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "CSM Kimbanguiste",
+        "amenity": "hospital",
+        "osm_id": 676540725,
+        "osm_type": "way",
+        "addr:city": "kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3728067,
+          -4.404288
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical La grace",
+        "amenity": "hospital",
+        "osm_id": 676540751,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3733779,
+          -4.4049594
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "CABN",
+        "amenity": "hospital",
+        "osm_id": 676541035,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3685536,
+          -4.3983483
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical la Compassion",
+        "amenity": "hospital",
+        "osm_id": 676545477,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3687341,
+          -4.3967664
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Medico Social Kimia",
+        "amenity": "hospital",
+        "osm_id": 676549450,
+        "osm_type": "way",
+        "addr:city": "kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3742313,
+          -4.4356786
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "hospital",
+        "osm_id": 676740466,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3861139,
+          -4.3873124
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier Ntombwa ya Maria",
+        "amenity": "hospital",
+        "osm_id": 676749279,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3739161,
+          -4.3828758
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre médical Le Jourdain",
+        "amenity": "hospital",
+        "osm_id": 676753711,
+        "osm_type": "way",
+        "healthcare": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.368445,
+          -4.4249922
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Polyclinique Kitoko",
+        "amenity": "hospital",
+        "osm_id": 676767404,
+        "osm_type": "way",
+        "addr:city": "kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3748979,
+          -4.4417252
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mama Kana",
+        "amenity": "hospital",
+        "osm_id": 676786260,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3733784,
+          -4.4237799
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Damaris",
+        "amenity": "hospital",
+        "osm_id": 676788218,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3829424,
+          -4.3971803
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Kitoko",
+        "amenity": "clinic",
+        "osm_id": 676799427,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3792901,
+          -4.4333654
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Maternité Kiaki",
+        "amenity": "hospital",
+        "osm_id": 676821982,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3843555,
+          -4.4223753
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "hospital",
+        "osm_id": 676834924,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3741194,
+          -4.3940851
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Siloe",
+        "amenity": "hospital",
+        "osm_id": 676991557,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3836955,
+          -4.4178263
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Complexe Scolaire De la Paix",
+        "amenity": "clinic",
+        "osm_id": 676992388,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3859477,
+          -4.4202879
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "hospital",
+        "osm_id": 676995149,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3878525,
+          -4.4163063
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre la Foi",
+        "amenity": "hospital",
+        "osm_id": 676995159,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3878519,
+          -4.4170856
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical la Grace",
+        "amenity": "clinic",
+        "osm_id": 676999446,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3769383,
+          -4.3972645
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital Mitadelle Médicale",
+        "amenity": "hospital",
+        "osm_id": 676999739,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3829199,
+          -4.3950287
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Motema",
+        "amenity": "hospital",
+        "osm_id": 677000314,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3773755,
+          -4.3960977
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Stella",
+        "amenity": "hospital",
+        "osm_id": 677007733,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3810607,
+          -4.4142053
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "hospital",
+        "osm_id": 677011445,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3828266,
+          -4.4164722
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clinic Chez Maman Kizembo",
+        "amenity": "clinic",
+        "osm_id": 677016718,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3512263,
+          -4.3709921
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical C'est la Vie",
+        "amenity": "hospital",
+        "osm_id": 677030183,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3514628,
+          -4.3732226
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital et Maternité Kimbuki",
+        "amenity": "hospital",
+        "osm_id": 677054051,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3513583,
+          -4.4412242
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lydia Medical Center",
+        "amenity": "clinic",
+        "osm_id": 677065694,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3501755,
+          -4.444695
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Baby",
+        "amenity": "clinic",
+        "osm_id": 677069680,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3506953,
+          -4.4432941
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Gradis",
+        "amenity": "hospital",
+        "osm_id": 677073347,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.324127,
+          -4.4220599
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Papa Odon",
+        "amenity": "clinic",
+        "osm_id": 677097632,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3595015,
+          -4.3593868
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Emergene",
+        "amenity": "hospital",
+        "osm_id": 677097988,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3172075,
+          -4.4170018
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Maman Elise",
+        "amenity": "clinic",
+        "osm_id": 677105951,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3240147,
+          -4.4136209
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Secours",
+        "amenity": "clinic",
+        "osm_id": 677615623,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.317755,
+          -4.404475
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dieu est bon",
+        "amenity": "hospital",
+        "osm_id": 677615655,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3188135,
+          -4.4044404
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Nelly Nsumbu",
+        "amenity": "hospital",
+        "osm_id": 677823362,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3162124,
+          -4.4088532
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "La Charite",
+        "amenity": "clinic",
+        "osm_id": 696416278,
+        "osm_type": "way",
+        "addr:city": "kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3718686,
+          -4.3786962
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hopital St Jerome",
+        "amenity": "hospital",
+        "osm_id": 698273310,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3567305,
+          -4.4058792
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Providence Divine",
+        "amenity": "clinic",
+        "osm_id": 698688166,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3569242,
+          -4.3887901
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "FONLIV",
+        "amenity": "hospital",
+        "osm_id": 698713692,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3599531,
+          -4.3886063
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Les Aiglons",
+        "amenity": "hospital",
+        "osm_id": 698713694,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3576355,
+          -4.3887126
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Matanda",
+        "amenity": "clinic",
+        "osm_id": 700126647,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.38172,
+          -4.420932
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Bethelem",
+        "amenity": "clinic",
+        "osm_id": 700136858,
+        "osm_type": "way",
+        "addr:city": "kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.370574,
+          -4.4155029
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hopital Sainte Marie",
+        "amenity": "hospital",
+        "osm_id": 700163550,
+        "osm_type": "way",
+        "addr:city": "kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.323062,
+          -4.435297
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital Provincial Général de Référence de Kinshasa",
+        "amenity": "hospital",
+        "osm_id": 700648669,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "phone": "+243 823 419 373",
+        "addr:city": "Gombe"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3060422,
+          -4.3089071
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médicale les Vainqueurs",
+        "amenity": "hospital",
+        "osm_id": 700801357,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3544873,
+          -4.3615659
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier la samaritain",
+        "amenity": "hospital",
+        "osm_id": 700821328,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3724814,
+          -4.4068902
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "hospital",
+        "osm_id": 700825932,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3628987,
+          -4.3688541
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Complexe Scolaire Batende",
+        "amenity": "clinic",
+        "osm_id": 700876494,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3490165,
+          -4.3957393
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Sep Congo",
+        "amenity": "hospital",
+        "osm_id": 700877832,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3695608,
+          -4.400838
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre médical Omeco Tata Mapasa",
+        "amenity": "hospital",
+        "osm_id": 700888617,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3709855,
+          -4.3978716
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Don De Dieu",
+        "amenity": "hospital",
+        "osm_id": 701029304,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3794909,
+          -4.3859667
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Medi Center",
+        "amenity": "hospital",
+        "osm_id": 701039056,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3798366,
+          -4.3896569
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Polyclinique Notre Dame de Bon Cœur",
+        "amenity": "clinic",
+        "osm_id": 701046129,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3170235,
+          -4.4064098
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ON CENTER",
+        "amenity": "clinic",
+        "osm_id": 701055046,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3822618,
+          -4.3776286
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Dieu Merci",
+        "amenity": "clinic",
+        "osm_id": 701056892,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3831482,
+          -4.3799982
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical la Main de Dieu",
+        "amenity": "hospital",
+        "osm_id": 701062336,
+        "osm_type": "way",
+        "addr:city": "kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3802915,
+          -4.3732837
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Imbali médical",
+        "amenity": "hospital",
+        "osm_id": 701065999,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3832572,
+          -4.3748053
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "hospital",
+        "osm_id": 701067435,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3878539,
+          -4.3821744
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier Bienheureux",
+        "amenity": "hospital",
+        "osm_id": 701071298,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3817327,
+          -4.3809222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Médical Bolingo",
+        "amenity": "hospital",
+        "osm_id": 701073450,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3854646,
+          -4.3783307
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital",
+        "amenity": "hospital",
+        "osm_id": 701079029,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3444601,
+          -4.3911427
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clinicque",
+        "amenity": "clinic",
+        "osm_id": 701087210,
+        "osm_type": "way",
+        "healthcare": "clinic",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3871878,
+          -4.390131
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Dieu est amour",
+        "amenity": "clinic",
+        "osm_id": 701087975,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.381305,
+          -4.3807398
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Eben Ezer",
+        "amenity": "hospital",
+        "osm_id": 701095180,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3839979,
+          -4.3759009
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "La Manne Cachée",
+        "amenity": "hospital",
+        "osm_id": 701097095,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3811732,
+          -4.3809499
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Saint Patmos",
+        "amenity": "hospital",
+        "osm_id": 701098161,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3841025,
+          -4.3760853
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "La Main de l'éternel",
+        "amenity": "hospital",
+        "osm_id": 701105324,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3826176,
+          -4.3738886
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre la Bonne Guerison",
+        "amenity": "clinic",
+        "osm_id": 701121414,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3689023,
+          -4.3708421
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre la Bénédiction",
+        "amenity": "clinic",
+        "osm_id": 701121429,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3687903,
+          -4.3711811
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier BOO NSUBA",
+        "amenity": "hospital",
+        "osm_id": 701121448,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3739695,
+          -4.3749765
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital Bukasa",
+        "amenity": "hospital",
+        "osm_id": 701121449,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3739481,
+          -4.369541
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "CSNAS/MANGANA",
+        "amenity": "hospital",
+        "osm_id": 701279192,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3836135,
+          -4.4200741
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Elikya",
+        "amenity": "clinic",
+        "osm_id": 702580677,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3597263,
+          -4.3576712
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Alpha Omega",
+        "amenity": "clinic",
+        "osm_id": 702580746,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3604294,
+          -4.3600972
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ma Famille",
+        "amenity": "hospital",
+        "osm_id": 702853479,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3719487,
+          -4.3901795
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bethsa Médical",
+        "amenity": "clinic",
+        "osm_id": 705088213,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3725812,
+          -4.3929995
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Médical Samuel",
+        "amenity": "clinic",
+        "osm_id": 709779382,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3164384,
+          -4.4100124
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Christ Amour",
+        "amenity": "clinic",
+        "osm_id": 710064943,
+        "osm_type": "way",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3339785,
+          -4.4319319
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Clinique Kinoise",
+        "amenity": "hospital",
+        "osm_id": 753674326,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2737277,
+          -4.3144402
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Couvent de la Paroisse Notre Dame de Grâce",
+        "amenity": "hospital",
+        "osm_id": 759603497,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2608114,
+          -4.4037411
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cliniques universitaires de Kinshasa",
+        "amenity": "hospital",
+        "osm_id": 783572548,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "phone": "+243 818 415 034",
+        "addr:city": "Lemba"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3054088,
+          -4.4140948
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital Mutombo;Centre hospitalier Roi Baudouin",
+        "amenity": "hospital",
+        "osm_id": 787460657,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3813451,
+          -4.3911005
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre hospitalier Gen-Tai",
+        "amenity": "clinic",
+        "osm_id": 787462307,
+        "osm_type": "way",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3293755,
+          -4.3388204
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital de la Rive",
+        "amenity": "hospital",
+        "osm_id": 787475996,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.245124,
+          -4.3245506
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Les Cliniques BONDEKO",
+        "amenity": "hospital",
+        "osm_id": 787479499,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "addr:city": "kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3295393,
+          -4.3524132
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre de santé Centenaire",
+        "amenity": "clinic",
+        "osm_id": 787538378,
+        "osm_type": "way",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4795669,
+          -4.3710188
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Emeraude 2",
+        "amenity": "hospital",
+        "osm_id": 787541778,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4797062,
+          -4.3747095
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre hospitalier Elikya",
+        "amenity": "hospital",
+        "osm_id": 787570289,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3698264,
+          -4.4358443
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital de l'Amitié Sino-Congolaise",
+        "amenity": "hospital",
+        "osm_id": 791399436,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3741599,
+          -4.4033422
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Bondeko",
+        "amenity": "hospital",
+        "osm_id": 791828731,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3082044,
+          -4.3598357
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital de Référence de Matete",
+        "amenity": "hospital",
+        "osm_id": 792107300,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3466671,
+          -4.3928134
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital pédiatrique de Kalembelembe",
+        "amenity": "hospital",
+        "osm_id": 792110503,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3030089,
+          -4.3246466
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital Militaire Régional",
+        "amenity": "hospital",
+        "osm_id": 792136318,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2907766,
+          -4.3347611
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre hospitalier Nganda",
+        "amenity": "hospital",
+        "osm_id": 792136806,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2679068,
+          -4.3572118
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital Saint Joseph",
+        "amenity": "hospital",
+        "osm_id": 792139332,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "operator": "Bureau Diocesien des Oeuvres Medicales",
+        "addr:city": "Limete"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3407703,
+          -4.3660376
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital médical Yolo",
+        "amenity": "hospital",
+        "osm_id": 792141056,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3255538,
+          -4.3502467
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "SOPROP",
+        "amenity": "hospital",
+        "osm_id": 792597352,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3160756,
+          -4.4000748
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital El Rapha",
+        "amenity": "hospital",
+        "osm_id": 797008127,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3478154,
+          -4.3812256
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cliniques Jolie Mondo",
+        "amenity": "clinic",
+        "osm_id": 797558399,
+        "osm_type": "way",
+        "operator": "Privé"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2821497,
+          -4.3441816
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hopital de la SNEL",
+        "amenity": "hospital",
+        "osm_id": 808469451,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3719403,
+          -4.405827
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "hospital",
+        "osm_id": 808726207,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3398405,
+          -4.3369969
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre hospitalier René de HAES",
+        "amenity": "hospital",
+        "osm_id": 808726208,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2894446,
+          -4.4584855
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Medical mavika",
+        "amenity": "hospital",
+        "osm_id": 808787869,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3578438,
+          -4.4116711
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "hospital",
+        "osm_id": 809575788,
+        "osm_type": "way"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2580444,
+          -4.4078682
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier St. Daniel",
+        "amenity": "hospital",
+        "osm_id": 818494084,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4124508,
+          -4.3980795
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Médecins sans frontières",
+        "amenity": "hospital",
+        "osm_id": 975271522,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "operator": "Médecins sans frontières",
+        "website": "https://www.msf.fr/",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2691578,
+          -4.3268208
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier Monkole",
+        "amenity": "hospital",
+        "osm_id": 997090452,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2859855,
+          -4.4252434
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "HJ Hospitals Limete",
+        "amenity": "hospital",
+        "osm_id": 997137696,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "website": "https://www.hjhospitals.org/fr",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3298394,
+          -4.3405769
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ngaliema Medical Center",
+        "amenity": "clinic",
+        "osm_id": 997144642,
+        "osm_type": "way",
+        "healthcare": "clinic",
+        "website": "https://www.newdealmedical.org/hospitals/1",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2563331,
+          -4.3327714
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "hospital",
+        "osm_id": 1041825910,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.338725,
+          -4.3702844
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital général de référence de Maluku",
+        "amenity": "hospital",
+        "osm_id": 1357771072,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "addr:city": "Maluku"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.557789,
+          -4.0571795
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hôpital Major Leka",
+        "amenity": "clinic",
+        "osm_id": 1357772497,
+        "osm_type": "way",
+        "healthcare": "clinic",
+        "addr:city": "Maluku"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.5451976,
+          -4.0660024
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital Général de Référence Kinkole",
+        "amenity": "hospital",
+        "osm_id": 1359006317,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.5069829,
+          -4.3465421
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier Initiative Plus",
+        "amenity": "hospital",
+        "osm_id": 1359060275,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "website": "https://www.chip.cd"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.4982456,
+          -4.348082
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier Onatra",
+        "amenity": "hospital",
+        "osm_id": 1360691137,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3212095,
+          -4.3464443
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kinkenda Centre Hôspitalier",
+        "amenity": "hospital",
+        "osm_id": 1360861123,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2742811,
+          -4.3644095
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre de santé Vijana",
+        "amenity": "clinic",
+        "osm_id": 1362602880,
+        "osm_type": "way",
+        "healthcare": "clinic",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2972455,
+          -4.327298
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hospitalier Lukunga",
+        "amenity": "clinic",
+        "osm_id": 1364375783,
+        "osm_type": "way",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2205786,
+          -4.3663203
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre médical ISRAËL",
+        "amenity": "clinic",
+        "osm_id": 1364899870,
+        "osm_type": "way",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2528209,
+          -4.444729
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre Hôspitalier Lisungi",
+        "amenity": "clinic",
+        "osm_id": 1366012182,
+        "osm_type": "way",
+        "healthcare": "clinic"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2590575,
+          -4.4434977
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital Siloe",
+        "amenity": "hospital",
+        "osm_id": 1369866152,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3170382,
+          -4.3934657
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Libota Lisantu",
+        "amenity": "clinic",
+        "osm_id": 1389410597,
+        "osm_type": "way",
+        "healthcare": "clinic",
+        "website": "https://www.amoreliberta.org/informati/notizie/libota-lisantu-il-centro-sanitario-continua-a-crescere/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2906591,
+          -4.4465781
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre de Santé et Maternité de Kitega",
+        "amenity": "clinic",
+        "osm_id": 1389926517,
+        "osm_type": "way",
+        "healthcare": "clinic",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3050787,
+          -4.3211463
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hôpital CMOA Tshatshi",
+        "amenity": "hospital",
+        "osm_id": 1412161060,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2410922,
+          -4.3358182
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Desmet Hospital of Kinsuka",
+        "amenity": "hospital",
+        "osm_id": 1412629980,
+        "osm_type": "way",
+        "healthcare": "hospital",
+        "website": "https://desmethospitalofkinsuka.org/",
+        "addr:city": "Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2185015,
+          -4.3451324
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Centre hospitalier du Mont Amba",
+        "amenity": "clinic",
+        "osm_id": 1413364588,
+        "osm_type": "way",
+        "healthcare": "clinic",
+        "operator": "Université de Kinshasa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3039121,
+          -4.4106441
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "hopital madiangu",
+        "amenity": "hospital",
+        "osm_id": 1427292683,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3252752,
+          -4.3490053
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "hospital",
+        "osm_id": 1472329167,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2932943,
+          -4.3459154
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "hospital",
+        "osm_id": 1472343904,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.2542551,
+          -4.3747124
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": null,
+        "amenity": "hospital",
+        "osm_id": 1472347018,
+        "osm_type": "way",
+        "healthcare": "hospital"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.3109342,
+          -4.3368356
+        ]
+      }
+    }
+  ]
+}
