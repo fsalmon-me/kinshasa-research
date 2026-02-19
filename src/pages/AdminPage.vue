@@ -26,7 +26,8 @@ async function loadDataset(file: string) {
   importError.value = ''
   saveStatus.value = ''
   try {
-    const res = await fetch(`/data/${file}`)
+    const base = import.meta.env.BASE_URL.replace(/\/$/, '')
+    const res = await fetch(`${base}/data/${file}`)
     const data: DataRecord[] = await res.json()
     rows.value = data
     columns.value = data.length > 0 ? Object.keys(data[0]) : []

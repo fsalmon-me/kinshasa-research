@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import type { LayerConfig } from '@/types/layer'
+import { formatCitation } from '@/utils/citation'
 
 const props = defineProps<{
   layers: LayerConfig[]
@@ -11,24 +12,6 @@ const open = ref(false)
 const layersWithMetadata = computed(() =>
   props.layers.filter(l => l.metadata)
 )
-
-function formatCitation(l: LayerConfig): string {
-  const m = l.metadata!
-  let cite = ''
-  if (m.authors?.length) {
-    cite += m.authors.join(', ')
-  } else {
-    cite += m.source
-  }
-  if (m.year) cite += ` (${m.year})`
-  cite += '. '
-  if (m.title) cite += `<em>${m.title}</em>. `
-  if (m.source && m.authors?.length) cite += `${m.source}. `
-  if (m.license) cite += `[${m.license}] `
-  if (m.accessDate) cite += `Consulté le ${m.accessDate}. `
-  if (m.url) cite += `<a href="${m.url}" target="_blank" rel="noopener">${m.url}</a>`
-  return cite
-}
 </script>
 
 <template>

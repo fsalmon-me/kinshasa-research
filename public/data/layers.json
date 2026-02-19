@@ -95,6 +95,14 @@
     "color": "#e74c3c",
     "radius": 6,
     "popupFields": ["amenity", "healthcare", "operator", "beds", "phone", "website"],
+    "fieldLabels": {
+      "amenity": "Type",
+      "healthcare": "Services",
+      "operator": "Op\u00e9rateur",
+      "beds": "Lits",
+      "phone": "T\u00e9l\u00e9phone",
+      "website": "Site web"
+    },
     "description": "Hôpitaux et cliniques référencés sur OpenStreetMap",
     "legendTitle": "Santé",
     "visible": false,
@@ -118,6 +126,12 @@
     "color": "#3498db",
     "radius": 5,
     "popupFields": ["amenity", "operator", "isced:level", "religion"],
+    "fieldLabels": {
+      "amenity": "Type",
+      "operator": "Op\u00e9rateur",
+      "isced:level": "Niveau ISCED",
+      "religion": "Confession"
+    },
     "description": "Établissements scolaires référencés sur OpenStreetMap",
     "legendTitle": "Éducation",
     "visible": false,
@@ -141,6 +155,13 @@
     "color": "#f39c12",
     "radius": 6,
     "popupFields": ["brand", "operator", "fuel:diesel", "fuel:octane_95", "opening_hours"],
+    "fieldLabels": {
+      "brand": "Marque",
+      "operator": "Op\u00e9rateur",
+      "fuel:diesel": "Diesel",
+      "fuel:octane_95": "Essence 95",
+      "opening_hours": "Horaires"
+    },
     "description": "Stations-service référencées sur OpenStreetMap",
     "legendTitle": "Carburant",
     "visible": false,
@@ -164,6 +185,11 @@
     "color": "#27ae60",
     "radius": 7,
     "popupFields": ["opening_hours", "operator", "shop"],
+    "fieldLabels": {
+      "opening_hours": "Horaires",
+      "operator": "Op\u00e9rateur",
+      "shop": "Type de commerce"
+    },
     "description": "Marchés référencés sur OpenStreetMap",
     "legendTitle": "Commerce",
     "visible": false,
@@ -187,6 +213,13 @@
     "color": "#8e44ad",
     "radius": 5,
     "popupFields": ["brand", "operator", "atm", "phone", "opening_hours"],
+    "fieldLabels": {
+      "brand": "Marque",
+      "operator": "Op\u00e9rateur",
+      "atm": "Distributeur",
+      "phone": "T\u00e9l\u00e9phone",
+      "opening_hours": "Horaires"
+    },
     "description": "Banques et agences bancaires référencées sur OpenStreetMap",
     "legendTitle": "Finance",
     "visible": false,
@@ -210,6 +243,13 @@
     "color": "#2c3e50",
     "radius": 6,
     "popupFields": ["country", "target", "diplomatic", "phone", "website"],
+    "fieldLabels": {
+      "country": "Pays",
+      "target": "Pays repr\u00e9sent\u00e9",
+      "diplomatic": "Type diplomatique",
+      "phone": "T\u00e9l\u00e9phone",
+      "website": "Site web"
+    },
     "description": "Représentations diplomatiques référencées sur OpenStreetMap",
     "legendTitle": "Diplomatie",
     "visible": false,

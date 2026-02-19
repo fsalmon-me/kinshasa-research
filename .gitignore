@@ -4,3 +4,5 @@ dist/
 *.local
 .DS_Store
 Thumbs.db
+public/data/google-api-usage.json
+.firebase/

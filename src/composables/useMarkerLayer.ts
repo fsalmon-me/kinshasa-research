@@ -62,11 +62,18 @@ export function useMarkerLayer() {
       })
 
       const fields = config.popupFields ?? Object.keys(props)
+      const labels = config.fieldLabels ?? {}
       let html = `<div class="popup-inner"><h3>${label}</h3>`
       for (const f of fields) {
         if (f === config.labelField || props[f] == null || props[f] === '') continue
         const val = typeof props[f] === 'number' ? formatNumber(props[f] as number) : props[f]
-        html += `<div><span class="field-label">${f}:</span> ${val}</div>`
+        const displayLabel = labels[f] ?? f
+        html += `<div><span class="field-label">${displayLabel}:</span> ${val}</div>`
+      }
+      // OSM source link for traceability
+      if (props.osm_id && props.osm_type) {
+        const osmUrl = `https://www.openstreetmap.org/${props.osm_type}/${props.osm_id}`
+        html += `<div class="osm-link"><a href="${osmUrl}" target="_blank" rel="noopener">🔗 Voir sur OSM</a></div>`
       }
       html += '</div>'
       marker.bindPopup(html)
@@ -96,11 +103,13 @@ export function useMarkerLayer() {
       const fields = config.popupFields ?? Object.keys(row).filter(
         k => k !== config.latField && k !== config.lngField
       )
+      const labels = config.fieldLabels ?? {}
       let html = `<div class="popup-inner"><h3>${label}</h3>`
       for (const f of fields) {
         if (f === config.labelField || row[f] == null || row[f] === '') continue
         const val = typeof row[f] === 'number' ? formatNumber(row[f] as number) : row[f]
-        html += `<div><span class="field-label">${f}:</span> ${val}</div>`
+        const displayLabel = labels[f] ?? f
+        html += `<div><span class="field-label">${displayLabel}:</span> ${val}</div>`
       }
       html += '</div>'
       marker.bindPopup(html)

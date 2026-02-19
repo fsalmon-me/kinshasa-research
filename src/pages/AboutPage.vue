@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import type { LayerConfig } from '@/types/layer'
+import { formatCitation, generateBibtexFile } from '@/utils/citation'
 
 const layers = ref<LayerConfig[]>([])
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '')
+
 onMounted(async () => {
-  const res = await fetch('/data/layers.json')
+  const res = await fetch(`${base}/data/layers.json`)
   layers.value = await res.json()
 })
 
@@ -29,19 +32,15 @@ const categories = computed(() => {
   }))
 })
 
-function formatCitation(l: LayerConfig): string {
-  const m = l.metadata
-  if (!m) return 'Source non documentée.'
-  let cite = ''
-  if (m.authors?.length) cite += m.authors.join(', ')
-  else cite += m.source
-  if (m.year) cite += ` (${m.year})`
-  cite += '. '
-  if (m.title) cite += `<em>${m.title}</em>. `
-  if (m.source && m.authors?.length) cite += `${m.source}. `
-  if (m.license) cite += `[${m.license}] `
-  if (m.url) cite += `<br><a href="${m.url}" target="_blank">${m.url}</a>`
-  return cite
+function downloadBibtex() {
+  const bib = generateBibtexFile(layers.value)
+  const blob = new Blob([bib], { type: 'text/plain' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = 'kinshasa-sources.bib'
+  a.click()
+  URL.revokeObjectURL(url)
 }
 </script>
 
@@ -133,11 +132,15 @@ function formatCitation(l: LayerConfig): string {
 
       <section class="about-section">
         <h2>Sources des données par couche</h2>
+        <button class="bibtex-btn" @click="downloadBibtex">📥 Télécharger BibTeX</button>
 
         <div v-for="cat in categories" :key="cat.key" class="source-category">
           <h3>{{ cat.label }}</h3>
           <div v-for="l in cat.items" :key="l.id" class="source-card">
-            <div class="source-name">{{ l.name }}</div>
+            <div class="source-name">
+              {{ l.name }}
+              <span v-if="l.metadata?.accessDate" class="freshness-badge">📅 {{ l.metadata.accessDate }}</span>
+            </div>
             <div class="source-desc">{{ l.description }}</div>
             <div class="source-cite" v-html="formatCitation(l)"></div>
             <div v-if="l.metadata?.methodology" class="source-detail">
@@ -156,7 +159,7 @@ function formatCitation(l: LayerConfig): string {
           Les données OpenStreetMap sont sous licence
           <a href="https://opendatacommons.org/licenses/odbl/" target="_blank">ODbL</a>.
           Le code source de cette application est disponible sur
-          <a href="https://github.com/fsalmon-hq/kinshasa-research" target="_blank">GitHub</a>.
+          <a href="https://github.com/fsalmon-me/kinshasa-research" target="_blank">GitHub</a>.
         </p>
       </section>
     </main>
@@ -255,6 +258,36 @@ function formatCitation(l: LayerConfig): string {
   font-size: 14px;
   color: #333;
   margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.freshness-badge {
+  font-size: 11px;
+  font-weight: 400;
+  color: #888;
+  background: #f5f5f5;
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+
+.bibtex-btn {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #2c7fb8;
+  background: #e8f4fd;
+  border: 1px solid #b3d9f2;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.bibtex-btn:hover {
+  background: #d0ecfa;
 }
 
 .source-desc {

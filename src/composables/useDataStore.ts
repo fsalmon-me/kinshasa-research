@@ -27,8 +27,10 @@ export const loading = ref(false)
 // Fetch helpers
 // =====================================
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '')
+
 export async function fetchLayerRegistry(): Promise<LayerConfig[]> {
-  const res = await fetch('/data/layers.json')
+  const res = await fetch(`${base}/data/layers.json`)
   if (!res.ok) throw new Error(`Failed to load layers.json (${res.status})`)
   const data = await res.json()
   layers.value = data
@@ -42,7 +44,7 @@ export async function fetchLayerRegistry(): Promise<LayerConfig[]> {
 
 export async function fetchData(filename: string): Promise<DataRecord[]> {
   if (dataCache.has(filename)) return dataCache.get(filename)!
-  const res = await fetch(`/data/${filename}`)
+  const res = await fetch(`${base}/data/${filename}`)
   if (!res.ok) throw new Error(`Failed to load ${filename} (${res.status})`)
   const data = await res.json()
   dataCache.set(filename, data)
@@ -51,7 +53,7 @@ export async function fetchData(filename: string): Promise<DataRecord[]> {
 
 export async function fetchGeoJSON(filename: string): Promise<GeoJSON.FeatureCollection> {
   if (geojsonCache.has(filename)) return geojsonCache.get(filename)!
-  const res = await fetch(`/data/${filename}`)
+  const res = await fetch(`${base}/data/${filename}`)
   if (!res.ok) throw new Error(`Failed to load ${filename} (${res.status})`)
   const data = await res.json()
   geojsonCache.set(filename, data)

@@ -22,9 +22,10 @@ export function useMatrixLayer() {
   async function show(map: L.Map, config: MatrixLayer) {
     remove(map)
 
+    const base = import.meta.env.BASE_URL.replace(/\/$/, '')
     const [geojson, dataRes] = await Promise.all([
       fetchGeoJSON(config.geojsonFile),
-      fetch(`/data/${config.dataFile}`).then(r => r.json()),
+      fetch(`${base}/data/${config.dataFile}`).then(r => r.json()),
     ])
 
     travelData = dataRes as TravelData

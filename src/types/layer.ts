@@ -60,6 +60,7 @@ export interface MarkerLayer extends LayerBase {
   radius?: number
   icon?: string
   popupFields?: string[]
+  fieldLabels?: Record<string, string>  // { "beds": "Lits", "phone": "Téléphone" }
   legendTitle?: string
 }
 
@@ -71,6 +72,7 @@ export interface GeoJsonLayer extends LayerBase {
   styleMap?: Record<string, { color: string; weight: number; label: string }>
   defaultStyle?: { color: string; weight: number }
   popupFields?: string[]
+  fieldLabels?: Record<string, string>
   legendTitle?: string
 }
 

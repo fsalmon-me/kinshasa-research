@@ -2,7 +2,7 @@
 
 Carte interactive de recherche sur la ville de Kinshasa (RDC) — données géospatiales, démographiques et d'infrastructure.
 
-**Démo :** https://fsalmon-hq.github.io/kinshasa-research/
+**Démo :** https://kinshasa-research.web.app/
 
 ## Aperçu
 
