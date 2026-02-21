@@ -31,6 +31,53 @@ const featureRows = ref<FeatureRow[]>([])
 const sourceColumns = ref<string[]>([])   // columns from source data (read-only)
 const customColumns = ref<string[]>(['notes', 'verified'])  // user-added columns (editable)
 
+// ---- Matrix view ----
+interface MatrixData {
+  communes: string[]
+  durations: number[][]
+  distances: number[][]
+}
+const matrixData = ref<MatrixData | null>(null)
+const matrixMode = ref<'duration' | 'distance'>('duration')
+const isMatrixView = computed(() => activeLayer.value?.type === 'matrix' && matrixData.value !== null)
+
+function matrixGrid(): number[][] {
+  if (!matrixData.value) return []
+  return matrixMode.value === 'duration'
+    ? matrixData.value.durations
+    : matrixData.value.distances
+}
+
+function matrixCellColor(val: number): string {
+  if (matrixMode.value === 'duration') {
+    // minutes: green→yellow→red
+    if (val <= 0) return '#f5f5f5'
+    if (val < 15) return '#c8e6c9'
+    if (val < 30) return '#fff9c4'
+    if (val < 45) return '#ffe0b2'
+    if (val < 60) return '#ffccbc'
+    if (val < 90) return '#ef9a9a'
+    return '#e57373'
+  } else {
+    // km: green→yellow→red
+    if (val <= 0) return '#f5f5f5'
+    if (val < 5) return '#c8e6c9'
+    if (val < 10) return '#fff9c4'
+    if (val < 20) return '#ffe0b2'
+    if (val < 30) return '#ffccbc'
+    if (val < 50) return '#ef9a9a'
+    return '#e57373'
+  }
+}
+
+function formatMatrixVal(val: number): string {
+  if (matrixMode.value === 'duration') {
+    return val < 1 ? '—' : Math.round(val).toString()
+  } else {
+    return val < 0.1 ? '—' : val.toFixed(1)
+  }
+}
+
 // ---- Computed ----
 const categoryLabels: Record<string, string> = {
   statistics: '📊 Statistiques',
@@ -99,6 +146,7 @@ async function selectLayer(layerId: string) {
   errorMsg.value = ''
   featureRows.value = []
   sourceColumns.value = []
+  matrixData.value = null
 
   const config = layers.value.find(l => l.id === layerId)
   if (!config) return
@@ -125,9 +173,14 @@ async function selectLayer(layerId: string) {
       const data = await fetchData((config as any).dataFile)
       rawRows = data as Record<string, unknown>[]
     } else if (config.type === 'matrix') {
-      // Matrix layer — show communes list from travel data
+      // Matrix layer — load full matrix for cross-table view
       const res = await fetch(`${base}/data/${(config as any).dataFile}`)
       const data = await res.json()
+      matrixData.value = {
+        communes: data.communes ?? [],
+        durations: data.durations ?? [],
+        distances: data.distances ?? [],
+      }
       rawRows = (data.communes ?? []).map((name: string, i: number) => ({
         commune: name,
         index: i,
@@ -297,8 +350,57 @@ function exportEnrichedData() {
         <div v-if="errorMsg" class="msg error">{{ errorMsg }}</div>
         <div v-if="statusMsg" class="msg success" @click="statusMsg = ''">{{ statusMsg }} ✕</div>
 
+        <!-- Matrix cross-table view -->
+        <template v-if="isMatrixView && matrixData">
+          <div class="matrix-toolbar">
+            <button
+              :class="['btn', { primary: matrixMode === 'duration' }]"
+              @click="matrixMode = 'duration'"
+            >⏱ Durées (min)</button>
+            <button
+              :class="['btn', { primary: matrixMode === 'distance' }]"
+              @click="matrixMode = 'distance'"
+            >📏 Distances (km)</button>
+            <span class="matrix-legend">
+              <span class="ml-swatch" style="background:#c8e6c9"></span> Court
+              <span class="ml-swatch" style="background:#fff9c4"></span>
+              <span class="ml-swatch" style="background:#ffe0b2"></span>
+              <span class="ml-swatch" style="background:#ffccbc"></span>
+              <span class="ml-swatch" style="background:#ef9a9a"></span>
+              <span class="ml-swatch" style="background:#e57373"></span> Long
+            </span>
+          </div>
+          <div class="matrix-wrapper">
+            <table class="matrix-table">
+              <thead>
+                <tr>
+                  <th class="matrix-corner">De ↓ / Vers →</th>
+                  <th
+                    v-for="(name, ci) in matrixData.communes"
+                    :key="'mh' + ci"
+                    class="matrix-col-header"
+                    :title="name"
+                  >{{ name.slice(0, 6) }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(rowData, ri) in matrixGrid()" :key="'mr' + ri">
+                  <td class="matrix-row-header" :title="matrixData.communes[ri]">{{ matrixData.communes[ri] }}</td>
+                  <td
+                    v-for="(val, ci) in rowData"
+                    :key="'mc' + ri + '-' + ci"
+                    class="matrix-cell"
+                    :style="{ backgroundColor: matrixCellColor(val) }"
+                    :title="`${matrixData.communes[ri]} → ${matrixData.communes[ci]}: ${formatMatrixVal(val)} ${matrixMode === 'duration' ? 'min' : 'km'}`"
+                  >{{ formatMatrixVal(val) }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </template>
+
         <!-- Data table -->
-        <div class="table-wrapper">
+        <div v-else class="table-wrapper">
           <table v-if="filteredRows.length">
             <thead>
               <tr>
@@ -690,5 +792,103 @@ tr.verified .cell-source {
   color: #999;
   text-align: center;
   padding: 40px 0;
+}
+
+/* Matrix cross-table */
+.matrix-toolbar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.matrix-legend {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  color: #666;
+  margin-left: 12px;
+}
+
+.ml-swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  border: 1px solid #ddd;
+}
+
+.matrix-wrapper {
+  flex: 1;
+  overflow: auto;
+}
+
+.matrix-table {
+  border-collapse: collapse;
+  font-size: 11px;
+}
+
+.matrix-table th,
+.matrix-table td {
+  border: 1px solid #ddd;
+  padding: 2px 4px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.matrix-corner {
+  position: sticky;
+  left: 0;
+  top: 0;
+  z-index: 4;
+  background: #e0e0e0;
+  font-size: 10px;
+  min-width: 100px;
+  text-align: left;
+  padding: 4px 6px;
+}
+
+.matrix-col-header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #f5f5f5;
+  font-weight: 600;
+  font-size: 10px;
+  min-width: 45px;
+  max-width: 55px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  height: 65px;
+  padding: 4px 2px;
+}
+
+.matrix-row-header {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  background: #f5f5f5;
+  font-weight: 600;
+  font-size: 10px;
+  text-align: left;
+  white-space: nowrap;
+  padding: 2px 6px;
+  min-width: 100px;
+}
+
+.matrix-cell {
+  min-width: 40px;
+  font-size: 10px;
+  cursor: default;
+  transition: outline 0.1s;
+}
+
+.matrix-cell:hover {
+  outline: 2px solid #333;
+  z-index: 1;
+  position: relative;
 }
 </style>

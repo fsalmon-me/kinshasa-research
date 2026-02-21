@@ -6,15 +6,16 @@
     "category": "statistics",
     "dataFile": "population.json",
     "geojsonFile": "communes.geojson",
-    "description": "Population estimée (2017) et projetée (2030, 2040) par commune",
+    "description": "Population estimée (2017, 2025) et projetée (2030, 2040) par commune",
     "joinField": "commune",
     "geojsonJoinField": "name",
     "yearMap": {
       "2017": "pop_2017",
+      "2025": "pop_2025",
       "2030": "pop_2030",
       "2040": "pop_2040"
     },
-    "defaultYear": "2017",
+    "defaultYear": "2025",
     "thresholds": [100000, 300000, 500000, 1000000, 2000000, 4000000],
     "colors": ["#ffffcc", "#c7e9b4", "#7fcdbb", "#41b6c4", "#2c7fb8", "#253494", "#081d58"],
     "unit": "habitants",
@@ -27,8 +28,40 @@
       "year": 2019,
       "url": "https://openjicareport.jica.go.jp/pdf/12340337.pdf",
       "license": "JICA Open Access",
-      "methodology": "Estimations de population 2017 basées sur les projections du Plan Directeur des Transports Urbains. Les projections 2030 et 2040 sont des extrapolations de tendances démographiques par commune.",
-      "notes": "Les données brutes proviennent du recensement de 1984, ajustées par des enquêtes ménages et des images satellitaires."
+      "methodology": "Estimations de population 2017 basées sur les projections du Plan Directeur des Transports Urbains. Données 2025 du rapport 'Modélisation de la Demande en Hydrocarbures' (Consensus ONU/Macrotrends : 17,77M hab.). Les projections 2030 et 2040 sont des extrapolations de tendances démographiques par commune.",
+      "notes": "Les données brutes proviennent du recensement de 1984, ajustées par des enquêtes ménages et des images satellitaires. Les valeurs 2025 proviennent d'une compilation distincte (PDTK Scénario B)."
+    }
+  },
+  {
+    "id": "fuel-demand",
+    "name": "Demande en hydrocarbures",
+    "type": "choropleth",
+    "category": "statistics",
+    "dataFile": "fuel-demand.json",
+    "geojsonFile": "communes.geojson",
+    "description": "Besoins journaliers en carburant par commune (m³/jour), modélisés de 2025 à 2040",
+    "joinField": "commune",
+    "geojsonJoinField": "name",
+    "yearMap": {
+      "2025": "demand_2025",
+      "2030": "demand_2030",
+      "2040": "demand_2040"
+    },
+    "defaultYear": "2025",
+    "thresholds": [50, 100, 200, 400, 600, 800],
+    "colors": ["#fff7ec", "#fee8c8", "#fdd49e", "#fdbb84", "#fc8d59", "#e34a33", "#b30000"],
+    "unit": "m³/jour",
+    "legendTitle": "Demande carburant (m³/j)",
+    "visible": false,
+    "metadata": {
+      "source": "Compilation — JICA/PDTK, Min. Économie, EDS-RDC III, SNEL, AZES",
+      "title": "Modélisation Spatiale de la Demande en Hydrocarbures par Commune (2025-2040)",
+      "year": 2026,
+      "url": "docs/Optimisation%20Stations%20Essence%20Kinshasa.pdf",
+      "license": "Document interne",
+      "accessDate": "2026-02-21",
+      "methodology": "Demande journalière communale Dⱼ = f(Pop, Motorisation, Déficit électrique, Industrie). Population 2025 : 17,77M (ONU/Macrotrends). Projections PDTK Scénario B. Motorisation 4% (EDS-RDC III 2024), ×6,3 d'ici 2040. Consommation métropolitaine 3 000 m³/j (Min. Économie, avril 2025). Valeurs normalisées pour somme = totaux métropolitains.",
+      "notes": "Les communes marquées 'saturated' sont classées en saturation démographique résidente par le PDTK (croissance >500 pers/ha). Leur croissance de consommation est portée par la motorisation et l'intensification des flux. Total ville : 3 000 (2025), 3 900 (2030), 6 500 (2040) m³/j."
     }
   },
   {
@@ -312,6 +345,32 @@
       "accessDate": "2026-02-19",
       "methodology": "Heatmap générée à partir des centroïdes communaux pondérés par la population (échelle logarithmique).",
       "notes": "Visualisation complémentaire au choroplèthe."
+    }
+  },
+  {
+    "id": "heatmap-fuel",
+    "name": "Densité demande carburant",
+    "type": "heatmap",
+    "category": "statistics",
+    "geojsonFile": "communes.geojson",
+    "dataFile": "fuel-demand.json",
+    "joinField": "commune",
+    "geojsonJoinField": "name",
+    "valueField": "demand_2025",
+    "radius": 30,
+    "blur": 20,
+    "maxZoom": 14,
+    "description": "Carte de chaleur de la demande en carburant par commune",
+    "legendTitle": "Demande carburant",
+    "visible": false,
+    "metadata": {
+      "source": "Compilation — JICA/PDTK, Min. Économie, EDS-RDC III",
+      "title": "Densité de demande en hydrocarbures — Kinshasa (heatmap)",
+      "url": "docs/Optimisation%20Stations%20Essence%20Kinshasa.pdf",
+      "license": "Document interne",
+      "accessDate": "2026-02-21",
+      "methodology": "Heatmap générée à partir des centroïdes communaux pondérés par la demande en carburant 2025 (échelle logarithmique).",
+      "notes": "Visualisation complémentaire au choroplèthe de demande en hydrocarbures."
     }
   }
 ]
