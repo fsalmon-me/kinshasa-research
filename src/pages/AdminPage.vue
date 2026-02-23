@@ -13,8 +13,6 @@ import {
   setFeatureOverride,
   exportMetadataOverrides,
   importMetadataOverrides,
-  dataSources,
-  invalidateCache,
 } from '@/composables/useDataStore'
 import { useAuth } from '@/composables/useAuth'
 import { useRouter } from 'vue-router'
@@ -27,7 +25,6 @@ const activeLayerId = ref<string | null>(null)
 const searchQuery = ref('')
 const statusMsg = ref('')
 const errorMsg = ref('')
-const publishing = ref(false)
 let statusTimer: ReturnType<typeof setTimeout> | null = null
 
 /** Show status message with auto-dismiss */
@@ -36,9 +33,6 @@ function showStatus(msg: string, durationMs = 5000) {
   statusMsg.value = msg
   statusTimer = setTimeout(() => { statusMsg.value = '' }, durationMs)
 }
-
-// ---- Source editing ----
-const editingSource = ref(false)
 
 // ---- Feature rows ----
 interface FeatureRow {
@@ -52,31 +46,72 @@ const sourceColumns = ref<string[]>([])   // columns from source data (read-only
 const customColumns = ref<string[]>(['notes', 'verified'])  // user-added columns (editable)
 
 // ---- Matrix view ----
+interface ProfileEntry {
+  label: string
+  hours: string
+  coeff: number
+  speedRange: string
+  traffic: string
+  durations: number[][]
+}
 interface MatrixData {
   communes: string[]
-  durations: number[][]
+  durations: number[][]   // legacy single-matrix fallback
   distances: number[][]
+  profiles?: Record<string, ProfileEntry>
+  defaultProfile?: string
 }
 const matrixData = ref<MatrixData | null>(null)
-const matrixMode = ref<'duration' | 'distance'>('duration')
+const matrixMode = ref<'duration' | 'distance' | 'speed'>('duration')
+const activeMatrixProfile = ref<string>('diurne')
+const matrixProfileList = computed(() => {
+  if (!matrixData.value?.profiles) return []
+  return Object.entries(matrixData.value.profiles).map(([key, p]) => ({
+    key,
+    label: p.label,
+    hours: p.hours,
+    traffic: p.traffic,
+  }))
+})
 const isMatrixView = computed(() => activeLayer.value?.type === 'matrix' && matrixData.value !== null)
 
 function matrixGrid(): number[][] {
   if (!matrixData.value) return []
-  return matrixMode.value === 'duration'
-    ? matrixData.value.durations
-    : matrixData.value.distances
+  const md = matrixData.value
+  if (matrixMode.value === 'distance') return md.distances
+  // Use profile durations if available
+  const durations = md.profiles?.[activeMatrixProfile.value]?.durations ?? md.durations
+  if (matrixMode.value === 'speed') {
+    // Convert to km/h: speed = dist(km) / (dur(min) / 60)
+    return md.distances.map((row, i) =>
+      row.map((dist, j) => {
+        const dur = durations[i]?.[j] ?? 0
+        if (dur <= 0 || dist <= 0) return 0
+        return dist / (dur / 60)
+      })
+    )
+  }
+  return durations
 }
 
 function matrixCellColor(val: number): string {
-  if (matrixMode.value === 'duration') {
+  if (matrixMode.value === 'speed') {
+    // km/h: red (slow) → green (fast)
+    if (val <= 0) return '#f5f5f5'
+    if (val < 5) return '#e57373'
+    if (val < 10) return '#ef9a9a'
+    if (val < 15) return '#ffccbc'
+    if (val < 25) return '#ffe0b2'
+    if (val < 35) return '#fff9c4'
+    return '#c8e6c9'
+  } else if (matrixMode.value === 'duration') {
     // minutes: green→yellow→red
     if (val <= 0) return '#f5f5f5'
     if (val < 15) return '#c8e6c9'
     if (val < 30) return '#fff9c4'
-    if (val < 45) return '#ffe0b2'
-    if (val < 60) return '#ffccbc'
-    if (val < 90) return '#ef9a9a'
+    if (val < 60) return '#ffe0b2'
+    if (val < 90) return '#ffccbc'
+    if (val < 120) return '#ef9a9a'
     return '#e57373'
   } else {
     // km: green→yellow→red
@@ -91,11 +126,21 @@ function matrixCellColor(val: number): string {
 }
 
 function formatMatrixVal(val: number): string {
-  if (matrixMode.value === 'duration') {
-    return val < 1 ? '—' : Math.round(val).toString()
+  if (matrixMode.value === 'speed') {
+    return val < 0.1 ? '—' : val.toFixed(1)
+  } else if (matrixMode.value === 'duration') {
+    if (val < 1) return '—'
+    if (val >= 60) return `${Math.floor(val / 60)}h${String(Math.round(val % 60)).padStart(2, '0')}`
+    return Math.round(val).toString()
   } else {
     return val < 0.1 ? '—' : val.toFixed(1)
   }
+}
+
+function matrixUnit(): string {
+  if (matrixMode.value === 'speed') return 'km/h'
+  if (matrixMode.value === 'duration') return 'min'
+  return 'km'
 }
 
 // ---- Computed ----
@@ -199,6 +244,14 @@ async function selectLayer(layerId: string) {
         communes: data.communes ?? [],
         durations: data.durations ?? [],
         distances: data.distances ?? [],
+        profiles: data.profiles ?? undefined,
+        defaultProfile: data.defaultProfile,
+      }
+      // Set default profile
+      if (data.defaultProfile && data.profiles?.[data.defaultProfile]) {
+        activeMatrixProfile.value = data.defaultProfile
+      } else if (data.profiles) {
+        activeMatrixProfile.value = Object.keys(data.profiles)[0]
       }
       rawRows = (data.communes ?? []).map((name: string, i: number) => ({
         commune: name,
@@ -249,51 +302,6 @@ function toggleVerified(row: FeatureRow) {
   showStatus('Statut vérifié mis à jour')
 }
 
-function addCustomColumn() {
-  const name = prompt('Nom du nouveau champ personnalisé :')
-  if (!name || customColumns.value.includes(name) || sourceColumns.value.includes(name)) return
-  customColumns.value.push(name)
-}
-
-// ---- Source editing helpers ----
-
-/** Get display value for a source field — shows sourceEdit if present */
-function displayValue(row: FeatureRow, col: string): unknown {
-  const edited = row.override.sourceEdits?.[col]
-  return edited !== undefined ? edited : row.props[col] ?? ''
-}
-
-/** Check if a source field has been edited */
-function isSourceEdited(row: FeatureRow, col: string): boolean {
-  return row.override.sourceEdits?.[col] !== undefined
-}
-
-/** Update a source field value (saves as sourceEdit in override) */
-function updateSourceField(row: FeatureRow, col: string, value: string) {
-  if (!row.override.sourceEdits) row.override.sourceEdits = {}
-
-  const original = row.props[col]
-  // If the new value matches the original, remove the edit
-  if (String(original ?? '') === value) {
-    delete row.override.sourceEdits[col]
-    // Clean up empty sourceEdits object
-    if (Object.keys(row.override.sourceEdits).length === 0) {
-      delete row.override.sourceEdits
-    }
-  } else {
-    row.override.sourceEdits[col] = value
-  }
-  setFeatureOverride(activeLayerId.value!, row.key, row.override)
-  showStatus('Source modifiée en mémoire')
-}
-
-/** Count total source edits across all rows */
-const sourceEditsCount = computed(() => {
-  return featureRows.value.reduce((sum, r) => {
-    return sum + (r.override.sourceEdits ? Object.keys(r.override.sourceEdits).length : 0)
-  }, 0)
-})
-
 function doExportOverrides() {
   exportMetadataOverrides()
   showStatus('Fichier metadata-overrides.json exporté')
@@ -311,6 +319,22 @@ async function doImportOverrides(event: Event) {
     errorMsg.value = `Erreur d'import: ${e.message}`
   }
   input.value = '' // reset file input
+}
+
+/** Resolve the data filename for the active layer */
+function activeDataFile(): string | null {
+  const config = activeLayer.value
+  if (!config) return null
+  if (config.type === 'markers' || config.type === 'geojson') {
+    return (config as any).geojsonFile ?? (config as any).dataFile ?? null
+  }
+  if (config.type === 'choropleth' || config.type === 'heatmap') {
+    return (config as any).dataFile ?? null
+  }
+  if (config.type === 'matrix') {
+    return (config as any).dataFile ?? null
+  }
+  return null
 }
 
 function exportEnrichedData() {
@@ -360,127 +384,50 @@ function exportEnrichedData() {
   showStatus(`${activeLayerId.value}-enriched.json exporté`)
 }
 
-// ---- Firestore data operations ----
-
-/** Resolve the data filename for the active layer */
-function activeDataFile(): string | null {
-  const config = activeLayer.value
-  if (!config) return null
-  if (config.type === 'markers' || config.type === 'geojson') {
-    return (config as any).geojsonFile ?? (config as any).dataFile ?? null
-  }
-  if (config.type === 'choropleth' || config.type === 'heatmap') {
-    return (config as any).dataFile ?? null
-  }
-  if (config.type === 'matrix') {
-    return (config as any).dataFile ?? null
-  }
-  return null
-}
-
-const activeSourceBadge = computed(() => {
-  const file = activeDataFile()
-  if (!file) return null
-  return dataSources.value.get(file) ?? 'static'
-})
-
-const isActiveStaticOnly = computed(() => {
-  const file = activeDataFile()
-  if (!file) return true
-  const STATIC_SET = new Set(['communes.geojson', 'roads-major.geojson', 'roads-minor.geojson'])
-  return STATIC_SET.has(file)
-})
-
-/** Publish current layer data to Firestore — merges sourceEdits into data */
-async function publishToFirestore() {
-  const file = activeDataFile()
-  if (!file || !activeLayerId.value) return
-  publishing.value = true
-  errorMsg.value = ''
-  try {
-    const { writeDataFile } = await import('@/composables/useFirestoreData')
-
-    let data: any
-    if (file.endsWith('.geojson')) {
-      const cached = getCachedGeoJSON(file)
-      if (!cached) throw new Error('GeoJSON non chargé en cache')
-      // Deep clone and apply sourceEdits per feature
-      data = JSON.parse(JSON.stringify(cached))
-      for (let i = 0; i < data.features.length; i++) {
-        const row = featureRows.value[i]
-        if (row?.override.sourceEdits) {
-          data.features[i].properties = {
-            ...data.features[i].properties,
-            ...row.override.sourceEdits,
-          }
-        }
-      }
-    } else {
-      // Flat JSON — clone and merge sourceEdits
-      const cached = await fetchData(file)
-      data = JSON.parse(JSON.stringify(cached))
-      for (let i = 0; i < data.length; i++) {
-        const row = featureRows.value[i]
-        if (row?.override.sourceEdits) {
-          Object.assign(data[i], row.override.sourceEdits)
-        }
-      }
-    }
-
-    await writeDataFile(file, data)
-    // Invalidate and reload to pick up the newly published version
-    invalidateCache(file)
-    dataSources.value.set(file, 'firestore')
-    showStatus(`${file} publié vers Firestore ☁️`)
-    // Reload layer to reflect merged data
-    await selectLayer(activeLayerId.value!)
-  } catch (e: any) {
-    errorMsg.value = `Erreur de publication: ${e.message}`
-  } finally {
-    publishing.value = false
-  }
-}
-
-/** Publish overrides to Firestore */
-async function publishOverridesToFirestore() {
-  publishing.value = true
-  errorMsg.value = ''
-  try {
-    const { writeDataFile } = await import('@/composables/useFirestoreData')
-    await writeDataFile('metadata-overrides.json', metadataOverrides.value)
-    dataSources.value.set('metadata-overrides.json', 'firestore')
-    showStatus('Annotations publiées vers Firestore ☁️')
-  } catch (e: any) {
-    errorMsg.value = `Erreur: ${e.message}`
-  } finally {
-    publishing.value = false
-  }
-}
-
-/** Delete Firestore override for current layer — falls back to static */
-async function deleteFirestoreOverride() {
-  const file = activeDataFile()
-  if (!file) return
-  if (!confirm(`Supprimer l'override Firestore pour ${file} ?\nL'application reviendra à la version statique.`)) return
-  try {
-    const { deleteDataFile } = await import('@/composables/useFirestoreData')
-    await deleteDataFile(file)
-    invalidateCache(file)
-    showStatus(`Override ${file} supprimé — retour au statique 📦`)
-    dataSources.value.set(file, 'static')
-    // Reload layer
-    if (activeLayerId.value) await selectLayer(activeLayerId.value)
-  } catch (e: any) {
-    errorMsg.value = `Erreur: ${e.message}`
-  }
-}
-
 /** Crystallise: download JSON for commit into public/data/ */
 function crystalliseData() {
   const file = activeDataFile()
   if (!file || !activeLayerId.value) return
   exportEnrichedData()
   showStatus(`${file} téléchargé — placez-le dans public/data/ et commitez`)
+}
+
+// ---- Data Enrichment TODO List (persisted in localStorage) ----
+interface TodoItem {
+  id: number
+  text: string
+  done: boolean
+}
+const STORAGE_KEY = 'kinshasa-admin-todo'
+function loadTodos(): TodoItem[] {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    return raw ? JSON.parse(raw) : []
+  } catch { return [] }
+}
+function saveTodos() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(todoItems.value))
+}
+const todoItems = ref<TodoItem[]>(loadTodos())
+const newTodoText = ref('')
+
+function addTodo() {
+  const text = newTodoText.value.trim()
+  if (!text) return
+  const id = todoItems.value.length ? Math.max(...todoItems.value.map(t => t.id)) + 1 : 1
+  todoItems.value.push({ id, text, done: false })
+  newTodoText.value = ''
+  saveTodos()
+}
+
+function toggleTodo(id: number) {
+  const item = todoItems.value.find(t => t.id === id)
+  if (item) { item.done = !item.done; saveTodos() }
+}
+
+function removeTodo(id: number) {
+  todoItems.value = todoItems.value.filter(t => t.id !== id)
+  saveTodos()
 }
 
 async function handleLogout() {
@@ -499,9 +446,6 @@ async function handleLogout() {
       <h1>Administration des données</h1>
       <div class="header-actions">
         <span class="user-badge" v-if="displayName">{{ displayName }}</span>
-        <button class="btn" @click="publishOverridesToFirestore" :disabled="publishing" title="Publier les annotations vers Firestore">
-          ↑ Publier annotations
-        </button>
         <button class="btn" @click="doExportOverrides" title="Exporter les annotations (JSON)">⬇ Exporter</button>
         <label class="btn" title="Importer des annotations depuis un fichier JSON">
           ⬆ Importer
@@ -526,6 +470,29 @@ async function handleLogout() {
             {{ layer.name }}
           </button>
         </div>
+
+        <!-- Data enrichment TODO list -->
+        <div class="todo-panel">
+          <h4>📋 À enrichir</h4>
+          <div class="todo-add">
+            <input
+              v-model="newTodoText"
+              type="text"
+              placeholder="Nouvelle tâche…"
+              class="todo-input"
+              @keyup.enter="addTodo"
+            />
+            <button class="btn btn-sm" @click="addTodo">+</button>
+          </div>
+          <ul class="todo-list">
+            <li v-for="item in todoItems" :key="item.id" :class="{ done: item.done }">
+              <button class="todo-check" @click="toggleTodo(item.id)">{{ item.done ? '✅' : '⬜' }}</button>
+              <span class="todo-text">{{ item.text }}</span>
+              <button class="todo-remove" @click="removeTodo(item.id)" title="Supprimer">✕</button>
+            </li>
+          </ul>
+          <p v-if="!todoItems.length" class="todo-empty">Aucune tâche</p>
+        </div>
       </aside>
 
       <!-- Main editor -->
@@ -533,14 +500,7 @@ async function handleLogout() {
         <!-- Layer header -->
         <div v-if="activeLayer" class="layer-header">
           <div class="layer-info">
-            <h2>
-              {{ activeLayer.name }}
-              <span
-                class="source-badge"
-                :class="activeSourceBadge"
-                :title="activeSourceBadge === 'firestore' ? 'Source: Firestore (override)' : 'Source: fichier statique'"
-              >{{ activeSourceBadge === 'firestore' ? '☁️' : '📦' }}</span>
-            </h2>
+            <h2>{{ activeLayer.name }}</h2>
             <p class="layer-desc">{{ activeLayer.description }}</p>
             <div class="layer-meta">
               <span v-if="activeLayer.metadata" class="meta-badge">📦 {{ activeLayer.metadata.source }}</span>
@@ -549,23 +509,11 @@ async function handleLogout() {
             </div>
             <div class="layer-actions">
               <button
-                v-if="!isActiveStaticOnly"
-                class="btn primary btn-sm"
-                :disabled="publishing"
-                @click="publishToFirestore"
-                title="Publier ces données vers Firestore"
-              >↑ Publier vers Firestore</button>
-              <button
-                v-if="activeSourceBadge === 'firestore'"
-                class="btn btn-sm btn-danger"
-                @click="deleteFirestoreOverride"
-                title="Supprimer l'override Firestore → retour au statique"
-              >⊘ Supprimer override</button>
-              <button
                 class="btn btn-sm"
                 @click="crystalliseData"
                 title="Télécharger le JSON enrichi pour commit dans public/data/"
               >↓ Cristalliser</button>
+              <button class="btn btn-sm primary" @click="exportEnrichedData">⬇ Export enrichi</button>
             </div>
           </div>
           <div class="stat-cards">
@@ -595,14 +543,6 @@ async function handleLogout() {
               class="search-input"
             />
           </div>
-          <button class="btn" @click="addCustomColumn">+ Champ</button>
-          <button
-            :class="['btn', { primary: editingSource }]"
-            @click="editingSource = !editingSource"
-            :title="editingSource ? 'Désactiver l\'édition source' : 'Activer l\'édition source'"
-          >{{ editingSource ? '✏️ Édition ON' : '✏️ Édition source' }}</button>
-          <span v-if="sourceEditsCount" class="edits-badge">{{ sourceEditsCount }} modif.</span>
-          <button class="btn primary" @click="exportEnrichedData">⬇ Export enrichi</button>
         </div>
 
         <div v-if="errorMsg" class="msg error">{{ errorMsg }}</div>
@@ -614,18 +554,33 @@ async function handleLogout() {
             <button
               :class="['btn', { primary: matrixMode === 'duration' }]"
               @click="matrixMode = 'duration'"
-            >⏱ Durées (min)</button>
+            >⏱ Durées</button>
             <button
               :class="['btn', { primary: matrixMode === 'distance' }]"
               @click="matrixMode = 'distance'"
-            >📏 Distances (km)</button>
+            >📏 Distances</button>
+            <button
+              :class="['btn', { primary: matrixMode === 'speed' }]"
+              @click="matrixMode = 'speed'"
+            >🚗 Vitesse</button>
+            <select
+              v-if="matrixProfileList.length > 1"
+              v-model="activeMatrixProfile"
+              class="profile-select"
+            >
+              <option
+                v-for="p in matrixProfileList"
+                :key="p.key"
+                :value="p.key"
+              >{{ p.label }} ({{ p.hours }})</option>
+            </select>
             <span class="matrix-legend">
-              <span class="ml-swatch" style="background:#c8e6c9"></span> Court
+              <span class="ml-swatch" style="background:#c8e6c9"></span> {{ matrixMode === 'speed' ? 'Rapide' : 'Court' }}
               <span class="ml-swatch" style="background:#fff9c4"></span>
               <span class="ml-swatch" style="background:#ffe0b2"></span>
               <span class="ml-swatch" style="background:#ffccbc"></span>
               <span class="ml-swatch" style="background:#ef9a9a"></span>
-              <span class="ml-swatch" style="background:#e57373"></span> Long
+              <span class="ml-swatch" style="background:#e57373"></span> {{ matrixMode === 'speed' ? 'Lent' : 'Long' }}
             </span>
           </div>
           <div class="matrix-wrapper">
@@ -649,7 +604,7 @@ async function handleLogout() {
                     :key="'mc' + ri + '-' + ci"
                     class="matrix-cell"
                     :style="{ backgroundColor: matrixCellColor(val) }"
-                    :title="`${matrixData.communes[ri]} → ${matrixData.communes[ci]}: ${formatMatrixVal(val)} ${matrixMode === 'duration' ? 'min' : 'km'}`"
+                    :title="`${matrixData.communes[ri]} → ${matrixData.communes[ci]}: ${formatMatrixVal(val)} ${matrixUnit()}`"
                   >{{ formatMatrixVal(val) }}</td>
                 </tr>
               </tbody>
@@ -679,19 +634,9 @@ async function handleLogout() {
             <tbody>
               <tr v-for="(row, ri) in filteredRows" :key="row.key" :class="{ verified: row.override.verified }">
                 <td class="row-num">{{ ri + 1 }}</td>
-                <!-- Source columns (editable when editingSource is on) -->
-                <td v-for="col in sourceColumns" :key="col" :class="['cell-source', { 'cell-edited': isSourceEdited(row, col) }]">
-                  <template v-if="editingSource">
-                    <input
-                      :value="String(displayValue(row, col))"
-                      @change="updateSourceField(row, col, ($event.target as HTMLInputElement).value)"
-                      :placeholder="col"
-                      class="source-input"
-                    />
-                  </template>
-                  <template v-else>
-                    <span :title="String(displayValue(row, col))">{{ displayValue(row, col) }}</span>
-                  </template>
+                <!-- Source columns (read-only) -->
+                <td v-for="col in sourceColumns" :key="col" class="cell-source">
+                  <span :title="String(row.props[col] ?? '')">{{ row.props[col] ?? '' }}</span>
                 </td>
                 <!-- Custom/override columns (editable) -->
                 <td v-for="col in customColumns" :key="'c_' + col" class="cell-custom">
@@ -1220,12 +1165,109 @@ tr.verified .cell-source {
   border-radius: 2px;
 }
 
-.edits-badge {
+/* Profile select in matrix toolbar */
+.profile-select {
+  font-size: 13px;
+  padding: 5px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.profile-select:focus {
+  outline: 2px solid #2c7fb8;
+}
+
+/* Data enrichment TODO list */
+.todo-panel {
+  margin-top: auto;
+  padding: 10px 8px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.todo-panel h4 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: #666;
+}
+
+.todo-add {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.todo-input {
+  flex: 1;
+  font-size: 12px;
+  padding: 4px 6px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+}
+
+.todo-input:focus {
+  border-color: #2c7fb8;
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.todo-list li {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  padding: 2px 0;
+}
+
+.todo-list li.done .todo-text {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+.todo-check {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.todo-text {
+  flex: 1;
+  color: #444;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.todo-remove {
+  border: none;
+  background: none;
+  cursor: pointer;
   font-size: 11px;
-  color: #2c7fb8;
-  background: #e3f2fd;
-  padding: 3px 8px;
-  border-radius: 10px;
-  font-weight: 600;
+  color: #ccc;
+  padding: 0 2px;
+  flex-shrink: 0;
+}
+
+.todo-remove:hover {
+  color: #c62828;
+}
+
+.todo-empty {
+  font-size: 11px;
+  color: #bbb;
+  font-style: italic;
+  margin: 4px 0 0;
 }
 </style>

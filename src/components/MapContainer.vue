@@ -20,6 +20,7 @@ import YearSlider from './YearSlider.vue'
 import MapLegend from './MapLegend.vue'
 import SourcesPanel from './SourcesPanel.vue'
 import CommuneSidebar from './CommuneSidebar.vue'
+import CongestionBar from './CongestionBar.vue'
 import SearchBar from './SearchBar.vue'
 import type { SearchEntry } from '@/composables/useDataStore'
 
@@ -60,6 +61,9 @@ const heatmapInstances = new Map<string, ReturnType<typeof useHeatmapLayer>>()
 const years = computed(() => availableYears())
 const activeChoropleth = computed(() =>
   layers.value.find(l => l.type === 'choropleth' && l.visible) as ChoroplethLayer | undefined
+)
+const hasMatrixLayer = computed(() =>
+  layers.value.some(l => l.type === 'matrix' && l.visible)
 )
 
 // ---- Lifecycle ----
@@ -174,6 +178,13 @@ watch(selectedYear, (year) => {
     }
   }
 })
+
+/** Handle congestion bar profile change */
+function onProfileChange(profileKey: string) {
+  for (const [, inst] of matrixInstances) {
+    inst.setProfile(profileKey)
+  }
+}
 </script>
 
 <template>
@@ -212,7 +223,13 @@ watch(selectedYear, (year) => {
       :commune-name="sidebarCommuneName"
       :commune-feature="sidebarCommuneFeature"
       :population-data="sidebarPopulationData"
+      :visible-layers="layers"
       @close="closeSidebar"
+    />
+
+    <CongestionBar
+      v-if="hasMatrixLayer"
+      @change="onProfileChange"
     />
   </div>
 </template>

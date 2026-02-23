@@ -50,12 +50,18 @@ watch(() => route.params.slug, async (slug) => {
     <header class="reports-header">
       <router-link to="/" class="back-link">← Carte</router-link>
       <h1>📊 Rapports</h1>
+      <router-link to="/admin" class="new-report-btn">+ Nouveau rapport</router-link>
     </header>
 
     <!-- List view -->
     <div v-if="listMode" class="reports-list">
       <p v-if="loading" class="loading-msg">Chargement…</p>
-      <p v-else-if="reports.length === 0" class="empty-msg">Aucun rapport disponible.</p>
+      <div v-else-if="reports.length === 0" class="empty-state">
+        <p class="empty-icon">📊</p>
+        <p class="empty-title">Aucun rapport disponible</p>
+        <p class="empty-text">Les rapports permettent d'analyser les données géographiques de Kinshasa.</p>
+        <router-link to="/admin" class="empty-cta">Créer un rapport →</router-link>
+      </div>
       <div v-else class="report-cards">
         <article
           v-for="r in reports"
@@ -113,6 +119,40 @@ watch(() => route.params.slug, async (slug) => {
 }
 .back-link:hover { color: #111; }
 .loading-msg, .empty-msg { color: #888; font-size: 14px; }
+
+.new-report-btn {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  background: #2c7fb8;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+.new-report-btn:hover { background: #256a9e; }
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+.empty-icon { font-size: 48px; margin: 0 0 12px; }
+.empty-title { font-size: 18px; font-weight: 600; margin: 0 0 8px; color: #333; }
+.empty-text { font-size: 14px; color: #888; margin: 0 0 20px; }
+.empty-cta {
+  display: inline-block;
+  padding: 8px 20px;
+  background: #2c7fb8;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+}
+.empty-cta:hover { background: #256a9e; }
 
 .report-cards {
   display: grid;

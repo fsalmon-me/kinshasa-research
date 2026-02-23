@@ -46,6 +46,7 @@ export interface ChoroplethLayer extends LayerBase {
   thresholds: number[]
   colors: string[]           // length = thresholds.length + 1
   unit: string
+  unitAlternate?: { unit: string; factor: number; label: string }
   legendTitle: string
 }
 
@@ -85,6 +86,7 @@ export interface MatrixLayer extends LayerBase {
   geojsonJoinField: string
   pointLabelField: string
   unit: string               // "minutes" | "km"
+  defaultProfile?: string     // key in profiles object (e.g. 'diurne')
   thresholds: number[]
   colors: string[]
   legendTitle: string

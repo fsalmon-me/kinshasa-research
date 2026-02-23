@@ -51,6 +51,7 @@
     "thresholds": [50, 100, 200, 400, 600, 800],
     "colors": ["#fff7ec", "#fee8c8", "#fdd49e", "#fdbb84", "#fc8d59", "#e34a33", "#b30000"],
     "unit": "m³/jour",
+    "unitAlternate": { "unit": "L/jour", "factor": 1000, "label": "Litres" },
     "legendTitle": "Demande carburant (m³/j)",
     "visible": false,
     "metadata": {
@@ -145,6 +146,7 @@
     "thresholds": [0.5, 2, 5, 10, 20, 40],
     "colors": ["#fff5eb", "#fdd0a2", "#fdae6b", "#fd8d3c", "#e6550d", "#a63603", "#7f2704"],
     "unit": "m³/jour/km²",
+    "unitAlternate": { "unit": "L/jour/km²", "factor": 1000, "label": "Litres" },
     "legendTitle": "Demande/km²",
     "visible": false,
     "metadata": {
@@ -394,24 +396,25 @@
     "name": "Temps de trajet",
     "type": "matrix",
     "category": "transport",
-    "dataFile": "travel-osrm.json",
+    "dataFile": "travel-kinshasa.json",
     "geojsonFile": "communes.geojson",
     "geojsonJoinField": "name",
     "pointLabelField": "commune",
     "unit": "minutes",
-    "description": "Temps de trajet moyen en voiture entre chaque paire de communes (OSRM, sans trafic)",
-    "thresholds": [10, 20, 30, 45, 60, 90, 120],
+    "defaultProfile": "diurne",
+    "description": "Temps de trajet inter-communal corrigé avec coefficients de congestion (5 profils horaires). Vitesse de base 40 km/h plafonnée, modulée par tranche horaire.",
+    "thresholds": [15, 30, 60, 90, 120, 180, 240],
     "colors": ["#1a9850", "#91cf60", "#d9ef8b", "#fee08b", "#fc8d59", "#d73027", "#a50026", "#67001f"],
     "legendTitle": "Temps de trajet (min)",
     "visible": false,
     "metadata": {
-      "source": "OSRM (Open Source Routing Machine)",
-      "title": "Matrice de temps de trajet inter-communal — Kinshasa",
+      "source": "OSRM + Modèle de congestion Kinshasa",
+      "title": "Matrice de temps de trajet inter-communal corrigée — Kinshasa",
       "url": "https://project-osrm.org/",
       "license": "ODbL (données OSM sous-jacentes)",
-      "accessDate": "2026-02-19",
-      "methodology": "Centroïde de chaque commune (24) calculé avec @turf/centroid, accroché à la route la plus proche via OSRM /nearest. Matrice 24×24 calculée via OSRM /table, mode driving, sans trafic temps réel. Point de référence choisi = route la plus proche du centroïde géographique (pas le milieu d'une forêt).",
-      "notes": "Les temps sont estimés sans embouteillages. La couverture routière OSM peut être incomplète dans les communes périphériques (Maluku, Nsele). Un script Google Distance Matrix est disponible pour comparaison avec données de trafic."
+      "accessDate": "2026-02-23",
+      "methodology": "Matrice OSRM 24×24 corrigée en 3 étapes : (A) Plafond de vitesse à 40 km/h sur axes bitumés (vs ~49 km/h OSRM). (B) 5 profils temporels avec coefficients de congestion : nuit ×1.0, diurne ×0.35, pointes ×0.25, soirée ×0.60. (C) Pénalités de nœuds documentées mais non appliquées (manque géométrie per-segment). Réf: Banque Mondiale 2018 (14 km/h), JICA/PDTK 2019, ESI Preprints 2025.",
+      "notes": "Le profil par défaut est 'diurne' (09h-16h, ~14 km/h). Les pénalités de nœuds (Grand Marché +25 min, Victoire +15 min, Ngaba +15 min) ne sont pas incluses. Données OSRM brutes conservées dans travel-osrm.json."
     }
   },
   {

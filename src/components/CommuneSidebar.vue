@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
-import type { ChoroplethLayer } from '@/types/layer'
-import { layers, fetchGeoJSON, selectedYear } from '@/composables/useDataStore'
+import type { ChoroplethLayer, LayerConfig } from '@/types/layer'
+import { layers, fetchGeoJSON, fetchData, selectedYear } from '@/composables/useDataStore'
 import { normalize, formatNumber } from '@/utils/helpers'
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon'
 
@@ -9,6 +9,7 @@ const props = defineProps<{
   communeName: string | null
   communeFeature: GeoJSON.Feature | null
   populationData: Map<string, Record<string, unknown>> | null
+  visibleLayers?: LayerConfig[]
 }>()
 
 const emit = defineEmits<{
@@ -82,6 +83,59 @@ const populationYears = computed(() => {
 const maxPop = computed(() => Math.max(...populationYears.value.map(y => y.value), 1))
 
 const totalPoi = computed(() => poiCounts.value.reduce((sum, p) => sum + p.count, 0))
+
+// ---- Visible choropleth layer data ----
+interface ChoroplethInfo {
+  layerId: string
+  name: string
+  unit: string
+  value: number
+  unitAlternate?: { unit: string; factor: number; label: string }
+}
+
+const choroInfos = ref<ChoroplethInfo[]>([])
+const loadingChoro = ref(false)
+
+watch([() => props.communeName, () => props.visibleLayers], async ([name, visLayers]) => {
+  if (!name || !visLayers) {
+    choroInfos.value = []
+    return
+  }
+
+  loadingChoro.value = true
+  const infos: ChoroplethInfo[] = []
+  const normalizedName = normalize(name)
+
+  for (const layer of visLayers) {
+    if (layer.type !== 'choropleth' || !layer.visible) continue
+    const choro = layer as ChoroplethLayer
+    // Skip population — already shown separately
+    if (choro.id === 'population') continue
+
+    try {
+      const data = await fetchData(choro.dataFile)
+      const record = (data as Record<string, unknown>[]).find(
+        (r) => normalize(String(r[choro.joinField] ?? '')) === normalizedName
+      )
+      if (!record) continue
+
+      const year = selectedYear.value
+      const prop = choro.yearMap[year] ?? Object.values(choro.yearMap)[0]
+      const val = Number(record[prop]) || 0
+
+      infos.push({
+        layerId: choro.id,
+        name: choro.name,
+        unit: choro.unit,
+        value: val,
+        unitAlternate: choro.unitAlternate,
+      })
+    } catch { /* skip on error */ }
+  }
+
+  choroInfos.value = infos
+  loadingChoro.value = false
+}, { immediate: true, deep: true })
 </script>
 
 <template>
@@ -107,6 +161,25 @@ const totalPoi = computed(() => poiCounts.value.reduce((sum, p) => sum + p.count
               <div class="bar-fill" :style="{ width: (item.value / maxPop * 100) + '%' }"></div>
             </div>
             <span class="bar-value">{{ formatNumber(item.value) }}</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Visible choropleth layer data -->
+      <section v-if="choroInfos.length" class="section">
+        <h3>📊 Données actives</h3>
+        <div v-if="loadingChoro" class="loading-text">Chargement…</div>
+        <div v-else class="choro-grid">
+          <div v-for="info in choroInfos" :key="info.layerId" class="choro-item">
+            <span class="choro-name">{{ info.name }}</span>
+            <span class="choro-value">
+              {{ formatNumber(Math.round(info.value * 100) / 100) }}
+              <span class="choro-unit">{{ info.unit }}</span>
+            </span>
+            <span v-if="info.unitAlternate" class="choro-alt">
+              ≈ {{ formatNumber(Math.round(info.value * info.unitAlternate.factor * 100) / 100) }}
+              {{ info.unitAlternate.unit }}
+            </span>
           </div>
         </div>
       </section>
@@ -277,6 +350,46 @@ const totalPoi = computed(() => poiCounts.value.reduce((sum, p) => sum + p.count
   font-size: 12px;
   color: #999;
   font-style: italic;
+}
+
+/* Choropleth info grid */
+.choro-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.choro-item {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 8px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-left: 3px solid #2c7fb8;
+}
+
+.choro-name {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.choro-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+.choro-unit {
+  font-size: 11px;
+  font-weight: 400;
+  color: #888;
+}
+
+.choro-alt {
+  font-size: 11px;
+  color: #888;
+  margin-top: 1px;
 }
 
 /* Slide transition */
