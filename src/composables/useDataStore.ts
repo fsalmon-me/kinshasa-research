@@ -151,8 +151,25 @@ export function clearCaches() {
 // Metadata overrides management
 // =====================================
 
-/** Load overrides from a local JSON file (or initialize empty) */
+/** Whether Firestore is available (set after first attempt) */
+let firestoreAvailable: boolean | null = null
+
+/** Load overrides — tries Firestore first, falls back to static JSON */
 export async function fetchMetadataOverrides(): Promise<MetadataOverrides> {
+  // Try Firestore
+  try {
+    const { loadAllOverrides } = await import('@/composables/useFirestore')
+    const data = await loadAllOverrides()
+    if (Object.keys(data).length > 0 || firestoreAvailable) {
+      firestoreAvailable = true
+      metadataOverrides.value = data
+      return data
+    }
+  } catch {
+    firestoreAvailable = false
+  }
+
+  // Fallback to static JSON
   try {
     const res = await fetch(`${base}/data/metadata-overrides.json`)
     if (res.ok) {
@@ -170,7 +187,7 @@ export function getFeatureOverride(layerId: string, featureKey: string): Feature
   return metadataOverrides.value[layerId]?.[featureKey]
 }
 
-/** Set override for a specific feature (updates reactive state) */
+/** Set override for a specific feature (updates reactive state + persists to Firestore) */
 export function setFeatureOverride(layerId: string, featureKey: string, override: FeatureOverride) {
   if (!metadataOverrides.value[layerId]) {
     metadataOverrides.value[layerId] = {}
@@ -178,6 +195,15 @@ export function setFeatureOverride(layerId: string, featureKey: string, override
   metadataOverrides.value[layerId][featureKey] = {
     ...metadataOverrides.value[layerId][featureKey],
     ...override,
+  }
+
+  // Persist to Firestore (fire-and-forget)
+  if (firestoreAvailable !== false) {
+    import('@/composables/useFirestore').then(({ saveOverride }) => {
+      saveOverride(layerId, featureKey, metadataOverrides.value[layerId][featureKey]).catch(() => {
+        // Firestore unavailable — data still in memory
+      })
+    })
   }
 }
 

@@ -19,6 +19,14 @@ const activeLayerId = ref<string | null>(null)
 const searchQuery = ref('')
 const statusMsg = ref('')
 const errorMsg = ref('')
+const firestoreConnected = ref(false)
+
+const firestoreIcon = computed(() => firestoreConnected.value ? '☁️' : '💾')
+const firestoreStatus = computed(() =>
+  firestoreConnected.value
+    ? 'Firestore connecté — annotations synchronisées'
+    : 'Mode local — annotations en mémoire uniquement'
+)
 
 // ---- Feature rows ----
 interface FeatureRow {
@@ -127,6 +135,16 @@ const stats = computed(() => {
 // ---- Lifecycle ----
 onMounted(async () => {
   await Promise.all([fetchLayerRegistry(), fetchMetadataOverrides()])
+
+  // Detect Firestore connectivity
+  try {
+    const { loadAllOverrides } = await import('@/composables/useFirestore')
+    await loadAllOverrides()
+    firestoreConnected.value = true
+  } catch {
+    firestoreConnected.value = false
+  }
+
   // Auto-select first layer
   if (layers.value.length && !activeLayerId.value) {
     selectLayer(layers.value[0].id)
@@ -279,9 +297,10 @@ function exportEnrichedData() {
       <router-link to="/" class="back-link">← Carte</router-link>
       <h1>Administration des données</h1>
       <div class="header-actions">
-        <button class="btn" @click="doExportOverrides" title="Exporter les annotations">⬇ Annotations</button>
-        <label class="btn" title="Importer les annotations">
-          ⬆ Annotations
+        <span class="sync-badge" :title="firestoreStatus">{{ firestoreIcon }}</span>
+        <button class="btn" @click="doExportOverrides" title="Exporter les annotations (JSON)">⬇ Exporter</button>
+        <label class="btn" title="Importer des annotations depuis un fichier JSON">
+          ⬆ Importer
           <input type="file" accept=".json" hidden @change="doImportOverrides" />
         </label>
       </div>
@@ -495,6 +514,13 @@ function exportEnrichedData() {
 
 .header-actions .btn:hover {
   background: rgba(255,255,255,0.25);
+}
+
+.sync-badge {
+  font-size: 16px;
+  cursor: default;
+  padding: 2px 4px;
+  border-radius: 4px;
 }
 
 .back-link {

@@ -1,0 +1,24 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Communes collection — read-only for all, write for authenticated users (Phase 3)
+    match /communes/{communeId} {
+      allow read: if true;
+      allow write: if true;  // TODO Phase 3: restrict to request.auth != null
+    }
+
+    // Metadata overrides — read/write for all (Phase 3: restrict writes)
+    match /overrides/{layerId}/features/{featureKey} {
+      allow read: if true;
+      allow write: if true;  // TODO Phase 3: restrict to request.auth != null
+    }
+
+    // Layer registry (Phase 2)
+    match /layers/{layerId} {
+      allow read: if true;
+      allow write: if true;  // TODO Phase 3: restrict to request.auth != null
+    }
+  }
+}

@@ -65,6 +65,37 @@
     }
   },
   {
+    "id": "density",
+    "name": "Densité de population",
+    "type": "choropleth",
+    "category": "statistics",
+    "dataFile": "population.json",
+    "geojsonFile": "communes.geojson",
+    "description": "Densité de population par commune (habitants/km²), calculée à partir de la superficie GeoJSON et des projections démographiques",
+    "joinField": "commune",
+    "geojsonJoinField": "name",
+    "yearMap": {
+      "2025": "density_2025",
+      "2030": "density_2030",
+      "2040": "density_2040"
+    },
+    "defaultYear": "2025",
+    "thresholds": [500, 2000, 10000, 50000, 100000, 150000],
+    "colors": ["#f2f0f7", "#dadaeb", "#bcbddc", "#9e9ac8", "#756bb1", "#54278f", "#3f007d"],
+    "unit": "hab/km²",
+    "legendTitle": "Densité",
+    "visible": false,
+    "metadata": {
+      "source": "Compilation — GeoJSON OSM + JICA/PDTK",
+      "title": "Densité de population par commune — Kinshasa",
+      "year": 2026,
+      "license": "ODbL (géométries) + JICA (population)",
+      "accessDate": "2026-02-23",
+      "methodology": "Superficie communale calculée via @turf/area sur les polygones communes.geojson (source OSM). Densité = population / superficie (hab/km²).",
+      "notes": "Les surfaces incluent les zones non habitables (forêts, marais). La densité réelle en zone urbanisée est plus élevée."
+    }
+  },
+  {
     "id": "roads-major",
     "name": "Routes principales",
     "type": "geojson",
@@ -323,19 +354,19 @@
   },
   {
     "id": "heatmap-pop",
-    "name": "Densité de population",
+    "name": "Heatmap population",
     "type": "heatmap",
     "category": "statistics",
     "geojsonFile": "communes.geojson",
     "dataFile": "population.json",
     "joinField": "commune",
     "geojsonJoinField": "name",
-    "valueField": "pop_2017",
+    "valueField": "pop_2025",
     "radius": 30,
     "blur": 20,
     "maxZoom": 14,
-    "description": "Carte de chaleur de la densité de population par commune",
-    "legendTitle": "Densité de population",
+    "description": "Carte de chaleur de la population par commune (pondération logarithmique)",
+    "legendTitle": "Heatmap population",
     "visible": false,
     "metadata": {
       "source": "JICA (Japan International Cooperation Agency)",
