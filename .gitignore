@@ -6,3 +6,7 @@ dist/
 Thumbs.db
 public/data/google-api-usage.json
 .firebase/
+
+# Data staging (intermediate work files)
+data-staging/*
+!data-staging/.gitkeep

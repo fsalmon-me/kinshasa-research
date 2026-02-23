@@ -1,0 +1,97 @@
+{
+  "$schema": "Data provenance manifest – tracks origin, freshness and validation of every file in public/data/",
+  "files": {
+    "communes.geojson": {
+      "description": "Commune boundaries (24 polygons)",
+      "source": "OpenStreetMap / Overpass API",
+      "format": "GeoJSON FeatureCollection",
+      "features": 24,
+      "frozen": "2025-06-01",
+      "notes": "Canonical geometry for all commune-level layers"
+    },
+    "population.json": {
+      "description": "Population & density per commune (2017–2040)",
+      "source": "INS projections + Turf area computation",
+      "format": "JSON array",
+      "records": 24,
+      "frozen": "2025-07-24",
+      "notes": "Fields: commune, cluster, pop_2017/2025/2030/2040, area_km2, density_2025/2030/2040"
+    },
+    "fuel-demand.json": {
+      "description": "Daily fuel demand per commune (2025–2040)",
+      "source": "Derived from population × per-capita consumption model",
+      "format": "JSON array",
+      "records": 24,
+      "frozen": "2025-07-01",
+      "notes": "Fields: commune, cluster, fuel_demand_2025/2030/2040"
+    },
+    "hospitals.geojson": {
+      "description": "Hospital / clinic locations",
+      "source": "OpenStreetMap / Overpass API",
+      "format": "GeoJSON FeatureCollection (Point)",
+      "frozen": "2025-06-01"
+    },
+    "schools.geojson": {
+      "description": "School locations",
+      "source": "OpenStreetMap / Overpass API",
+      "format": "GeoJSON FeatureCollection (Point)",
+      "frozen": "2025-06-01"
+    },
+    "fuel.geojson": {
+      "description": "Fuel station locations",
+      "source": "OpenStreetMap / Overpass API",
+      "format": "GeoJSON FeatureCollection (Point)",
+      "frozen": "2025-06-01"
+    },
+    "markets.geojson": {
+      "description": "Market / marketplace locations",
+      "source": "OpenStreetMap / Overpass API",
+      "format": "GeoJSON FeatureCollection (Point)",
+      "frozen": "2025-06-01"
+    },
+    "banks.geojson": {
+      "description": "Bank / ATM locations",
+      "source": "OpenStreetMap / Overpass API",
+      "format": "GeoJSON FeatureCollection (Point)",
+      "frozen": "2025-06-01"
+    },
+    "embassies.geojson": {
+      "description": "Embassy / consulate locations",
+      "source": "OpenStreetMap / Overpass API",
+      "format": "GeoJSON FeatureCollection (Point)",
+      "frozen": "2025-06-01"
+    },
+    "roads-major.geojson": {
+      "description": "Major road network (trunk, primary, secondary)",
+      "source": "OpenStreetMap / Overpass API",
+      "format": "GeoJSON FeatureCollection (LineString)",
+      "frozen": "2025-06-01",
+      "notes": "Large file (~11 MB) – not suitable for Firestore"
+    },
+    "roads-minor.geojson": {
+      "description": "Minor road network (tertiary, residential)",
+      "source": "OpenStreetMap / Overpass API",
+      "format": "GeoJSON FeatureCollection (LineString)",
+      "frozen": "2025-06-01"
+    },
+    "travel-osrm.json": {
+      "description": "24×24 commune travel-time & distance matrix",
+      "source": "OSRM routing engine",
+      "format": "JSON object with communes[], durations[][], distances[][]",
+      "frozen": "2025-06-01"
+    },
+    "layers.json": {
+      "description": "Layer registry – defines all map layers, styles, data bindings",
+      "source": "Manual configuration",
+      "format": "JSON array of LayerConfig objects",
+      "frozen": "2025-07-24",
+      "notes": "14 layers: choropleth, markers, lines, heatmap, matrix"
+    },
+    "metadata-overrides.json": {
+      "description": "Manual annotation overrides (notes, verified flags)",
+      "source": "Admin page exports",
+      "format": "JSON object: layerId → featureKey → overrides",
+      "frozen": "2025-06-01"
+    }
+  }
+}
