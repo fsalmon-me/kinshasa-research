@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { useAuth } from '@/composables/useAuth'
 
 const router = useRouter()
+const route = useRoute()
 const { login, error, isAuthenticated } = useAuth()
 
 const email = ref('')
@@ -14,7 +15,7 @@ async function handleLogin() {
   submitting.value = true
   try {
     await login(email.value, password.value)
-    router.push({ name: 'admin' })
+    router.push((route.query.redirect as string) ?? '/admin')
   } catch {
     // error is set in useAuth
   } finally {
@@ -24,7 +25,7 @@ async function handleLogin() {
 
 // If already logged in, redirect
 if (isAuthenticated.value) {
-  router.replace({ name: 'admin' })
+  router.replace((route.query.redirect as string) ?? '/admin')
 }
 </script>
 

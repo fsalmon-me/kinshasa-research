@@ -32,7 +32,7 @@ export function useGeoJsonOverlay() {
           const props = feature.properties ?? {}
           const lines = config.popupFields
             .filter(f => props[f] != null && props[f] !== '')
-            .map(f => `<strong>${f}:</strong> ${props[f]}`)
+            .map(f => `<strong>${config.fieldLabels?.[f] ?? f}:</strong> ${props[f]}`)
           if (lines.length) {
             layer.bindPopup(`<div class="popup-inner">${lines.join('<br>')}</div>`)
           }

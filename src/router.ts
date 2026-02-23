@@ -8,22 +8,25 @@ const router = createRouter({
       path: '/',
       name: 'map',
       component: () => import('@/pages/MapPage.vue'),
+      meta: { title: 'Carte — Kinshasa Research' },
     },
     {
       path: '/login',
       name: 'login',
       component: () => import('@/pages/LoginPage.vue'),
+      meta: { title: 'Connexion — Kinshasa Research' },
     },
     {
       path: '/admin',
       name: 'admin',
       component: () => import('@/pages/AdminPage.vue'),
-      meta: { requiresAuth: true },
+      meta: { requiresAuth: true, title: 'Admin — Kinshasa Research' },
     },
     {
       path: '/about',
       name: 'about',
       component: () => import('@/pages/AboutPage.vue'),
+      meta: { title: 'À propos — Kinshasa Research' },
     },
   ],
 })
@@ -47,6 +50,12 @@ router.beforeEach(async (to) => {
     return { name: 'login', query: { redirect: to.fullPath } }
   }
   return true
+})
+
+// Dynamic page titles
+router.afterEach((to) => {
+  const title = to.meta.title as string | undefined
+  document.title = title ?? 'Kinshasa Research'
 })
 
 export default router

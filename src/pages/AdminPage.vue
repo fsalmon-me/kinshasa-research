@@ -7,6 +7,7 @@ import {
   fetchLayerRegistry,
   fetchData,
   fetchGeoJSON,
+  getCachedGeoJSON,
   metadataOverrides,
   fetchMetadataOverrides,
   setFeatureOverride,
@@ -27,6 +28,17 @@ const searchQuery = ref('')
 const statusMsg = ref('')
 const errorMsg = ref('')
 const publishing = ref(false)
+let statusTimer: ReturnType<typeof setTimeout> | null = null
+
+/** Show status message with auto-dismiss */
+function showStatus(msg: string, durationMs = 5000) {
+  if (statusTimer) clearTimeout(statusTimer)
+  statusMsg.value = msg
+  statusTimer = setTimeout(() => { statusMsg.value = '' }, durationMs)
+}
+
+// ---- Source editing ----
+const editingSource = ref(false)
 
 // ---- Feature rows ----
 interface FeatureRow {
@@ -161,7 +173,6 @@ async function selectLayer(layerId: string) {
   if (!config) return
 
   try {
-    const base = import.meta.env.BASE_URL.replace(/\/$/, '')
     let rawRows: Record<string, unknown>[] = []
 
     // Load data based on layer type
@@ -183,8 +194,7 @@ async function selectLayer(layerId: string) {
       rawRows = data as Record<string, unknown>[]
     } else if (config.type === 'matrix') {
       // Matrix layer — load full matrix for cross-table view
-      const res = await fetch(`${base}/data/${(config as any).dataFile}`)
-      const data = await res.json()
+      const data = await fetchData((config as any).dataFile) as any
       matrixData.value = {
         communes: data.communes ?? [],
         durations: data.durations ?? [],
@@ -230,13 +240,13 @@ function updateOverride(row: FeatureRow, field: string, value: string) {
     (row.override as any)[field] = value || undefined
   }
   setFeatureOverride(activeLayerId.value!, row.key, row.override)
-  statusMsg.value = 'Modification enregistrée en mémoire'
+  showStatus('Modification enregistrée en mémoire')
 }
 
 function toggleVerified(row: FeatureRow) {
   row.override.verified = !row.override.verified
   setFeatureOverride(activeLayerId.value!, row.key, row.override)
-  statusMsg.value = 'Statut vérifié mis à jour'
+  showStatus('Statut vérifié mis à jour')
 }
 
 function addCustomColumn() {
@@ -245,9 +255,48 @@ function addCustomColumn() {
   customColumns.value.push(name)
 }
 
+// ---- Source editing helpers ----
+
+/** Get display value for a source field — shows sourceEdit if present */
+function displayValue(row: FeatureRow, col: string): unknown {
+  const edited = row.override.sourceEdits?.[col]
+  return edited !== undefined ? edited : row.props[col] ?? ''
+}
+
+/** Check if a source field has been edited */
+function isSourceEdited(row: FeatureRow, col: string): boolean {
+  return row.override.sourceEdits?.[col] !== undefined
+}
+
+/** Update a source field value (saves as sourceEdit in override) */
+function updateSourceField(row: FeatureRow, col: string, value: string) {
+  if (!row.override.sourceEdits) row.override.sourceEdits = {}
+
+  const original = row.props[col]
+  // If the new value matches the original, remove the edit
+  if (String(original ?? '') === value) {
+    delete row.override.sourceEdits[col]
+    // Clean up empty sourceEdits object
+    if (Object.keys(row.override.sourceEdits).length === 0) {
+      delete row.override.sourceEdits
+    }
+  } else {
+    row.override.sourceEdits[col] = value
+  }
+  setFeatureOverride(activeLayerId.value!, row.key, row.override)
+  showStatus('Source modifiée en mémoire')
+}
+
+/** Count total source edits across all rows */
+const sourceEditsCount = computed(() => {
+  return featureRows.value.reduce((sum, r) => {
+    return sum + (r.override.sourceEdits ? Object.keys(r.override.sourceEdits).length : 0)
+  }, 0)
+})
+
 function doExportOverrides() {
   exportMetadataOverrides()
-  statusMsg.value = 'Fichier metadata-overrides.json exporté'
+  showStatus('Fichier metadata-overrides.json exporté')
 }
 
 async function doImportOverrides(event: Event) {
@@ -255,7 +304,7 @@ async function doImportOverrides(event: Event) {
   if (!input.files?.length) return
   try {
     await importMetadataOverrides(input.files[0])
-    statusMsg.value = 'Overrides importées avec succès'
+    showStatus('Overrides importées avec succès')
     // Reload current layer to reflect changes
     if (activeLayerId.value) await selectLayer(activeLayerId.value)
   } catch (e: any) {
@@ -266,8 +315,39 @@ async function doImportOverrides(event: Event) {
 
 function exportEnrichedData() {
   if (!activeLayerId.value || !featureRows.value.length) return
+  const config = activeLayer.value
+  const file = activeDataFile()
+
+  // For GeoJSON layers, reconstruct FeatureCollection with geometry
+  if (file?.endsWith('.geojson') && config && (config.type === 'markers' || config.type === 'geojson')) {
+    const cached = getCachedGeoJSON(file)
+    if (cached) {
+      const enriched: GeoJSON.FeatureCollection = {
+        type: 'FeatureCollection',
+        features: cached.features.map((f, i) => {
+          const row = featureRows.value[i]
+          const mergedProps = row
+            ? { ...f.properties, ...row.override.sourceEdits, ...Object.fromEntries(Object.entries(row.override).filter(([k]) => k !== 'sourceEdits' && k !== 'verified' && k !== 'notes')) }
+            : f.properties
+          return { ...f, properties: mergedProps }
+        }),
+      }
+      const blob = new Blob([JSON.stringify(enriched, null, 2)], { type: 'application/json' })
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `${activeLayerId.value}-enriched.geojson`
+      a.click()
+      URL.revokeObjectURL(url)
+      showStatus(`${activeLayerId.value}-enriched.geojson exporté`)
+      return
+    }
+  }
+
+  // Flat JSON fallback
   const enriched = featureRows.value.map(r => ({
     ...r.props,
+    ...r.override.sourceEdits,
     ...r.override,
   }))
   const blob = new Blob([JSON.stringify(enriched, null, 2)], { type: 'application/json' })
@@ -277,6 +357,7 @@ function exportEnrichedData() {
   a.download = `${activeLayerId.value}-enriched.json`
   a.click()
   URL.revokeObjectURL(url)
+  showStatus(`${activeLayerId.value}-enriched.json exporté`)
 }
 
 // ---- Firestore data operations ----
@@ -310,7 +391,7 @@ const isActiveStaticOnly = computed(() => {
   return STATIC_SET.has(file)
 })
 
-/** Publish current layer data to Firestore */
+/** Publish current layer data to Firestore — merges sourceEdits into data */
 async function publishToFirestore() {
   const file = activeDataFile()
   if (!file || !activeLayerId.value) return
@@ -318,16 +399,41 @@ async function publishToFirestore() {
   errorMsg.value = ''
   try {
     const { writeDataFile } = await import('@/composables/useFirestoreData')
-    // Re-fetch the data currently in memory (from cache)
+
     let data: any
     if (file.endsWith('.geojson')) {
-      data = await fetchGeoJSON(file)
+      const cached = getCachedGeoJSON(file)
+      if (!cached) throw new Error('GeoJSON non chargé en cache')
+      // Deep clone and apply sourceEdits per feature
+      data = JSON.parse(JSON.stringify(cached))
+      for (let i = 0; i < data.features.length; i++) {
+        const row = featureRows.value[i]
+        if (row?.override.sourceEdits) {
+          data.features[i].properties = {
+            ...data.features[i].properties,
+            ...row.override.sourceEdits,
+          }
+        }
+      }
     } else {
-      data = await fetchData(file)
+      // Flat JSON — clone and merge sourceEdits
+      const cached = await fetchData(file)
+      data = JSON.parse(JSON.stringify(cached))
+      for (let i = 0; i < data.length; i++) {
+        const row = featureRows.value[i]
+        if (row?.override.sourceEdits) {
+          Object.assign(data[i], row.override.sourceEdits)
+        }
+      }
     }
+
     await writeDataFile(file, data)
+    // Invalidate and reload to pick up the newly published version
+    invalidateCache(file)
     dataSources.value.set(file, 'firestore')
-    statusMsg.value = `${file} publié vers Firestore ☁️`
+    showStatus(`${file} publié vers Firestore ☁️`)
+    // Reload layer to reflect merged data
+    await selectLayer(activeLayerId.value!)
   } catch (e: any) {
     errorMsg.value = `Erreur de publication: ${e.message}`
   } finally {
@@ -343,7 +449,7 @@ async function publishOverridesToFirestore() {
     const { writeDataFile } = await import('@/composables/useFirestoreData')
     await writeDataFile('metadata-overrides.json', metadataOverrides.value)
     dataSources.value.set('metadata-overrides.json', 'firestore')
-    statusMsg.value = 'Annotations publiées vers Firestore ☁️'
+    showStatus('Annotations publiées vers Firestore ☁️')
   } catch (e: any) {
     errorMsg.value = `Erreur: ${e.message}`
   } finally {
@@ -360,7 +466,7 @@ async function deleteFirestoreOverride() {
     const { deleteDataFile } = await import('@/composables/useFirestoreData')
     await deleteDataFile(file)
     invalidateCache(file)
-    statusMsg.value = `Override ${file} supprimé — retour au statique 📦`
+    showStatus(`Override ${file} supprimé — retour au statique 📦`)
     dataSources.value.set(file, 'static')
     // Reload layer
     if (activeLayerId.value) await selectLayer(activeLayerId.value)
@@ -374,7 +480,7 @@ function crystalliseData() {
   const file = activeDataFile()
   if (!file || !activeLayerId.value) return
   exportEnrichedData()
-  statusMsg.value = `${file} téléchargé — placez-le dans public/data/ et commitez`
+  showStatus(`${file} téléchargé — placez-le dans public/data/ et commitez`)
 }
 
 async function handleLogout() {
@@ -488,6 +594,12 @@ async function handleLogout() {
             />
           </div>
           <button class="btn" @click="addCustomColumn">+ Champ</button>
+          <button
+            :class="['btn', { primary: editingSource }]"
+            @click="editingSource = !editingSource"
+            :title="editingSource ? 'Désactiver l\'édition source' : 'Activer l\'édition source'"
+          >{{ editingSource ? '✏️ Édition ON' : '✏️ Édition source' }}</button>
+          <span v-if="sourceEditsCount" class="edits-badge">{{ sourceEditsCount }} modif.</span>
           <button class="btn primary" @click="exportEnrichedData">⬇ Export enrichi</button>
         </div>
 
@@ -565,9 +677,19 @@ async function handleLogout() {
             <tbody>
               <tr v-for="(row, ri) in filteredRows" :key="row.key" :class="{ verified: row.override.verified }">
                 <td class="row-num">{{ ri + 1 }}</td>
-                <!-- Source columns (read-only) -->
-                <td v-for="col in sourceColumns" :key="col" class="cell-source">
-                  <span :title="String(row.props[col] ?? '')">{{ row.props[col] ?? '' }}</span>
+                <!-- Source columns (editable when editingSource is on) -->
+                <td v-for="col in sourceColumns" :key="col" :class="['cell-source', { 'cell-edited': isSourceEdited(row, col) }]">
+                  <template v-if="editingSource">
+                    <input
+                      :value="String(displayValue(row, col))"
+                      @change="updateSourceField(row, col, ($event.target as HTMLInputElement).value)"
+                      :placeholder="col"
+                      class="source-input"
+                    />
+                  </template>
+                  <template v-else>
+                    <span :title="String(displayValue(row, col))">{{ displayValue(row, col) }}</span>
+                  </template>
                 </td>
                 <!-- Custom/override columns (editable) -->
                 <td v-for="col in customColumns" :key="'c_' + col" class="cell-custom">
@@ -1075,5 +1197,33 @@ tr.verified .cell-source {
 
 .btn-danger:hover {
   background: #fce4ec;
+}
+
+/* Source editing */
+.cell-edited {
+  background: #e3f2fd !important;
+  border-left: 2px solid #2c7fb8;
+}
+
+.source-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 12px;
+  padding: 2px 0;
+}
+
+.source-input:focus {
+  outline: 2px solid #2c7fb8;
+  border-radius: 2px;
+}
+
+.edits-badge {
+  font-size: 11px;
+  color: #2c7fb8;
+  background: #e3f2fd;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-weight: 600;
 }
 </style>

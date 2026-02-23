@@ -1,6 +1,6 @@
 import L from 'leaflet'
 import type { MatrixLayer } from '@/types/layer'
-import { fetchGeoJSON } from './useDataStore'
+import { fetchGeoJSON, fetchData } from './useDataStore'
 import { normalize, getColor } from '@/utils/helpers'
 
 interface TravelData {
@@ -22,10 +22,9 @@ export function useMatrixLayer() {
   async function show(map: L.Map, config: MatrixLayer) {
     remove(map)
 
-    const base = import.meta.env.BASE_URL.replace(/\/$/, '')
     const [geojson, dataRes] = await Promise.all([
       fetchGeoJSON(config.geojsonFile),
-      fetch(`${base}/data/${config.dataFile}`).then(r => r.json()),
+      fetchData(config.dataFile) as Promise<any>,
     ])
 
     travelData = dataRes as TravelData

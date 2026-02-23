@@ -109,6 +109,7 @@ export type LayerConfig = ChoroplethLayer | MarkerLayer | GeoJsonLayer | MatrixL
 export interface FeatureOverride {
   notes?: string
   verified?: boolean
+  sourceEdits?: Record<string, unknown>
   [key: string]: unknown
 }
 

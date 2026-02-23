@@ -61,7 +61,7 @@ export async function buildSearchIndex() {
         lng: center.geometry.coordinates[0],
       })
     }
-  } catch { /* communes not available */ }
+  } catch (e) { console.warn('[search] communes not available', e) }
 
   // POIs from marker layers
   for (const layer of layers.value) {
@@ -82,7 +82,7 @@ export async function buildSearchIndex() {
           lng: coords[0],
         })
       }
-    } catch { /* skip */ }
+    } catch (e) { console.warn(`[search] skip layer ${layer.id}`, e) }
   }
 
   searchIndex.value = entries
@@ -103,7 +103,7 @@ async function fetchWithFirestoreFallback(filename: string): Promise<{ data: any
     if (fsData !== null) {
       return { data: fsData, source: 'firestore' }
     }
-  } catch { /* Firestore unavailable — use static */ }
+  } catch (e) { console.warn('[dual-source] Firestore unavailable', e) }
 
   // Fallback: static file
   const res = await fetch(`${base}/data/${filename}`)
@@ -144,6 +144,11 @@ export async function fetchGeoJSON(filename: string): Promise<GeoJSON.FeatureCol
 /** Get the source of a loaded data file */
 export function getDataSource(filename: string): 'firestore' | 'static' | undefined {
   return dataSources.value.get(filename)
+}
+
+/** Get cached GeoJSON (returns undefined if not yet fetched) */
+export function getCachedGeoJSON(filename: string): GeoJSON.FeatureCollection | undefined {
+  return geojsonCache.get(filename)
 }
 
 /** Invalidate cache for a specific file (forces re-fetch) */
@@ -193,7 +198,7 @@ export async function fetchMetadataOverrides(): Promise<MetadataOverrides> {
       dataSources.value.set('metadata-overrides.json', 'firestore')
       return fsData
     }
-  } catch { /* Firestore unavailable */ }
+  } catch (e) { console.warn('[overrides] Firestore unavailable', e) }
 
   // Fallback to static JSON
   try {
@@ -204,7 +209,7 @@ export async function fetchMetadataOverrides(): Promise<MetadataOverrides> {
       dataSources.value.set('metadata-overrides.json', 'static')
       return data
     }
-  } catch { /* file doesn't exist yet — fine */ }
+  } catch (e) { console.warn('[overrides] static file not found', e) }
   metadataOverrides.value = {}
   return {}
 }
