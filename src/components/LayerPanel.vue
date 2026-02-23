@@ -31,6 +31,8 @@ interface CategoryGroup {
 const groups = computed<CategoryGroup[]>(() => {
   const map = new Map<string, LayerConfig[]>()
   for (const l of props.layers) {
+    // Hide draft layers from the map panel
+    if (l.status === 'draft') continue
     const cat = l.category ?? 'other'
     if (!map.has(cat)) map.set(cat, [])
     map.get(cat)!.push(l)

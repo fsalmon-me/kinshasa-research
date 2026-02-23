@@ -1,0 +1,104 @@
+[
+  {
+    "id": "default-fuel-supply-demand",
+    "title": "Offre & Demande de Carburant — Kinshasa",
+    "slug": "offre-demande-carburant",
+    "description": "Analyse comparative de l'offre (stations-service) et de la demande de carburant par commune à Kinshasa.",
+    "blocks": [
+      {
+        "type": "title",
+        "id": "blk_hdr1",
+        "level": 1,
+        "content": "Offre & Demande de Carburant à Kinshasa"
+      },
+      {
+        "type": "text",
+        "id": "blk_intro",
+        "content": "Ce rapport analyse la relation entre l'offre en stations-service et la demande de carburant estimée pour les 24 communes de Kinshasa. La demande est exprimée en m³/jour pour les horizons 2025, 2030 et 2040, tandis que l'offre est évaluée via le nombre de stations-service identifiées par commune (source : OpenStreetMap)."
+      },
+      {
+        "type": "title",
+        "id": "blk_hdr_demand",
+        "level": 2,
+        "content": "Demande de carburant par commune"
+      },
+      {
+        "type": "table",
+        "id": "blk_tbl_demand",
+        "title": "Demande de carburant (m³/jour) — projections",
+        "dataSource": "fuel-demand.json",
+        "columns": [
+          { "field": "commune", "label": "Commune" },
+          { "field": "pop_2025", "label": "Pop. 2025", "format": "number", "decimals": 0 },
+          { "field": "demand_2025", "label": "Demande 2025 (m³/j)", "format": "number", "decimals": 0 },
+          { "field": "demand_2030", "label": "Demande 2030 (m³/j)", "format": "number", "decimals": 0 },
+          { "field": "demand_2040", "label": "Demande 2040 (m³/j)", "format": "number", "decimals": 0 }
+        ],
+        "sortBy": "demand_2025",
+        "sortDir": "desc"
+      },
+      {
+        "type": "chart",
+        "id": "blk_chart_demand",
+        "title": "Demande de carburant par commune (m³/jour)",
+        "chartType": "bar",
+        "dataSource": "fuel-demand.json",
+        "labelField": "commune",
+        "datasets": [
+          { "field": "demand_2025", "label": "2025", "color": "#1976d2" },
+          { "field": "demand_2030", "label": "2030", "color": "#fb8c00" },
+          { "field": "demand_2040", "label": "2040", "color": "#c62828" }
+        ]
+      },
+      {
+        "type": "title",
+        "id": "blk_hdr_density",
+        "level": 2,
+        "content": "Densité de demande"
+      },
+      {
+        "type": "text",
+        "id": "blk_density_intro",
+        "content": "La densité de demande en carburant est calculée de deux façons : par habitant (litres/personne/jour) et par superficie (m³/jour/km²). Ces indicateurs permettent de comparer l'intensité de la demande entre communes de tailles différentes."
+      },
+      {
+        "type": "table",
+        "id": "blk_tbl_density",
+        "title": "Densité de demande — 2025",
+        "dataSource": "fuel-demand.json",
+        "columns": [
+          { "field": "commune", "label": "Commune" },
+          { "field": "area_km2", "label": "Surface (km²)", "format": "number", "decimals": 2 },
+          { "field": "demand_per_capita_L_2025", "label": "L/pers/jour", "format": "number", "decimals": 4 },
+          { "field": "demand_per_km2_2025", "label": "m³/jour/km²", "format": "number", "decimals": 2 }
+        ],
+        "sortBy": "demand_per_km2_2025",
+        "sortDir": "desc"
+      },
+      {
+        "type": "chart",
+        "id": "blk_chart_percapita",
+        "title": "Demande par habitant (L/pers/jour) — 2025",
+        "chartType": "bar",
+        "dataSource": "fuel-demand.json",
+        "labelField": "commune",
+        "datasets": [
+          { "field": "demand_per_capita_L_2025", "label": "L/personne/jour", "color": "#7b1fa2" }
+        ]
+      },
+      {
+        "type": "title",
+        "id": "blk_hdr_conclusion",
+        "level": 2,
+        "content": "Observations"
+      },
+      {
+        "type": "text",
+        "id": "blk_conclusion",
+        "content": "Les communes les plus densément peuplées (Kasa-Vubu, Kinshasa, Barumbu, Lingwala) montrent les densités de demande par km² les plus élevées, malgré des volumes absolus modérés. À l'inverse, les communes périphériques (Nsele, Maluku, Mont-Ngafula) présentent les volumes les plus élevés en valeur absolue mais une faible densité spatiale. L'offre en stations-service, concentrée dans les communes centrales, ne suit pas la croissance de la demande en périphérie — un facteur clé pour la planification d'infrastructure."
+      }
+    ],
+    "createdAt": "2025-07-19T12:00:00.000Z",
+    "updatedAt": "2025-07-19T12:00:00.000Z"
+  }
+]

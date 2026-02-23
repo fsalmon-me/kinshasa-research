@@ -96,6 +96,68 @@
     }
   },
   {
+    "id": "fuel-demand-capita",
+    "name": "Demande carburant par habitant",
+    "type": "choropleth",
+    "category": "statistics",
+    "dataFile": "fuel-demand.json",
+    "geojsonFile": "communes.geojson",
+    "description": "Consommation quotidienne estimée de carburant par habitant (litres/personne/jour), dérivée de la demande communale et la population",
+    "joinField": "commune",
+    "geojsonJoinField": "name",
+    "yearMap": {
+      "2025": "demand_per_capita_L_2025",
+      "2030": "demand_per_capita_L_2030",
+      "2040": "demand_per_capita_L_2040"
+    },
+    "defaultYear": "2025",
+    "thresholds": [0.1, 0.15, 0.2, 0.3, 0.5, 1.0],
+    "colors": ["#ffffcc", "#d9f0a3", "#addd8e", "#78c679", "#31a354", "#006837", "#00441b"],
+    "unit": "L/pers/jour",
+    "legendTitle": "Demande/habitant",
+    "visible": false,
+    "metadata": {
+      "source": "Compilation — JICA/PDTK, Min. Économie, EDS-RDC III",
+      "title": "Densité de demande en carburant par habitant — Kinshasa",
+      "year": 2026,
+      "license": "Document interne",
+      "accessDate": "2026-02-23",
+      "methodology": "Demande per capita = (demande communale m³/jour × 1000) / population. Reflète la consommation individuelle estimée incluant transport, industrie et usage domestique (groupes électrogènes).",
+      "notes": "Les communes à faible population (Gombe, Nsele, Maluku) montrent des valeurs élevées car elles concentrent des activités économiques (bureaux, industrie, mines) desservant des populations non-résidentes."
+    }
+  },
+  {
+    "id": "fuel-demand-density",
+    "name": "Demande carburant par km²",
+    "type": "choropleth",
+    "category": "statistics",
+    "dataFile": "fuel-demand.json",
+    "geojsonFile": "communes.geojson",
+    "description": "Intensité spatiale de la demande en carburant (m³/jour/km²), rapportée à la superficie communale",
+    "joinField": "commune",
+    "geojsonJoinField": "name",
+    "yearMap": {
+      "2025": "demand_per_km2_2025",
+      "2030": "demand_per_km2_2030",
+      "2040": "demand_per_km2_2040"
+    },
+    "defaultYear": "2025",
+    "thresholds": [0.5, 2, 5, 10, 20, 40],
+    "colors": ["#fff5eb", "#fdd0a2", "#fdae6b", "#fd8d3c", "#e6550d", "#a63603", "#7f2704"],
+    "unit": "m³/jour/km²",
+    "legendTitle": "Demande/km²",
+    "visible": false,
+    "metadata": {
+      "source": "Compilation — JICA/PDTK, Min. Économie, EDS-RDC III",
+      "title": "Intensité spatiale de la demande en carburant — Kinshasa",
+      "year": 2026,
+      "license": "Document interne",
+      "accessDate": "2026-02-23",
+      "methodology": "Demande par km² = demande communale (m³/jour) / superficie communale (km²). Les communes de petite superficie et forte activité économique présentent les plus hautes densités.",
+      "notes": "Les très grandes communes (Maluku 8 682 km², Nsele 1 217 km²) ont des densités très basses car leur superficie inclut de larges zones rurales."
+    }
+  },
+  {
     "id": "roads-major",
     "name": "Routes principales",
     "type": "geojson",
@@ -357,6 +419,7 @@
     "name": "Heatmap population",
     "type": "heatmap",
     "category": "statistics",
+    "status": "draft",
     "geojsonFile": "communes.geojson",
     "dataFile": "population.json",
     "joinField": "commune",
@@ -383,6 +446,7 @@
     "name": "Densité demande carburant",
     "type": "heatmap",
     "category": "statistics",
+    "status": "draft",
     "geojsonFile": "communes.geojson",
     "dataFile": "fuel-demand.json",
     "joinField": "commune",

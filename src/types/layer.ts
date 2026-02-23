@@ -28,6 +28,7 @@ export interface LayerBase {
   name: string
   type: string
   category?: 'statistics' | 'infrastructure' | 'poi' | 'transport'
+  status?: 'active' | 'draft'
   description: string
   visible: boolean
   metadata?: LayerMetadata

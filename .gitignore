@@ -10,3 +10,4 @@ public/data/google-api-usage.json
 # Data staging (intermediate work files)
 data-staging/*
 !data-staging/.gitkeep
+scripts/.cache/

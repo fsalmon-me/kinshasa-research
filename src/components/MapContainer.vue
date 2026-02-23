@@ -88,9 +88,9 @@ onMounted(async () => {
   loading.value = true
   try {
     await fetchLayerRegistry()
-    // Show all initially visible layers
+    // Show all initially visible layers (skip draft layers)
     for (const layer of layers.value) {
-      if (layer.visible) await showLayer(layer)
+      if (layer.visible && layer.status !== 'draft') await showLayer(layer)
     }
   } finally {
     loading.value = false

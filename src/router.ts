@@ -28,6 +28,30 @@ const router = createRouter({
       component: () => import('@/pages/AboutPage.vue'),
       meta: { title: 'À propos — Kinshasa Research' },
     },
+    {
+      path: '/reports',
+      name: 'reports',
+      component: () => import('@/pages/ReportsPage.vue'),
+      meta: { title: 'Rapports — Kinshasa Research' },
+    },
+    {
+      path: '/reports/:slug',
+      name: 'report-view',
+      component: () => import('@/pages/ReportsPage.vue'),
+      meta: { title: 'Rapport — Kinshasa Research' },
+    },
+    {
+      path: '/admin/reports',
+      name: 'admin-reports',
+      component: () => import('@/pages/ReportEditorPage.vue'),
+      meta: { requiresAuth: true, title: 'Nouveau rapport — Kinshasa Research' },
+    },
+    {
+      path: '/admin/reports/:slug',
+      name: 'admin-report-edit',
+      component: () => import('@/pages/ReportEditorPage.vue'),
+      meta: { requiresAuth: true, title: 'Éditer rapport — Kinshasa Research' },
+    },
   ],
 })
 

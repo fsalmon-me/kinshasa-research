@@ -495,6 +495,7 @@ async function handleLogout() {
   <div class="admin-page">
     <header class="admin-header">
       <router-link to="/" class="back-link">← Carte</router-link>
+      <router-link to="/reports" class="back-link">📊 Rapports</router-link>
       <h1>Administration des données</h1>
       <div class="header-actions">
         <span class="user-badge" v-if="displayName">{{ displayName }}</span>
@@ -521,6 +522,7 @@ async function handleLogout() {
             :class="['ds-btn', { active: layer.id === activeLayerId }]"
             @click="selectLayer(layer.id)"
           >
+            <span v-if="layer.status === 'draft'" class="draft-badge" title="Couche en brouillon — non visible sur la carte">🚧</span>
             {{ layer.name }}
           </button>
         </div>

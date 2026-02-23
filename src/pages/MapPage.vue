@@ -5,6 +5,7 @@ import MapContainer from '@/components/MapContainer.vue'
 <template>
   <div class="map-page">
     <MapContainer />
+    <router-link to="/reports" class="admin-link reports-link">📊 Rapports</router-link>
     <router-link to="/admin" class="admin-link">⚙️ Admin</router-link>
   </div>
 </template>
@@ -34,5 +35,9 @@ import MapContainer from '@/components/MapContainer.vue'
 
 .admin-link:hover {
   background: #f0f0f0;
+}
+
+.reports-link {
+  right: 100px;
 }
 </style>
