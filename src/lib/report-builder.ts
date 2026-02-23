@@ -22,6 +22,7 @@ import type {
   ColumnDef,
   ChartDatasetDef,
   SourceItem,
+  Localizable,
 } from '../types/report'
 
 // ── Helpers ────────────────────────────────────────────────────────
@@ -38,7 +39,7 @@ function slugify(text: string): string {
 // ── Config interfaces (public API) ─────────────────────────────────
 
 export interface TableConfig {
-  title?: string
+  title?: Localizable
   columns: ColumnDef[]
   sortBy?: string
   sortDir?: 'asc' | 'desc'
@@ -47,7 +48,7 @@ export interface TableConfig {
 }
 
 export interface ChartConfig {
-  title?: string
+  title?: Localizable
   labelField: string
   datasets: ChartDatasetDef[]
   options?: Record<string, unknown>
@@ -56,24 +57,25 @@ export interface ChartConfig {
 export interface SourceConfig {
   url?: string
   date?: string
-  description?: string
+  description?: Localizable
 }
 
 // ── Builder ────────────────────────────────────────────────────────
 
 export class ReportBuilder {
-  private _title: string
-  private _description = ''
+  private _title: Localizable
+  private _description: Localizable = ''
   private _slug = ''
   private _id = ''
   private _blocks: ReportBlock[] = []
   private _manualSources: SourceItem[] = []
   private _counter = 0
 
-  constructor(title: string) {
+  constructor(title: Localizable) {
     this._title = title
-    this._slug = slugify(title)
-    this._id = `rpt_${slugify(title)}`
+    const plain = typeof title === 'string' ? title : title.fr
+    this._slug = slugify(plain)
+    this._id = `rpt_${slugify(plain)}`
   }
 
   private _nextId(): string {
@@ -82,7 +84,7 @@ export class ReportBuilder {
   }
 
   /** Set report description */
-  description(desc: string): this {
+  description(desc: Localizable): this {
     this._description = desc
     return this
   }
@@ -100,25 +102,25 @@ export class ReportBuilder {
   }
 
   /** Add H1 heading */
-  h1(content: string): this {
+  h1(content: Localizable): this {
     this._blocks.push({ type: 'title', id: this._nextId(), level: 1, content })
     return this
   }
 
   /** Add H2 heading */
-  h2(content: string): this {
+  h2(content: Localizable): this {
     this._blocks.push({ type: 'title', id: this._nextId(), level: 2, content })
     return this
   }
 
   /** Add H3 heading */
-  h3(content: string): this {
+  h3(content: Localizable): this {
     this._blocks.push({ type: 'title', id: this._nextId(), level: 3, content })
     return this
   }
 
   /** Add a text paragraph block */
-  text(content: string): this {
+  text(content: Localizable): this {
     this._blocks.push({ type: 'text', id: this._nextId(), content })
     return this
   }
@@ -195,7 +197,7 @@ export class ReportBuilder {
   }
 
   /** Add a manual external source */
-  source(label: string, config?: SourceConfig): this {
+  source(label: Localizable, config?: SourceConfig): this {
     const item: SourceItem = { label, type: 'external' }
     if (config?.url) item.url = config.url
     if (config?.date) item.date = config.date
@@ -205,7 +207,7 @@ export class ReportBuilder {
   }
 
   /** Add a data-source reference */
-  dataSource(label: string, config?: SourceConfig): this {
+  dataSource(label: Localizable, config?: SourceConfig): this {
     const item: SourceItem = { label, type: 'data' }
     if (config?.url) item.url = config.url
     if (config?.date) item.date = config.date
@@ -215,7 +217,7 @@ export class ReportBuilder {
   }
 
   /** Add the sources block (auto-collects from data blocks + manual sources) */
-  sources(title?: string): this {
+  sources(title?: Localizable): this {
     this._blocks.push({
       type: 'sources',
       id: this._nextId(),

@@ -3,6 +3,7 @@ import { ref, onMounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { TableBlock } from '@/types/report'
 import { fetchData } from '@/composables/useDataStore'
+import { resolveL10n } from '@/lib/l10n'
 
 const { t, locale } = useI18n()
 
@@ -82,13 +83,13 @@ watch(() => props.block.inlineData, loadData)
 
 <template>
   <div class="report-table-block">
-    <div v-if="block.title" class="table-title">{{ block.title }}</div>
+    <div v-if="block.title" class="table-title">{{ resolveL10n(block.title, locale) }}</div>
     <div v-if="error" class="table-error">{{ error }}</div>
     <div class="table-scroll">
       <table v-if="rows.length">
         <thead>
           <tr>
-            <th v-for="col in block.columns" :key="col.field">{{ col.label }}</th>
+            <th v-for="col in block.columns" :key="col.field">{{ resolveL10n(col.label, locale) }}</th>
           </tr>
         </thead>
         <tbody>

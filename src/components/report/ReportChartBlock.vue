@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, watch, shallowRef } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { Bar, Pie, Line, Doughnut } from 'vue-chartjs'
 import {
   Chart as ChartJS,
@@ -15,6 +16,9 @@ import {
 } from 'chart.js'
 import type { ChartBlock } from '@/types/report'
 import { fetchData } from '@/composables/useDataStore'
+import { resolveL10n } from '@/lib/l10n'
+
+const { locale } = useI18n()
 
 // Register Chart.js components
 ChartJS.register(
@@ -46,7 +50,7 @@ async function loadData() {
     const labels = records.map(r => String(r[props.block.labelField] ?? ''))
 
     const datasets = props.block.datasets.map((ds, i) => ({
-      label: ds.label,
+      label: resolveL10n(ds.label, locale.value),
       data: records.map(r => Number(r[ds.field]) || 0),
       backgroundColor: ds.backgroundColor ?? ds.color ?? PALETTE[i % PALETTE.length],
       borderColor: ds.color ?? PALETTE[i % PALETTE.length],
@@ -73,7 +77,7 @@ watch(() => props.block.dataSource, loadData)
 
 <template>
   <div class="report-chart-block">
-    <div v-if="block.title" class="chart-title">{{ block.title }}</div>
+    <div v-if="block.title" class="chart-title">{{ resolveL10n(block.title, locale) }}</div>
     <div v-if="error" class="chart-error">{{ error }}</div>
     <div v-else-if="chartData" class="chart-container">
       <Bar v-if="block.chartType === 'bar'" :data="chartData" :options="chartOptions" />
@@ -81,7 +85,7 @@ watch(() => props.block.dataSource, loadData)
       <Pie v-else-if="block.chartType === 'pie'" :data="chartData" :options="chartOptions" />
       <Doughnut v-else-if="block.chartType === 'doughnut'" :data="chartData" :options="chartOptions" />
     </div>
-    <div v-else class="chart-loading">Chargement…</div>
+    <div v-else class="chart-loading">{{ locale === 'en' ? 'Loading…' : 'Chargement…' }}</div>
   </div>
 </template>
 

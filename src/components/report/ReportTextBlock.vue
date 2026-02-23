@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import type { TextBlock } from '@/types/report'
+import { resolveL10n } from '@/lib/l10n'
+
+const { locale } = useI18n()
 
 const props = defineProps<{
   block: TextBlock
@@ -21,7 +25,7 @@ function onInput(e: Event) {
     class="report-text"
     :contenteditable="editable"
     @blur="editable && onInput($event)"
-    v-text="block.content"
+    v-text="resolveL10n(block.content, locale)"
   />
 </template>
 

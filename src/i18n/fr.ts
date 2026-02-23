@@ -315,6 +315,91 @@ export default {
     srcMacrotrendsDesc: 'Projections démographiques complémentaires',
     srcOsm: 'OpenStreetMap — Overpass API',
     srcOsmDesc: 'Extraction des stations-service (amenity=fuel) dans la métropole de Kinshasa',
+
+    // ── Stations per commune section ──
+    stationsTitle: 'Stations-service par commune',
+    stationsText:
+      "Le tableau ci-dessous présente le nombre de stations-service identifiées par commune dans OpenStreetMap. La répartition est fortement concentrée dans les communes centrales.",
+    stationsTableTitle: 'Nombre de stations-service par commune',
+    colStations: 'Stations',
+
+    // ── GDP per capita section ──
+    gdpTitle: 'PIB par habitant estimé par commune',
+    gdpText:
+      "Le PIB par habitant est estimé par triangulation de trois variables : l'indice de richesse (EDS-RDC III 2024), la valeur immobilière médiane (Texaf, SEP Congo) et la connectivité numérique (ARPCE). Les communes sont classées en 5 niveaux (Tier 1 = le plus élevé).",
+    gdpTableTitle: 'PIB par habitant estimé (USD) — 2024',
+    gdpChartTitle: 'PIB par habitant par commune (USD)',
+    colGdpPerCapita: 'PIB/hab (USD)',
+    colDistrict: 'District',
+    colTier: 'Niveau',
+    colClassification: 'Classification',
+
+    // ── CAPEX / OPEX section ──
+    capexTitle: "Coûts d'installation et opérationnels d'une station-service",
+    capexText:
+      "Les coûts estimés ci-dessous concernent l'implantation d'une station-service standard (1 000 m²) dans chaque commune. Le coût foncier varie fortement selon la commune ; le CAPEX matériel (280 000 USD) est constant.",
+    capexTableTitle: 'CAPEX / OPEX par commune — Station-service 1 000 m²',
+    capexChartTitle: 'CAPEX total par commune (USD)',
+    colLandValue: 'Foncier (USD/m²)',
+    colLandCost: 'Coût terrain (USD)',
+    colCapexMaterial: 'CAPEX matériel (USD)',
+    colCapexTotal: 'CAPEX total (USD)',
+    colOpex: 'OPEX mensuel (USD)',
+
+    // ── Truck logistics section ──
+    truckTitle: 'Coûts logistiques — Camion-citerne',
+    truckText:
+      "Les paramètres logistiques ci-dessous sont utilisés pour estimer le coût d'acheminement du carburant du dépôt principal (SEP Congo, Limete) vers les stations-service des 24 communes.",
+    truckTableTitle: 'Paramètres logistiques — Camion-citerne 35 000 L',
+    colParameter: 'Paramètre',
+    colValue: 'Valeur',
+    colUnit: 'Unité',
+    truckCapacity: 'Capacité',
+    truckLoading: 'Coût de chargement',
+    truckUnloading: 'Coût de déchargement',
+    truckCostKm: 'Coût au kilomètre',
+    truckLabor: 'Coût main-d\'œuvre / heure',
+    truckLoadingM3: 'Coût de chargement / m³',
+
+    // ── Revenue per liter section ──
+    revenueTitle: 'Revenu espéré par litre et prix d\'achat fournisseur',
+    revenueText:
+      "Le revenu espéré par litre intègre la marge nette sur le carburant (115 CDF/L, fixée par arrêté) et une marge auxiliaire variable selon le type de consommation de la commune. Le prix d'achat fournisseur (dépôt SEP Congo) est de 3 208 CDF/L.",
+    revenueTableTitle: 'Revenu espéré par litre par commune (CDF)',
+    revenueChartTitle: 'Revenu espéré par commune (CDF/L)',
+    colConsumptionType: 'Type de consommation',
+    colFuelMargin: 'Marge carburant (CDF/L)',
+    colAncillaryMargin: 'Marge auxiliaire (CDF/L)',
+    colExpectedRevenue: 'Revenu espéré (CDF/L)',
+    colSupplierPrice: 'Prix fournisseur (CDF/L)',
+
+    // ── New external sources ──
+    srcWorldBank: 'Banque Mondiale — Indicateurs du développement',
+    srcWorldBankDesc: "PIB RDC par habitant (nominal et PPA), coefficient d'urbanisation",
+    srcTradingEconomics: 'Trading Economics — DRC GDP per capita',
+    srcTradingEconomicsDesc: 'Série temporelle PIB par habitant RDC, données FMI/Banque Mondiale',
+    srcInsDhs: 'INS / EDS-RDC III — Enquête Démographique et de Santé 2024',
+    srcInsDhsDesc: "Indice de richesse des ménages par province, taux d'accès aux services",
+    srcNumbeo: 'Numbeo — Cost of Living Kinshasa',
+    srcNumbeoDesc: 'Coût de la vie et prix immobiliers à Kinshasa, comparaisons internationales',
+    srcPaylab: 'Paylab / SalaryExplorer — Salaires RDC',
+    srcPaylabDesc: 'Données salariales par secteur en RDC',
+    srcSepCongo: 'SEP Congo — Données logistiques',
+    srcSepCongoDesc: "Coûts d'approvisionnement, prix fournisseur dépôt Limete",
+    srcTexaf: 'Texaf — Rapport immobilier Kinshasa',
+    srcTexafDesc: 'Valeurs foncières et immobilières par commune de Kinshasa',
+    srcMinPlan: 'Ministère du Plan — Projections économiques',
+    srcMinPlanDesc: 'Projections PIB provincial et indicateurs socio-économiques',
+    srcArpce: 'ARPCE — Connectivité numérique',
+    srcArpceDesc: 'Données de couverture mobile et internet par commune',
+
+    // ── Extended methodology ──
+    methodologyGdp:
+      "Le PIB par habitant communal est estimé par triangulation de trois variables proxy : (1) l'indice de richesse des ménages (EDS-RDC III 2024), (2) la valeur immobilière médiane (Texaf, SEP Congo), et (3) la connectivité numérique — taux de pénétration mobile et internet (ARPCE). Ces trois indicateurs sont normalisés, pondérés et calibrés sur le PIB national par habitant (Banque Mondiale, Trading Economics). Les communes sont classées en 5 niveaux (Tier 1 = PIB/hab > 3 000 USD, Tier 5 < 600 USD).",
+    methodologyCosts:
+      "Les coûts fonciers sont dérivés des données immobilières (Texaf, Numbeo) et des transactions observées. Le CAPEX matériel d'une station standard (280 000 USD) est basé sur les devis d'opérateurs de la sous-région. L'OPEX mensuel inclut les salaires (Paylab/SalaryExplorer), l'énergie, la maintenance et les taxes locales.",
+    methodologyRevenue:
+      "La marge nette sur le carburant (115 CDF/L) est fixée par arrêté ministériel. La marge auxiliaire varie de 2 à 195 CDF/L selon le type de consommation dominante de la commune (transport routier, groupes électrogènes, commerce informel). Le prix d'achat fournisseur (3 208 CDF/L) correspond au prix dépôt SEP Congo, Limete.",
     logLoading: 'Chargement des données…',
     logBuilding: 'Construction du rapport…',
     logDone: '✅ Rapport généré : {count} blocs',

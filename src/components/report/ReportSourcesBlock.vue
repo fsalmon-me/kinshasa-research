@@ -2,8 +2,9 @@
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { SourcesBlock, SourceItem } from '../../types/report'
+import { resolveL10n } from '@/lib/l10n'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 const props = defineProps<{
   block: SourcesBlock
@@ -24,7 +25,11 @@ const sortedItems = computed(() => {
   const items = [...props.block.items]
   // Data sources first, then external
   items.sort((a, b) => {
-    if (a.type === b.type) return a.label.localeCompare(b.label, 'fr')
+    if (a.type === b.type) {
+      const la = typeof a.label === 'string' ? a.label : a.label.fr
+      const lb = typeof b.label === 'string' ? b.label : b.label.fr
+      return la.localeCompare(lb, 'fr')
+    }
     return a.type === 'data' ? -1 : 1
   })
   return items
@@ -66,17 +71,17 @@ function resetForm() {
 
 <template>
   <div class="sources-block">
-    <h3 v-if="block.title" class="sources-title">{{ block.title }}</h3>
+    <h3 v-if="block.title" class="sources-title">{{ resolveL10n(block.title, locale) }}</h3>
 
     <!-- Data sources section -->
     <div v-if="dataSources.length" class="sources-section">
       <h4 class="sources-subtitle">{{ t('sourcesBlock.dataUsed') }}</h4>
       <ol class="sources-list data-list">
         <li v-for="(src, i) in dataSources" :key="'d-' + i" class="source-item data-source">
-          <span class="source-label">{{ src.label }}</span>
+          <span class="source-label">{{ resolveL10n(src.label, locale) }}</span>
           <span v-if="src.date" class="source-date"> ({{ src.date }})</span>
           <a v-if="src.url" :href="src.url" target="_blank" rel="noopener" class="source-link">↗</a>
-          <span v-if="src.description" class="source-desc"> — {{ src.description }}</span>
+          <span v-if="src.description" class="source-desc"> — {{ resolveL10n(src.description, locale) }}</span>
           <button v-if="editable" class="remove-btn" :title="t('sourcesBlock.delete')" @click="removeSource(block.items.indexOf(src))">×</button>
         </li>
       </ol>
@@ -87,10 +92,10 @@ function resetForm() {
       <h4 class="sources-subtitle">{{ t('sourcesBlock.externalRefs') }}</h4>
       <ol class="sources-list ext-list">
         <li v-for="(src, i) in externalSources" :key="'e-' + i" class="source-item ext-source">
-          <span class="source-label">{{ src.label }}</span>
+          <span class="source-label">{{ resolveL10n(src.label, locale) }}</span>
           <span v-if="src.date" class="source-date"> ({{ src.date }})</span>
           <a v-if="src.url" :href="src.url" target="_blank" rel="noopener" class="source-link">↗</a>
-          <span v-if="src.description" class="source-desc"> — {{ src.description }}</span>
+          <span v-if="src.description" class="source-desc"> — {{ resolveL10n(src.description, locale) }}</span>
           <button v-if="editable" class="remove-btn" :title="t('sourcesBlock.delete')" @click="removeSource(block.items.indexOf(src))">×</button>
         </li>
       </ol>

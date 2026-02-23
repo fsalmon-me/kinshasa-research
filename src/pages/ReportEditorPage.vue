@@ -111,7 +111,8 @@ async function handleSave() {
   if (!report.value) return
   // Auto-generate slug from title
   if (!report.value.slug) {
-    report.value.slug = slugify(report.value.title)
+    const titleStr = typeof report.value.title === 'string' ? report.value.title : report.value.title.fr
+    report.value.slug = slugify(titleStr)
   }
   saving.value = true
   try {
@@ -137,7 +138,7 @@ async function handleDelete() {
 }
 
 // ---- Generate report from data ----
-async function handleGenerate(type: string, locale: 'fr' | 'en' = 'fr') {
+async function handleGenerate(type: string) {
   showGenerateMenu.value = false
   generating.value = true
   debugLogs.value = []
@@ -146,7 +147,7 @@ async function handleGenerate(type: string, locale: 'fr' | 'en' = 'fr') {
     let result: GenerateResult
     switch (type) {
       case 'fuel':
-        result = await buildFuelReport(locale)
+        result = await buildFuelReport()
         break
       default:
         showStatus(`${t('editor.errorPrefix')} ${t('editor.unknownGenerator', { type })}`)
@@ -210,9 +211,7 @@ function applyJson() {
           {{ generating ? t('editor.generating') : t('editor.generate') }}
         </button>
         <div v-if="showGenerateMenu" class="generate-menu">
-          <div class="gen-group-label">⛽ {{ t('editor.fuelReport') }}</div>
-          <button class="gen-option" @click="handleGenerate('fuel', 'fr')">🇫🇷 Français</button>
-          <button class="gen-option" @click="handleGenerate('fuel', 'en')">🇬🇧 English</button>
+          <button class="gen-option" @click="handleGenerate('fuel')">⛽ {{ t('editor.fuelReport') }}</button>
         </div>
       </div>
     </header>

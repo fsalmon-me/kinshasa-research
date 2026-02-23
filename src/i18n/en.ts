@@ -315,6 +315,91 @@ export default {
     srcMacrotrendsDesc: 'Complementary demographic projections',
     srcOsm: 'OpenStreetMap — Overpass API',
     srcOsmDesc: 'Fuel station extraction (amenity=fuel) in the Kinshasa metropolitan area',
+
+    // ── Stations per commune section ──
+    stationsTitle: 'Fuel stations by commune',
+    stationsText:
+      'The table below presents the number of fuel stations identified per commune in OpenStreetMap. Distribution is heavily concentrated in central communes.',
+    stationsTableTitle: 'Number of fuel stations per commune',
+    colStations: 'Stations',
+
+    // ── GDP per capita section ──
+    gdpTitle: 'Estimated GDP per capita by commune',
+    gdpText:
+      'GDP per capita is estimated by triangulating three variables: the wealth index (EDS-DRC III 2024), median property values (Texaf, SEP Congo), and digital connectivity (ARPCE). Communes are classified into 5 tiers (Tier 1 = highest).',
+    gdpTableTitle: 'Estimated GDP per capita (USD) — 2024',
+    gdpChartTitle: 'GDP per capita by commune (USD)',
+    colGdpPerCapita: 'GDP/cap (USD)',
+    colDistrict: 'District',
+    colTier: 'Tier',
+    colClassification: 'Classification',
+
+    // ── CAPEX / OPEX section ──
+    capexTitle: 'Fuel station installation and operational costs',
+    capexText:
+      'The estimated costs below concern the construction of a standard fuel station (1,000 m²) in each commune. Land cost varies significantly by commune; the material CAPEX (USD 280,000) is constant.',
+    capexTableTitle: 'CAPEX / OPEX by commune — Fuel station 1,000 m²',
+    capexChartTitle: 'Total CAPEX by commune (USD)',
+    colLandValue: 'Land (USD/m²)',
+    colLandCost: 'Land cost (USD)',
+    colCapexMaterial: 'Material CAPEX (USD)',
+    colCapexTotal: 'Total CAPEX (USD)',
+    colOpex: 'Monthly OPEX (USD)',
+
+    // ── Truck logistics section ──
+    truckTitle: 'Logistics costs — Fuel tanker',
+    truckText:
+      'The logistics parameters below are used to estimate the cost of transporting fuel from the main depot (SEP Congo, Limete) to fuel stations across the 24 communes.',
+    truckTableTitle: 'Logistics parameters — 35,000 L fuel tanker',
+    colParameter: 'Parameter',
+    colValue: 'Value',
+    colUnit: 'Unit',
+    truckCapacity: 'Capacity',
+    truckLoading: 'Loading cost',
+    truckUnloading: 'Unloading cost',
+    truckCostKm: 'Cost per kilometre',
+    truckLabor: 'Labour cost / hour',
+    truckLoadingM3: 'Loading cost / m³',
+
+    // ── Revenue per liter section ──
+    revenueTitle: 'Expected revenue per litre and supplier purchase price',
+    revenueText:
+      'Expected revenue per litre combines the net fuel margin (115 CDF/L, set by ministerial decree) and a variable ancillary margin depending on the commune\'s consumption type. The supplier purchase price (SEP Congo depot) is 3,208 CDF/L.',
+    revenueTableTitle: 'Expected revenue per litre by commune (CDF)',
+    revenueChartTitle: 'Expected revenue by commune (CDF/L)',
+    colConsumptionType: 'Consumption type',
+    colFuelMargin: 'Fuel margin (CDF/L)',
+    colAncillaryMargin: 'Ancillary margin (CDF/L)',
+    colExpectedRevenue: 'Expected revenue (CDF/L)',
+    colSupplierPrice: 'Supplier price (CDF/L)',
+
+    // ── New external sources ──
+    srcWorldBank: 'World Bank — Development Indicators',
+    srcWorldBankDesc: 'DRC GDP per capita (nominal and PPP), urbanisation coefficient',
+    srcTradingEconomics: 'Trading Economics — DRC GDP per capita',
+    srcTradingEconomicsDesc: 'DRC GDP per capita time series, IMF/World Bank data',
+    srcInsDhs: 'INS / EDS-DRC III — Demographic and Health Survey 2024',
+    srcInsDhsDesc: 'Household wealth index by province, service access rates',
+    srcNumbeo: 'Numbeo — Cost of Living Kinshasa',
+    srcNumbeoDesc: 'Cost of living and property prices in Kinshasa, international comparisons',
+    srcPaylab: 'Paylab / SalaryExplorer — DRC Salaries',
+    srcPaylabDesc: 'Salary data by sector in the DRC',
+    srcSepCongo: 'SEP Congo — Logistics data',
+    srcSepCongoDesc: 'Supply costs, supplier depot price Limete',
+    srcTexaf: 'Texaf — Kinshasa Property Report',
+    srcTexafDesc: 'Land and property values by commune of Kinshasa',
+    srcMinPlan: 'Ministry of Planning — Economic projections',
+    srcMinPlanDesc: 'Provincial GDP projections and socio-economic indicators',
+    srcArpce: 'ARPCE — Digital connectivity',
+    srcArpceDesc: 'Mobile and internet coverage data by commune',
+
+    // ── Extended methodology ──
+    methodologyGdp:
+      'Communal GDP per capita is estimated by triangulating three proxy variables: (1) household wealth index (EDS-DRC III 2024), (2) median property value (Texaf, SEP Congo), and (3) digital connectivity — mobile and internet penetration (ARPCE). These three indicators are normalised, weighted and calibrated against national GDP per capita (World Bank, Trading Economics). Communes are classified into 5 tiers (Tier 1 = GDP/cap > USD 3,000, Tier 5 < USD 600).',
+    methodologyCosts:
+      'Land costs are derived from property data (Texaf, Numbeo) and observed transactions. The material CAPEX for a standard station (USD 280,000) is based on sub-regional operator quotes. Monthly OPEX includes salaries (Paylab/SalaryExplorer), energy, maintenance and local taxes.',
+    methodologyRevenue:
+      'The net fuel margin (115 CDF/L) is set by ministerial decree. The ancillary margin ranges from 2 to 195 CDF/L depending on the commune\'s dominant consumption type (road transport, generators, informal trade). The supplier purchase price (3,208 CDF/L) is the SEP Congo depot price, Limete.',
     logLoading: 'Loading data…',
     logBuilding: 'Building report…',
     logDone: '✅ Report generated: {count} blocks',

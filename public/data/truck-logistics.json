@@ -1,0 +1,32 @@
+[
+  {
+    "parameter": "capacity",
+    "value": 35000,
+    "unit": "litres"
+  },
+  {
+    "parameter": "loading_cost",
+    "value": 98,
+    "unit": "USD/rotation"
+  },
+  {
+    "parameter": "unloading_cost",
+    "value": 55,
+    "unit": "USD/rotation"
+  },
+  {
+    "parameter": "cost_per_km",
+    "value": 4.20,
+    "unit": "USD/km"
+  },
+  {
+    "parameter": "labor_cost_per_hour",
+    "value": 18.50,
+    "unit": "USD/h"
+  },
+  {
+    "parameter": "loading_cost_per_m3",
+    "value": 2.80,
+    "unit": "USD/m³"
+  }
+]
