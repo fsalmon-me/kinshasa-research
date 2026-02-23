@@ -9,9 +9,11 @@ const { t } = useI18n()
 <template>
   <div class="map-page">
     <MapContainer />
-    <LocaleSwitcher class="locale-switcher" />
-    <router-link to="/reports" class="admin-link reports-link">📊 {{ t('common.reports') }}</router-link>
-    <router-link to="/admin" class="admin-link">⚙️ {{ t('common.admin') }}</router-link>
+    <div class="bottom-bar">
+      <LocaleSwitcher />
+      <router-link to="/reports" class="bar-link">📊 {{ t('common.reports') }}</router-link>
+      <router-link to="/admin" class="bar-link">⚙️ {{ t('common.admin') }}</router-link>
+    </div>
   </div>
 </template>
 
@@ -22,11 +24,17 @@ const { t } = useI18n()
   position: relative;
 }
 
-.admin-link {
+.bottom-bar {
   position: absolute;
   bottom: 12px;
   right: 12px;
   z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bar-link {
   background: #fff;
   color: #333;
   text-decoration: none;
@@ -35,21 +43,11 @@ const { t } = useI18n()
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   font-size: 13px;
   font-weight: 500;
+  white-space: nowrap;
   transition: background 0.15s;
 }
 
-.admin-link:hover {
+.bar-link:hover {
   background: #f0f0f0;
-}
-
-.reports-link {
-  right: 100px;
-}
-
-.locale-switcher {
-  position: absolute;
-  bottom: 12px;
-  right: 180px;
-  z-index: 1000;
 }
 </style>
