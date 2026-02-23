@@ -52,11 +52,13 @@ const emit = defineEmits<{
       v-else-if="block.type === 'table'"
       :block="block"
       :editable="editable"
+      @update="b => emit('update', index, b)"
     />
     <ReportChartBlock
       v-else-if="block.type === 'chart'"
       :block="block"
       :editable="editable"
+      @update="(b: any) => emit('update', index, b)"
     />
     <ReportSourcesBlock
       v-else-if="block.type === 'sources'"

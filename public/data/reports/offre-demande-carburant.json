@@ -1,0 +1,283 @@
+{
+  "id": "default-fuel-supply-demand",
+  "title": "Offre & Demande de Carburant — Kinshasa",
+  "slug": "offre-demande-carburant",
+  "description": "Analyse de l'offre (142 stations-service) et de la demande de carburant (3 132 m³/jour en 2025) pour les 24 communes de Kinshasa.",
+  "blocks": [
+    {
+      "type": "title",
+      "id": "blk_001",
+      "level": 1,
+      "content": "Offre & Demande de Carburant à Kinshasa"
+    },
+    {
+      "type": "text",
+      "id": "blk_002",
+      "content": "Ce rapport analyse la relation entre l'offre en stations-service et la demande de carburant estimée pour les 24 communes de Kinshasa. La métropole compte environ 17,8 M habitants (projections 2025, ONU/Macrotrends) et consomme environ 3 132 m³ de carburant par jour, soit 3 132 000 litres/jour. Cette consommation est projetée à 4 500 m³/jour en 2030 et 8 195 m³/jour en 2040 (scénario PDTK B), portée par la croissance démographique et la montée de la motorisation (actuellement ~4% des ménages, ×6,3 d'ici 2040 selon EDS-RDC III 2024)."
+    },
+    {
+      "type": "text",
+      "id": "blk_003",
+      "content": "L'offre est évaluée via les 142 stations-service identifiées dans OpenStreetMap (Overpass API, février 2026). Cette source peut sous-estimer le nombre réel de points de vente informels de carburant."
+    },
+    {
+      "type": "title",
+      "id": "blk_004",
+      "level": 2,
+      "content": "Demande de carburant par commune"
+    },
+    {
+      "type": "text",
+      "id": "blk_005",
+      "content": "Le tableau ci-dessous présente la demande journalière en carburant par commune pour les horizons 2025, 2030 et 2040. Les cinq communes les plus consommatrices en 2025 sont Ngaliema (495 m³/j), Limete (370 m³/j), Gombe (290 m³/j), Kimbanseke (246 m³/j), Masina (174 m³/j)."
+    },
+    {
+      "type": "table",
+      "id": "blk_006",
+      "title": "Demande de carburant (m³/jour) — projections",
+      "dataSource": "fuel-demand.json",
+      "columns": [
+        {
+          "field": "commune",
+          "label": "Commune"
+        },
+        {
+          "field": "pop_2025",
+          "label": "Pop. 2025",
+          "format": "number",
+          "decimals": 0
+        },
+        {
+          "field": "demand_2025",
+          "label": "2025 (m³/j)",
+          "format": "number",
+          "decimals": 0
+        },
+        {
+          "field": "demand_2030",
+          "label": "2030 (m³/j)",
+          "format": "number",
+          "decimals": 0
+        },
+        {
+          "field": "demand_2040",
+          "label": "2040 (m³/j)",
+          "format": "number",
+          "decimals": 0
+        }
+      ],
+      "sortBy": "demand_2025",
+      "sortDir": "desc"
+    },
+    {
+      "type": "chart",
+      "id": "blk_007",
+      "title": "Demande de carburant par commune (m³/jour)",
+      "chartType": "bar",
+      "dataSource": "fuel-demand.json",
+      "labelField": "commune",
+      "datasets": [
+        {
+          "field": "demand_2025",
+          "label": "2025",
+          "color": "#1976d2"
+        },
+        {
+          "field": "demand_2030",
+          "label": "2030",
+          "color": "#fb8c00"
+        },
+        {
+          "field": "demand_2040",
+          "label": "2040",
+          "color": "#c62828"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "id": "blk_008",
+      "level": 2,
+      "content": "Densité de demande"
+    },
+    {
+      "type": "text",
+      "id": "blk_009",
+      "content": "La densité de demande est exprimée de deux façons : par habitant (litres/personne/jour) et par superficie (m³/jour/km²). Les communes les plus denses spatialement sont Gombe (23.5 m³/j/km²), Kalamu (23.1 m³/j/km²), Kasa-Vubu (19.0 m³/j/km²), Matete (17.4 m³/j/km²), Kinshasa (16.0 m³/j/km²). Ces indicateurs permettent de comparer l'intensité de la demande entre communes de tailles différentes."
+    },
+    {
+      "type": "table",
+      "id": "blk_010",
+      "title": "Densité de demande — 2025",
+      "dataSource": "fuel-demand.json",
+      "columns": [
+        {
+          "field": "commune",
+          "label": "Commune"
+        },
+        {
+          "field": "area_km2",
+          "label": "Surface (km²)",
+          "format": "number",
+          "decimals": 2
+        },
+        {
+          "field": "demand_per_capita_L_2025",
+          "label": "L/pers/jour",
+          "format": "number",
+          "decimals": 4
+        },
+        {
+          "field": "demand_per_km2_2025",
+          "label": "m³/jour/km²",
+          "format": "number",
+          "decimals": 2
+        }
+      ],
+      "sortBy": "demand_per_km2_2025",
+      "sortDir": "desc"
+    },
+    {
+      "type": "chart",
+      "id": "blk_011",
+      "title": "Demande par habitant (L/pers/jour) — 2025",
+      "chartType": "bar",
+      "dataSource": "fuel-demand.json",
+      "labelField": "commune",
+      "datasets": [
+        {
+          "field": "demand_per_capita_L_2025",
+          "label": "L/personne/jour",
+          "color": "#7b1fa2"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "id": "blk_012",
+      "level": 2,
+      "content": "Offre en stations-service"
+    },
+    {
+      "type": "text",
+      "id": "blk_013",
+      "content": "Kinshasa compte 142 stations-service référencées dans OpenStreetMap. La distribution est très inégale : Ngaliema (20), Kalamu (17), Gombe (13), Kasa-Vubu (10), Lemba (9) concentrent la majorité de l'offre, tandis que 3 communes n'ont aucune station recensée (Kisenso, Mont-Ngafula, Ndjili)."
+    },
+    {
+      "type": "text",
+      "id": "blk_014",
+      "content": "⚠ Cette source (OSM) ne recense pas les points de vente informels de carburant ni les dépôts privés. La couverture réelle en approvisionnement peut être significativement différente."
+    },
+    {
+      "type": "title",
+      "id": "blk_015",
+      "level": 2,
+      "content": "Déséquilibre offre / demande"
+    },
+    {
+      "type": "text",
+      "id": "blk_016",
+      "content": "6 communes sont classées en saturation démographique résidente par le PDTK (densité >500 pers/ha) : Bumbu, Makala, Matete, Ndjili, Ngaba, Ngiri-Ngiri. Dans ces communes, la croissance de la consommation est portée par la motorisation et l'intensification des flux plutôt que par la croissance de la population résidente."
+    },
+    {
+      "type": "text",
+      "id": "blk_017",
+      "content": "Les communes périphériques (Nsele, Maluku, Mont-Ngafula) présentent les volumes absolus les plus élevés mais une faible densité spatiale de demande. L'offre en stations-service, concentrée dans les communes centrales, ne suit pas la croissance de la demande en périphérie — un facteur clé pour la planification d'infrastructure."
+    },
+    {
+      "type": "text",
+      "id": "blk_018",
+      "content": "La demande totale devrait passer de 3 132 à 8 195 m³/jour entre 2025 et 2040, soit une augmentation de 162%. Sans expansion significative du réseau de distribution, plusieurs communes périphériques risquent des pénuries récurrentes d'approvisionnement."
+    },
+    {
+      "type": "title",
+      "id": "blk_019",
+      "level": 2,
+      "content": "Méthodologie"
+    },
+    {
+      "type": "text",
+      "id": "blk_020",
+      "content": "La demande journalière communale est modélisée par : Dⱼ = f(Population, Motorisation, Déficit électrique, Industrie). Population 2025 : 17,77 M (ONU/Macrotrends). Projections démographiques : PDTK Scénario B. Taux de motorisation : 4% des ménages (EDS-RDC III 2024), projeté ×6,3 d'ici 2040. Consommation métropolitaine de référence : 3 000 m³/jour (Min. Économie, avril 2025). Les valeurs communales sont normalisées pour que leur somme équivaille aux totaux métropolitains."
+    },
+    {
+      "type": "text",
+      "id": "blk_021",
+      "content": "L'offre en stations-service est extraite d'OpenStreetMap via Overpass API (tag amenity=fuel), géolocalisée et comptée par commune via intersection géométrique point-dans-polygone. Les communes sont définies par les polygones OSM du fichier communes.geojson."
+    },
+    {
+      "type": "sources",
+      "id": "blk_022",
+      "title": "Sources & Références",
+      "autoCollect": true,
+      "items": [
+        {
+          "label": "Données de demande (fuel-demand.json)",
+          "type": "data",
+          "date": "2026-02-21",
+          "description": "Modélisation spatiale de la demande en hydrocarbures par commune 2025-2040"
+        },
+        {
+          "label": "Stations-service (fuel.geojson)",
+          "type": "data",
+          "url": "https://www.openstreetmap.org/",
+          "date": "2026-02-19",
+          "description": "142 stations-service extraites d'OpenStreetMap"
+        },
+        {
+          "label": "Polygones communes (communes.geojson)",
+          "type": "data",
+          "url": "https://www.openstreetmap.org/",
+          "date": "2026-02-18",
+          "description": "Limites administratives des 24 communes de Kinshasa, source OSM"
+        },
+        {
+          "label": "JICA — Plan Directeur des Transports de Kinshasa (PDTK)",
+          "type": "external",
+          "date": "2019",
+          "description": "Projections démographiques Scénario B, classification saturation démographique"
+        },
+        {
+          "label": "Ministère de l'Économie RDC — Consommation métropolitaine",
+          "type": "external",
+          "date": "Avril 2025",
+          "description": "Données de consommation : 3 000 m³/jour pour la métropole de Kinshasa"
+        },
+        {
+          "label": "EDS-RDC III — Enquête Démographique et de Santé",
+          "type": "external",
+          "date": "2024",
+          "description": "Taux de motorisation des ménages congolais : ~4%, projection ×6,3 d'ici 2040"
+        },
+        {
+          "label": "SNEL / AZES — Déficit électrique par commune",
+          "type": "external",
+          "description": "Données de déficit électrique influençant la demande en groupes électrogènes"
+        },
+        {
+          "label": "United Nations DESA — World Urbanization Prospects",
+          "type": "external",
+          "url": "https://population.un.org/wup/",
+          "date": "2024",
+          "description": "Population Kinshasa 2025 : 17,77 millions"
+        },
+        {
+          "label": "Macrotrends — Kinshasa Population",
+          "type": "external",
+          "url": "https://www.macrotrends.net/cities/20839/kinshasa/population",
+          "date": "2025",
+          "description": "Projections démographiques complémentaires"
+        },
+        {
+          "label": "OpenStreetMap — Overpass API",
+          "type": "external",
+          "url": "https://overpass-turbo.eu/",
+          "date": "2026-02-19",
+          "description": "Extraction des stations-service (amenity=fuel) dans la métropole de Kinshasa"
+        }
+      ]
+    }
+  ],
+  "createdAt": "2026-02-23T13:50:36.736Z",
+  "updatedAt": "2026-02-23T13:50:36.736Z"
+}

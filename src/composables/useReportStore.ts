@@ -38,17 +38,20 @@ export async function fetchReportList(): Promise<Report[]> {
       console.warn('[reports] Firestore unavailable, trying static', e)
     }
 
-    // Fallback: try static file
+    // Fallback: try static reports/index.json
     try {
       const base = import.meta.env.BASE_URL.replace(/\/$/, '')
-      const res = await fetch(`${base}/data/reports.json`)
+      const res = await fetch(`${base}/data/reports/index.json`)
       if (res.ok) {
         const data = await res.json()
-        reports.value = Array.isArray(data) ? data : []
+        // Index contains metadata only (no blocks)
+        reports.value = Array.isArray(data)
+          ? data.map((r: Record<string, unknown>) => ({ ...r, blocks: (r.blocks as Report['blocks']) ?? [] } as Report))
+          : []
         return reports.value
       }
     } catch (e) {
-      console.warn('[reports] static file not found', e)
+      console.warn('[reports] static index not found', e)
     }
 
     reports.value = []
@@ -58,15 +61,35 @@ export async function fetchReportList(): Promise<Report[]> {
   }
 }
 
-/** Fetch a single report by slug */
+/** Fetch a single report by slug (loads full blocks from individual file if needed) */
 export async function fetchReport(slug: string): Promise<Report | null> {
-  // If already loaded, return from cache
+  // If cached with blocks, return directly
   const cached = reports.value.find(r => r.slug === slug)
-  if (cached) return cached
+  if (cached && cached.blocks.length > 0) return cached
 
-  // Otherwise fetch list and find
-  await fetchReportList()
-  return reports.value.find(r => r.slug === slug) ?? null
+  // Ensure the list is loaded
+  if (reports.value.length === 0) await fetchReportList()
+
+  // Firestore gives us full reports; if we have blocks, return
+  const fromList = reports.value.find(r => r.slug === slug)
+  if (fromList && fromList.blocks.length > 0) return fromList
+
+  // Otherwise load the individual static file (has full blocks)
+  try {
+    const base = import.meta.env.BASE_URL.replace(/\/$/, '')
+    const res = await fetch(`${base}/data/reports/${slug}.json`)
+    if (res.ok) {
+      const full: Report = await res.json()
+      const idx = reports.value.findIndex(r => r.slug === slug)
+      if (idx >= 0) reports.value[idx] = full
+      else reports.value.push(full)
+      return full
+    }
+  } catch (e) {
+    console.warn(`[reports] static file for "${slug}" not found`, e)
+  }
+
+  return fromList ?? null
 }
 
 /** Save (create or update) a report to Firestore */

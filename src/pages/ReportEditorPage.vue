@@ -11,6 +11,7 @@ import {
   newBlockId,
 } from '@/composables/useReportStore'
 import BlockEditor from '@/components/report/BlockEditor.vue'
+import { buildFuelReport, type GenerateResult } from '@/composables/reports/fuel-report-builder'
 
 const route = useRoute()
 const router = useRouter()
@@ -19,6 +20,12 @@ const report = ref<Report | null>(null)
 const saving = ref(false)
 const statusMsg = ref('')
 let statusTimer: ReturnType<typeof setTimeout> | null = null
+
+// Generate & debug state
+const generating = ref(false)
+const showGenerateMenu = ref(false)
+const debugJson = ref('')
+const debugLogs = ref<string[]>([])
 
 function showStatus(msg: string, ms = 4000) {
   if (statusTimer) clearTimeout(statusTimer)
@@ -126,6 +133,40 @@ async function handleDelete() {
   }
 }
 
+// ---- Generate report from data ----
+async function handleGenerate(type: string) {
+  showGenerateMenu.value = false
+  generating.value = true
+  debugLogs.value = []
+  debugJson.value = ''
+  try {
+    let result: GenerateResult
+    switch (type) {
+      case 'fuel':
+        result = await buildFuelReport()
+        break
+      default:
+        showStatus(`✗ Générateur inconnu: ${type}`)
+        return
+    }
+    report.value = result.report
+    debugLogs.value = result.logs
+    debugJson.value = JSON.stringify(result.report, null, 2)
+    showStatus(`✓ Rapport généré (${result.report.blocks.length} blocs) — Cliquer 💾 pour sauvegarder sur Firestore`)
+  } catch (e: any) {
+    showStatus(`✗ Erreur de génération: ${e.message}`)
+    debugLogs.value.push(`ERROR: ${e.message}`)
+    debugJson.value = `Error: ${e.stack || e.message}`
+  } finally {
+    generating.value = false
+  }
+}
+
+function copyDebug() {
+  navigator.clipboard.writeText(debugJson.value)
+  showStatus('📋 JSON copié dans le presse-papier')
+}
+
 // ---- Block JSON editor (advanced) ----
 const showJsonEditor = ref(false)
 const jsonDraft = ref('')
@@ -161,6 +202,14 @@ function applyJson() {
       </button>
       <button class="btn btn-json" @click="openJsonEditor">{ } JSON</button>
       <button class="btn btn-danger" @click="handleDelete">🗑 Supprimer</button>
+      <div class="generate-wrap">
+        <button class="btn btn-generate" @click="showGenerateMenu = !showGenerateMenu" :disabled="generating">
+          {{ generating ? 'Génération…' : '🔄 Générer' }}
+        </button>
+        <div v-if="showGenerateMenu" class="generate-menu">
+          <button class="gen-option" @click="handleGenerate('fuel')">⛽ Offre &amp; Demande de Carburant</button>
+        </div>
+      </div>
     </header>
 
     <!-- Report metadata -->
@@ -203,6 +252,20 @@ function applyJson() {
         <button class="add-btn" @click="addBlock('chart')">Graphique</button>
         <button class="add-btn" @click="addBlock('sources')">📚 Sources</button>
       </div>
+    </section>
+
+    <!-- Debug panel -->
+    <section v-if="debugJson" class="debug-section">
+      <details open>
+        <summary class="debug-header">
+          🔍 Debug — Rapport généré ({{ report?.blocks.length }} blocs)
+          <button class="btn-copy" @click.prevent="copyDebug" title="Copier le JSON">📋 Copier</button>
+        </summary>
+        <div v-if="debugLogs.length" class="debug-logs">
+          <div v-for="(line, i) in debugLogs" :key="i" class="debug-log">{{ line }}</div>
+        </div>
+        <pre class="debug-json">{{ debugJson }}</pre>
+      </details>
     </section>
 
     <!-- JSON editor modal -->
@@ -343,5 +406,93 @@ function applyJson() {
   display: flex;
   gap: 8px;
   margin-top: 12px;
+}
+
+/* Generate dropdown */
+.generate-wrap {
+  position: relative;
+}
+.btn-generate {
+  border-color: #6a1b9a;
+  color: #6a1b9a;
+}
+.btn-generate:hover { background: #f3e5f5; }
+.btn-generate:disabled { opacity: 0.5; cursor: wait; }
+.generate-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  z-index: 100;
+  min-width: 260px;
+  overflow: hidden;
+}
+.gen-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: none;
+  padding: 10px 14px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.gen-option:hover { background: #f5f5f5; }
+
+/* Debug panel */
+.debug-section {
+  margin-top: 24px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.debug-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #fafafa;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}
+.btn-copy {
+  margin-left: auto;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.btn-copy:hover { background: #f5f5f5; }
+.debug-logs {
+  padding: 8px 14px;
+  background: #263238;
+  border-bottom: 1px solid #37474f;
+}
+.debug-log {
+  font-family: monospace;
+  font-size: 12px;
+  color: #b2ff59;
+  line-height: 1.6;
+}
+.debug-json {
+  margin: 0;
+  padding: 12px 14px;
+  background: #263238;
+  color: #e0e0e0;
+  font-family: monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  max-height: 400px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
 }
 </style>

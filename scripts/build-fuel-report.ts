@@ -7,10 +7,10 @@
  * Usage:  npx tsx scripts/build-fuel-report.ts
  * Output: public/data/reports.json
  */
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { ReportBuilder } from './lib/report-builder.js'
+import { ReportBuilder } from '../src/lib/report-builder.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -300,11 +300,35 @@ const report = new ReportBuilder('Offre & Demande de Carburant — Kinshasa')
   .sources('Sources & Références')
   .build()
 
-// ── Write output ───────────────────────────────────────────────────
-const outputPath = join(DATA_DIR, 'reports.json')
-writeFileSync(outputPath, JSON.stringify([report], null, 2), 'utf-8')
+// ── Write output to public/data/reports/{slug}.json + index.json ──
+const REPORTS_DIR = join(DATA_DIR, 'reports')
+mkdirSync(REPORTS_DIR, { recursive: true })
 
-console.log(`\n✅ Report written to ${outputPath}`)
+// Write individual report file
+const reportPath = join(REPORTS_DIR, `${report.slug}.json`)
+writeFileSync(reportPath, JSON.stringify(report, null, 2), 'utf-8')
+
+// Update index (merge with existing entries from other report scripts)
+const indexPath = join(REPORTS_DIR, 'index.json')
+let index: { id: string; title: string; slug: string; description: string; createdAt: string; updatedAt: string }[] = []
+try { index = JSON.parse(readFileSync(indexPath, 'utf-8')) } catch { /* first run */ }
+
+const summary = {
+  id: report.id,
+  title: report.title,
+  slug: report.slug,
+  description: report.description,
+  createdAt: report.createdAt,
+  updatedAt: report.updatedAt,
+}
+const existingIdx = index.findIndex(r => r.slug === report.slug)
+if (existingIdx >= 0) index[existingIdx] = summary
+else index.push(summary)
+
+writeFileSync(indexPath, JSON.stringify(index, null, 2), 'utf-8')
+
+console.log(`\n✅ Report written to ${reportPath}`)
+console.log(`   Index updated: ${indexPath}`)
 console.log(`   Title: ${report.title}`)
 console.log(`   Slug:  ${report.slug}`)
 console.log(`   Blocks: ${report.blocks.length}`)

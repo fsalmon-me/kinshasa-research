@@ -1,11 +1,14 @@
 /**
  * ReportBuilder — Fluent DSL for building report JSON files.
  *
+ * Works in both browser (Vite) and CLI (tsx) contexts.
+ * Uses relative imports so both environments can resolve types.
+ *
  * Usage:
  *   const report = new ReportBuilder('Mon rapport')
  *     .description('Résumé du rapport')
  *     .h1('Titre principal')
- *     .text('Paragraph d\'introduction...')
+ *     .text('Paragraphe d\'introduction...')
  *     .h2('Section')
  *     .table('fuel-demand.json', { ... })
  *     .barChart('fuel-demand.json', { ... })
@@ -13,46 +16,15 @@
  *     .sources()
  *     .build()
  */
+import type {
+  Report,
+  ReportBlock,
+  ColumnDef,
+  ChartDatasetDef,
+  SourceItem,
+} from '../types/report'
 
-// Mirror types from src/types/report.ts (script-side, no Vue dependency)
-interface ColumnDef {
-  field: string
-  label: string
-  format?: 'number' | 'percent' | 'text'
-  decimals?: number
-}
-
-interface ChartDatasetDef {
-  field: string
-  label: string
-  color?: string
-  backgroundColor?: string | string[]
-}
-
-interface SourceItem {
-  label: string
-  url?: string
-  date?: string
-  description?: string
-  type: 'data' | 'external'
-}
-
-type ReportBlock =
-  | { type: 'title'; id: string; level: 1 | 2 | 3; content: string }
-  | { type: 'text'; id: string; content: string }
-  | { type: 'table'; id: string; title?: string; dataSource: string; columns: ColumnDef[]; sortBy?: string; sortDir?: 'asc' | 'desc'; limit?: number; filters?: Record<string, unknown> }
-  | { type: 'chart'; id: string; title?: string; chartType: 'bar' | 'pie' | 'line' | 'doughnut'; dataSource: string; labelField: string; datasets: ChartDatasetDef[]; options?: Record<string, unknown> }
-  | { type: 'sources'; id: string; title?: string; autoCollect: boolean; items: SourceItem[] }
-
-interface Report {
-  id: string
-  title: string
-  slug: string
-  description: string
-  blocks: ReportBlock[]
-  createdAt: string
-  updatedAt: string
-}
+// ── Helpers ────────────────────────────────────────────────────────
 
 function slugify(text: string): string {
   return text
@@ -63,11 +35,7 @@ function slugify(text: string): string {
     .replace(/(^-|-$)/g, '')
 }
 
-let blockCounter = 0
-function nextId(): string {
-  blockCounter++
-  return `blk_${blockCounter.toString().padStart(3, '0')}`
-}
+// ── Config interfaces (public API) ─────────────────────────────────
 
 export interface TableConfig {
   title?: string
@@ -91,6 +59,8 @@ export interface SourceConfig {
   description?: string
 }
 
+// ── Builder ────────────────────────────────────────────────────────
+
 export class ReportBuilder {
   private _title: string
   private _description = ''
@@ -98,12 +68,17 @@ export class ReportBuilder {
   private _id = ''
   private _blocks: ReportBlock[] = []
   private _manualSources: SourceItem[] = []
+  private _counter = 0
 
   constructor(title: string) {
     this._title = title
     this._slug = slugify(title)
     this._id = `rpt_${slugify(title)}`
-    blockCounter = 0
+  }
+
+  private _nextId(): string {
+    this._counter++
+    return `blk_${this._counter.toString().padStart(3, '0')}`
   }
 
   /** Set report description */
@@ -126,25 +101,25 @@ export class ReportBuilder {
 
   /** Add H1 heading */
   h1(content: string): this {
-    this._blocks.push({ type: 'title', id: nextId(), level: 1, content })
+    this._blocks.push({ type: 'title', id: this._nextId(), level: 1, content })
     return this
   }
 
   /** Add H2 heading */
   h2(content: string): this {
-    this._blocks.push({ type: 'title', id: nextId(), level: 2, content })
+    this._blocks.push({ type: 'title', id: this._nextId(), level: 2, content })
     return this
   }
 
   /** Add H3 heading */
   h3(content: string): this {
-    this._blocks.push({ type: 'title', id: nextId(), level: 3, content })
+    this._blocks.push({ type: 'title', id: this._nextId(), level: 3, content })
     return this
   }
 
   /** Add a text paragraph block */
   text(content: string): this {
-    this._blocks.push({ type: 'text', id: nextId(), content })
+    this._blocks.push({ type: 'text', id: this._nextId(), content })
     return this
   }
 
@@ -152,7 +127,7 @@ export class ReportBuilder {
   table(dataSource: string, config: TableConfig): this {
     this._blocks.push({
       type: 'table',
-      id: nextId(),
+      id: this._nextId(),
       title: config.title,
       dataSource,
       columns: config.columns,
@@ -184,10 +159,14 @@ export class ReportBuilder {
     return this._chart('doughnut', dataSource, config)
   }
 
-  private _chart(chartType: 'bar' | 'line' | 'pie' | 'doughnut', dataSource: string, config: ChartConfig): this {
+  private _chart(
+    chartType: 'bar' | 'line' | 'pie' | 'doughnut',
+    dataSource: string,
+    config: ChartConfig,
+  ): this {
     this._blocks.push({
       type: 'chart',
-      id: nextId(),
+      id: this._nextId(),
       title: config.title,
       chartType,
       dataSource,
@@ -200,25 +179,21 @@ export class ReportBuilder {
 
   /** Add a manual external source */
   source(label: string, config?: SourceConfig): this {
-    this._manualSources.push({
-      label,
-      url: config?.url,
-      date: config?.date,
-      description: config?.description,
-      type: 'external',
-    })
+    const item: SourceItem = { label, type: 'external' }
+    if (config?.url) item.url = config.url
+    if (config?.date) item.date = config.date
+    if (config?.description) item.description = config.description
+    this._manualSources.push(item)
     return this
   }
 
-  /** Add a data-source reference (auto-collected from layers.json at render time) */
+  /** Add a data-source reference */
   dataSource(label: string, config?: SourceConfig): this {
-    this._manualSources.push({
-      label,
-      url: config?.url,
-      date: config?.date,
-      description: config?.description,
-      type: 'data',
-    })
+    const item: SourceItem = { label, type: 'data' }
+    if (config?.url) item.url = config.url
+    if (config?.date) item.date = config.date
+    if (config?.description) item.description = config.description
+    this._manualSources.push(item)
     return this
   }
 
@@ -226,7 +201,7 @@ export class ReportBuilder {
   sources(title?: string): this {
     this._blocks.push({
       type: 'sources',
-      id: nextId(),
+      id: this._nextId(),
       title: title ?? 'Sources & Références',
       autoCollect: true,
       items: [...this._manualSources],
