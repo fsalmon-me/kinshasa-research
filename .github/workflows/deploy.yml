@@ -31,7 +31,7 @@ jobs:
       - name: Deploy to Firebase Hosting
         run: |
           npm i -g firebase-tools
-          firebase deploy --only hosting --token "$FIREBASE_TOKEN"
+          firebase deploy --only hosting,firestore --token "$FIREBASE_TOKEN"
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 

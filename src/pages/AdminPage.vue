@@ -12,13 +12,21 @@ import {
   setFeatureOverride,
   exportMetadataOverrides,
   importMetadataOverrides,
+  dataSources,
+  invalidateCache,
 } from '@/composables/useDataStore'
+import { useAuth } from '@/composables/useAuth'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const { displayName, logout: doLogout } = useAuth()
 
 // ---- State ----
 const activeLayerId = ref<string | null>(null)
 const searchQuery = ref('')
 const statusMsg = ref('')
 const errorMsg = ref('')
+const publishing = ref(false)
 
 // ---- Feature rows ----
 interface FeatureRow {
@@ -271,6 +279,109 @@ function exportEnrichedData() {
   URL.revokeObjectURL(url)
 }
 
+// ---- Firestore data operations ----
+
+/** Resolve the data filename for the active layer */
+function activeDataFile(): string | null {
+  const config = activeLayer.value
+  if (!config) return null
+  if (config.type === 'markers' || config.type === 'geojson') {
+    return (config as any).geojsonFile ?? (config as any).dataFile ?? null
+  }
+  if (config.type === 'choropleth' || config.type === 'heatmap') {
+    return (config as any).dataFile ?? null
+  }
+  if (config.type === 'matrix') {
+    return (config as any).dataFile ?? null
+  }
+  return null
+}
+
+const activeSourceBadge = computed(() => {
+  const file = activeDataFile()
+  if (!file) return null
+  return dataSources.value.get(file) ?? 'static'
+})
+
+const isActiveStaticOnly = computed(() => {
+  const file = activeDataFile()
+  if (!file) return true
+  const STATIC_SET = new Set(['communes.geojson', 'roads-major.geojson', 'roads-minor.geojson'])
+  return STATIC_SET.has(file)
+})
+
+/** Publish current layer data to Firestore */
+async function publishToFirestore() {
+  const file = activeDataFile()
+  if (!file || !activeLayerId.value) return
+  publishing.value = true
+  errorMsg.value = ''
+  try {
+    const { writeDataFile } = await import('@/composables/useFirestoreData')
+    // Re-fetch the data currently in memory (from cache)
+    let data: any
+    if (file.endsWith('.geojson')) {
+      data = await fetchGeoJSON(file)
+    } else {
+      data = await fetchData(file)
+    }
+    await writeDataFile(file, data)
+    dataSources.value.set(file, 'firestore')
+    statusMsg.value = `${file} publié vers Firestore ☁️`
+  } catch (e: any) {
+    errorMsg.value = `Erreur de publication: ${e.message}`
+  } finally {
+    publishing.value = false
+  }
+}
+
+/** Publish overrides to Firestore */
+async function publishOverridesToFirestore() {
+  publishing.value = true
+  errorMsg.value = ''
+  try {
+    const { writeDataFile } = await import('@/composables/useFirestoreData')
+    await writeDataFile('metadata-overrides.json', metadataOverrides.value)
+    dataSources.value.set('metadata-overrides.json', 'firestore')
+    statusMsg.value = 'Annotations publiées vers Firestore ☁️'
+  } catch (e: any) {
+    errorMsg.value = `Erreur: ${e.message}`
+  } finally {
+    publishing.value = false
+  }
+}
+
+/** Delete Firestore override for current layer — falls back to static */
+async function deleteFirestoreOverride() {
+  const file = activeDataFile()
+  if (!file) return
+  if (!confirm(`Supprimer l'override Firestore pour ${file} ?\nL'application reviendra à la version statique.`)) return
+  try {
+    const { deleteDataFile } = await import('@/composables/useFirestoreData')
+    await deleteDataFile(file)
+    invalidateCache(file)
+    statusMsg.value = `Override ${file} supprimé — retour au statique 📦`
+    dataSources.value.set(file, 'static')
+    // Reload layer
+    if (activeLayerId.value) await selectLayer(activeLayerId.value)
+  } catch (e: any) {
+    errorMsg.value = `Erreur: ${e.message}`
+  }
+}
+
+/** Crystallise: download JSON for commit into public/data/ */
+function crystalliseData() {
+  const file = activeDataFile()
+  if (!file || !activeLayerId.value) return
+  exportEnrichedData()
+  statusMsg.value = `${file} téléchargé — placez-le dans public/data/ et commitez`
+}
+
+async function handleLogout() {
+  await doLogout()
+  router.push({ name: 'login' })
+}
+
 
 </script>
 
@@ -280,11 +391,16 @@ function exportEnrichedData() {
       <router-link to="/" class="back-link">← Carte</router-link>
       <h1>Administration des données</h1>
       <div class="header-actions">
+        <span class="user-badge" v-if="displayName">{{ displayName }}</span>
+        <button class="btn" @click="publishOverridesToFirestore" :disabled="publishing" title="Publier les annotations vers Firestore">
+          ↑ Publier annotations
+        </button>
         <button class="btn" @click="doExportOverrides" title="Exporter les annotations (JSON)">⬇ Exporter</button>
         <label class="btn" title="Importer des annotations depuis un fichier JSON">
           ⬆ Importer
           <input type="file" accept=".json" hidden @change="doImportOverrides" />
         </label>
+        <button class="btn btn-logout" @click="handleLogout" title="Se déconnecter">⏻</button>
       </div>
     </header>
 
@@ -309,12 +425,39 @@ function exportEnrichedData() {
         <!-- Layer header -->
         <div v-if="activeLayer" class="layer-header">
           <div class="layer-info">
-            <h2>{{ activeLayer.name }}</h2>
+            <h2>
+              {{ activeLayer.name }}
+              <span
+                class="source-badge"
+                :class="activeSourceBadge"
+                :title="activeSourceBadge === 'firestore' ? 'Source: Firestore (override)' : 'Source: fichier statique'"
+              >{{ activeSourceBadge === 'firestore' ? '☁️' : '📦' }}</span>
+            </h2>
             <p class="layer-desc">{{ activeLayer.description }}</p>
-            <div v-if="activeLayer.metadata" class="layer-meta">
-              <span class="meta-badge">📦 {{ activeLayer.metadata.source }}</span>
-              <span v-if="activeLayer.metadata.license" class="meta-badge">📜 {{ activeLayer.metadata.license }}</span>
-              <span v-if="activeLayer.metadata.accessDate" class="meta-badge">📅 {{ activeLayer.metadata.accessDate }}</span>
+            <div class="layer-meta">
+              <span v-if="activeLayer.metadata" class="meta-badge">📦 {{ activeLayer.metadata.source }}</span>
+              <span v-if="activeLayer.metadata?.license" class="meta-badge">📜 {{ activeLayer.metadata.license }}</span>
+              <span v-if="activeLayer.metadata?.accessDate" class="meta-badge">📅 {{ activeLayer.metadata.accessDate }}</span>
+            </div>
+            <div class="layer-actions">
+              <button
+                v-if="!isActiveStaticOnly"
+                class="btn primary btn-sm"
+                :disabled="publishing"
+                @click="publishToFirestore"
+                title="Publier ces données vers Firestore"
+              >↑ Publier vers Firestore</button>
+              <button
+                v-if="activeSourceBadge === 'firestore'"
+                class="btn btn-sm btn-danger"
+                @click="deleteFirestoreOverride"
+                title="Supprimer l'override Firestore → retour au statique"
+              >⊘ Supprimer override</button>
+              <button
+                class="btn btn-sm"
+                @click="crystalliseData"
+                title="Télécharger le JSON enrichi pour commit dans public/data/"
+              >↓ Cristalliser</button>
             </div>
           </div>
           <div class="stat-cards">
@@ -891,5 +1034,46 @@ tr.verified .cell-source {
   outline: 2px solid #333;
   z-index: 1;
   position: relative;
+}
+
+/* Auth & Firestore UI */
+.user-badge {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.btn-logout {
+  font-size: 14px;
+  padding: 4px 8px;
+}
+
+.source-badge {
+  font-size: 14px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.layer-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-sm {
+  font-size: 11px;
+  padding: 3px 8px;
+}
+
+.btn-danger {
+  color: #c62828;
+  border-color: #ef9a9a;
+}
+
+.btn-danger:hover {
+  background: #fce4ec;
 }
 </style>

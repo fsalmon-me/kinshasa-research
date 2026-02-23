@@ -7,13 +7,16 @@ import type { DataRecord } from '@/types/data'
 // Central data store (singleton)
 // =====================================
 // Caches fetched JSON and GeoJSON to avoid redundant network requests.
-// Any composable or component can import and use this store.
+// Dual-source: tries Firestore override first, then falls back to static JSON.
 
 /** Cached data files: filename → parsed JSON */
 const dataCache = new Map<string, DataRecord[]>()
 
 /** Cached geojson files: filename → parsed FeatureCollection */
 const geojsonCache = new Map<string, GeoJSON.FeatureCollection>()
+
+/** Tracks where each file was loaded from */
+export const dataSources = ref<Map<string, 'firestore' | 'static'>>(new Map())
 
 /** Layer registry loaded from layers.json */
 export const layers = ref<LayerConfig[]>([])
@@ -86,10 +89,28 @@ export async function buildSearchIndex() {
 }
 
 // =====================================
-// Fetch helpers
+// Fetch helpers — dual-source (Firestore → static)
 // =====================================
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '')
+
+/** Try Firestore first, fall back to static JSON */
+async function fetchWithFirestoreFallback(filename: string): Promise<{ data: any; source: 'firestore' | 'static' }> {
+  // Try Firestore override
+  try {
+    const { readDataFile } = await import('@/composables/useFirestoreData')
+    const fsData = await readDataFile(filename)
+    if (fsData !== null) {
+      return { data: fsData, source: 'firestore' }
+    }
+  } catch { /* Firestore unavailable — use static */ }
+
+  // Fallback: static file
+  const res = await fetch(`${base}/data/${filename}`)
+  if (!res.ok) throw new Error(`Failed to load ${filename} (${res.status})`)
+  const data = await res.json()
+  return { data, source: 'static' }
+}
 
 export async function fetchLayerRegistry(): Promise<LayerConfig[]> {
   const res = await fetch(`${base}/data/layers.json`)
@@ -106,20 +127,30 @@ export async function fetchLayerRegistry(): Promise<LayerConfig[]> {
 
 export async function fetchData(filename: string): Promise<DataRecord[]> {
   if (dataCache.has(filename)) return dataCache.get(filename)!
-  const res = await fetch(`${base}/data/${filename}`)
-  if (!res.ok) throw new Error(`Failed to load ${filename} (${res.status})`)
-  const data = await res.json()
+  const { data, source } = await fetchWithFirestoreFallback(filename)
   dataCache.set(filename, data)
+  dataSources.value.set(filename, source)
   return data
 }
 
 export async function fetchGeoJSON(filename: string): Promise<GeoJSON.FeatureCollection> {
   if (geojsonCache.has(filename)) return geojsonCache.get(filename)!
-  const res = await fetch(`${base}/data/${filename}`)
-  if (!res.ok) throw new Error(`Failed to load ${filename} (${res.status})`)
-  const data = await res.json()
+  const { data, source } = await fetchWithFirestoreFallback(filename)
   geojsonCache.set(filename, data)
+  dataSources.value.set(filename, source)
   return data
+}
+
+/** Get the source of a loaded data file */
+export function getDataSource(filename: string): 'firestore' | 'static' | undefined {
+  return dataSources.value.get(filename)
+}
+
+/** Invalidate cache for a specific file (forces re-fetch) */
+export function invalidateCache(filename: string) {
+  dataCache.delete(filename)
+  geojsonCache.delete(filename)
+  dataSources.value.delete(filename)
 }
 
 /** Toggle layer visibility */
@@ -151,13 +182,26 @@ export function clearCaches() {
 // Metadata overrides management
 // =====================================
 
-/** Load overrides from static JSON */
+/** Load overrides — tries Firestore first, falls back to static JSON */
 export async function fetchMetadataOverrides(): Promise<MetadataOverrides> {
+  // Try Firestore
+  try {
+    const { readDataFile } = await import('@/composables/useFirestoreData')
+    const fsData = await readDataFile('metadata-overrides.json')
+    if (fsData !== null) {
+      metadataOverrides.value = fsData
+      dataSources.value.set('metadata-overrides.json', 'firestore')
+      return fsData
+    }
+  } catch { /* Firestore unavailable */ }
+
+  // Fallback to static JSON
   try {
     const res = await fetch(`${base}/data/metadata-overrides.json`)
     if (res.ok) {
       const data = await res.json()
       metadataOverrides.value = data
+      dataSources.value.set('metadata-overrides.json', 'static')
       return data
     }
   } catch { /* file doesn't exist yet — fine */ }
