@@ -4,6 +4,7 @@ import ReportTitleBlock from './ReportTitleBlock.vue'
 import ReportTextBlock from './ReportTextBlock.vue'
 import ReportTableBlock from './ReportTableBlock.vue'
 import ReportChartBlock from './ReportChartBlock.vue'
+import ReportSourcesBlock from './ReportSourcesBlock.vue'
 
 defineProps<{
   block: ReportBlock
@@ -56,6 +57,12 @@ const emit = defineEmits<{
       v-else-if="block.type === 'chart'"
       :block="block"
       :editable="editable"
+    />
+    <ReportSourcesBlock
+      v-else-if="block.type === 'sources'"
+      :block="block"
+      :editable="editable"
+      @update="b => emit('update', index, b)"
     />
   </div>
 </template>

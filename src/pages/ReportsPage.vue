@@ -50,7 +50,7 @@ watch(() => route.params.slug, async (slug) => {
     <header class="reports-header">
       <router-link to="/" class="back-link">← Carte</router-link>
       <h1>📊 Rapports</h1>
-      <router-link to="/admin" class="new-report-btn">+ Nouveau rapport</router-link>
+      <router-link to="/admin/reports" class="new-report-btn">+ Nouveau rapport</router-link>
     </header>
 
     <!-- List view -->
@@ -60,7 +60,7 @@ watch(() => route.params.slug, async (slug) => {
         <p class="empty-icon">📊</p>
         <p class="empty-title">Aucun rapport disponible</p>
         <p class="empty-text">Les rapports permettent d'analyser les données géographiques de Kinshasa.</p>
-        <router-link to="/admin" class="empty-cta">Créer un rapport →</router-link>
+        <router-link to="/admin/reports" class="empty-cta">Créer un rapport →</router-link>
       </div>
       <div v-else class="report-cards">
         <article

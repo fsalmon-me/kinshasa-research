@@ -67,6 +67,9 @@ function addBlock(type: ReportBlock['type']) {
     case 'chart':
       block = { type: 'chart', id, title: 'Graphique', chartType: 'bar', dataSource: 'fuel-demand.json', labelField: 'commune', datasets: [] }
       break
+    case 'sources':
+      block = { type: 'sources', id, title: 'Sources', autoCollect: true, items: [] }
+      break
   }
   report.value.blocks.push(block)
 }
@@ -198,6 +201,7 @@ function applyJson() {
         <button class="add-btn" @click="addBlock('text')">Texte</button>
         <button class="add-btn" @click="addBlock('table')">Tableau</button>
         <button class="add-btn" @click="addBlock('chart')">Graphique</button>
+        <button class="add-btn" @click="addBlock('sources')">📚 Sources</button>
       </div>
     </section>
 

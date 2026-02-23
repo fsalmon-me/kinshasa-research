@@ -57,7 +57,25 @@ export interface ChartDatasetDef {
   backgroundColor?: string | string[]
 }
 
-export type ReportBlock = TitleBlock | TextBlock | TableBlock | ChartBlock
+/** Source reference for automatic or manual citation */
+export interface SourceItem {
+  label: string              // display name (e.g. "JICA/PDTK 2019")
+  url?: string               // optional URL
+  date?: string              // access/publication date
+  description?: string       // short description
+  type: 'data' | 'external'  // auto-collected from data vs manually added
+}
+
+/** Sources block: lists data sources and manual references */
+export interface SourcesBlock {
+  type: 'sources'
+  id: string
+  title?: string             // heading, defaults to "Sources"
+  autoCollect: boolean       // auto-scan other blocks for dataSource metadata
+  items: SourceItem[]        // manually added or script-provided sources
+}
+
+export type ReportBlock = TitleBlock | TextBlock | TableBlock | ChartBlock | SourcesBlock
 
 /** Full report document */
 export interface Report {
