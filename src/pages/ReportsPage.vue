@@ -6,6 +6,7 @@ import type { Report } from '@/types/report'
 import { fetchReportList, fetchReport, reports, loading } from '@/composables/useReportStore'
 import BlockEditor from '@/components/report/BlockEditor.vue'
 import LocaleSwitcher from '@/components/LocaleSwitcher.vue'
+import { resolveL10n } from '@/lib/l10n'
 
 const { t, locale } = useI18n()
 
@@ -74,8 +75,8 @@ watch(() => route.params.slug, async (slug) => {
           class="report-card"
           @click="openReport(r)"
         >
-          <h2>{{ typeof r.title === 'string' ? r.title : (r.title[locale as 'fr' | 'en'] || r.title.fr) }}</h2>
-          <p v-if="r.description">{{ typeof r.description === 'string' ? r.description : (r.description[locale as 'fr' | 'en'] || r.description.fr) }}</p>
+          <h2>{{ resolveL10n(r.title, locale) }}</h2>
+          <p v-if="r.description">{{ resolveL10n(r.description, locale) }}</p>
           <span class="report-date">{{ new Date(r.updatedAt || r.createdAt).toLocaleDateString('fr-FR') }}</span>
         </article>
       </div>
@@ -84,8 +85,8 @@ watch(() => route.params.slug, async (slug) => {
     <!-- Report view -->
     <div v-else-if="activeReport" class="report-view">
       <button class="back-btn" @click="backToList">← {{ t('reportsPage.allReports') }}</button>
-      <h1 class="report-title">{{ typeof activeReport.title === 'string' ? activeReport.title : (activeReport.title[locale as 'fr' | 'en'] || activeReport.title.fr) }}</h1>
-      <p v-if="activeReport.description" class="report-desc">{{ typeof activeReport.description === 'string' ? activeReport.description : (activeReport.description[locale as 'fr' | 'en'] || activeReport.description.fr) }}</p>
+      <h1 class="report-title">{{ resolveL10n(activeReport.title, locale) }}</h1>
+      <p v-if="activeReport.description" class="report-desc">{{ resolveL10n(activeReport.description, locale) }}</p>
 
       <div class="report-blocks">
         <BlockEditor

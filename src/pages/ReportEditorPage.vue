@@ -12,6 +12,7 @@ import {
   newBlockId,
 } from '@/composables/useReportStore'
 import BlockEditor from '@/components/report/BlockEditor.vue'
+import LocaleSwitcher from '@/components/LocaleSwitcher.vue'
 import { buildFuelReport, type GenerateResult } from '@/composables/reports/fuel-report-builder'
 
 const { t } = useI18n()
@@ -199,6 +200,7 @@ function applyJson() {
     <header class="editor-header">
       <router-link to="/admin" class="back-link">← {{ t('common.admin') }}</router-link>
       <router-link to="/reports" class="back-link">📊 {{ t('common.reports') }}</router-link>
+      <LocaleSwitcher />
       <div class="spacer"></div>
       <span v-if="statusMsg" class="status-msg">{{ statusMsg }}</span>
       <button class="btn btn-save" @click="handleSave" :disabled="saving">

@@ -359,12 +359,11 @@ export default {
     truckUnloading: 'Unloading cost',
     truckCostKm: 'Cost per kilometre',
     truckLabor: 'Labour cost / hour',
-    truckLoadingM3: 'Loading cost / m³',
 
     // ── Revenue per liter section ──
     revenueTitle: 'Expected revenue per litre and supplier purchase price',
     revenueText:
-      'Expected revenue per litre combines the net fuel margin (115 CDF/L, set by ministerial decree) and a variable ancillary margin depending on the commune\'s consumption type. The supplier purchase price (SEP Congo depot) is 3,208 CDF/L.',
+      'Expected revenue per litre combines the net fuel margin (115 CDF/L, set by ministerial decree) and a variable ancillary margin depending on the commune\'s consumption type. The supplier purchase price (SEP Congo depot exit) is estimated at ~966 CDF/L (weighted average: 40% Super at 923 CDF/L + 60% Gasoil at 995 CDF/L).',
     revenueTableTitle: 'Expected revenue per litre by commune (CDF)',
     revenueChartTitle: 'Expected revenue by commune (CDF/L)',
     colConsumptionType: 'Consumption type',
@@ -399,7 +398,7 @@ export default {
     methodologyCosts:
       'Land costs are derived from property data (Texaf, Numbeo) and observed transactions. The material CAPEX for a standard station (USD 280,000) is based on sub-regional operator quotes. Monthly OPEX includes salaries (Paylab/SalaryExplorer), energy, maintenance and local taxes.',
     methodologyRevenue:
-      'The net fuel margin (115 CDF/L) is set by ministerial decree. The ancillary margin ranges from 2 to 195 CDF/L depending on the commune\'s dominant consumption type (road transport, generators, informal trade). The supplier purchase price (3,208 CDF/L) is the SEP Congo depot price, Limete.',
+      'The net fuel margin (115 CDF/L) is set by ministerial decree. The ancillary margin ranges from 2 to 195 CDF/L depending on the commune\'s dominant consumption type (road transport, generators, informal trade). The supplier purchase price (~966 CDF/L) is the weighted average of depot exit prices: Super at 923 CDF/L (40%) and Gasoil at 995 CDF/L (60%).',
     logLoading: 'Loading data…',
     logBuilding: 'Building report…',
     logDone: '✅ Report generated: {count} blocks',

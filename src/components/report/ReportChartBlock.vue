@@ -47,7 +47,13 @@ async function loadData() {
     const data = await fetchData(props.block.dataSource)
     const records = data as Record<string, unknown>[]
 
-    const labels = records.map(r => String(r[props.block.labelField] ?? ''))
+    const labels = records.map(r => {
+      const v = r[props.block.labelField]
+      if (typeof v === 'object' && v !== null && !Array.isArray(v)) {
+        return resolveL10n(v as any, locale.value)
+      }
+      return String(v ?? '')
+    })
 
     const datasets = props.block.datasets.map((ds, i) => ({
       label: resolveL10n(ds.label, locale.value),

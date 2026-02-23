@@ -259,7 +259,6 @@ export async function buildFuelReport(): Promise<GenerateResult> {
     unloading: L(tFr.truckUnloading, tEn.truckUnloading),
     cost_per_km: L(tFr.truckCostKm, tEn.truckCostKm),
     labor_per_hour: L(tFr.truckLabor, tEn.truckLabor),
-    loading_per_m3: L(tFr.truckLoadingM3, tEn.truckLoadingM3),
   }
   const truckRows = truckData.map(p => ({
     parameter: truckParamLabels[p.parameter] ?? p.parameter,

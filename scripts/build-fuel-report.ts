@@ -216,7 +216,6 @@ const truckParamLabels: Record<string, Localizable> = {
   unloading: L(fr.fuelReport.truckUnloading, en.fuelReport.truckUnloading),
   cost_per_km: L(fr.fuelReport.truckCostKm, en.fuelReport.truckCostKm),
   labor_per_hour: L(fr.fuelReport.truckLabor, en.fuelReport.truckLabor),
-  loading_per_m3: L(fr.fuelReport.truckLoadingM3, en.fuelReport.truckLoadingM3),
 }
 const truckRows = truckData.map(p => ({
   parameter: truckParamLabels[p.parameter] ?? p.parameter,

@@ -62,6 +62,10 @@ async function loadData() {
 
 function formatCell(value: unknown, col: typeof props.block.columns[0]): string {
   if (value == null) return '—'
+  // Resolve Localizable objects ({ fr, en }) to the active locale string
+  if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+    value = resolveL10n(value as any, locale.value)
+  }
   if (col.format === 'number') {
     const num = Number(value)
     if (isNaN(num)) return String(value)

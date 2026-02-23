@@ -359,12 +359,11 @@ export default {
     truckUnloading: 'Coût de déchargement',
     truckCostKm: 'Coût au kilomètre',
     truckLabor: 'Coût main-d\'œuvre / heure',
-    truckLoadingM3: 'Coût de chargement / m³',
 
     // ── Revenue per liter section ──
     revenueTitle: 'Revenu espéré par litre et prix d\'achat fournisseur',
     revenueText:
-      "Le revenu espéré par litre intègre la marge nette sur le carburant (115 CDF/L, fixée par arrêté) et une marge auxiliaire variable selon le type de consommation de la commune. Le prix d'achat fournisseur (dépôt SEP Congo) est de 3 208 CDF/L.",
+      "Le revenu espéré par litre intègre la marge nette sur le carburant (115 CDF/L, fixée par arrêté) et une marge auxiliaire variable selon le type de consommation de la commune. Le prix d'achat fournisseur (sortie dépôt SEP Congo) est estimé à ~966 CDF/L (moyenne pondérée : 40 % Super à 923 CDF/L + 60 % Gasoil à 995 CDF/L).",
     revenueTableTitle: 'Revenu espéré par litre par commune (CDF)',
     revenueChartTitle: 'Revenu espéré par commune (CDF/L)',
     colConsumptionType: 'Type de consommation',
@@ -399,7 +398,7 @@ export default {
     methodologyCosts:
       "Les coûts fonciers sont dérivés des données immobilières (Texaf, Numbeo) et des transactions observées. Le CAPEX matériel d'une station standard (280 000 USD) est basé sur les devis d'opérateurs de la sous-région. L'OPEX mensuel inclut les salaires (Paylab/SalaryExplorer), l'énergie, la maintenance et les taxes locales.",
     methodologyRevenue:
-      "La marge nette sur le carburant (115 CDF/L) est fixée par arrêté ministériel. La marge auxiliaire varie de 2 à 195 CDF/L selon le type de consommation dominante de la commune (transport routier, groupes électrogènes, commerce informel). Le prix d'achat fournisseur (3 208 CDF/L) correspond au prix dépôt SEP Congo, Limete.",
+      "La marge nette sur le carburant (115 CDF/L) est fixée par arrêté ministériel. La marge auxiliaire varie de 2 à 195 CDF/L selon le type de consommation dominante de la commune (transport routier, groupes électrogènes, commerce informel). Le prix d'achat fournisseur (~966 CDF/L) est la moyenne pondérée des prix sortie dépôt : Super à 923 CDF/L (40 %) et Gasoil à 995 CDF/L (60 %).",
     logLoading: 'Chargement des données…',
     logBuilding: 'Construction du rapport…',
     logDone: '✅ Rapport généré : {count} blocs',

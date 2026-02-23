@@ -23,10 +23,5 @@
     "parameter": "labor_cost_per_hour",
     "value": 18.50,
     "unit": "USD/h"
-  },
-  {
-    "parameter": "loading_cost_per_m3",
-    "value": 2.80,
-    "unit": "USD/m³"
   }
 ]
