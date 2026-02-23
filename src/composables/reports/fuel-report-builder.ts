@@ -4,10 +4,13 @@
  * Fetches data via HTTP (public/data/), computes statistics,
  * and builds a complete report using ReportBuilder.
  *
+ * Supports multilingual generation (fr/en) via locale messages.
  * Called from the admin Report Editor UI.
  */
 import { ReportBuilder } from '@/lib/report-builder'
 import type { Report } from '@/types/report'
+import fr from '@/i18n/fr'
+import en from '@/i18n/en'
 
 // ── Types ──────────────────────────────────────────────────────────
 
@@ -29,10 +32,27 @@ interface FuelRecord {
   demand_per_km2_2040: number
 }
 
+interface TravelData {
+  communes: string[]
+  distances: number[][]
+  profiles: Record<string, {
+    label: string
+    hours: string
+    coeff: number
+    speedRange: string
+    traffic: string
+    durations: number[][]
+  }>
+}
+
+export type Locale = 'fr' | 'en'
+
 export interface GenerateResult {
   report: Report
   logs: string[]
 }
+
+type Messages = typeof fr
 
 // ── Point-in-polygon helpers ───────────────────────────────────────
 
@@ -61,23 +81,36 @@ function pointInMultiPolygon(point: [number, number], geometry: { type: string; 
 
 // ── Format helpers ─────────────────────────────────────────────────
 
-const fmt = (n: number) => n.toLocaleString('fr-FR')
-const fmtK = (n: number) =>
-  n >= 1_000_000 ? `${(n / 1_000_000).toFixed(1).replace('.', ',')} M` : fmt(n)
+function makeFmt(locale: Locale) {
+  const loc = locale === 'en' ? 'en-US' : 'fr-FR'
+  const fmt = (n: number) => n.toLocaleString(loc)
+  const fmtK = (n: number) =>
+    n >= 1_000_000
+      ? locale === 'en'
+        ? `${(n / 1_000_000).toFixed(1)} M`
+        : `${(n / 1_000_000).toFixed(1).replace('.', ',')} M`
+      : fmt(n)
+  return { fmt, fmtK }
+}
 
 // ── Main generator ─────────────────────────────────────────────────
 
-export async function buildFuelReport(): Promise<GenerateResult> {
+export async function buildFuelReport(locale: Locale = 'fr'): Promise<GenerateResult> {
+  const msgs: Messages = locale === 'en' ? en : fr
+  const t = msgs.fuelReport
+  const { fmt, fmtK } = makeFmt(locale)
+
   const logs: string[] = []
   const log = (msg: string) => { logs.push(msg); console.log(`[fuel-report] ${msg}`) }
 
   const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '')
 
-  log('Chargement des données…')
-  const [fuelData, fuelGeoJSON, communesGeoJSON] = await Promise.all([
+  log(t.logLoading)
+  const [fuelData, fuelGeoJSON, communesGeoJSON, travelData] = await Promise.all([
     fetch(`${base}/data/fuel-demand.json`).then(r => r.json()) as Promise<FuelRecord[]>,
     fetch(`${base}/data/fuel.geojson`).then(r => r.json()),
     fetch(`${base}/data/communes.geojson`).then(r => r.json()),
+    fetch(`${base}/data/travel-kinshasa.json`).then(r => r.json()) as Promise<TravelData>,
   ])
 
   // ── Summary statistics ──
@@ -92,7 +125,7 @@ export async function buildFuelReport(): Promise<GenerateResult> {
   const top5DensityKm2 = [...fuelData].sort((a, b) => b.demand_per_km2_2025 - a.demand_per_km2_2025).slice(0, 5)
 
   log(`Population 2025: ${fmtK(totalPop2025)}`)
-  log(`Demande 2025: ${fmt(totalDemand2025)} m³/jour`)
+  log(`Demand 2025: ${fmt(totalDemand2025)} m³/day`)
   log(`Stations: ${totalStations}`)
 
   // ── Station counts per commune ──
@@ -119,57 +152,90 @@ export async function buildFuelReport(): Promise<GenerateResult> {
     .filter(([, count]) => count === 0)
     .map(([name]) => name)
 
-  log(`Communes sans station: ${communesWithoutStations.join(', ') || '(aucune)'}`)
-  log(`Top stations: ${communesWithStations.slice(0, 5).map(([n, c]) => `${n}:${c}`).join(', ')}`)
+  // ── Build travel matrix inline data ──
+  const communes = travelData.communes
+  const diurneDurations = travelData.profiles?.diurne?.durations ?? []
+  const distances = travelData.distances ?? []
+
+  const communeCol = t.colCommune
+
+  // Duration matrix rows
+  const durationRows: Record<string, unknown>[] = communes.map((from, i) => {
+    const row: Record<string, unknown> = { [communeCol]: from }
+    communes.forEach((to, j) => {
+      row[to] = Math.round(diurneDurations[i]?.[j] ?? 0)
+    })
+    return row
+  })
+
+  // Distance matrix rows
+  const distanceRows: Record<string, unknown>[] = communes.map((from, i) => {
+    const row: Record<string, unknown> = { [communeCol]: from }
+    communes.forEach((to, j) => {
+      row[to] = Math.round((distances[i]?.[j] ?? 0) * 10) / 10
+    })
+    return row
+  })
+
+  // Matrix columns
+  const matrixColumns = [
+    { field: communeCol, label: communeCol },
+    ...communes.map(c => ({ field: c, label: c, format: 'number' as const, decimals: 0 })),
+  ]
+  const distMatrixColumns = [
+    { field: communeCol, label: communeCol },
+    ...communes.map(c => ({ field: c, label: c, format: 'number' as const, decimals: 1 })),
+  ]
 
   // ── Build the report ──
-  log('Construction du rapport…')
+  log(t.logBuilding)
 
-  const report = new ReportBuilder('Offre & Demande de Carburant — Kinshasa')
-    .id('default-fuel-supply-demand')
-    .slug('offre-demande-carburant')
+  const dayAbbr = locale === 'en' ? 'd' : 'j'
+
+  const report = new ReportBuilder(t.title)
+    .id(locale === 'en' ? 'default-fuel-supply-demand-en' : 'default-fuel-supply-demand')
+    .slug(t.slug)
     .description(
-      `Analyse de l'offre (${totalStations} stations-service) et de la demande de carburant ` +
-      `(${fmt(totalDemand2025)} m³/jour en 2025) pour les 24 communes de Kinshasa.`,
+      t.description
+        .replace('{stations}', String(totalStations))
+        .replace('{demand}', fmt(totalDemand2025)),
     )
 
     // ── Introduction ──
-    .h1('Offre & Demande de Carburant à Kinshasa')
+    .h1(t.h1)
     .text(
-      `Ce rapport analyse la relation entre l'offre en stations-service et la demande de carburant estimée ` +
-      `pour les 24 communes de Kinshasa. La métropole compte environ ${fmtK(totalPop2025)} habitants (projections 2025, ` +
-      `ONU/Macrotrends) et consomme environ ${fmt(totalDemand2025)} m³ de carburant par jour, soit ${fmt(totalDemand2025 * 1000)} litres/jour. ` +
-      `Cette consommation est projetée à ${fmt(totalDemand2030)} m³/jour en 2030 et ${fmt(totalDemand2040)} m³/jour en 2040 ` +
-      `(scénario PDTK B), portée par la croissance démographique et la montée de la motorisation ` +
-      `(actuellement ~4% des ménages, ×6,3 d'ici 2040 selon EDS-RDC III 2024).`,
+      t.intro1
+        .replace('{pop}', fmtK(totalPop2025))
+        .replace('{demand}', fmt(totalDemand2025))
+        .replace('{demandL}', fmt(totalDemand2025 * 1000))
+        .replace('{demand2030}', fmt(totalDemand2030))
+        .replace('{demand2040}', fmt(totalDemand2040)),
     )
     .text(
-      `L'offre est évaluée via les ${totalStations} stations-service identifiées dans OpenStreetMap ` +
-      `(Overpass API, février 2026). Cette source peut sous-estimer le nombre réel de points de vente ` +
-      `informels de carburant.`,
+      t.intro2.replace('{stations}', String(totalStations)),
     )
 
-    // ── Demande par commune ──
-    .h2('Demande de carburant par commune')
+    // ── Demand by commune ──
+    .h2(t.demandTitle)
     .text(
-      `Le tableau ci-dessous présente la demande journalière en carburant par commune pour les horizons ` +
-      `2025, 2030 et 2040. Les cinq communes les plus consommatrices en 2025 sont ` +
-      `${top5Demand.map(r => `${r.commune} (${r.demand_2025} m³/j)`).join(', ')}.`,
+      t.demandText.replace('{top5}',
+        top5Demand.map(r => `${r.commune} (${r.demand_2025} m³/${dayAbbr})`).join(', '),
+      ),
     )
     .table('fuel-demand.json', {
-      title: 'Demande de carburant (m³/jour) — projections',
+      title: t.demandTableTitle,
       columns: [
-        { field: 'commune', label: 'Commune' },
-        { field: 'pop_2025', label: 'Pop. 2025', format: 'number', decimals: 0 },
-        { field: 'demand_2025', label: '2025 (m³/j)', format: 'number', decimals: 0 },
-        { field: 'demand_2030', label: '2030 (m³/j)', format: 'number', decimals: 0 },
-        { field: 'demand_2040', label: '2040 (m³/j)', format: 'number', decimals: 0 },
+        { field: 'commune', label: t.colCommune },
+        { field: 'pop_2025', label: t.colPop, format: 'number', decimals: 0 },
+        { field: 'demand_2025', label: t.col2025, format: 'number', decimals: 0 },
+        { field: 'demand_2030', label: t.col2030, format: 'number', decimals: 0 },
+        { field: 'demand_2040', label: t.col2040, format: 'number', decimals: 0 },
       ],
       sortBy: 'demand_2025',
       sortDir: 'desc',
     })
     .barChart('fuel-demand.json', {
-      title: 'Demande de carburant par commune (m³/jour)',
+      title: t.demandChartTitle,
       labelField: 'commune',
       datasets: [
         { field: 'demand_2025', label: '2025', color: '#1976d2' },
@@ -178,133 +244,132 @@ export async function buildFuelReport(): Promise<GenerateResult> {
       ],
     })
 
-    // ── Densité de demande ──
-    .h2('Densité de demande')
+    // ── Demand density ──
+    .h2(t.densityTitle)
     .text(
-      `La densité de demande est exprimée de deux façons : par habitant (litres/personne/jour) et par ` +
-      `superficie (m³/jour/km²). Les communes les plus denses spatialement sont ` +
-      `${top5DensityKm2.map(r => `${r.commune} (${r.demand_per_km2_2025.toFixed(1)} m³/j/km²)`).join(', ')}. ` +
-      `Ces indicateurs permettent de comparer l'intensité de la demande entre communes de tailles différentes.`,
+      t.densityText.replace('{top5}',
+        top5DensityKm2.map(r => `${r.commune} (${r.demand_per_km2_2025.toFixed(1)} m³/${dayAbbr}/km²)`).join(', '),
+      ),
     )
     .table('fuel-demand.json', {
-      title: 'Densité de demande — 2025',
+      title: t.densityTableTitle,
       columns: [
-        { field: 'commune', label: 'Commune' },
-        { field: 'area_km2', label: 'Surface (km²)', format: 'number', decimals: 2 },
-        { field: 'demand_per_capita_L_2025', label: 'L/pers/jour', format: 'number', decimals: 4 },
-        { field: 'demand_per_km2_2025', label: 'm³/jour/km²', format: 'number', decimals: 2 },
+        { field: 'commune', label: t.colCommune },
+        { field: 'area_km2', label: t.colSurface, format: 'number', decimals: 2 },
+        { field: 'demand_per_capita_L_2025', label: t.colPerCapita, format: 'number', decimals: 4 },
+        { field: 'demand_per_km2_2025', label: t.colPerKm2, format: 'number', decimals: 2 },
       ],
       sortBy: 'demand_per_km2_2025',
       sortDir: 'desc',
     })
     .barChart('fuel-demand.json', {
-      title: 'Demande par habitant (L/pers/jour) — 2025',
+      title: t.densityChartTitle,
       labelField: 'commune',
       datasets: [
-        { field: 'demand_per_capita_L_2025', label: 'L/personne/jour', color: '#7b1fa2' },
+        { field: 'demand_per_capita_L_2025', label: t.colPerCapita, color: '#7b1fa2' },
       ],
     })
 
-    // ── Offre en stations-service ──
-    .h2('Offre en stations-service')
+    // ── Supply ──
+    .h2(t.supplyTitle)
     .text(
-      `Kinshasa compte ${totalStations} stations-service référencées dans OpenStreetMap. ` +
-      `La distribution est très inégale : ` +
-      communesWithStations.slice(0, 5).map(([n, c]) => `${n} (${c})`).join(', ') +
-      ` concentrent la majorité de l'offre, tandis que ` +
-      (communesWithoutStations.length > 0
-        ? `${communesWithoutStations.length} communes n'ont aucune station recensée (${communesWithoutStations.join(', ')}).`
-        : `toutes les communes ont au moins une station.`),
+      t.supplyText
+        .replace('{stations}', String(totalStations))
+        .replace('{topStations}', communesWithStations.slice(0, 5).map(([n, c]) => `${n} (${c})`).join(', '))
+        .replace('{noStationText}',
+          communesWithoutStations.length > 0
+            ? t.noStationSome
+                .replace('{count}', String(communesWithoutStations.length))
+                .replace('{names}', communesWithoutStations.join(', '))
+            : t.noStationAll,
+        ),
     )
+    .text(t.supplyWarning)
+
+    // ── Supply/demand imbalance ──
+    .h2(t.imbalanceTitle)
     .text(
-      `⚠ Cette source (OSM) ne recense pas les points de vente informels de carburant ni les dépôts ` +
-      `privés. La couverture réelle en approvisionnement peut être significativement différente.`,
+      t.saturation
+        .replace('{count}', String(saturatedCommunes.length))
+        .replace('{names}', saturatedCommunes.join(', ')),
+    )
+    .text(t.periphery)
+    .text(
+      t.growth
+        .replace('{from}', fmt(totalDemand2025))
+        .replace('{to}', fmt(totalDemand2040))
+        .replace('{pct}', String(Math.round((totalDemand2040 / totalDemand2025 - 1) * 100))),
     )
 
-    // ── Déséquilibre offre/demande ──
-    .h2('Déséquilibre offre / demande')
-    .text(
-      `${saturatedCommunes.length} communes sont classées en saturation démographique résidente ` +
-      `par le PDTK (densité >500 pers/ha) : ${saturatedCommunes.join(', ')}. ` +
-      `Dans ces communes, la croissance de la consommation est portée par la motorisation et ` +
-      `l'intensification des flux plutôt que par la croissance de la population résidente.`,
-    )
-    .text(
-      `Les communes périphériques (Nsele, Maluku, Mont-Ngafula) présentent les volumes absolus les ` +
-      `plus élevés mais une faible densité spatiale de demande. L'offre en stations-service, ` +
-      `concentrée dans les communes centrales, ne suit pas la croissance de la demande en périphérie — ` +
-      `un facteur clé pour la planification d'infrastructure.`,
-    )
-    .text(
-      `La demande totale devrait passer de ${fmt(totalDemand2025)} à ${fmt(totalDemand2040)} m³/jour ` +
-      `entre 2025 et 2040, soit une augmentation de ${Math.round((totalDemand2040 / totalDemand2025 - 1) * 100)}%. ` +
-      `Sans expansion significative du réseau de distribution, plusieurs communes périphériques ` +
-      `risquent des pénuries récurrentes d'approvisionnement.`,
-    )
+    // ── Travel times and distances ──
+    .h2(t.travelTitle)
+    .text(t.travelText)
+    .inlineTable(durationRows, {
+      title: t.durationTableTitle,
+      columns: matrixColumns,
+    })
+    .inlineTable(distanceRows, {
+      title: t.distanceTableTitle,
+      columns: distMatrixColumns,
+    })
 
-    // ── Méthodologie ──
-    .h2('Méthodologie')
-    .text(
-      `La demande journalière communale est modélisée par : Dⱼ = f(Population, Motorisation, Déficit électrique, Industrie). ` +
-      `Population 2025 : 17,77 M (ONU/Macrotrends). Projections démographiques : PDTK Scénario B. ` +
-      `Taux de motorisation : 4% des ménages (EDS-RDC III 2024), projeté ×6,3 d'ici 2040. ` +
-      `Consommation métropolitaine de référence : 3 000 m³/jour (Min. Économie, avril 2025). ` +
-      `Les valeurs communales sont normalisées pour que leur somme équivaille aux totaux métropolitains.`,
-    )
-    .text(
-      `L'offre en stations-service est extraite d'OpenStreetMap via Overpass API (tag amenity=fuel), ` +
-      `géolocalisée et comptée par commune via intersection géométrique point-dans-polygone. ` +
-      `Les communes sont définies par les polygones OSM du fichier communes.geojson.`,
-    )
+    // ── Methodology ──
+    .h2(t.methodologyTitle)
+    .text(t.methodologyText1)
+    .text(t.methodologyText2)
 
     // ── Sources ──
-    .dataSource('Données de demande (fuel-demand.json)', {
-      description: 'Modélisation spatiale de la demande en hydrocarbures par commune 2025-2040',
+    .dataSource(t.srcDemandData, {
+      description: t.srcDemandDesc,
       date: '2026-02-21',
     })
-    .dataSource('Stations-service (fuel.geojson)', {
-      description: `${totalStations} stations-service extraites d'OpenStreetMap`,
+    .dataSource(t.srcStationsData, {
+      description: t.srcStationsDesc.replace('{count}', String(totalStations)),
       url: 'https://www.openstreetmap.org/',
       date: '2026-02-19',
     })
-    .dataSource('Polygones communes (communes.geojson)', {
-      description: 'Limites administratives des 24 communes de Kinshasa, source OSM',
+    .dataSource(t.srcCommunesData, {
+      description: t.srcCommunesDesc,
       url: 'https://www.openstreetmap.org/',
       date: '2026-02-18',
     })
-    .source('JICA — Plan Directeur des Transports de Kinshasa (PDTK)', {
-      description: 'Projections démographiques Scénario B, classification saturation démographique',
+    .dataSource(t.srcTravelData, {
+      description: t.srcTravelDesc,
+      date: '2026-02-23',
+    })
+    .source(t.srcJica, {
+      description: t.srcJicaDesc,
       date: '2019',
     })
-    .source('Ministère de l\'Économie RDC — Consommation métropolitaine', {
-      description: 'Données de consommation : 3 000 m³/jour pour la métropole de Kinshasa',
-      date: 'Avril 2025',
+    .source(t.srcMinEco, {
+      description: t.srcMinEcoDesc,
+      date: locale === 'en' ? 'April 2025' : 'Avril 2025',
     })
-    .source('EDS-RDC III — Enquête Démographique et de Santé', {
-      description: 'Taux de motorisation des ménages congolais : ~4%, projection ×6,3 d\'ici 2040',
+    .source(t.srcEds, {
+      description: t.srcEdsDesc,
       date: '2024',
     })
-    .source('SNEL / AZES — Déficit électrique par commune', {
-      description: 'Données de déficit électrique influençant la demande en groupes électrogènes',
+    .source(t.srcSnel, {
+      description: t.srcSnelDesc,
     })
-    .source('United Nations DESA — World Urbanization Prospects', {
-      description: 'Population Kinshasa 2025 : 17,77 millions',
+    .source(t.srcUn, {
+      description: t.srcUnDesc,
       url: 'https://population.un.org/wup/',
       date: '2024',
     })
-    .source('Macrotrends — Kinshasa Population', {
-      description: 'Projections démographiques complémentaires',
+    .source(t.srcMacrotrends, {
+      description: t.srcMacrotrendsDesc,
       url: 'https://www.macrotrends.net/cities/20839/kinshasa/population',
       date: '2025',
     })
-    .source('OpenStreetMap — Overpass API', {
-      description: 'Extraction des stations-service (amenity=fuel) dans la métropole de Kinshasa',
+    .source(t.srcOsm, {
+      description: t.srcOsmDesc,
       url: 'https://overpass-turbo.eu/',
       date: '2026-02-19',
     })
-    .sources('Sources & Références')
+    .sources(t.sourcesTitle)
     .build()
 
-  log(`✅ Rapport généré: ${report.blocks.length} blocs`)
+  log(t.logDone.replace('{count}', String(report.blocks.length)))
   return { report, logs }
 }

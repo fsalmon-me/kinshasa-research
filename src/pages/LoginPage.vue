@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { useAuth } from '@/composables/useAuth'
+
+const { t } = useI18n()
 
 const router = useRouter()
 const route = useRoute()
@@ -32,8 +35,8 @@ if (isAuthenticated.value) {
 <template>
   <div class="login-page">
     <form class="login-card" @submit.prevent="handleLogin">
-      <h1>🔐 Connexion Admin</h1>
-      <p class="subtitle">Kinshasa Research — Accès réservé</p>
+      <h1>🔐 {{ t('login.title') }}</h1>
+      <p class="subtitle">{{ t('login.subtitle') }}</p>
 
       <div v-if="error" class="error-msg">{{ error }}</div>
 
@@ -49,7 +52,7 @@ if (isAuthenticated.value) {
       </label>
 
       <label>
-        <span>Mot de passe</span>
+        <span>{{ t('login.password') }}</span>
         <input
           v-model="password"
           type="password"
@@ -60,10 +63,10 @@ if (isAuthenticated.value) {
       </label>
 
       <button type="submit" :disabled="submitting" class="login-btn">
-        {{ submitting ? 'Connexion…' : 'Se connecter' }}
+        {{ submitting ? t('login.connecting') : t('login.submit') }}
       </button>
 
-      <router-link to="/" class="back-link">← Retour à la carte</router-link>
+      <router-link to="/" class="back-link">← {{ t('login.backToMap') }}</router-link>
     </form>
   </div>
 </template>

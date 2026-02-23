@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { LayerConfig } from '@/types/layer'
 import { formatCitation } from '@/utils/citation'
+
+const { t } = useI18n()
 
 const props = defineProps<{
   layers: LayerConfig[]
@@ -17,13 +20,13 @@ const layersWithMetadata = computed(() =>
 <template>
   <div class="sources-toggle" @click="open = !open">
     <span>📚</span>
-    <span v-if="!open" class="toggle-label">Sources</span>
+    <span v-if="!open" class="toggle-label">{{ t('sources.toggle') }}</span>
   </div>
 
   <Transition name="slide">
     <div v-if="open" class="sources-panel">
       <div class="sources-header">
-        <h3>Sources & Méthodologie</h3>
+        <h3>{{ t('sources.title') }}</h3>
         <button class="close-btn" @click="open = false">✕</button>
       </div>
 
@@ -39,10 +42,10 @@ const layersWithMetadata = computed(() =>
           </div>
           <div class="source-citation" v-html="formatCitation(l)"></div>
           <div v-if="l.metadata!.methodology" class="source-method">
-            <strong>Méthodologie :</strong> {{ l.metadata!.methodology }}
+            <strong>{{ t('sources.methodology') }}</strong> {{ l.metadata!.methodology }}
           </div>
           <div v-if="l.metadata!.notes" class="source-notes">
-            <strong>Notes :</strong> {{ l.metadata!.notes }}
+            <strong>{{ t('sources.notes') }}</strong> {{ l.metadata!.notes }}
           </div>
         </div>
       </div>

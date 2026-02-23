@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { LayerConfig } from '@/types/layer'
 import { formatCitation, generateBibtexFile } from '@/utils/citation'
+import LocaleSwitcher from '@/components/LocaleSwitcher.vue'
+
+const { t } = useI18n()
 
 const layers = ref<LayerConfig[]>([])
 
@@ -14,10 +18,10 @@ onMounted(async () => {
 
 const categories = computed(() => {
   const catLabels: Record<string, string> = {
-    statistics: 'Données statistiques',
-    infrastructure: 'Infrastructure',
-    poi: 'Points d\'intérêt',
-    transport: 'Transport',
+    statistics: t('categories.statistics'),
+    infrastructure: t('categories.infrastructure'),
+    poi: t('categories.poi'),
+    transport: t('categories.transport'),
   }
   const map = new Map<string, LayerConfig[]>()
   for (const l of layers.value) {
@@ -27,7 +31,7 @@ const categories = computed(() => {
   }
   return [...map.entries()].map(([key, items]) => ({
     key,
-    label: catLabels[key] ?? 'Autre',
+    label: catLabels[key] ?? t('categories.other'),
     items,
   }))
 })
@@ -47,92 +51,56 @@ function downloadBibtex() {
 <template>
   <div class="about-page">
     <header class="about-header">
-      <router-link to="/" class="back-link">← Carte</router-link>
-      <h1>À propos — Sources & Méthodologie</h1>
+      <router-link to="/" class="back-link">← {{ t('common.map') }}</router-link>
+      <h1>{{ t('aboutPage.title') }}</h1>
+      <LocaleSwitcher />
     </header>
 
     <main class="about-body">
       <section class="about-section">
-        <h2>Objectif</h2>
-        <p>
-          Cette carte interactive présente des données géospatiales sur la ville de Kinshasa,
-          République Démocratique du Congo. Elle est conçue pour servir de support à la recherche
-          universitaire, en documentant rigoureusement toutes les sources de données et les
-          décisions méthodologiques.
-        </p>
+        <h2>{{ t('aboutPage.objectiveTitle') }}</h2>
+        <p>{{ t('aboutPage.objectiveText') }}</p>
       </section>
 
       <section class="about-section">
-        <h2>Architecture technique</h2>
+        <h2>{{ t('aboutPage.architectureTitle') }}</h2>
         <ul>
           <li><strong>Frontend :</strong> Vue 3 + TypeScript + Vite</li>
-          <li><strong>Cartographie :</strong> Leaflet (tuiles OpenStreetMap)</li>
-          <li><strong>Données géographiques :</strong> OpenStreetMap via Overpass API</li>
-          <li><strong>Données statistiques :</strong> JICA (Population), OSRM (temps de trajet)</li>
-          <li><strong>Hébergement :</strong> GitHub Pages (statique, aucun serveur)</li>
+          <li><strong>{{ t('aboutPage.mapping') }} :</strong> Leaflet ({{ t('aboutPage.osmTiles') }})</li>
+          <li><strong>{{ t('aboutPage.geoData') }} :</strong> OpenStreetMap via Overpass API</li>
+          <li><strong>{{ t('aboutPage.statData') }} :</strong> JICA (Population), OSRM ({{ t('aboutPage.travelTime') }})</li>
+          <li><strong>{{ t('aboutPage.hosting') }} :</strong> GitHub Pages ({{ t('aboutPage.static') }})</li>
         </ul>
       </section>
 
       <section class="about-section">
-        <h2>Méthodologie</h2>
+        <h2>{{ t('aboutPage.methodologyTitle') }}</h2>
 
-        <h3>Limites communales</h3>
-        <p>
-          Les 24 communes de Kinshasa sont extraites d'OpenStreetMap via l'API Overpass
-          (admin_level=7, correspondant aux communes dans la hiérarchie administrative de la RDC).
-          Les relations OSM sont converties en polygones GeoJSON. Le niveau 8 (quartiers) n'est
-          pas utilisé car la granularité des données statistiques disponibles s'arrête au niveau
-          communal.
-        </p>
+        <h3>{{ t('aboutPage.communeBoundariesTitle') }}</h3>
+        <p>{{ t('aboutPage.communeBoundariesText') }}</p>
 
-        <h3>Réseau routier</h3>
-        <p>
-          Le réseau routier est séparé en deux couches pour optimiser les performances :
-        </p>
+        <h3>{{ t('aboutPage.roadNetworkTitle') }}</h3>
+        <p>{{ t('aboutPage.roadNetworkText1') }}</p>
         <ul>
-          <li><strong>Routes principales</strong> : motorway, trunk, primary, secondary (669 segments, ~272 Ko)</li>
-          <li><strong>Routes mineures</strong> : tertiary, residential, unclassified (34 543 segments, ~11 Mo)</li>
+          <li><strong>{{ t('aboutPage.mainRoads') }}</strong> : motorway, trunk, primary, secondary (669 segments, ~272 Ko)</li>
+          <li><strong>{{ t('aboutPage.minorRoads') }}</strong> : tertiary, residential, unclassified (34 543 segments, ~11 Mo)</li>
         </ul>
-        <p>
-          Les coordonnées sont arrondies à 5 décimales (~1.1m de précision) pour réduire la taille
-          des fichiers. La couverture OSM des routes résidentielles est inégale — plus complète dans
-          les communes centrales que périphériques.
-        </p>
+        <p>{{ t('aboutPage.roadNetworkText2') }}</p>
 
-        <h3>Points d'intérêt</h3>
-        <p>
-          Tous les POI proviennent d'OpenStreetMap (licence ODbL). Les requêtes Overpass ciblent
-          des tags spécifiques (amenity=hospital, amenity=school, etc.). La couverture est variable :
-          bonne pour les écoles (campagnes HOT/Missing Maps), modérée pour la santé et les
-          stations-service, faible pour les marchés informels.
-        </p>
+        <h3>{{ t('aboutPage.poiTitle') }}</h3>
+        <p>{{ t('aboutPage.poiText') }}</p>
 
-        <h3>Temps de trajet</h3>
-        <p>
-          Les temps de trajet inter-communaux sont calculés via OSRM (Open Source Routing Machine)
-          utilisant les données routières OSM. Pour chaque commune, le point de référence est le
-          centroïde géographique accroché à la route la plus proche (via OSRM /nearest), évitant
-          ainsi de placer le point au milieu d'une zone non accessible (forêt, rivière).
-          La matrice 24×24 est calculée en un seul appel à l'API /table.
-        </p>
-        <p>
-          Un script Google Distance Matrix API est également disponible pour comparaison avec
-          données de trafic réel ($2.88 par calcul, couvert par le crédit gratuit de $200/mois).
-        </p>
+        <h3>{{ t('aboutPage.travelTimeTitle') }}</h3>
+        <p>{{ t('aboutPage.travelTimeText1') }}</p>
+        <p>{{ t('aboutPage.travelTimeText2') }}</p>
 
-        <h3>Données de population</h3>
-        <p>
-          Les estimations de population proviennent du rapport JICA
-          <em>"Projet d'Élaboration du Plan Directeur des Transports Urbains de la Ville de Kinshasa"</em>
-          (2019). Les projections 2030 et 2040 sont des extrapolations de tendances démographiques.
-          Le dernier recensement officiel de la RDC date de 1984 ; les données intermédiaires
-          reposent sur des enquêtes ménages et de l'imagerie satellitaire.
-        </p>
+        <h3>{{ t('aboutPage.populationTitle') }}</h3>
+        <p>{{ t('aboutPage.populationText') }}</p>
       </section>
 
       <section class="about-section">
-        <h2>Sources des données par couche</h2>
-        <button class="bibtex-btn" @click="downloadBibtex">📥 Télécharger BibTeX</button>
+        <h2>{{ t('aboutPage.sourcesTitle') }}</h2>
+        <button class="bibtex-btn" @click="downloadBibtex">📥 {{ t('aboutPage.downloadBibtex') }}</button>
 
         <div v-for="cat in categories" :key="cat.key" class="source-category">
           <h3>{{ cat.label }}</h3>
@@ -144,23 +112,18 @@ function downloadBibtex() {
             <div class="source-desc">{{ l.description }}</div>
             <div class="source-cite" v-html="formatCitation(l)"></div>
             <div v-if="l.metadata?.methodology" class="source-detail">
-              <strong>Méthodologie :</strong> {{ l.metadata.methodology }}
+              <strong>{{ t('aboutPage.methodologyLabel') }}</strong> {{ l.metadata.methodology }}
             </div>
             <div v-if="l.metadata?.notes" class="source-note">
-              <strong>⚠ Limites :</strong> {{ l.metadata.notes }}
+              <strong>⚠ {{ t('aboutPage.limitsLabel') }}</strong> {{ l.metadata.notes }}
             </div>
           </div>
         </div>
       </section>
 
       <section class="about-section">
-        <h2>Licence</h2>
-        <p>
-          Les données OpenStreetMap sont sous licence
-          <a href="https://opendatacommons.org/licenses/odbl/" target="_blank">ODbL</a>.
-          Le code source de cette application est disponible sur
-          <a href="https://github.com/fsalmon-me/kinshasa-research" target="_blank">GitHub</a>.
-        </p>
+        <h2>{{ t('aboutPage.licenseTitle') }}</h2>
+        <p v-html="t('aboutPage.licenseText')"></p>
       </section>
     </main>
   </div>

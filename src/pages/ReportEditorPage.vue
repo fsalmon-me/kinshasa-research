@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import type { Report, ReportBlock } from '@/types/report'
 import {
   fetchReport,
@@ -12,6 +13,8 @@ import {
 } from '@/composables/useReportStore'
 import BlockEditor from '@/components/report/BlockEditor.vue'
 import { buildFuelReport, type GenerateResult } from '@/composables/reports/fuel-report-builder'
+
+const { t } = useI18n()
 
 const route = useRoute()
 const router = useRouter()
@@ -47,7 +50,7 @@ onMounted(async () => {
   // New report
   report.value = {
     id: `rpt_${Date.now().toString(36)}`,
-    title: 'Nouveau rapport',
+    title: t('editor.newReport'),
     slug: '',
     description: '',
     blocks: [],
@@ -113,9 +116,9 @@ async function handleSave() {
   saving.value = true
   try {
     await saveReport(report.value)
-    showStatus('✓ Rapport sauvegardé')
+    showStatus(t('editor.savedOk'))
   } catch (e: any) {
-    showStatus(`✗ Erreur: ${e.message}`)
+    showStatus(`${t('editor.errorPrefix')} ${e.message}`)
   } finally {
     saving.value = false
   }
@@ -124,17 +127,17 @@ async function handleSave() {
 // ---- Delete ----
 async function handleDelete() {
   if (!report.value) return
-  if (!confirm(`Supprimer « ${report.value.title} » ?`)) return
+  if (!confirm(t('editor.confirmDelete', { title: report.value.title }))) return
   try {
     await deleteReport(report.value.id)
     router.push('/reports')
   } catch (e: any) {
-    showStatus(`✗ Erreur: ${e.message}`)
+    showStatus(`${t('editor.errorPrefix')} ${e.message}`)
   }
 }
 
 // ---- Generate report from data ----
-async function handleGenerate(type: string) {
+async function handleGenerate(type: string, locale: 'fr' | 'en' = 'fr') {
   showGenerateMenu.value = false
   generating.value = true
   debugLogs.value = []
@@ -143,18 +146,18 @@ async function handleGenerate(type: string) {
     let result: GenerateResult
     switch (type) {
       case 'fuel':
-        result = await buildFuelReport()
+        result = await buildFuelReport(locale)
         break
       default:
-        showStatus(`✗ Générateur inconnu: ${type}`)
+        showStatus(`${t('editor.errorPrefix')} ${t('editor.unknownGenerator', { type })}`)
         return
     }
     report.value = result.report
     debugLogs.value = result.logs
     debugJson.value = JSON.stringify(result.report, null, 2)
-    showStatus(`✓ Rapport généré (${result.report.blocks.length} blocs) — Cliquer 💾 pour sauvegarder sur Firestore`)
+    showStatus(t('editor.generatedOk', { count: result.report.blocks.length }))
   } catch (e: any) {
-    showStatus(`✗ Erreur de génération: ${e.message}`)
+    showStatus(`${t('editor.errorGenerate')} ${e.message}`)
     debugLogs.value.push(`ERROR: ${e.message}`)
     debugJson.value = `Error: ${e.stack || e.message}`
   } finally {
@@ -164,7 +167,7 @@ async function handleGenerate(type: string) {
 
 function copyDebug() {
   navigator.clipboard.writeText(debugJson.value)
-  showStatus('📋 JSON copié dans le presse-papier')
+  showStatus(t('editor.jsonCopied'))
 }
 
 // ---- Block JSON editor (advanced) ----
@@ -182,9 +185,9 @@ function applyJson() {
   try {
     report.value.blocks = JSON.parse(jsonDraft.value)
     showJsonEditor.value = false
-    showStatus('✓ Blocs mis à jour depuis JSON')
+    showStatus(t('editor.blocksUpdated'))
   } catch (e: any) {
-    showStatus(`✗ JSON invalide: ${e.message}`)
+    showStatus(`${t('editor.invalidJson')} ${e.message}`)
   }
 }
 </script>
@@ -193,21 +196,23 @@ function applyJson() {
   <div class="editor-page" v-if="report">
     <!-- Header -->
     <header class="editor-header">
-      <router-link to="/admin" class="back-link">← Admin</router-link>
-      <router-link to="/reports" class="back-link">📊 Rapports</router-link>
+      <router-link to="/admin" class="back-link">← {{ t('common.admin') }}</router-link>
+      <router-link to="/reports" class="back-link">📊 {{ t('common.reports') }}</router-link>
       <div class="spacer"></div>
       <span v-if="statusMsg" class="status-msg">{{ statusMsg }}</span>
       <button class="btn btn-save" @click="handleSave" :disabled="saving">
-        {{ saving ? 'Sauvegarde…' : '💾 Sauvegarder' }}
+        {{ saving ? t('editor.saving') : t('editor.save') }}
       </button>
       <button class="btn btn-json" @click="openJsonEditor">{ } JSON</button>
-      <button class="btn btn-danger" @click="handleDelete">🗑 Supprimer</button>
+      <button class="btn btn-danger" @click="handleDelete">🗑 {{ t('editor.delete') }}</button>
       <div class="generate-wrap">
         <button class="btn btn-generate" @click="showGenerateMenu = !showGenerateMenu" :disabled="generating">
-          {{ generating ? 'Génération…' : '🔄 Générer' }}
+          {{ generating ? t('editor.generating') : t('editor.generate') }}
         </button>
         <div v-if="showGenerateMenu" class="generate-menu">
-          <button class="gen-option" @click="handleGenerate('fuel')">⛽ Offre &amp; Demande de Carburant</button>
+          <div class="gen-group-label">⛽ {{ t('editor.fuelReport') }}</div>
+          <button class="gen-option" @click="handleGenerate('fuel', 'fr')">🇫🇷 Français</button>
+          <button class="gen-option" @click="handleGenerate('fuel', 'en')">🇬🇧 English</button>
         </div>
       </div>
     </header>
@@ -215,16 +220,16 @@ function applyJson() {
     <!-- Report metadata -->
     <section class="meta-section">
       <div class="meta-field">
-        <label>Titre</label>
-        <input v-model="report.title" class="meta-input" placeholder="Titre du rapport" />
+        <label>{{ t('editor.metaTitle') }}</label>
+        <input v-model="report.title" class="meta-input" :placeholder="t('editor.metaTitlePlaceholder')" />
       </div>
       <div class="meta-field">
-        <label>Slug</label>
-        <input v-model="report.slug" class="meta-input meta-slug" placeholder="auto-généré" />
+        <label>{{ t('editor.metaSlug') }}</label>
+        <input v-model="report.slug" class="meta-input meta-slug" :placeholder="t('editor.metaSlugPlaceholder')" />
       </div>
       <div class="meta-field">
-        <label>Description</label>
-        <input v-model="report.description" class="meta-input" placeholder="Description courte" />
+        <label>{{ t('editor.metaDescription') }}</label>
+        <input v-model="report.description" class="meta-input" :placeholder="t('editor.metaDescPlaceholder')" />
       </div>
     </section>
 
@@ -245,12 +250,12 @@ function applyJson() {
 
       <!-- Add block controls -->
       <div class="add-block">
-        <span class="add-label">+ Ajouter :</span>
-        <button class="add-btn" @click="addBlock('title')">Titre</button>
-        <button class="add-btn" @click="addBlock('text')">Texte</button>
-        <button class="add-btn" @click="addBlock('table')">Tableau</button>
-        <button class="add-btn" @click="addBlock('chart')">Graphique</button>
-        <button class="add-btn" @click="addBlock('sources')">📚 Sources</button>
+        <span class="add-label">+ {{ t('editor.addLabel') }} :</span>
+        <button class="add-btn" @click="addBlock('title')">{{ t('editor.blockTitle') }}</button>
+        <button class="add-btn" @click="addBlock('text')">{{ t('editor.blockText') }}</button>
+        <button class="add-btn" @click="addBlock('table')">{{ t('editor.blockTable') }}</button>
+        <button class="add-btn" @click="addBlock('chart')">{{ t('editor.blockChart') }}</button>
+        <button class="add-btn" @click="addBlock('sources')">📚 {{ t('editor.blockSources') }}</button>
       </div>
     </section>
 
@@ -258,8 +263,8 @@ function applyJson() {
     <section v-if="debugJson" class="debug-section">
       <details open>
         <summary class="debug-header">
-          🔍 Debug — Rapport généré ({{ report?.blocks.length }} blocs)
-          <button class="btn-copy" @click.prevent="copyDebug" title="Copier le JSON">📋 Copier</button>
+          🔍 Debug — {{ t('editor.debugGenerated', { count: report?.blocks.length }) }}
+          <button class="btn-copy" @click.prevent="copyDebug" :title="t('editor.copyJson')">📋 {{ t('editor.copy') }}</button>
         </summary>
         <div v-if="debugLogs.length" class="debug-logs">
           <div v-for="(line, i) in debugLogs" :key="i" class="debug-log">{{ line }}</div>
@@ -271,11 +276,11 @@ function applyJson() {
     <!-- JSON editor modal -->
     <div v-if="showJsonEditor" class="json-overlay" @click.self="showJsonEditor = false">
       <div class="json-modal">
-        <h3>Édition JSON des blocs</h3>
+        <h3>{{ t('editor.jsonEdit') }}</h3>
         <textarea v-model="jsonDraft" class="json-textarea" rows="24"></textarea>
         <div class="json-actions">
-          <button class="btn btn-save" @click="applyJson">Appliquer</button>
-          <button class="btn" @click="showJsonEditor = false">Annuler</button>
+          <button class="btn btn-save" @click="applyJson">{{ t('editor.apply') }}</button>
+          <button class="btn" @click="showJsonEditor = false">{{ t('common.cancel') }}</button>
         </div>
       </div>
     </div>
@@ -442,6 +447,14 @@ function applyJson() {
   cursor: pointer;
 }
 .gen-option:hover { background: #f5f5f5; }
+.gen-group-label {
+  padding: 8px 14px 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
 
 /* Debug panel */
 .debug-section {

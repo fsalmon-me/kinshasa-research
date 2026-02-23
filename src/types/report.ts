@@ -25,17 +25,18 @@ export interface ColumnDef {
   decimals?: number
 }
 
-/** Table block: data table sourced from a data file */
+/** Table block: data table sourced from a data file or with inline data */
 export interface TableBlock {
   type: 'table'
   id: string
   title?: string
-  dataSource: string       // filename in public/data/ (e.g. 'fuel-demand.json')
+  dataSource: string       // filename in public/data/ (e.g. 'fuel-demand.json') or 'inline' for embedded data
   columns: ColumnDef[]
   sortBy?: string           // field to sort by
   sortDir?: 'asc' | 'desc'
   limit?: number            // max rows
   filters?: Record<string, unknown> // field → value filter
+  inlineData?: Record<string, unknown>[] // embedded rows (used for matrix tables)
 }
 
 /** Chart block: Chart.js visualization */

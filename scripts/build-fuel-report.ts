@@ -2,21 +2,34 @@
  * build-fuel-report.ts
  *
  * Generates the "Offre & Demande de Carburant" report using ReportBuilder.
- * Reads fuel-demand.json and fuel.geojson to compute real statistics.
+ * Reads fuel-demand.json, fuel.geojson, communes.geojson, and travel-kinshasa.json.
  *
- * Usage:  npx tsx scripts/build-fuel-report.ts
- * Output: public/data/reports.json
+ * Supports multilingual generation (fr/en).
+ *
+ * Usage:
+ *   npx tsx scripts/build-fuel-report.ts              # French only (default)
+ *   npx tsx scripts/build-fuel-report.ts --lang en    # English only
+ *   npx tsx scripts/build-fuel-report.ts --lang all   # Both languages
+ *
+ * Output: public/data/reports/{slug}.json + index.json
  */
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { ReportBuilder } from '../src/lib/report-builder.js'
+import fr from '../src/i18n/fr.js'
+import en from '../src/i18n/en.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 const DATA_DIR = join(__dirname, '..', 'public', 'data')
 
-// ── Load data ──────────────────────────────────────────────────────
+// ── CLI args ───────────────────────────────────────────────────────
+type Locale = 'fr' | 'en'
+const langArg = process.argv.find((_, i, a) => a[i - 1] === '--lang') ?? 'fr'
+const locales: Locale[] = langArg === 'all' ? ['fr', 'en'] : [langArg as Locale]
+
+// ── Types ──────────────────────────────────────────────────────────
 interface FuelRecord {
   commune: string
   pop_2025: number
@@ -35,34 +48,37 @@ interface FuelRecord {
   demand_per_km2_2040: number
 }
 
+interface TravelData {
+  communes: string[]
+  distances: number[][]
+  profiles: Record<string, {
+    label: string
+    hours: string
+    coeff: number
+    speedRange: string
+    traffic: string
+    durations: number[][]
+  }>
+}
+
+// ── Load data ──────────────────────────────────────────────────────
 const fuelData: FuelRecord[] = JSON.parse(readFileSync(join(DATA_DIR, 'fuel-demand.json'), 'utf-8'))
 const fuelGeoJSON = JSON.parse(readFileSync(join(DATA_DIR, 'fuel.geojson'), 'utf-8'))
 const communesGeoJSON = JSON.parse(readFileSync(join(DATA_DIR, 'communes.geojson'), 'utf-8'))
+const travelData: TravelData = JSON.parse(readFileSync(join(DATA_DIR, 'travel-kinshasa.json'), 'utf-8'))
 
-// ── Compute summary statistics ─────────────────────────────────────
+// ── Summary statistics ─────────────────────────────────────────────
 const totalPop2025 = fuelData.reduce((s, r) => s + r.pop_2025, 0)
 const totalDemand2025 = fuelData.reduce((s, r) => s + r.demand_2025, 0)
 const totalDemand2030 = fuelData.reduce((s, r) => s + r.demand_2030, 0)
 const totalDemand2040 = fuelData.reduce((s, r) => s + r.demand_2040, 0)
-const totalStations = fuelGeoJSON.metadata?.featureCount ?? fuelGeoJSON.features.length
+const totalStations: number = fuelGeoJSON.metadata?.featureCount ?? fuelGeoJSON.features.length
 const saturatedCommunes = fuelData.filter(r => r.saturated).map(r => r.commune)
 
-// Top 5 communes by demand
 const top5Demand = [...fuelData].sort((a, b) => b.demand_2025 - a.demand_2025).slice(0, 5)
 const top5DensityKm2 = [...fuelData].sort((a, b) => b.demand_per_km2_2025 - a.demand_per_km2_2025).slice(0, 5)
 
-// Count stations per commune using a simple bounding approach
-// (We don't have turf in this script context, so we'll count based on name matching from the GeoJSON)
-// Actually let's use a simple Point-in-Polygon check with the commune polygons
-// For simplicity, count stations that have a name-based commune tag or use centroid proximity
-
-// Simple station count by iterating features
-const stationsByCommune = new Map<string, number>()
-for (const commune of fuelData) {
-  stationsByCommune.set(commune.commune, 0)
-}
-
-// Point-in-polygon test (simple ray-casting for each station point against commune polygons)
+// ── Point-in-polygon helpers ───────────────────────────────────────
 function pointInPolygon(point: [number, number], polygon: number[][]): boolean {
   const [x, y] = point
   let inside = false
@@ -77,23 +93,22 @@ function pointInPolygon(point: [number, number], polygon: number[][]): boolean {
 }
 
 function pointInMultiPolygon(point: [number, number], geometry: any): boolean {
-  if (geometry.type === 'Polygon') {
-    return pointInPolygon(point, geometry.coordinates[0])
-  }
-  if (geometry.type === 'MultiPolygon') {
-    return geometry.coordinates.some((poly: number[][][]) => pointInPolygon(point, poly[0]))
-  }
+  if (geometry.type === 'Polygon') return pointInPolygon(point, geometry.coordinates[0])
+  if (geometry.type === 'MultiPolygon') return geometry.coordinates.some((poly: number[][][]) => pointInPolygon(point, poly[0]))
   return false
 }
 
-for (const stationFeature of fuelGeoJSON.features) {
-  if (stationFeature.geometry?.type !== 'Point') continue
-  const coords: [number, number] = stationFeature.geometry.coordinates
+// ── Station counts per commune ─────────────────────────────────────
+const stationsByCommune = new Map<string, number>()
+for (const c of fuelData) stationsByCommune.set(c.commune, 0)
 
-  for (const communeFeature of communesGeoJSON.features) {
-    const name = communeFeature.properties?.name
+for (const sf of fuelGeoJSON.features) {
+  if (sf.geometry?.type !== 'Point') continue
+  const coords: [number, number] = sf.geometry.coordinates
+  for (const cf of communesGeoJSON.features) {
+    const name = cf.properties?.name
     if (!name) continue
-    if (pointInMultiPolygon(coords, communeFeature.geometry)) {
+    if (pointInMultiPolygon(coords, cf.geometry)) {
       stationsByCommune.set(name, (stationsByCommune.get(name) ?? 0) + 1)
       break
     }
@@ -107,228 +122,262 @@ const communesWithoutStations = [...stationsByCommune.entries()]
   .filter(([, count]) => count === 0)
   .map(([name]) => name)
 
-// Format helpers
-const fmt = (n: number) => n.toLocaleString('fr-FR')
-const fmtK = (n: number) => n >= 1_000_000 ? `${(n / 1_000_000).toFixed(1).replace('.', ',')} M` : fmt(n)
+// ── Travel matrix data ─────────────────────────────────────────────
+const travelCommunes = travelData.communes
+const diurneDurations = travelData.profiles?.diurne?.durations ?? []
+const distances = travelData.distances ?? []
+
+// ── Format helpers ─────────────────────────────────────────────────
+function makeFmt(locale: Locale) {
+  const loc = locale === 'en' ? 'en-US' : 'fr-FR'
+  const fmt = (n: number) => n.toLocaleString(loc)
+  const fmtK = (n: number) =>
+    n >= 1_000_000
+      ? locale === 'en'
+        ? `${(n / 1_000_000).toFixed(1)} M`
+        : `${(n / 1_000_000).toFixed(1).replace('.', ',')} M`
+      : fmt(n)
+  return { fmt, fmtK }
+}
 
 console.log(`\n📊 Fuel Report Statistics:`)
-console.log(`   Population 2025:  ${fmtK(totalPop2025)}`)
-console.log(`   Demand 2025:      ${fmt(totalDemand2025)} m³/jour`)
-console.log(`   Demand 2030:      ${fmt(totalDemand2030)} m³/jour`)
-console.log(`   Demand 2040:      ${fmt(totalDemand2040)} m³/jour`)
+console.log(`   Population 2025:  ${totalPop2025.toLocaleString('fr-FR')}`)
+console.log(`   Demand 2025:      ${totalDemand2025.toLocaleString('fr-FR')} m³/jour`)
 console.log(`   Stations:         ${totalStations}`)
-console.log(`   Saturated:        ${saturatedCommunes.join(', ')}`)
-console.log(`   Top 5 demand:     ${top5Demand.map(r => `${r.commune} (${r.demand_2025})`).join(', ')}`)
-console.log(`   Communes w/o stations: ${communesWithoutStations.join(', ')}`)
-console.log(`   Stations distribution: ${communesWithStations.map(([n, c]) => `${n}:${c}`).join(', ')}`)
+console.log(`   Locales:          ${locales.join(', ')}`)
 
-// ── Build the report ───────────────────────────────────────────────
-const report = new ReportBuilder('Offre & Demande de Carburant — Kinshasa')
-  .id('default-fuel-supply-demand')
-  .slug('offre-demande-carburant')
-  .description(`Analyse de l'offre (${totalStations} stations-service) et de la demande de carburant (${fmt(totalDemand2025)} m³/jour en 2025) pour les 24 communes de Kinshasa.`)
-
-  // ── Introduction ──
-  .h1('Offre & Demande de Carburant à Kinshasa')
-  .text(
-    `Ce rapport analyse la relation entre l'offre en stations-service et la demande de carburant estimée ` +
-    `pour les 24 communes de Kinshasa. La métropole compte environ ${fmtK(totalPop2025)} habitants (projections 2025, ` +
-    `ONU/Macrotrends) et consomme environ ${fmt(totalDemand2025)} m³ de carburant par jour, soit ${fmt(totalDemand2025 * 1000)} litres/jour. ` +
-    `Cette consommation est projetée à ${fmt(totalDemand2030)} m³/jour en 2030 et ${fmt(totalDemand2040)} m³/jour en 2040 ` +
-    `(scénario PDTK B), portée par la croissance démographique et la montée de la motorisation ` +
-    `(actuellement ~4% des ménages, ×6,3 d'ici 2040 selon EDS-RDC III 2024).`
-  )
-  .text(
-    `L'offre est évaluée via les ${totalStations} stations-service identifiées dans OpenStreetMap ` +
-    `(Overpass API, février 2026). Cette source peut sous-estimer le nombre réel de points de vente ` +
-    `informels de carburant.`
-  )
-
-  // ── Demande par commune ──
-  .h2('Demande de carburant par commune')
-  .text(
-    `Le tableau ci-dessous présente la demande journalière en carburant par commune pour les horizons ` +
-    `2025, 2030 et 2040. Les cinq communes les plus consommatrices en 2025 sont ` +
-    `${top5Demand.map(r => `${r.commune} (${r.demand_2025} m³/j)`).join(', ')}.`
-  )
-  .table('fuel-demand.json', {
-    title: 'Demande de carburant (m³/jour) — projections',
-    columns: [
-      { field: 'commune', label: 'Commune' },
-      { field: 'pop_2025', label: 'Pop. 2025', format: 'number', decimals: 0 },
-      { field: 'demand_2025', label: '2025 (m³/j)', format: 'number', decimals: 0 },
-      { field: 'demand_2030', label: '2030 (m³/j)', format: 'number', decimals: 0 },
-      { field: 'demand_2040', label: '2040 (m³/j)', format: 'number', decimals: 0 },
-    ],
-    sortBy: 'demand_2025',
-    sortDir: 'desc',
-  })
-  .barChart('fuel-demand.json', {
-    title: 'Demande de carburant par commune (m³/jour)',
-    labelField: 'commune',
-    datasets: [
-      { field: 'demand_2025', label: '2025', color: '#1976d2' },
-      { field: 'demand_2030', label: '2030', color: '#fb8c00' },
-      { field: 'demand_2040', label: '2040', color: '#c62828' },
-    ],
-  })
-
-  // ── Densité de demande ──
-  .h2('Densité de demande')
-  .text(
-    `La densité de demande est exprimée de deux façons : par habitant (litres/personne/jour) et par ` +
-    `superficie (m³/jour/km²). Les communes les plus denses spatialement sont ` +
-    `${top5DensityKm2.map(r => `${r.commune} (${r.demand_per_km2_2025.toFixed(1)} m³/j/km²)`).join(', ')}. ` +
-    `Ces indicateurs permettent de comparer l'intensité de la demande entre communes de tailles différentes.`
-  )
-  .table('fuel-demand.json', {
-    title: 'Densité de demande — 2025',
-    columns: [
-      { field: 'commune', label: 'Commune' },
-      { field: 'area_km2', label: 'Surface (km²)', format: 'number', decimals: 2 },
-      { field: 'demand_per_capita_L_2025', label: 'L/pers/jour', format: 'number', decimals: 4 },
-      { field: 'demand_per_km2_2025', label: 'm³/jour/km²', format: 'number', decimals: 2 },
-    ],
-    sortBy: 'demand_per_km2_2025',
-    sortDir: 'desc',
-  })
-  .barChart('fuel-demand.json', {
-    title: 'Demande par habitant (L/pers/jour) — 2025',
-    labelField: 'commune',
-    datasets: [
-      { field: 'demand_per_capita_L_2025', label: 'L/personne/jour', color: '#7b1fa2' },
-    ],
-  })
-
-  // ── Offre en stations-service ──
-  .h2('Offre en stations-service')
-  .text(
-    `Kinshasa compte ${totalStations} stations-service référencées dans OpenStreetMap. ` +
-    `La distribution est très inégale : ` +
-    communesWithStations.slice(0, 5).map(([n, c]) => `${n} (${c})`).join(', ') +
-    ` concentrent la majorité de l'offre, tandis que ` +
-    (communesWithoutStations.length > 0
-      ? `${communesWithoutStations.length} communes n'ont aucune station recensée (${communesWithoutStations.join(', ')}).`
-      : `toutes les communes ont au moins une station.`)
-  )
-  .text(
-    `⚠ Cette source (OSM) ne recense pas les points de vente informels de carburant ni les dépôts ` +
-    `privés. La couverture réelle en approvisionnement peut être significativement différente.`
-  )
-
-  // ── Déséquilibre offre/demande ──
-  .h2('Déséquilibre offre / demande')
-  .text(
-    `${saturatedCommunes.length} communes sont classées en saturation démographique résidente ` +
-    `par le PDTK (densité >500 pers/ha) : ${saturatedCommunes.join(', ')}. ` +
-    `Dans ces communes, la croissance de la consommation est portée par la motorisation et ` +
-    `l'intensification des flux plutôt que par la croissance de la population résidente.`
-  )
-  .text(
-    `Les communes périphériques (Nsele, Maluku, Mont-Ngafula) présentent les volumes absolus les ` +
-    `plus élevés mais une faible densité spatiale de demande. L'offre en stations-service, ` +
-    `concentrée dans les communes centrales, ne suit pas la croissance de la demande en périphérie — ` +
-    `un facteur clé pour la planification d'infrastructure.`
-  )
-  .text(
-    `La demande totale devrait passer de ${fmt(totalDemand2025)} à ${fmt(totalDemand2040)} m³/jour ` +
-    `entre 2025 et 2040, soit une augmentation de ${Math.round((totalDemand2040 / totalDemand2025 - 1) * 100)}%. ` +
-    `Sans expansion significative du réseau de distribution, plusieurs communes périphériques ` +
-    `risquent des pénuries récurrentes d'approvisionnement.`
-  )
-
-  // ── Méthodologie ──
-  .h2('Méthodologie')
-  .text(
-    `La demande journalière communale est modélisée par : Dⱼ = f(Population, Motorisation, Déficit électrique, Industrie). ` +
-    `Population 2025 : 17,77 M (ONU/Macrotrends). Projections démographiques : PDTK Scénario B. ` +
-    `Taux de motorisation : 4% des ménages (EDS-RDC III 2024), projeté ×6,3 d'ici 2040. ` +
-    `Consommation métropolitaine de référence : 3 000 m³/jour (Min. Économie, avril 2025). ` +
-    `Les valeurs communales sont normalisées pour que leur somme équivaille aux totaux métropolitains.`
-  )
-  .text(
-    `L'offre en stations-service est extraite d'OpenStreetMap via Overpass API (tag amenity=fuel), ` +
-    `géolocalisée et comptée par commune via intersection géométrique point-dans-polygone. ` +
-    `Les communes sont définies par les polygones OSM du fichier communes.geojson.`
-  )
-
-  // ── Sources ──
-  .dataSource('Données de demande (fuel-demand.json)', {
-    description: 'Modélisation spatiale de la demande en hydrocarbures par commune 2025-2040',
-    date: '2026-02-21',
-  })
-  .dataSource('Stations-service (fuel.geojson)', {
-    description: `${totalStations} stations-service extraites d'OpenStreetMap`,
-    url: 'https://www.openstreetmap.org/',
-    date: '2026-02-19',
-  })
-  .dataSource('Polygones communes (communes.geojson)', {
-    description: 'Limites administratives des 24 communes de Kinshasa, source OSM',
-    url: 'https://www.openstreetmap.org/',
-    date: '2026-02-18',
-  })
-  .source('JICA — Plan Directeur des Transports de Kinshasa (PDTK)', {
-    description: 'Projections démographiques Scénario B, classification saturation démographique',
-    date: '2019',
-  })
-  .source('Ministère de l\'Économie RDC — Consommation métropolitaine', {
-    description: 'Données de consommation : 3 000 m³/jour pour la métropole de Kinshasa',
-    date: 'Avril 2025',
-  })
-  .source('EDS-RDC III — Enquête Démographique et de Santé', {
-    description: 'Taux de motorisation des ménages congolais : ~4%, projection ×6,3 d\'ici 2040',
-    date: '2024',
-  })
-  .source('SNEL / AZES — Déficit électrique par commune', {
-    description: 'Données de déficit électrique influençant la demande en groupes électrogènes',
-  })
-  .source('United Nations DESA — World Urbanization Prospects', {
-    description: 'Population Kinshasa 2025 : 17,77 millions',
-    url: 'https://population.un.org/wup/',
-    date: '2024',
-  })
-  .source('Macrotrends — Kinshasa Population', {
-    description: 'Projections démographiques complémentaires',
-    url: 'https://www.macrotrends.net/cities/20839/kinshasa/population',
-    date: '2025',
-  })
-  .source('OpenStreetMap — Overpass API', {
-    description: 'Extraction des stations-service (amenity=fuel) dans la métropole de Kinshasa',
-    url: 'https://overpass-turbo.eu/',
-    date: '2026-02-19',
-  })
-  .sources('Sources & Références')
-  .build()
-
-// ── Write output to public/data/reports/{slug}.json + index.json ──
+// ── Build report for each locale ───────────────────────────────────
 const REPORTS_DIR = join(DATA_DIR, 'reports')
 mkdirSync(REPORTS_DIR, { recursive: true })
 
-// Write individual report file
-const reportPath = join(REPORTS_DIR, `${report.slug}.json`)
-writeFileSync(reportPath, JSON.stringify(report, null, 2), 'utf-8')
-
-// Update index (merge with existing entries from other report scripts)
 const indexPath = join(REPORTS_DIR, 'index.json')
 let index: { id: string; title: string; slug: string; description: string; createdAt: string; updatedAt: string }[] = []
 try { index = JSON.parse(readFileSync(indexPath, 'utf-8')) } catch { /* first run */ }
 
-const summary = {
-  id: report.id,
-  title: report.title,
-  slug: report.slug,
-  description: report.description,
-  createdAt: report.createdAt,
-  updatedAt: report.updatedAt,
+for (const locale of locales) {
+  const msgs = locale === 'en' ? en : fr
+  const t = msgs.fuelReport
+  const { fmt, fmtK } = makeFmt(locale)
+  const dayAbbr = locale === 'en' ? 'd' : 'j'
+
+  // Duration matrix rows
+  const communeCol = t.colCommune
+  const durationRows: Record<string, unknown>[] = travelCommunes.map((from, i) => {
+    const row: Record<string, unknown> = { [communeCol]: from }
+    travelCommunes.forEach((to, j) => { row[to] = Math.round(diurneDurations[i]?.[j] ?? 0) })
+    return row
+  })
+  const distanceRows: Record<string, unknown>[] = travelCommunes.map((from, i) => {
+    const row: Record<string, unknown> = { [communeCol]: from }
+    travelCommunes.forEach((to, j) => { row[to] = Math.round((distances[i]?.[j] ?? 0) * 10) / 10 })
+    return row
+  })
+  const matrixColumns = [
+    { field: communeCol, label: communeCol },
+    ...travelCommunes.map(c => ({ field: c, label: c, format: 'number' as const, decimals: 0 })),
+  ]
+  const distMatrixColumns = [
+    { field: communeCol, label: communeCol },
+    ...travelCommunes.map(c => ({ field: c, label: c, format: 'number' as const, decimals: 1 })),
+  ]
+
+  const report = new ReportBuilder(t.title)
+    .id(locale === 'en' ? 'default-fuel-supply-demand-en' : 'default-fuel-supply-demand')
+    .slug(t.slug)
+    .description(
+      t.description
+        .replace('{stations}', String(totalStations))
+        .replace('{demand}', fmt(totalDemand2025)),
+    )
+
+    // ── Introduction ──
+    .h1(t.h1)
+    .text(
+      t.intro1
+        .replace('{pop}', fmtK(totalPop2025))
+        .replace('{demand}', fmt(totalDemand2025))
+        .replace('{demandL}', fmt(totalDemand2025 * 1000))
+        .replace('{demand2030}', fmt(totalDemand2030))
+        .replace('{demand2040}', fmt(totalDemand2040)),
+    )
+    .text(t.intro2.replace('{stations}', String(totalStations)))
+
+    // ── Demand by commune ──
+    .h2(t.demandTitle)
+    .text(
+      t.demandText.replace('{top5}',
+        top5Demand.map(r => `${r.commune} (${r.demand_2025} m³/${dayAbbr})`).join(', '),
+      ),
+    )
+    .table('fuel-demand.json', {
+      title: t.demandTableTitle,
+      columns: [
+        { field: 'commune', label: t.colCommune },
+        { field: 'pop_2025', label: t.colPop, format: 'number', decimals: 0 },
+        { field: 'demand_2025', label: t.col2025, format: 'number', decimals: 0 },
+        { field: 'demand_2030', label: t.col2030, format: 'number', decimals: 0 },
+        { field: 'demand_2040', label: t.col2040, format: 'number', decimals: 0 },
+      ],
+      sortBy: 'demand_2025',
+      sortDir: 'desc',
+    })
+    .barChart('fuel-demand.json', {
+      title: t.demandChartTitle,
+      labelField: 'commune',
+      datasets: [
+        { field: 'demand_2025', label: '2025', color: '#1976d2' },
+        { field: 'demand_2030', label: '2030', color: '#fb8c00' },
+        { field: 'demand_2040', label: '2040', color: '#c62828' },
+      ],
+    })
+
+    // ── Demand density ──
+    .h2(t.densityTitle)
+    .text(
+      t.densityText.replace('{top5}',
+        top5DensityKm2.map(r => `${r.commune} (${r.demand_per_km2_2025.toFixed(1)} m³/${dayAbbr}/km²)`).join(', '),
+      ),
+    )
+    .table('fuel-demand.json', {
+      title: t.densityTableTitle,
+      columns: [
+        { field: 'commune', label: t.colCommune },
+        { field: 'area_km2', label: t.colSurface, format: 'number', decimals: 2 },
+        { field: 'demand_per_capita_L_2025', label: t.colPerCapita, format: 'number', decimals: 4 },
+        { field: 'demand_per_km2_2025', label: t.colPerKm2, format: 'number', decimals: 2 },
+      ],
+      sortBy: 'demand_per_km2_2025',
+      sortDir: 'desc',
+    })
+    .barChart('fuel-demand.json', {
+      title: t.densityChartTitle,
+      labelField: 'commune',
+      datasets: [
+        { field: 'demand_per_capita_L_2025', label: t.colPerCapita, color: '#7b1fa2' },
+      ],
+    })
+
+    // ── Supply ──
+    .h2(t.supplyTitle)
+    .text(
+      t.supplyText
+        .replace('{stations}', String(totalStations))
+        .replace('{topStations}', communesWithStations.slice(0, 5).map(([n, c]) => `${n} (${c})`).join(', '))
+        .replace('{noStationText}',
+          communesWithoutStations.length > 0
+            ? t.noStationSome
+                .replace('{count}', String(communesWithoutStations.length))
+                .replace('{names}', communesWithoutStations.join(', '))
+            : t.noStationAll,
+        ),
+    )
+    .text(t.supplyWarning)
+
+    // ── Supply/demand imbalance ──
+    .h2(t.imbalanceTitle)
+    .text(
+      t.saturation
+        .replace('{count}', String(saturatedCommunes.length))
+        .replace('{names}', saturatedCommunes.join(', ')),
+    )
+    .text(t.periphery)
+    .text(
+      t.growth
+        .replace('{from}', fmt(totalDemand2025))
+        .replace('{to}', fmt(totalDemand2040))
+        .replace('{pct}', String(Math.round((totalDemand2040 / totalDemand2025 - 1) * 100))),
+    )
+
+    // ── Travel times and distances ──
+    .h2(t.travelTitle)
+    .text(t.travelText)
+    .inlineTable(durationRows, {
+      title: t.durationTableTitle,
+      columns: matrixColumns,
+    })
+    .inlineTable(distanceRows, {
+      title: t.distanceTableTitle,
+      columns: distMatrixColumns,
+    })
+
+    // ── Methodology ──
+    .h2(t.methodologyTitle)
+    .text(t.methodologyText1)
+    .text(t.methodologyText2)
+
+    // ── Sources ──
+    .dataSource(t.srcDemandData, {
+      description: t.srcDemandDesc,
+      date: '2026-02-21',
+    })
+    .dataSource(t.srcStationsData, {
+      description: t.srcStationsDesc.replace('{count}', String(totalStations)),
+      url: 'https://www.openstreetmap.org/',
+      date: '2026-02-19',
+    })
+    .dataSource(t.srcCommunesData, {
+      description: t.srcCommunesDesc,
+      url: 'https://www.openstreetmap.org/',
+      date: '2026-02-18',
+    })
+    .dataSource(t.srcTravelData, {
+      description: t.srcTravelDesc,
+      date: '2026-02-23',
+    })
+    .source(t.srcJica, {
+      description: t.srcJicaDesc,
+      date: '2019',
+    })
+    .source(t.srcMinEco, {
+      description: t.srcMinEcoDesc,
+      date: locale === 'en' ? 'April 2025' : 'Avril 2025',
+    })
+    .source(t.srcEds, {
+      description: t.srcEdsDesc,
+      date: '2024',
+    })
+    .source(t.srcSnel, {
+      description: t.srcSnelDesc,
+    })
+    .source(t.srcUn, {
+      description: t.srcUnDesc,
+      url: 'https://population.un.org/wup/',
+      date: '2024',
+    })
+    .source(t.srcMacrotrends, {
+      description: t.srcMacrotrendsDesc,
+      url: 'https://www.macrotrends.net/cities/20839/kinshasa/population',
+      date: '2025',
+    })
+    .source(t.srcOsm, {
+      description: t.srcOsmDesc,
+      url: 'https://overpass-turbo.eu/',
+      date: '2026-02-19',
+    })
+    .sources(t.sourcesTitle)
+    .build()
+
+  // ── Write output ──
+  const reportPath = join(REPORTS_DIR, `${report.slug}.json`)
+  writeFileSync(reportPath, JSON.stringify(report, null, 2), 'utf-8')
+
+  const summary = {
+    id: report.id,
+    title: report.title,
+    slug: report.slug,
+    description: report.description,
+    createdAt: report.createdAt,
+    updatedAt: report.updatedAt,
+  }
+  const existingIdx = index.findIndex(r => r.slug === report.slug)
+  if (existingIdx >= 0) index[existingIdx] = summary
+  else index.push(summary)
+
+  console.log(`\n✅ [${locale.toUpperCase()}] Report written to ${reportPath}`)
+  console.log(`   Title:  ${report.title}`)
+  console.log(`   Slug:   ${report.slug}`)
+  console.log(`   Blocks: ${report.blocks.length}`)
 }
-const existingIdx = index.findIndex(r => r.slug === report.slug)
-if (existingIdx >= 0) index[existingIdx] = summary
-else index.push(summary)
 
 writeFileSync(indexPath, JSON.stringify(index, null, 2), 'utf-8')
-
-console.log(`\n✅ Report written to ${reportPath}`)
-console.log(`   Index updated: ${indexPath}`)
-console.log(`   Title: ${report.title}`)
-console.log(`   Slug:  ${report.slug}`)
-console.log(`   Blocks: ${report.blocks.length}`)
+console.log(`\n📁 Index updated: ${indexPath}`)

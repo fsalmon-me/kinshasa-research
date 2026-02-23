@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { TableBlock } from '@/types/report'
 import { fetchData } from '@/composables/useDataStore'
+
+const { t, locale } = useI18n()
 
 const props = defineProps<{
   block: TableBlock
@@ -18,8 +21,14 @@ const error = ref('')
 async function loadData() {
   error.value = ''
   try {
-    const data = await fetchData(props.block.dataSource)
-    let result = [...data] as Record<string, unknown>[]
+    // Use inlineData if present, otherwise fetch from dataSource
+    let data: Record<string, unknown>[]
+    if (props.block.inlineData && props.block.inlineData.length > 0) {
+      data = props.block.inlineData
+    } else {
+      data = [...(await fetchData(props.block.dataSource))] as Record<string, unknown>[]
+    }
+    let result = [...data]
 
     // Apply filters
     if (props.block.filters) {
@@ -46,7 +55,7 @@ async function loadData() {
 
     rows.value = result
   } catch (e: any) {
-    error.value = `Erreur: ${e.message}`
+    error.value = t('tableBlock.error', { message: e.message })
   }
 }
 
@@ -55,7 +64,8 @@ function formatCell(value: unknown, col: typeof props.block.columns[0]): string 
   if (col.format === 'number') {
     const num = Number(value)
     if (isNaN(num)) return String(value)
-    return num.toLocaleString('fr-FR', { maximumFractionDigits: col.decimals ?? 0 })
+    const loc = locale.value === 'en' ? 'en-US' : 'fr-FR'
+    return num.toLocaleString(loc, { maximumFractionDigits: col.decimals ?? 0 })
   }
   if (col.format === 'percent') {
     const num = Number(value)
@@ -67,6 +77,7 @@ function formatCell(value: unknown, col: typeof props.block.columns[0]): string 
 
 onMounted(loadData)
 watch(() => props.block.dataSource, loadData)
+watch(() => props.block.inlineData, loadData)
 </script>
 
 <template>
@@ -88,7 +99,7 @@ watch(() => props.block.dataSource, loadData)
           </tr>
         </tbody>
       </table>
-      <p v-else-if="!error" class="empty">Aucune donnée disponible.</p>
+      <p v-else-if="!error" class="empty">{{ t('tableBlock.empty') }}</p>
     </div>
   </div>
 </template>

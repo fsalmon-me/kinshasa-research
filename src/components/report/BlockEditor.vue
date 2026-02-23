@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import type { ReportBlock } from '@/types/report'
 import ReportTitleBlock from './ReportTitleBlock.vue'
 import ReportTextBlock from './ReportTextBlock.vue'
@@ -20,6 +21,7 @@ const emit = defineEmits<{
   moveDown: [index: number]
 }>()
 
+const { t } = useI18n()
 
 </script>
 
@@ -29,9 +31,9 @@ const emit = defineEmits<{
     <div v-if="editable" class="block-controls">
       <span class="block-type">{{ block.type }}</span>
       <div class="block-actions">
-        <button v-if="index > 0" class="ctrl-btn" @click="emit('moveUp', index)" title="Monter">↑</button>
-        <button v-if="index < total - 1" class="ctrl-btn" @click="emit('moveDown', index)" title="Descendre">↓</button>
-        <button class="ctrl-btn ctrl-danger" @click="emit('remove', index)" title="Supprimer">✕</button>
+        <button v-if="index > 0" class="ctrl-btn" @click="emit('moveUp', index)" :title="t('blockEditor.moveUp')">↑</button>
+        <button v-if="index < total - 1" class="ctrl-btn" @click="emit('moveDown', index)" :title="t('blockEditor.moveDown')">↓</button>
+        <button class="ctrl-btn ctrl-danger" @click="emit('remove', index)" :title="t('blockEditor.delete')">✕</button>
       </div>
     </div>
 

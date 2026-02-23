@@ -1,12 +1,17 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import MapContainer from '@/components/MapContainer.vue'
+import LocaleSwitcher from '@/components/LocaleSwitcher.vue'
+
+const { t } = useI18n()
 </script>
 
 <template>
   <div class="map-page">
     <MapContainer />
-    <router-link to="/reports" class="admin-link reports-link">📊 Rapports</router-link>
-    <router-link to="/admin" class="admin-link">⚙️ Admin</router-link>
+    <LocaleSwitcher class="locale-switcher" />
+    <router-link to="/reports" class="admin-link reports-link">📊 {{ t('common.reports') }}</router-link>
+    <router-link to="/admin" class="admin-link">⚙️ {{ t('common.admin') }}</router-link>
   </div>
 </template>
 
@@ -39,5 +44,12 @@ import MapContainer from '@/components/MapContainer.vue'
 
 .reports-link {
   right: 100px;
+}
+
+.locale-switcher {
+  position: absolute;
+  bottom: 12px;
+  right: 180px;
+  z-index: 1000;
 }
 </style>

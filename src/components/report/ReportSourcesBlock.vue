@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { SourcesBlock, SourceItem } from '../../types/report'
+
+const { t } = useI18n()
 
 const props = defineProps<{
   block: SourcesBlock
@@ -67,50 +70,50 @@ function resetForm() {
 
     <!-- Data sources section -->
     <div v-if="dataSources.length" class="sources-section">
-      <h4 class="sources-subtitle">Données utilisées</h4>
+      <h4 class="sources-subtitle">{{ t('sourcesBlock.dataUsed') }}</h4>
       <ol class="sources-list data-list">
         <li v-for="(src, i) in dataSources" :key="'d-' + i" class="source-item data-source">
           <span class="source-label">{{ src.label }}</span>
           <span v-if="src.date" class="source-date"> ({{ src.date }})</span>
           <a v-if="src.url" :href="src.url" target="_blank" rel="noopener" class="source-link">↗</a>
           <span v-if="src.description" class="source-desc"> — {{ src.description }}</span>
-          <button v-if="editable" class="remove-btn" title="Supprimer" @click="removeSource(block.items.indexOf(src))">×</button>
+          <button v-if="editable" class="remove-btn" :title="t('sourcesBlock.delete')" @click="removeSource(block.items.indexOf(src))">×</button>
         </li>
       </ol>
     </div>
 
     <!-- External sources section -->
     <div v-if="externalSources.length" class="sources-section">
-      <h4 class="sources-subtitle">Références externes</h4>
+      <h4 class="sources-subtitle">{{ t('sourcesBlock.externalRefs') }}</h4>
       <ol class="sources-list ext-list">
         <li v-for="(src, i) in externalSources" :key="'e-' + i" class="source-item ext-source">
           <span class="source-label">{{ src.label }}</span>
           <span v-if="src.date" class="source-date"> ({{ src.date }})</span>
           <a v-if="src.url" :href="src.url" target="_blank" rel="noopener" class="source-link">↗</a>
           <span v-if="src.description" class="source-desc"> — {{ src.description }}</span>
-          <button v-if="editable" class="remove-btn" title="Supprimer" @click="removeSource(block.items.indexOf(src))">×</button>
+          <button v-if="editable" class="remove-btn" :title="t('sourcesBlock.delete')" @click="removeSource(block.items.indexOf(src))">×</button>
         </li>
       </ol>
     </div>
 
     <!-- Empty state -->
     <p v-if="!dataSources.length && !externalSources.length" class="sources-empty">
-      Aucune source renseignée.
+      {{ t('sourcesBlock.noSources') }}
     </p>
 
     <!-- Add form (editable mode) -->
     <div v-if="editable" class="add-section">
       <button v-if="!showAddForm" class="add-source-btn" @click="showAddForm = true">
-        + Ajouter une source
+        {{ t('sourcesBlock.addSource') }}
       </button>
       <div v-else class="add-form">
-        <input v-model="newLabel" placeholder="Intitulé de la source *" class="form-input" />
-        <input v-model="newUrl" placeholder="URL (optionnel)" class="form-input" />
-        <input v-model="newDate" placeholder="Date (optionnel)" class="form-input" />
-        <input v-model="newDescription" placeholder="Description (optionnel)" class="form-input" />
+        <input v-model="newLabel" :placeholder="t('sourcesBlock.labelPlaceholder')" class="form-input" />
+        <input v-model="newUrl" :placeholder="t('sourcesBlock.urlPlaceholder')" class="form-input" />
+        <input v-model="newDate" :placeholder="t('sourcesBlock.datePlaceholder')" class="form-input" />
+        <input v-model="newDescription" :placeholder="t('sourcesBlock.descriptionPlaceholder')" class="form-input" />
         <div class="add-form-actions">
-          <button class="btn-confirm" @click="addSource">Ajouter</button>
-          <button class="btn-cancel" @click="resetForm">Annuler</button>
+          <button class="btn-confirm" @click="addSource">{{ t('common.add') }}</button>
+          <button class="btn-cancel" @click="resetForm">{{ t('common.cancel') }}</button>
         </div>
       </div>
     </div>

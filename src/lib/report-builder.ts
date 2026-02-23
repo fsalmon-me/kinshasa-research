@@ -139,6 +139,23 @@ export class ReportBuilder {
     return this
   }
 
+  /** Add a table with embedded inline data (no external data file) */
+  inlineTable(rows: Record<string, unknown>[], config: TableConfig): this {
+    this._blocks.push({
+      type: 'table',
+      id: this._nextId(),
+      title: config.title,
+      dataSource: 'inline',
+      columns: config.columns,
+      sortBy: config.sortBy,
+      sortDir: config.sortDir,
+      limit: config.limit,
+      filters: config.filters,
+      inlineData: rows,
+    })
+    return this
+  }
+
   /** Add a bar chart block */
   barChart(dataSource: string, config: ChartConfig): this {
     return this._chart('bar', dataSource, config)

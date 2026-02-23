@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { LayerConfig } from '@/types/layer'
 import type { FeatureOverride } from '@/types/layer'
 import {
@@ -19,6 +20,7 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const { displayName, logout: doLogout } = useAuth()
+const { t } = useI18n()
 
 // ---- State ----
 const activeLayerId = ref<string | null>(null)
@@ -144,12 +146,12 @@ function matrixUnit(): string {
 }
 
 // ---- Computed ----
-const categoryLabels: Record<string, string> = {
-  statistics: '📊 Statistiques',
-  infrastructure: '🛣️ Infrastructure',
-  poi: '📍 Points d\'intérêt',
-  transport: '🚗 Transport',
-}
+const categoryLabels = computed<Record<string, string>>(() => ({
+  statistics: t('categories.statisticsIcon'),
+  infrastructure: t('categories.infrastructureIcon'),
+  poi: t('categories.poiIcon'),
+  transport: t('categories.transportIcon'),
+}))
 const categoryOrder = ['statistics', 'infrastructure', 'poi', 'transport', 'other']
 
 interface GroupedLayers { key: string; label: string; items: LayerConfig[] }
@@ -162,7 +164,7 @@ const groups = computed<GroupedLayers[]>(() => {
   }
   return categoryOrder
     .filter(k => map.has(k))
-    .map(k => ({ key: k, label: categoryLabels[k] ?? '📦 Autre', items: map.get(k)! }))
+    .map(k => ({ key: k, label: categoryLabels.value[k] ?? t('categories.otherIcon'), items: map.get(k)! }))
 })
 
 const activeLayer = computed(() => layers.value.find(l => l.id === activeLayerId.value))
@@ -282,7 +284,7 @@ async function selectLayer(layerId: string) {
       return { key, props, override: { ...override } }
     })
   } catch (e: any) {
-    errorMsg.value = `Erreur de chargement: ${e.message}`
+    errorMsg.value = `${t('adminPage.loadError')} ${e.message}`
   }
 }
 
@@ -293,18 +295,18 @@ function updateOverride(row: FeatureRow, field: string, value: string) {
     (row.override as any)[field] = value || undefined
   }
   setFeatureOverride(activeLayerId.value!, row.key, row.override)
-  showStatus('Modification enregistrée en mémoire')
+  showStatus(t('adminPage.modSaved'))
 }
 
 function toggleVerified(row: FeatureRow) {
   row.override.verified = !row.override.verified
   setFeatureOverride(activeLayerId.value!, row.key, row.override)
-  showStatus('Statut vérifié mis à jour')
+  showStatus(t('adminPage.verifiedUpdated'))
 }
 
 function doExportOverrides() {
   exportMetadataOverrides()
-  showStatus('Fichier metadata-overrides.json exporté')
+  showStatus(t('adminPage.exported'))
 }
 
 async function doImportOverrides(event: Event) {
@@ -312,11 +314,11 @@ async function doImportOverrides(event: Event) {
   if (!input.files?.length) return
   try {
     await importMetadataOverrides(input.files[0])
-    showStatus('Overrides importées avec succès')
+    showStatus(t('adminPage.importSuccess'))
     // Reload current layer to reflect changes
     if (activeLayerId.value) await selectLayer(activeLayerId.value)
   } catch (e: any) {
-    errorMsg.value = `Erreur d'import: ${e.message}`
+    errorMsg.value = `${t('adminPage.importError')} ${e.message}`
   }
   input.value = '' // reset file input
 }
@@ -389,7 +391,7 @@ function crystalliseData() {
   const file = activeDataFile()
   if (!file || !activeLayerId.value) return
   exportEnrichedData()
-  showStatus(`${file} téléchargé — placez-le dans public/data/ et commitez`)
+  showStatus(`${file} ${t('adminPage.crystallised')}`)
 }
 
 // ---- Data Enrichment TODO List (persisted in localStorage) ----
@@ -441,17 +443,17 @@ async function handleLogout() {
 <template>
   <div class="admin-page">
     <header class="admin-header">
-      <router-link to="/" class="back-link">← Carte</router-link>
-      <router-link to="/reports" class="back-link">📊 Rapports</router-link>
-      <h1>Administration des données</h1>
+      <router-link to="/" class="back-link">← {{ t('common.map') }}</router-link>
+      <router-link to="/reports" class="back-link">📊 {{ t('common.reports') }}</router-link>
+      <h1>{{ t('adminPage.title') }}</h1>
       <div class="header-actions">
         <span class="user-badge" v-if="displayName">{{ displayName }}</span>
-        <button class="btn" @click="doExportOverrides" title="Exporter les annotations (JSON)">⬇ Exporter</button>
-        <label class="btn" title="Importer des annotations depuis un fichier JSON">
-          ⬆ Importer
+        <button class="btn" @click="doExportOverrides" :title="t('adminPage.exportTooltip')">⬇ {{ t('adminPage.export') }}</button>
+        <label class="btn" :title="t('adminPage.importTooltip')">
+          ⬆ {{ t('adminPage.import') }}
           <input type="file" accept=".json" hidden @change="doImportOverrides" />
         </label>
-        <button class="btn btn-logout" @click="handleLogout" title="Se déconnecter">⏻</button>
+        <button class="btn btn-logout" @click="handleLogout" :title="t('adminPage.logout')">⏻</button>
       </div>
     </header>
 
@@ -466,19 +468,19 @@ async function handleLogout() {
             :class="['ds-btn', { active: layer.id === activeLayerId }]"
             @click="selectLayer(layer.id)"
           >
-            <span v-if="layer.status === 'draft'" class="draft-badge" title="Couche en brouillon — non visible sur la carte">🚧</span>
+            <span v-if="layer.status === 'draft'" class="draft-badge" :title="t('adminPage.draftTooltip')">🚧</span>
             {{ layer.name }}
           </button>
         </div>
 
         <!-- Data enrichment TODO list -->
         <div class="todo-panel">
-          <h4>📋 À enrichir</h4>
+          <h4>📋 {{ t('adminPage.todoTitle') }}</h4>
           <div class="todo-add">
             <input
               v-model="newTodoText"
               type="text"
-              placeholder="Nouvelle tâche…"
+              :placeholder="t('adminPage.todoPlaceholder')"
               class="todo-input"
               @keyup.enter="addTodo"
             />
@@ -488,10 +490,10 @@ async function handleLogout() {
             <li v-for="item in todoItems" :key="item.id" :class="{ done: item.done }">
               <button class="todo-check" @click="toggleTodo(item.id)">{{ item.done ? '✅' : '⬜' }}</button>
               <span class="todo-text">{{ item.text }}</span>
-              <button class="todo-remove" @click="removeTodo(item.id)" title="Supprimer">✕</button>
+              <button class="todo-remove" @click="removeTodo(item.id)" :title="t('common.delete')">✕</button>
             </li>
           </ul>
-          <p v-if="!todoItems.length" class="todo-empty">Aucune tâche</p>
+          <p v-if="!todoItems.length" class="todo-empty">{{ t('adminPage.noTodos') }}</p>
         </div>
       </aside>
 
@@ -511,23 +513,23 @@ async function handleLogout() {
               <button
                 class="btn btn-sm"
                 @click="crystalliseData"
-                title="Télécharger le JSON enrichi pour commit dans public/data/"
-              >↓ Cristalliser</button>
-              <button class="btn btn-sm primary" @click="exportEnrichedData">⬇ Export enrichi</button>
+                :title="t('adminPage.crystalliseTooltip')"
+              >↓ {{ t('adminPage.crystallise') }}</button>
+              <button class="btn btn-sm primary" @click="exportEnrichedData">⬇ {{ t('adminPage.exportEnriched') }}</button>
             </div>
           </div>
           <div class="stat-cards">
             <div class="stat-card">
               <div class="stat-value">{{ stats.total }}</div>
-              <div class="stat-label">Entrées</div>
+              <div class="stat-label">{{ t('adminPage.entries') }}</div>
             </div>
             <div class="stat-card">
               <div class="stat-value">{{ stats.named }}</div>
-              <div class="stat-label">Nommés</div>
+              <div class="stat-label">{{ t('adminPage.named') }}</div>
             </div>
             <div class="stat-card accent">
               <div class="stat-value">{{ stats.verified }}</div>
-              <div class="stat-label">Vérifiés</div>
+              <div class="stat-label">{{ t('adminPage.verified') }}</div>
             </div>
           </div>
         </div>
@@ -539,7 +541,7 @@ async function handleLogout() {
             <input
               v-model="searchQuery"
               type="text"
-              placeholder="Rechercher dans les données…"
+              :placeholder="t('adminPage.searchPlaceholder')"
               class="search-input"
             />
           </div>
@@ -554,15 +556,15 @@ async function handleLogout() {
             <button
               :class="['btn', { primary: matrixMode === 'duration' }]"
               @click="matrixMode = 'duration'"
-            >⏱ Durées</button>
+            >⏱ {{ t('adminPage.durations') }}</button>
             <button
               :class="['btn', { primary: matrixMode === 'distance' }]"
               @click="matrixMode = 'distance'"
-            >📏 Distances</button>
+            >📏 {{ t('adminPage.distances') }}</button>
             <button
               :class="['btn', { primary: matrixMode === 'speed' }]"
               @click="matrixMode = 'speed'"
-            >🚗 Vitesse</button>
+            >🚗 {{ t('adminPage.speed') }}</button>
             <select
               v-if="matrixProfileList.length > 1"
               v-model="activeMatrixProfile"
@@ -575,12 +577,12 @@ async function handleLogout() {
               >{{ p.label }} ({{ p.hours }})</option>
             </select>
             <span class="matrix-legend">
-              <span class="ml-swatch" style="background:#c8e6c9"></span> {{ matrixMode === 'speed' ? 'Rapide' : 'Court' }}
+              <span class="ml-swatch" style="background:#c8e6c9"></span> {{ matrixMode === 'speed' ? t('adminPage.fast') : t('adminPage.short') }}
               <span class="ml-swatch" style="background:#fff9c4"></span>
               <span class="ml-swatch" style="background:#ffe0b2"></span>
               <span class="ml-swatch" style="background:#ffccbc"></span>
               <span class="ml-swatch" style="background:#ef9a9a"></span>
-              <span class="ml-swatch" style="background:#e57373"></span> {{ matrixMode === 'speed' ? 'Lent' : 'Long' }}
+              <span class="ml-swatch" style="background:#e57373"></span> {{ matrixMode === 'speed' ? t('adminPage.slow') : t('adminPage.long') }}
             </span>
           </div>
           <div class="matrix-wrapper">
@@ -644,7 +646,7 @@ async function handleLogout() {
                     <button
                       :class="['verify-btn', { active: row.override.verified }]"
                       @click="toggleVerified(row)"
-                      :title="row.override.verified ? 'Vérifié' : 'Non vérifié'"
+                      :title="row.override.verified ? t('adminPage.verifiedLabel') : t('adminPage.notVerified')"
                     >{{ row.override.verified ? '✅' : '⬜' }}</button>
                   </template>
                   <template v-else>
@@ -659,9 +661,9 @@ async function handleLogout() {
             </tbody>
           </table>
           <p v-else-if="activeLayerId" class="empty">
-            {{ searchQuery ? 'Aucun résultat pour cette recherche.' : 'Aucune donnée.' }}
+            {{ searchQuery ? t('adminPage.noResults') : t('adminPage.noData') }}
           </p>
-          <p v-else class="empty">Sélectionnez une couche dans le menu de gauche.</p>
+          <p v-else class="empty">{{ t('adminPage.selectLayer') }}</p>
         </div>
       </main>
     </div>

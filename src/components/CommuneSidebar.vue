@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { ChoroplethLayer, LayerConfig } from '@/types/layer'
 import { layers, fetchGeoJSON, fetchData, selectedYear } from '@/composables/useDataStore'
 import { normalize, formatNumber } from '@/utils/helpers'
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon'
+
+const { t } = useI18n()
 
 const props = defineProps<{
   communeName: string | null
@@ -148,7 +151,7 @@ watch([() => props.communeName, () => props.visibleLayers], async ([name, visLay
 
       <!-- Population bar chart -->
       <section v-if="populationYears.length" class="section">
-        <h3>👥 Population</h3>
+        <h3>{{ t('commune.population') }}</h3>
         <div class="bar-chart">
           <div
             v-for="item in populationYears"
@@ -167,7 +170,7 @@ watch([() => props.communeName, () => props.visibleLayers], async ([name, visLay
 
       <!-- Visible choropleth layer data -->
       <section v-if="choroInfos.length" class="section">
-        <h3>📊 Données actives</h3>
+        <h3>{{ t('commune.activeData') }}</h3>
         <div v-if="loadingChoro" class="loading-text">Chargement…</div>
         <div v-else class="choro-grid">
           <div v-for="info in choroInfos" :key="info.layerId" class="choro-item">
@@ -186,7 +189,7 @@ watch([() => props.communeName, () => props.visibleLayers], async ([name, visLay
 
       <!-- POI counts -->
       <section class="section">
-        <h3>📍 Points d'intérêt <span class="poi-total">({{ totalPoi }})</span></h3>
+        <h3>{{ t('commune.poi') }} <span class="poi-total">({{ totalPoi }})</span></h3>
         <div v-if="loadingPoi" class="loading-text">Comptage en cours…</div>
         <div v-else-if="poiCounts.length" class="poi-grid">
           <div v-for="poi in poiCounts" :key="poi.layerId" class="poi-item">

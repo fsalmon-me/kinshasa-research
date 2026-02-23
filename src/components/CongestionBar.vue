@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { activeProfile, availableProfiles } from '@/composables/useMatrixLayer'
+
+const { t } = useI18n()
 
 const emit = defineEmits<{
   change: [profileKey: string]
@@ -24,7 +27,7 @@ function trafficColor(traffic: string): string {
 
 <template>
   <div v-if="availableProfiles.length > 0" class="congestion-bar">
-    <div class="bar-label">🕐 Heure de trajet :</div>
+    <div class="bar-label">{{ t('congestion.label') }}</div>
     <div class="profile-buttons">
       <button
         v-for="p in availableProfiles"

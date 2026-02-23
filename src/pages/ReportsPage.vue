@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import type { Report } from '@/types/report'
 import { fetchReportList, fetchReport, reports, loading } from '@/composables/useReportStore'
 import BlockEditor from '@/components/report/BlockEditor.vue'
+import LocaleSwitcher from '@/components/LocaleSwitcher.vue'
+
+const { t } = useI18n()
 
 const route = useRoute()
 const activeReport = ref<Report | null>(null)
@@ -48,19 +52,20 @@ watch(() => route.params.slug, async (slug) => {
 <template>
   <div class="reports-page">
     <header class="reports-header">
-      <router-link to="/" class="back-link">← Carte</router-link>
-      <h1>📊 Rapports</h1>
-      <router-link to="/admin/reports" class="new-report-btn">+ Nouveau rapport</router-link>
+      <router-link to="/" class="back-link">← {{ t('common.map') }}</router-link>
+      <h1>📊 {{ t('common.reports') }}</h1>
+      <LocaleSwitcher />
+      <router-link to="/admin/reports" class="new-report-btn">+ {{ t('reportsPage.newReport') }}</router-link>
     </header>
 
     <!-- List view -->
     <div v-if="listMode" class="reports-list">
-      <p v-if="loading" class="loading-msg">Chargement…</p>
+      <p v-if="loading" class="loading-msg">{{ t('common.loading') }}</p>
       <div v-else-if="reports.length === 0" class="empty-state">
         <p class="empty-icon">📊</p>
-        <p class="empty-title">Aucun rapport disponible</p>
-        <p class="empty-text">Les rapports permettent d'analyser les données géographiques de Kinshasa.</p>
-        <router-link to="/admin/reports" class="empty-cta">Créer un rapport →</router-link>
+        <p class="empty-title">{{ t('reportsPage.noReports') }}</p>
+        <p class="empty-text">{{ t('reportsPage.emptyText') }}</p>
+        <router-link to="/admin/reports" class="empty-cta">{{ t('reportsPage.createReport') }} →</router-link>
       </div>
       <div v-else class="report-cards">
         <article
@@ -78,7 +83,7 @@ watch(() => route.params.slug, async (slug) => {
 
     <!-- Report view -->
     <div v-else-if="activeReport" class="report-view">
-      <button class="back-btn" @click="backToList">← Tous les rapports</button>
+      <button class="back-btn" @click="backToList">← {{ t('reportsPage.allReports') }}</button>
       <h1 class="report-title">{{ activeReport.title }}</h1>
       <p v-if="activeReport.description" class="report-desc">{{ activeReport.description }}</p>
 

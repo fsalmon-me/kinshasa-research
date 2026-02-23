@@ -13,12 +13,10 @@ const emit = defineEmits<{
 
 const collapsed = ref(false)
 
-const categoryLabels: Record<string, string> = {
-  statistics: '📊 Statistiques',
-  infrastructure: '🛣️ Infrastructure',
-  poi: '📍 Points d\'intérêt',
-  transport: '🚗 Transport',
-}
+// Category labels — now using i18n would require useI18n() but these are computed
+// We keep them reactive via computed in the groups below
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 
 const categoryOrder = ['statistics', 'infrastructure', 'poi', 'transport', 'other']
 
@@ -37,11 +35,17 @@ const groups = computed<CategoryGroup[]>(() => {
     if (!map.has(cat)) map.set(cat, [])
     map.get(cat)!.push(l)
   }
+  const catLabels: Record<string, string> = {
+    statistics: t('categories.statisticsIcon'),
+    infrastructure: t('categories.infrastructureIcon'),
+    poi: t('categories.poiIcon'),
+    transport: t('categories.transportIcon'),
+  }
   return categoryOrder
     .filter(k => map.has(k))
     .map(k => ({
       key: k,
-      label: categoryLabels[k] ?? '📦 Autre',
+      label: catLabels[k] ?? t('categories.otherIcon'),
       layers: map.get(k)!,
     }))
 })
@@ -56,7 +60,7 @@ function toggleInfo(layer: LayerConfig) {
 <template>
   <div class="layer-panel" :class="{ collapsed }">
     <div class="panel-header" @click="collapsed = !collapsed">
-      <h3 class="panel-title">Couches</h3>
+      <h3 class="panel-title">{{ t('layers.title') }}</h3>
       <span class="collapse-icon">{{ collapsed ? '▸' : '▾' }}</span>
     </div>
 
@@ -89,13 +93,13 @@ function toggleInfo(layer: LayerConfig) {
         <div class="info-title">{{ infoLayer.name }}</div>
         <div class="info-desc">{{ infoLayer.description }}</div>
         <div v-if="infoLayer.metadata.source" class="info-field">
-          <strong>Source :</strong> {{ infoLayer.metadata.source }}
+          <strong>{{ t('layers.source') }}</strong> {{ infoLayer.metadata.source }}
         </div>
         <div v-if="infoLayer.metadata.license" class="info-field">
-          <strong>Licence :</strong> {{ infoLayer.metadata.license }}
+          <strong>{{ t('layers.license') }}</strong> {{ infoLayer.metadata.license }}
         </div>
         <div v-if="infoLayer.metadata.accessDate" class="info-field">
-          <strong>Date :</strong> {{ infoLayer.metadata.accessDate }}
+          <strong>{{ t('layers.date') }}</strong> {{ infoLayer.metadata.accessDate }}
         </div>
         <div v-if="infoLayer.metadata.methodology" class="info-field info-method">
           {{ infoLayer.metadata.methodology }}
@@ -106,7 +110,7 @@ function toggleInfo(layer: LayerConfig) {
           target="_blank"
           rel="noopener"
           class="info-link"
-        >Voir la source →</a>
+        >{{ t('layers.viewSource') }}</a>
       </div>
     </Transition>
   </div>

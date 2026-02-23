@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { searchIndex, buildSearchIndex, type SearchEntry } from '@/composables/useDataStore'
+
+const { t } = useI18n()
 
 const emit = defineEmits<{
   select: [entry: SearchEntry]
@@ -80,7 +83,7 @@ onUnmounted(() => {
         ref="inputEl"
         v-model="query"
         type="text"
-        placeholder="Rechercher commune ou lieu… (Ctrl+K)"
+        :placeholder="t('searchBar.placeholder')"
         class="search-input"
         @focus="focused = true"
         @blur="onBlur"
